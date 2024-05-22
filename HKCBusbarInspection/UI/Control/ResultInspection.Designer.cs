@@ -1,6 +1,6 @@
 ﻿namespace HKCBusbarInspection.UI.Control
 {
-    partial class State
+    partial class ResultInspection
     {
         /// <summary> 
         /// Required designer variable.
@@ -30,12 +30,12 @@
         {
             this.SuspendLayout();
             // 
-            // State
+            // ResultInspection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "State";
-            this.Size = new System.Drawing.Size(518, 307);
+            this.Name = "ResultInspection";
+            this.Size = new System.Drawing.Size(456, 396);
             this.ResumeLayout(false);
 
         }

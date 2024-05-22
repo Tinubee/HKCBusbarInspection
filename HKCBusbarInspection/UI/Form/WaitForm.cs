@@ -15,6 +15,8 @@ namespace HKCBusbarInspection.UI.Form
         {
             InitializeComponent();
             this.progressPanel1.AutoHeight = true;
+            this.SetTopLevel(true);
+            this.ShowOnTopMode = ShowFormOnTopMode.AboveAll;
         }
 
         #region Overrides
