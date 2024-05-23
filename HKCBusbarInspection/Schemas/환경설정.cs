@@ -57,7 +57,8 @@ namespace HKCBusbarInspection.Schemas
         public String 사용자명 { get; set; } = String.Empty;
         [JsonIgnore, Description("권한구분")]
         public 유저권한구분 사용권한 { get; set; } = 유저권한구분.없음;
-
+        [Translation("Origin Save Path", "원본 저장 경로"), JsonProperty("OriginImageSavePath")]
+        public String 원본보관폴더 { get { return Path.Combine(기본경로, "OriginImage"); } }
         [JsonIgnore, Description("검사여부"), Translation("Use Inspect", "검사여부")]
         public Boolean 검사여부 { get; set; } = true; // 검사로직 활성화 여부
         [JsonIgnore, Description("티칭모드")]
@@ -68,8 +69,6 @@ namespace HKCBusbarInspection.Schemas
         {
             return (Int32)사용권한 >= (Int32)요구권한;
         }
-        [JsonIgnore, Description("지그위치")]
-        public Boolean Front지그 { get; set; } = false;
         [JsonIgnore, Description("슈퍼유저")]
         public const String 시스템관리자 = "ivmadmin";
         public 유저권한구분 시스템관리자인증(string 사용자명, string 비밀번호)

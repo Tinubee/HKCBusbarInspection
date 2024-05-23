@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace HKCBusbarInspection.UI.Control
 {
-    public partial class DeviceLamp : XtraUserControl
+    public partial class ResultGrid : DevExpress.XtraEditors.XtraUserControl
     {
-        public DeviceLamp()
+        public ResultGrid()
         {
             InitializeComponent();
         }

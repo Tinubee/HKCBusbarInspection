@@ -1,5 +1,4 @@
 ﻿using OpenCvSharp;
-using OpenCvSharp.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,13 +13,6 @@ using System.Windows.Forms;
 
 namespace HKCBusbarInspection
 {
-    //public enum EXECUTION_STATE : uint
-    //{
-    //    ES_AWAYMODE_REQUIRED = 0x00000040,
-    //    ES_CONTINUOUS = 0x80000000,
-    //    ES_DISPLAY_REQUIRED = 0x00000002,
-    //}
-
     public static class Common
     {
         [DllImport("kernel32.dll", EntryPoint = "CopyMemory", SetLastError = false)]
@@ -73,7 +65,10 @@ namespace HKCBusbarInspection
             image.Dispose();
             return padded;
         }
-       
+
+        public static Mat Resize(Mat source, Double scale) =>
+            source.Resize(OpenCvSharp.Size.Zero, scale, scale, InterpolationFlags.Linear);
+
         public static String GetImageFile()
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())

@@ -8,7 +8,7 @@ using System.Windows.Media.Media3D;
 
 namespace HKCBusbarInspection.Schemas
 {
-    public class BUSBAR_POS3D : Viewport
+    public class BUSBAR3D : Viewport
     {
         #region 초기화
         public override String StlPath => Global.환경설정.기본경로;
@@ -27,10 +27,6 @@ namespace HKCBusbarInspection.Schemas
             transform.Children.Add(new TranslateTransform3D(p.X * Scale, p.Y * Scale, 0 * Scale));
             transform.Children.Add(new ScaleTransform3D(Scale, Scale, Scale));
             MainModel.Transform = transform;
-            //MainModel.Transform = new TranslateTransform3D(p.X, p.Y, 0);
-            //Debug.WriteLine(p.ToString(), "p");
-            //Debug.WriteLine(MainModel.Transform.Value.ToString(), "Transform");
-
             MainModel.SetName(nameof(MainModel));
             MainModel.Material = FrontMaterial;
             MainModel.BackMaterial = BackMaterial;

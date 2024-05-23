@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace HKCBusbarInspection.UI.Control
 {
-    public partial class CiView : DevExpress.XtraEditors.XtraUserControl
+    public partial class CiView : XtraUserControl
     {
         public CiView()
         {

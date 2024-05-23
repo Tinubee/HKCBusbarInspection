@@ -16,14 +16,12 @@ namespace HKCBusbarInspection.Schemas
         None = 0,
         [Description("Cam1(Top Camera)")]
         Cam01 = 1,
-        [Description("Cam2(Side Left)")]
+        [Description("Cam2(Side Camera)")]
         Cam02 = 2,
-        [Description("Cam3(Side Right)")]
+        [Description("Cam3(LPoint Camera)")]
         Cam03 = 3,
-        [Description("Cam4(Bottom Left)")]
+        [Description("Cam4(Bottom Camera)")]
         Cam04 = 4,
-        [Description("Cam5(Bottom Right)")]
-        Cam05 = 5,
     }
 
     public enum 장치구분
@@ -38,8 +36,6 @@ namespace HKCBusbarInspection.Schemas
         Cam03 = 카메라구분.Cam03,
         [Description("Cam04"), Camera(true)]
         Cam04 = 카메라구분.Cam04,
-        [Description("Cam05"), Camera(true)]
-        Cam05 = 카메라구분.Cam05,
     }
 
     public enum 결과분류

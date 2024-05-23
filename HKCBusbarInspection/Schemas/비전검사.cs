@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace HKCBusbarInspection.Schemas
 {
-    public class 조명제어
+    internal class 비전검사
     {
-
     }
 }

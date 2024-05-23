@@ -41,13 +41,12 @@ namespace HKCBusbarInspection
                 로그자료 = new 로그자료();
                 모델자료 = new 모델자료();
 
-
                 Initialized?.Invoke(null, true);
                 return true;
             }
             catch (Exception ex)
             {
-                MvUtils.Utils.DebugException(ex, 3);
+                Utils.DebugException(ex, 3);
                 Global.오류로그(로그영역, "초기화 오류", "시스템 초기화에 실패하였습니다.\n" + ex.Message, true);
             }
             Initialized.Invoke(null, false);
