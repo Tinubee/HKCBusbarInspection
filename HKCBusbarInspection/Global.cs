@@ -1,13 +1,9 @@
 ﻿using HKCBusbarInspection.Schemas;
 using MvUtils;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HKCBusbarInspection
@@ -19,6 +15,10 @@ namespace HKCBusbarInspection
     }
     public class Global
     {
+        public const String SkinName = "The Bezier";
+        public const String BlackPalette = "Office Black";
+        public const String ColorPalette = "Office Colorful";
+
         public static MainForm MainForm = null;
         public delegate void BaseEvent();
         public static event EventHandler<Boolean> Initialized;
@@ -33,14 +33,36 @@ namespace HKCBusbarInspection
         public static VM제어 VM제어;
         public static 검사자료 검사자료;
 
+        public static class 장치상태
+        {
+
+        }
+
         public static Boolean Init()
         {
             try
             {
-                환경설정 = new 환경설정();
                 로그자료 = new 로그자료();
+                환경설정 = new 환경설정();
                 모델자료 = new 모델자료();
+                조명제어 = new 조명제어();
+                VM제어 = new VM제어();
+                그랩제어 = new 그랩제어();
 
+                로그자료.Init();
+                환경설정.Init();
+                모델자료.Init();
+                if (Global.환경설정.동작구분 == 동작구분.Live)
+                {
+                    신호제어.Init();
+                    if (!그랩제어.Init()) new Exception("카메라 초기화에 실패하였습니다.");
+                    if (!신호제어.Open()) new Exception("PLC 서버에 연결할 수 없습니다.");
+                    조명제어.Init();
+                }
+
+                //VM제어.Init();
+
+                Global.정보로그(로그영역, "초기화", "시스템을 초기화 합니다.", false);
                 Initialized?.Invoke(null, true);
                 return true;
             }
@@ -49,7 +71,8 @@ namespace HKCBusbarInspection
                 Utils.DebugException(ex, 3);
                 Global.오류로그(로그영역, "초기화 오류", "시스템 초기화에 실패하였습니다.\n" + ex.Message, true);
             }
-            Initialized.Invoke(null, false);
+           
+            Initialized?.Invoke(null, false);
             return false;
         }
 
@@ -57,13 +80,32 @@ namespace HKCBusbarInspection
         {
             try
             {
+                if (환경설정.동작구분 == 동작구분.Live)
+                {
+                    조명제어.Close();
+                    그랩제어.Close();
+                }
+
+                //유저자료.Close();
+                //환경설정.Close();
+                //사진자료.Close();
+                //모델자료.Close();
+                //로그자료.Close();
+
+                //VM제어.Close();
+
+                Properties.Settings.Default.Save();
                 return true;
             }
             catch(Exception ex)
             {
-                return MvUtils.Utils.ErrorMsg("프로그램 종료 중 오류가 발생하였습니다.\n" + ex.Message);
-
+                return Utils.ErrorMsg("프로그램 종료 중 오류가 발생하였습니다.\n" + ex.Message);
             }
+        }
+
+        public static void Start()
+        {
+
         }
 
 

@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
+            this.dockPanel1 = new DevExpress.XtraBars.Docking.DockPanel();
+            this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.e외관결과 = new DevExpress.XtraEditors.TextEdit();
             this.eCTQ결과 = new DevExpress.XtraEditors.TextEdit();
@@ -42,6 +46,8 @@
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
+            ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
+            this.dockPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.e외관결과.Properties)).BeginInit();
@@ -58,6 +64,44 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             this.SuspendLayout();
             // 
+            // dockManager1
+            // 
+            this.dockManager1.DockingOptions.ShowCloseButton = false;
+            this.dockManager1.Form = this;
+            this.dockManager1.RootPanels.AddRange(new DevExpress.XtraBars.Docking.DockPanel[] {
+            this.dockPanel1});
+            this.dockManager1.TopZIndexControls.AddRange(new string[] {
+            "DevExpress.XtraBars.BarDockControl",
+            "DevExpress.XtraBars.StandaloneBarDockControl",
+            "System.Windows.Forms.MenuStrip",
+            "System.Windows.Forms.StatusStrip",
+            "System.Windows.Forms.StatusBar",
+            "DevExpress.XtraBars.Ribbon.RibbonStatusBar",
+            "DevExpress.XtraBars.Ribbon.RibbonControl",
+            "DevExpress.XtraBars.Navigation.OfficeNavigationBar",
+            "DevExpress.XtraBars.Navigation.TileNavPane",
+            "DevExpress.XtraBars.TabFormControl",
+            "DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl",
+            "DevExpress.XtraBars.ToolbarForm.ToolbarFormControl"});
+            // 
+            // dockPanel1
+            // 
+            this.dockPanel1.Controls.Add(this.dockPanel1_Container);
+            this.dockPanel1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Right;
+            this.dockPanel1.ID = new System.Guid("6883b6c3-9de6-41a2-8e51-aea01744beca");
+            this.dockPanel1.Location = new System.Drawing.Point(1331, 0);
+            this.dockPanel1.Name = "dockPanel1";
+            this.dockPanel1.OriginalSize = new System.Drawing.Size(589, 200);
+            this.dockPanel1.Size = new System.Drawing.Size(589, 900);
+            this.dockPanel1.Text = "Inspection Results";
+            // 
+            // dockPanel1_Container
+            // 
+            this.dockPanel1_Container.Location = new System.Drawing.Point(4, 30);
+            this.dockPanel1_Container.Name = "dockPanel1_Container";
+            this.dockPanel1_Container.Size = new System.Drawing.Size(582, 867);
+            this.dockPanel1_Container.TabIndex = 0;
+            // 
             // layoutControl1
             // 
             this.layoutControl1.AutoScroll = false;
@@ -71,7 +115,7 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsView.AlwaysScrollActiveControlIntoView = false;
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(1920, 900);
+            this.layoutControl1.Size = new System.Drawing.Size(1331, 900);
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -86,7 +130,7 @@
             this.e외관결과.Properties.Appearance.Options.UseTextOptions = true;
             this.e외관결과.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.e외관결과.Properties.ReadOnly = true;
-            this.e외관결과.Size = new System.Drawing.Size(295, 32);
+            this.e외관결과.Size = new System.Drawing.Size(174, 32);
             this.e외관결과.StyleController = this.layoutControl1;
             this.e외관결과.TabIndex = 9;
             // 
@@ -101,7 +145,7 @@
             this.eCTQ결과.Properties.Appearance.Options.UseTextOptions = true;
             this.eCTQ결과.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.eCTQ결과.Properties.ReadOnly = true;
-            this.eCTQ결과.Size = new System.Drawing.Size(295, 32);
+            this.eCTQ결과.Size = new System.Drawing.Size(174, 32);
             this.eCTQ결과.StyleController = this.layoutControl1;
             this.eCTQ결과.TabIndex = 8;
             // 
@@ -109,7 +153,7 @@
             // 
             this.e검사순번.EditValue = 0;
             this.e검사순번.EnterMoveNextControl = true;
-            this.e검사순번.Location = new System.Drawing.Point(753, 54);
+            this.e검사순번.Location = new System.Drawing.Point(632, 54);
             this.e검사순번.Name = "e검사순번";
             this.e검사순번.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.e검사순번.Properties.Appearance.Options.UseFont = true;
@@ -120,7 +164,7 @@
             this.e검사순번.Properties.EditFormat.FormatString = "d4";
             this.e검사순번.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.e검사순번.Properties.ReadOnly = true;
-            this.e검사순번.Size = new System.Drawing.Size(365, 32);
+            this.e검사순번.Size = new System.Drawing.Size(201, 32);
             this.e검사순번.StyleController = this.layoutControl1;
             this.e검사순번.TabIndex = 1;
             // 
@@ -142,7 +186,7 @@
             // e검사시간
             // 
             this.e검사시간.EnterMoveNextControl = true;
-            this.e검사시간.Location = new System.Drawing.Point(1208, 54);
+            this.e검사시간.Location = new System.Drawing.Point(923, 54);
             this.e검사시간.Name = "e검사시간";
             this.e검사시간.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.e검사시간.Properties.Appearance.Options.UseFont = true;
@@ -153,7 +197,7 @@
             this.e검사시간.Properties.EditFormat.FormatString = "{0:yyyy-MM-dd HH:mm:ss}";
             this.e검사시간.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.e검사시간.Properties.ReadOnly = true;
-            this.e검사시간.Size = new System.Drawing.Size(702, 32);
+            this.e검사시간.Size = new System.Drawing.Size(398, 32);
             this.e검사시간.StyleController = this.layoutControl1;
             this.e검사시간.TabIndex = 5;
             // 
@@ -173,7 +217,7 @@
             this.layoutControlItem8});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(4, 4, 4, 4);
-            this.Root.Size = new System.Drawing.Size(1920, 900);
+            this.Root.Size = new System.Drawing.Size(1331, 900);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem3
@@ -191,29 +235,29 @@
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.e검사순번;
-            this.layoutControlItem4.Location = new System.Drawing.Point(665, 44);
+            this.layoutControlItem4.Location = new System.Drawing.Point(544, 44);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem4.Size = new System.Drawing.Size(455, 46);
+            this.layoutControlItem4.Size = new System.Drawing.Size(291, 46);
             this.layoutControlItem4.Text = "Index";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(66, 25);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.e검사시간;
-            this.layoutControlItem2.Location = new System.Drawing.Point(1120, 44);
+            this.layoutControlItem2.Location = new System.Drawing.Point(835, 44);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem2.Size = new System.Drawing.Size(792, 46);
+            this.layoutControlItem2.Size = new System.Drawing.Size(488, 46);
             this.layoutControlItem2.Text = "Time";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(66, 25);
             // 
             // layoutControlItem5
             // 
-            this.layoutControlItem5.Location = new System.Drawing.Point(665, 0);
+            this.layoutControlItem5.Location = new System.Drawing.Point(544, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem5.Size = new System.Drawing.Size(1247, 44);
+            this.layoutControlItem5.Size = new System.Drawing.Size(779, 44);
             this.layoutControlItem5.Text = "Legibility";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
@@ -224,7 +268,7 @@
             this.layoutControlItem6.Location = new System.Drawing.Point(280, 0);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem6.Size = new System.Drawing.Size(385, 44);
+            this.layoutControlItem6.Size = new System.Drawing.Size(264, 44);
             this.layoutControlItem6.Text = "CTQ";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(66, 25);
             // 
@@ -234,7 +278,7 @@
             this.layoutControlItem7.Location = new System.Drawing.Point(280, 44);
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Padding = new DevExpress.XtraLayout.Utils.Padding(6, 6, 6, 6);
-            this.layoutControlItem7.Size = new System.Drawing.Size(385, 46);
+            this.layoutControlItem7.Size = new System.Drawing.Size(264, 46);
             this.layoutControlItem7.Text = "Surface";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(66, 25);
             // 
@@ -242,7 +286,7 @@
             // 
             this.layoutControlItem8.Location = new System.Drawing.Point(0, 90);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(1912, 802);
+            this.layoutControlItem8.Size = new System.Drawing.Size(1323, 802);
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 
@@ -251,8 +295,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.layoutControl1);
+            this.Controls.Add(this.dockPanel1);
             this.Name = "ResultInspection";
             this.Size = new System.Drawing.Size(1920, 900);
+            ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
+            this.dockPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.e외관결과.Properties)).EndInit();
@@ -272,7 +319,7 @@
         }
 
         #endregion
-
+        private DevExpress.XtraBars.Docking.DockManager dockManager1;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraEditors.TextEdit e외관결과;
         private DevExpress.XtraEditors.TextEdit eCTQ결과;
@@ -287,5 +334,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
+        private DevExpress.XtraBars.Docking.DockPanel dockPanel1;
+        private DevExpress.XtraBars.Docking.ControlContainer dockPanel1_Container;
     }
 }

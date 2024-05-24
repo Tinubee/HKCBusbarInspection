@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace HKCBusbarInspection.UI.Control
 {
-    public partial class State : DevExpress.XtraEditors.XtraUserControl
+    public partial class State : XtraUserControl
     {
         public State()
         {

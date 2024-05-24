@@ -13,16 +13,11 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            bool isDesignMode = DesignMode;
             if (disposing && (components != null))
             {
                 components.Dispose();
             }
             base.Dispose(disposing);
-            if (--OpenFormCount == 0 && !isDesignMode)
-            {
-                System.Windows.Forms.Application.Exit();
-            }
         }
 
         #region Windows Form Designer generated code
@@ -42,7 +37,7 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.p결과뷰어 = new DevExpress.XtraBars.TabFormPage();
             this.tabFormContentContainer1 = new DevExpress.XtraBars.TabFormContentContainer();
-            this.resultInspection1 = new HKCBusbarInspection.UI.Control.ResultInspection();
+            this.e결과뷰어 = new HKCBusbarInspection.UI.Control.ResultInspection();
             this.e상태뷰어 = new HKCBusbarInspection.UI.Control.State();
             this.p검사도구 = new DevExpress.XtraBars.TabFormPage();
             this.tabFormContentContainer2 = new DevExpress.XtraBars.TabFormContentContainer();
@@ -78,7 +73,6 @@
             this.tabFormControl1.TabIndex = 0;
             this.tabFormControl1.TabLeftItemLinks.Add(this.barStaticItem1);
             this.tabFormControl1.TabStop = false;
-            this.tabFormControl1.OuterFormCreating += new DevExpress.XtraBars.OuterFormCreatingEventHandler(this.OnOuterFormCreating);
             // 
             // barStaticItem1
             // 
@@ -139,12 +133,13 @@
             // p결과뷰어
             // 
             this.p결과뷰어.ContentContainer = this.tabFormContentContainer1;
+            this.p결과뷰어.ImageOptions.SvgImage = global::HKCBusbarInspection.Properties.Resources.enablesearch;
             this.p결과뷰어.Name = "p결과뷰어";
             this.p결과뷰어.Text = "Inspection";
             // 
             // tabFormContentContainer1
             // 
-            this.tabFormContentContainer1.Controls.Add(this.resultInspection1);
+            this.tabFormContentContainer1.Controls.Add(this.e결과뷰어);
             this.tabFormContentContainer1.Controls.Add(this.e상태뷰어);
             this.tabFormContentContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabFormContentContainer1.Location = new System.Drawing.Point(0, 30);
@@ -152,13 +147,13 @@
             this.tabFormContentContainer1.Size = new System.Drawing.Size(1920, 1010);
             this.tabFormContentContainer1.TabIndex = 1;
             // 
-            // resultInspection1
+            // e결과뷰어
             // 
-            this.resultInspection1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.resultInspection1.Location = new System.Drawing.Point(0, 105);
-            this.resultInspection1.Name = "resultInspection1";
-            this.resultInspection1.Size = new System.Drawing.Size(1920, 905);
-            this.resultInspection1.TabIndex = 2;
+            this.e결과뷰어.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.e결과뷰어.Location = new System.Drawing.Point(0, 105);
+            this.e결과뷰어.Name = "e결과뷰어";
+            this.e결과뷰어.Size = new System.Drawing.Size(1920, 905);
+            this.e결과뷰어.TabIndex = 2;
             // 
             // e상태뷰어
             // 
@@ -171,6 +166,7 @@
             // p검사도구
             // 
             this.p검사도구.ContentContainer = this.tabFormContentContainer2;
+            this.p검사도구.ImageOptions.SvgImage = global::HKCBusbarInspection.Properties.Resources.electronics_photo;
             this.p검사도구.Name = "p검사도구";
             this.p검사도구.Text = "Cameras";
             // 
@@ -185,6 +181,7 @@
             // p검사내역
             // 
             this.p검사내역.ContentContainer = this.tabFormContentContainer3;
+            this.p검사내역.ImageOptions.SvgImage = global::HKCBusbarInspection.Properties.Resources.portrait;
             this.p검사내역.Name = "p검사내역";
             this.p검사내역.Text = "History";
             // 
@@ -199,6 +196,7 @@
             // p환경설정
             // 
             this.p환경설정.ContentContainer = this.tabFormContentContainer4;
+            this.p환경설정.ImageOptions.SvgImage = global::HKCBusbarInspection.Properties.Resources.properties;
             this.p환경설정.Name = "p환경설정";
             this.p환경설정.Text = "Preferences";
             // 
@@ -253,7 +251,7 @@
         private DevExpress.XtraBars.TabFormPage p환경설정;
         private DevExpress.XtraBars.TabFormContentContainer tabFormContentContainer4;
         private UI.Control.State e상태뷰어;
-        private UI.Control.ResultInspection resultInspection1;
+        private UI.Control.ResultInspection e결과뷰어;
     }
 }
 
