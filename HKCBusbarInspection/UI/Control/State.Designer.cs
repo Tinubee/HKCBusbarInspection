@@ -28,31 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.e모델선택 = new DevExpress.XtraEditors.LookUpEdit();
+            this.모델자료Bind = new System.Windows.Forms.BindingSource(this.components);
             this.b동작구분 = new DevExpress.XtraEditors.LabelControl();
-            this.deviceLamp1 = new HKCBusbarInspection.UI.Control.DeviceLamp();
+            this.e장치상태 = new HKCBusbarInspection.UI.Control.DeviceLamp();
             this.tablePanel1 = new DevExpress.Utils.Layout.TablePanel();
-            this.countViewer4 = new HKCBusbarInspection.UI.Control.CountViewer();
-            this.countViewer3 = new HKCBusbarInspection.UI.Control.CountViewer();
-            this.countViewer2 = new HKCBusbarInspection.UI.Control.CountViewer();
-            this.countViewer1 = new HKCBusbarInspection.UI.Control.CountViewer();
+            this.e양품수율 = new HKCBusbarInspection.UI.Control.CountViewer();
+            this.e전체수량 = new HKCBusbarInspection.UI.Control.CountViewer();
+            this.e불량수량 = new HKCBusbarInspection.UI.Control.CountViewer();
+            this.e양품수량 = new HKCBusbarInspection.UI.Control.CountViewer();
             this.b수량리셋 = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.e저장용량 = new DevExpress.XtraEditors.ProgressBarControl();
             this.ciView1 = new HKCBusbarInspection.UI.Control.CiView();
             this.titleView1 = new HKCBusbarInspection.UI.Control.TitleView();
+            this.BindLocalization = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.e모델선택.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.모델자료Bind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel1)).BeginInit();
             this.tablePanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.e저장용량.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindLocalization)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -70,7 +75,7 @@
             this.panelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl2.Controls.Add(this.e모델선택);
             this.panelControl2.Controls.Add(this.b동작구분);
-            this.panelControl2.Controls.Add(this.deviceLamp1);
+            this.panelControl2.Controls.Add(this.e장치상태);
             this.panelControl2.Controls.Add(this.tablePanel1);
             this.panelControl2.Controls.Add(this.groupControl1);
             this.panelControl2.Controls.Add(this.ciView1);
@@ -98,9 +103,16 @@
             this.e모델선택.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("모델구분", "구분", 150, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("모델설명", "설명", 240, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.e모델선택.Properties.DataSource = this.모델자료Bind;
+            this.e모델선택.Properties.DisplayMember = "모델구분";
             this.e모델선택.Properties.NullText = "[Model]";
+            this.e모델선택.Properties.ValueMember = "모델구분";
             this.e모델선택.Size = new System.Drawing.Size(424, 95);
             this.e모델선택.TabIndex = 16;
+            // 
+            // 모델자료Bind
+            // 
+            this.모델자료Bind.DataSource = typeof(HKCBusbarInspection.Schemas.모델자료);
             // 
             // b동작구분
             // 
@@ -117,13 +129,13 @@
             this.b동작구분.TabIndex = 15;
             this.b동작구분.Text = "Manual";
             // 
-            // deviceLamp1
+            // e장치상태
             // 
-            this.deviceLamp1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.deviceLamp1.Location = new System.Drawing.Point(3, 3);
-            this.deviceLamp1.Name = "deviceLamp1";
-            this.deviceLamp1.Size = new System.Drawing.Size(200, 95);
-            this.deviceLamp1.TabIndex = 14;
+            this.e장치상태.Dock = System.Windows.Forms.DockStyle.Left;
+            this.e장치상태.Location = new System.Drawing.Point(3, 3);
+            this.e장치상태.Name = "e장치상태";
+            this.e장치상태.Size = new System.Drawing.Size(200, 95);
+            this.e장치상태.TabIndex = 14;
             // 
             // tablePanel1
             // 
@@ -133,10 +145,10 @@
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 20F),
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 20F),
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 20F)});
-            this.tablePanel1.Controls.Add(this.countViewer4);
-            this.tablePanel1.Controls.Add(this.countViewer3);
-            this.tablePanel1.Controls.Add(this.countViewer2);
-            this.tablePanel1.Controls.Add(this.countViewer1);
+            this.tablePanel1.Controls.Add(this.e양품수율);
+            this.tablePanel1.Controls.Add(this.e전체수량);
+            this.tablePanel1.Controls.Add(this.e불량수량);
+            this.tablePanel1.Controls.Add(this.e양품수량);
             this.tablePanel1.Controls.Add(this.b수량리셋);
             this.tablePanel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.tablePanel1.Location = new System.Drawing.Point(843, 3);
@@ -146,45 +158,65 @@
             this.tablePanel1.Size = new System.Drawing.Size(500, 95);
             this.tablePanel1.TabIndex = 3;
             // 
-            // countViewer4
+            // e양품수율
             // 
-            this.tablePanel1.SetColumn(this.countViewer4, 3);
-            this.countViewer4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.countViewer4.Location = new System.Drawing.Point(303, 3);
-            this.countViewer4.Name = "countViewer4";
-            this.tablePanel1.SetRow(this.countViewer4, 0);
-            this.countViewer4.Size = new System.Drawing.Size(94, 89);
-            this.countViewer4.TabIndex = 16;
+            this.e양품수율.BaseColor = System.Drawing.Color.Empty;
+            this.e양품수율.Caption = "Yield";
+            this.e양품수율.CaptionFont = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tablePanel1.SetColumn(this.e양품수율, 3);
+            this.e양품수율.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.e양품수율.Location = new System.Drawing.Point(303, 3);
+            this.e양품수율.Name = "e양품수율";
+            this.tablePanel1.SetRow(this.e양품수율, 0);
+            this.e양품수율.Size = new System.Drawing.Size(94, 89);
+            this.e양품수율.TabIndex = 16;
+            this.e양품수율.TextFont = new System.Drawing.Font("맑은 고딕", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.e양품수율.ValueText = "100.0";
             // 
-            // countViewer3
+            // e전체수량
             // 
-            this.tablePanel1.SetColumn(this.countViewer3, 2);
-            this.countViewer3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.countViewer3.Location = new System.Drawing.Point(203, 3);
-            this.countViewer3.Name = "countViewer3";
-            this.tablePanel1.SetRow(this.countViewer3, 0);
-            this.countViewer3.Size = new System.Drawing.Size(94, 89);
-            this.countViewer3.TabIndex = 15;
+            this.e전체수량.BaseColor = System.Drawing.Color.Empty;
+            this.e전체수량.Caption = "Total";
+            this.e전체수량.CaptionFont = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tablePanel1.SetColumn(this.e전체수량, 2);
+            this.e전체수량.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.e전체수량.Location = new System.Drawing.Point(203, 3);
+            this.e전체수량.Name = "e전체수량";
+            this.tablePanel1.SetRow(this.e전체수량, 0);
+            this.e전체수량.Size = new System.Drawing.Size(94, 89);
+            this.e전체수량.TabIndex = 15;
+            this.e전체수량.TextFont = new System.Drawing.Font("맑은 고딕", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.e전체수량.ValueText = "100.0";
             // 
-            // countViewer2
+            // e불량수량
             // 
-            this.tablePanel1.SetColumn(this.countViewer2, 1);
-            this.countViewer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.countViewer2.Location = new System.Drawing.Point(103, 3);
-            this.countViewer2.Name = "countViewer2";
-            this.tablePanel1.SetRow(this.countViewer2, 0);
-            this.countViewer2.Size = new System.Drawing.Size(94, 89);
-            this.countViewer2.TabIndex = 14;
+            this.e불량수량.BaseColor = System.Drawing.Color.Empty;
+            this.e불량수량.Caption = "NG";
+            this.e불량수량.CaptionFont = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tablePanel1.SetColumn(this.e불량수량, 1);
+            this.e불량수량.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.e불량수량.Location = new System.Drawing.Point(103, 3);
+            this.e불량수량.Name = "e불량수량";
+            this.tablePanel1.SetRow(this.e불량수량, 0);
+            this.e불량수량.Size = new System.Drawing.Size(94, 89);
+            this.e불량수량.TabIndex = 14;
+            this.e불량수량.TextFont = new System.Drawing.Font("맑은 고딕", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.e불량수량.ValueText = "100.0";
             // 
-            // countViewer1
+            // e양품수량
             // 
-            this.tablePanel1.SetColumn(this.countViewer1, 0);
-            this.countViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.countViewer1.Location = new System.Drawing.Point(3, 3);
-            this.countViewer1.Name = "countViewer1";
-            this.tablePanel1.SetRow(this.countViewer1, 0);
-            this.countViewer1.Size = new System.Drawing.Size(94, 89);
-            this.countViewer1.TabIndex = 1;
+            this.e양품수량.BaseColor = System.Drawing.Color.Empty;
+            this.e양품수량.Caption = "OK";
+            this.e양품수량.CaptionFont = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tablePanel1.SetColumn(this.e양품수량, 0);
+            this.e양품수량.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.e양품수량.Location = new System.Drawing.Point(3, 3);
+            this.e양품수량.Name = "e양품수량";
+            this.tablePanel1.SetRow(this.e양품수량, 0);
+            this.e양품수량.Size = new System.Drawing.Size(94, 89);
+            this.e양품수량.TabIndex = 1;
+            this.e양품수량.TextFont = new System.Drawing.Font("맑은 고딕", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.e양품수량.ValueText = "100.0";
             // 
             // b수량리셋
             // 
@@ -250,11 +282,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.e모델선택.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.모델자료Bind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel1)).EndInit();
             this.tablePanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.e저장용량.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindLocalization)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -269,12 +303,14 @@
         private DevExpress.XtraEditors.ProgressBarControl e저장용량;
         private DevExpress.Utils.Layout.TablePanel tablePanel1;
         private DevExpress.XtraEditors.SimpleButton b수량리셋;
-        private CountViewer countViewer4;
-        private CountViewer countViewer3;
-        private CountViewer countViewer2;
-        private CountViewer countViewer1;
+        private CountViewer e양품수율;
+        private CountViewer e전체수량;
+        private CountViewer e불량수량;
+        private CountViewer e양품수량;
         private DevExpress.XtraEditors.LookUpEdit e모델선택;
         private DevExpress.XtraEditors.LabelControl b동작구분;
-        private DeviceLamp deviceLamp1;
+        private DeviceLamp e장치상태;
+        private System.Windows.Forms.BindingSource 모델자료Bind;
+        private System.Windows.Forms.BindingSource BindLocalization;
     }
 }

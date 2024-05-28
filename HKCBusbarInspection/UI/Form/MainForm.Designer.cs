@@ -30,6 +30,8 @@
         {
             this.tabFormControl1 = new DevExpress.XtraBars.TabFormControl();
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
+            this.skinPaletteDropDownButtonItem1 = new DevExpress.XtraBars.SkinPaletteDropDownButtonItem();
+            this.e프로젝트 = new DevExpress.XtraBars.BarStaticItem();
             this.tabFormDefaultManager1 = new DevExpress.XtraBars.TabFormDefaultManager();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -41,13 +43,23 @@
             this.e상태뷰어 = new HKCBusbarInspection.UI.Control.State();
             this.p검사도구 = new DevExpress.XtraBars.TabFormPage();
             this.tabFormContentContainer2 = new DevExpress.XtraBars.TabFormContentContainer();
+            this.e카메라뷰어 = new HKCBusbarInspection.UI.Control.CamViewers();
             this.p검사내역 = new DevExpress.XtraBars.TabFormPage();
             this.tabFormContentContainer3 = new DevExpress.XtraBars.TabFormContentContainer();
             this.p환경설정 = new DevExpress.XtraBars.TabFormPage();
             this.tabFormContentContainer4 = new DevExpress.XtraBars.TabFormContentContainer();
+            this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
+            this.t검사설정 = new DevExpress.XtraTab.XtraTabPage();
+            this.setInspection1 = new HKCBusbarInspection.UI.Control.SetInspection();
+            this.t장치설정 = new DevExpress.XtraTab.XtraTabPage();
             ((System.ComponentModel.ISupportInitialize)(this.tabFormControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabFormDefaultManager1)).BeginInit();
             this.tabFormContentContainer1.SuspendLayout();
+            this.tabFormContentContainer2.SuspendLayout();
+            this.tabFormContentContainer4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
+            this.xtraTabControl1.SuspendLayout();
+            this.t검사설정.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabFormControl1
@@ -55,7 +67,9 @@
             this.tabFormControl1.AllowMoveTabs = false;
             this.tabFormControl1.AllowMoveTabsToOuterForm = false;
             this.tabFormControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.barStaticItem1});
+            this.barStaticItem1,
+            this.skinPaletteDropDownButtonItem1,
+            this.e프로젝트});
             this.tabFormControl1.Location = new System.Drawing.Point(0, 0);
             this.tabFormControl1.Manager = this.tabFormDefaultManager1;
             this.tabFormControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -64,7 +78,7 @@
             this.tabFormControl1.Pages.Add(this.p검사도구);
             this.tabFormControl1.Pages.Add(this.p검사내역);
             this.tabFormControl1.Pages.Add(this.p환경설정);
-            this.tabFormControl1.SelectedPage = this.p결과뷰어;
+            this.tabFormControl1.SelectedPage = this.p환경설정;
             this.tabFormControl1.ShowAddPageButton = false;
             this.tabFormControl1.ShowTabCloseButtons = false;
             this.tabFormControl1.ShowTabsInTitleBar = DevExpress.XtraBars.ShowTabsInTitleBar.True;
@@ -72,6 +86,8 @@
             this.tabFormControl1.TabForm = this;
             this.tabFormControl1.TabIndex = 0;
             this.tabFormControl1.TabLeftItemLinks.Add(this.barStaticItem1);
+            this.tabFormControl1.TabRightItemLinks.Add(this.e프로젝트);
+            this.tabFormControl1.TabRightItemLinks.Add(this.skinPaletteDropDownButtonItem1);
             this.tabFormControl1.TabStop = false;
             // 
             // barStaticItem1
@@ -82,6 +98,19 @@
             this.barStaticItem1.Name = "barStaticItem1";
             this.barStaticItem1.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
+            // skinPaletteDropDownButtonItem1
+            // 
+            this.skinPaletteDropDownButtonItem1.Id = 1;
+            this.skinPaletteDropDownButtonItem1.Name = "skinPaletteDropDownButtonItem1";
+            // 
+            // e프로젝트
+            // 
+            this.e프로젝트.Caption = "IVM : 24-0272-003";
+            this.e프로젝트.Id = 2;
+            this.e프로젝트.ImageOptions.SvgImage = global::HKCBusbarInspection.Properties.Resources.LaptopSecure;
+            this.e프로젝트.Name = "e프로젝트";
+            this.e프로젝트.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            // 
             // tabFormDefaultManager1
             // 
             this.tabFormDefaultManager1.DockControls.Add(this.barDockControlTop);
@@ -91,8 +120,10 @@
             this.tabFormDefaultManager1.DockingEnabled = false;
             this.tabFormDefaultManager1.Form = this;
             this.tabFormDefaultManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.barStaticItem1});
-            this.tabFormDefaultManager1.MaxItemId = 1;
+            this.barStaticItem1,
+            this.skinPaletteDropDownButtonItem1,
+            this.e프로젝트});
+            this.tabFormDefaultManager1.MaxItemId = 3;
             // 
             // barDockControlTop
             // 
@@ -172,11 +203,20 @@
             // 
             // tabFormContentContainer2
             // 
+            this.tabFormContentContainer2.Controls.Add(this.e카메라뷰어);
             this.tabFormContentContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabFormContentContainer2.Location = new System.Drawing.Point(0, 30);
             this.tabFormContentContainer2.Name = "tabFormContentContainer2";
             this.tabFormContentContainer2.Size = new System.Drawing.Size(1920, 1010);
             this.tabFormContentContainer2.TabIndex = 4;
+            // 
+            // e카메라뷰어
+            // 
+            this.e카메라뷰어.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.e카메라뷰어.Location = new System.Drawing.Point(0, 0);
+            this.e카메라뷰어.Name = "e카메라뷰어";
+            this.e카메라뷰어.Size = new System.Drawing.Size(1920, 1010);
+            this.e카메라뷰어.TabIndex = 0;
             // 
             // p검사내역
             // 
@@ -202,11 +242,45 @@
             // 
             // tabFormContentContainer4
             // 
+            this.tabFormContentContainer4.Controls.Add(this.xtraTabControl1);
             this.tabFormContentContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabFormContentContainer4.Location = new System.Drawing.Point(0, 30);
             this.tabFormContentContainer4.Name = "tabFormContentContainer4";
             this.tabFormContentContainer4.Size = new System.Drawing.Size(1920, 1010);
             this.tabFormContentContainer4.TabIndex = 6;
+            // 
+            // xtraTabControl1
+            // 
+            this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
+            this.xtraTabControl1.Name = "xtraTabControl1";
+            this.xtraTabControl1.SelectedTabPage = this.t검사설정;
+            this.xtraTabControl1.Size = new System.Drawing.Size(1920, 1010);
+            this.xtraTabControl1.TabIndex = 0;
+            this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.t검사설정,
+            this.t장치설정});
+            // 
+            // t검사설정
+            // 
+            this.t검사설정.Controls.Add(this.setInspection1);
+            this.t검사설정.Name = "t검사설정";
+            this.t검사설정.Size = new System.Drawing.Size(1918, 979);
+            this.t검사설정.Text = "검사설정";
+            // 
+            // setInspection1
+            // 
+            this.setInspection1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.setInspection1.Location = new System.Drawing.Point(0, 0);
+            this.setInspection1.Name = "setInspection1";
+            this.setInspection1.Size = new System.Drawing.Size(1918, 979);
+            this.setInspection1.TabIndex = 0;
+            // 
+            // t장치설정
+            // 
+            this.t장치설정.Name = "t장치설정";
+            this.t장치설정.Size = new System.Drawing.Size(1918, 979);
+            this.t장치설정.Text = "장치설정";
             // 
             // MainForm
             // 
@@ -217,7 +291,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Controls.Add(this.tabFormContentContainer1);
+            this.Controls.Add(this.tabFormContentContainer4);
             this.Controls.Add(this.tabFormControl1);
             this.IconOptions.SvgImage = global::HKCBusbarInspection.Properties.Resources.vision;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -228,6 +302,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.tabFormControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabFormDefaultManager1)).EndInit();
             this.tabFormContentContainer1.ResumeLayout(false);
+            this.tabFormContentContainer2.ResumeLayout(false);
+            this.tabFormContentContainer4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
+            this.xtraTabControl1.ResumeLayout(false);
+            this.t검사설정.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -252,6 +331,13 @@
         private DevExpress.XtraBars.TabFormContentContainer tabFormContentContainer4;
         private UI.Control.State e상태뷰어;
         private UI.Control.ResultInspection e결과뷰어;
+        private UI.Control.CamViewers e카메라뷰어;
+        private DevExpress.XtraBars.SkinPaletteDropDownButtonItem skinPaletteDropDownButtonItem1;
+        private DevExpress.XtraBars.BarStaticItem e프로젝트;
+        private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
+        private DevExpress.XtraTab.XtraTabPage t검사설정;
+        private DevExpress.XtraTab.XtraTabPage t장치설정;
+        private UI.Control.SetInspection setInspection1;
     }
 }
 

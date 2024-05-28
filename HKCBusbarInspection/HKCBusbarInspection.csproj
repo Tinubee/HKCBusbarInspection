@@ -44,7 +44,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>true</Prefer32Bit>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
@@ -109,19 +109,33 @@
     <Reference Include="ActUtlTypeLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=627cb188e78f967a, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Apps.UIHelper, Version=1.0.0.0, Culture=neutral, PublicKeyToken=74fbc55729e22a3e" />
     <Reference Include="DevExpress.BonusSkins.v23.2" />
     <Reference Include="DevExpress.Data.Desktop.v23.2" />
     <Reference Include="DevExpress.Data.v23.2" />
+    <Reference Include="DevExpress.Dialogs.v23.2.Core, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Printing.v23.2.Core" />
     <Reference Include="DevExpress.Utils.v23.2" />
     <Reference Include="DevExpress.XtraBars.v23.2" />
     <Reference Include="DevExpress.Sparkline.v23.2.Core" />
+    <Reference Include="DevExpress.XtraDialogs.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v23.2" />
     <Reference Include="DevExpress.Drawing.v23.2" />
     <Reference Include="DevExpress.XtraGrid.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="FrontendUI.WPF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=4df814adf3f91828" />
+    <Reference Include="GlobalVariableModuleCs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=df9beaf7c020f858, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GraphicsSetModuleCs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=969f13d2d78c3370, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="HelixToolkit.Wpf, Version=2.25.0.0, Culture=neutral, PublicKeyToken=52aa3500039caf0d, processorArchitecture=MSIL">
       <HintPath>..\packages\HelixToolkit.Wpf.2.25.0\lib\net462\HelixToolkit.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageSourceModuleCs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6a03c4a48a6df5e6, processorArchitecture=MSIL">
+      <Private>False</Private>
     </Reference>
     <Reference Include="Interop.ActUtlType64Lib">
       <HintPath>obj\Debug\Interop.ActUtlType64Lib.dll</HintPath>
@@ -202,6 +216,9 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="ShellModuleCs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a88b3f19f0240810, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -253,6 +270,25 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="VM.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=61600122bc9264b9" />
+    <Reference Include="VM.PlatformSDKCS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c1484a72052ee3d4, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VMControls.BaseInterface, Version=1.0.0.0, Culture=neutral, PublicKeyToken=14444b8df74b6e6a">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VMControls.Interface, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cb41614600cf774b">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VMControls.RenderInterface, Version=1.0.0.0, Culture=neutral, PublicKeyToken=4bcfc50547abbb24">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VMControls.Winform.Release, Version=1.0.0.0, Culture=neutral, PublicKeyToken=2efa940dfee4dc7e, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VMControls.WPF.Release, Version=1.0.0.0, Culture=neutral, PublicKeyToken=fdd2c8be7291c30c">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
@@ -321,6 +357,12 @@
     </Compile>
     <Compile Include="UI\Control\DeviceSettings.Designer.cs">
       <DependentUpon>DeviceSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Control\ImageSave.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Control\ImageSave.Designer.cs">
+      <DependentUpon>ImageSave.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Control\IOControl.cs">
       <SubType>UserControl</SubType>
@@ -405,8 +447,17 @@
     <Compile Include="Utils\Commom.cs" />
     <Compile Include="Utils\Localization.cs" />
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="UI\Control\CamSettings.resx">
+      <DependentUpon>CamSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Control\CamViewers.resx">
+      <DependentUpon>CamViewers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Control\CiView.resx">
       <DependentUpon>CiView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Control\Config.resx">
+      <DependentUpon>Config.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Control\CountViewer.resx">
       <DependentUpon>CountViewer.cs</DependentUpon>
@@ -414,8 +465,17 @@
     <EmbeddedResource Include="UI\Control\DeviceLamp.resx">
       <DependentUpon>DeviceLamp.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Control\DeviceSettings.resx">
+      <DependentUpon>DeviceSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Control\ImageSave.resx">
+      <DependentUpon>ImageSave.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Control\ResultInspection.resx">
       <DependentUpon>ResultInspection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Control\SetInspection.resx">
+      <DependentUpon>SetInspection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Control\State.resx">
       <DependentUpon>State.cs</DependentUpon>
@@ -450,7 +510,12 @@
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.검사설정.datasource" />
     <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.검사정보.datasource" />
+    <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.그랩장치.datasource" />
+    <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.모델자료.datasource" />
+    <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.사진저장.datasource" />
+    <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.환경설정.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -487,6 +552,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\properties.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LaptopSecure.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

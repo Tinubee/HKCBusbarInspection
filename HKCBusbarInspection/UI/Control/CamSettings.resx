@@ -117,29 +117,72 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="viewsettings" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\viewsettings.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  <metadata name="카메라설정Bind.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <assembly alias="DevExpress.Data.v23.2" name="DevExpress.Data.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+  <data name="b끄기.ImageOptions.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v23.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFlEZXZFeHByZXNzLkRhdGEudjIzLjIsIFZlcnNpb249MjMuMi4z
+        LjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjg4ZDE3NTRkNzAwZTQ5YQUBAAAAHURl
+        dkV4cHJlc3MuVXRpbHMuU3ZnLlN2Z0ltYWdlAQAAAAREYXRhBwICAAAACQMAAAAPAwAAAKsCAAAC77u/
+        PD94bWwgdmVyc2lvbj0nMS4wJyBlbmNvZGluZz0nVVRGLTgnPz4NCjxzdmcgeD0iMHB4IiB5PSIwcHgi
+        IHZpZXdCb3g9IjAgMCAzMiAzMiIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+        MjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWw6c3Bh
+        Y2U9InByZXNlcnZlIiBpZD0iTGF5ZXJfMSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAg
+        MzIgMzIiPg0KICA8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLkJsdWV7ZmlsbDojMTE3N0Q3O30KCS5C
+        bGFja3tmaWxsOiM3MjcyNzI7fQoJLlllbGxvd3tmaWxsOiNGRkIxMTU7fQoJLlJlZHtmaWxsOiNEMTFD
+        MUM7fQo8L3N0eWxlPg0KICA8ZyBpZD0iQ2xvdWR5XzFfIj4NCiAgICA8cGF0aCBkPSJNMjcsMThjLTAu
+        NCwwLTAuOCwwLjEtMS4yLDAuMmMwLjEtMC40LDAuMi0wLjgsMC4yLTEuMmMwLTIuOC0yLjItNS01LTVj
+        LTAuNSwwLTEuMSwwLjEtMS42LDAuMyAgIEMxOC40LDkuOCwxNS45LDgsMTMsOGMtMy45LDAtNywzLjEt
+        Nyw3YzAsMC4zLDAsMC43LDAuMSwxYzAsMC0wLjEsMC0wLjEsMGMtMi4yLDAtNCwxLjgtNCw0YzAsMi4y
+        LDEuOCw0LDQsNGgyMWMxLjcsMCwzLTEuMywzLTMgICBTMjguNywxOCwyNywxOHoiIGNsYXNzPSJCbHVl
+        IiAvPg0KICA8L2c+DQo8L3N2Zz4L
+</value>
   </data>
-  <data name="vision" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\vision.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  <data name="b켜기.ImageOptions.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v23.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFlEZXZFeHByZXNzLkRhdGEudjIzLjIsIFZlcnNpb249MjMuMi4z
+        LjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjg4ZDE3NTRkNzAwZTQ5YQUBAAAAHURl
+        dkV4cHJlc3MuVXRpbHMuU3ZnLlN2Z0ltYWdlAQAAAAREYXRhBwICAAAACQMAAAAPAwAAAPAEAAAC77u/
+        PD94bWwgdmVyc2lvbj0nMS4wJyBlbmNvZGluZz0nVVRGLTgnPz4NCjxzdmcgeD0iMHB4IiB5PSIwcHgi
+        IHZpZXdCb3g9IjAgMCAzMiAzMiIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+        MjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWw6c3Bh
+        Y2U9InByZXNlcnZlIiBpZD0iTGF5ZXJfMSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAg
+        MzIgMzIiPg0KICA8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLkJsdWV7ZmlsbDojMTE3N0Q3O30KCS5C
+        bGFja3tmaWxsOiM3MjcyNzI7fQoJLlllbGxvd3tmaWxsOiNGRkIxMTU7fQoJLlJlZHtmaWxsOiNEMTFD
+        MUM7fQo8L3N0eWxlPg0KICA8ZyBpZD0iU3VubnkiPg0KICAgIDxyZWN0IHg9IjAiIHk9IjE0IiB3aWR0
+        aD0iNiIgaGVpZ2h0PSIyIiBjbGFzcz0iWWVsbG93IiAvPg0KICAgIDxyZWN0IHg9IjMuNSIgeT0iMjIu
+        NSIgd2lkdGg9IjYiIGhlaWdodD0iMiIgY2xhc3M9IlllbGxvdyIgdHJhbnNmb3JtPSJtYXRyaXgoMC43
+        MDcxLCAtMC43MDcxLCAwLjcwNzEsIDAuNzA3MSwgLTE0LjY5ODUsIDExLjQ4NTMpIiAvPg0KICAgIDxy
+        ZWN0IHg9IjUuNSIgeT0iMy41IiB3aWR0aD0iMiIgaGVpZ2h0PSI2IiBjbGFzcz0iWWVsbG93IiB0cmFu
+        c2Zvcm09Im1hdHJpeCgwLjcwNzEsIC0wLjcwNzEsIDAuNzA3MSwgMC43MDcxLCAtMi42OTg1LCA2LjUx
+        NDcpIiAvPg0KICAgIDxyZWN0IHg9IjE0IiB5PSIwIiB3aWR0aD0iMiIgaGVpZ2h0PSI2IiBjbGFzcz0i
+        WWVsbG93IiAvPg0KICAgIDxyZWN0IHg9IjIwLjUiIHk9IjUuNSIgd2lkdGg9IjYiIGhlaWdodD0iMiIg
+        Y2xhc3M9IlllbGxvdyIgdHJhbnNmb3JtPSJtYXRyaXgoMC43MDcxLCAtMC43MDcxLCAwLjcwNzEsIDAu
+        NzA3MSwgMi4yNzIxLCAxOC41MTQ3KSIgLz4NCiAgICA8cmVjdCB4PSIyMi41IiB5PSIyMC41IiB3aWR0
+        aD0iMiIgaGVpZ2h0PSI2IiBjbGFzcz0iWWVsbG93IiB0cmFuc2Zvcm09Im1hdHJpeCgwLjcwNzEsIC0w
+        LjcwNzEsIDAuNzA3MSwgMC43MDcxLCAtOS43Mjc5LCAyMy40ODUzKSIgLz4NCiAgICA8cmVjdCB4PSIx
+        NCIgeT0iMjQiIHdpZHRoPSIyIiBoZWlnaHQ9IjYiIGNsYXNzPSJZZWxsb3ciIC8+DQogICAgPHJlY3Qg
+        eD0iMjQiIHk9IjE0IiB3aWR0aD0iNiIgaGVpZ2h0PSIyIiBjbGFzcz0iWWVsbG93IiAvPg0KICAgIDxj
+        aXJjbGUgY3g9IjE1IiBjeT0iMTUiIHI9IjciIGNsYXNzPSJZZWxsb3ciIC8+DQogIDwvZz4NCjwvc3Zn
+        Pgs=
+</value>
   </data>
-  <data name="electronics_photo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\electronics_photo.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="portrait" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\portrait.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="enablesearch" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\enablesearch.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="properties" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\properties.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LaptopSecure" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LaptopSecure.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  <data name="b저장.ImageOptions.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v23.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFlEZXZFeHByZXNzLkRhdGEudjIzLjIsIFZlcnNpb249MjMuMi4z
+        LjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjg4ZDE3NTRkNzAwZTQ5YQUBAAAAHURl
+        dkV4cHJlc3MuVXRpbHMuU3ZnLlN2Z0ltYWdlAQAAAAREYXRhBwICAAAACQMAAAAPAwAAAO4BAAAC77u/
+        PD94bWwgdmVyc2lvbj0nMS4wJyBlbmNvZGluZz0nVVRGLTgnPz4NCjxzdmcgeD0iMHB4IiB5PSIwcHgi
+        IHZpZXdCb3g9IjAgMCAzMiAzMiIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+        MjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWw6c3Bh
+        Y2U9InByZXNlcnZlIiBpZD0iU2F2ZSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMzIg
+        MzIiPg0KICA8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLkJsYWNre2ZpbGw6IzcyNzI3Mjt9Cjwvc3R5
+        bGU+DQogIDxwYXRoIGQ9Ik0yNyw0aC0zdjEwSDhWNEg1QzQuNCw0LDQsNC40LDQsNXYyMmMwLDAuNiww
+        LjQsMSwxLDFoMjJjMC42LDAsMS0wLjQsMS0xVjVDMjgsNC40LDI3LjYsNCwyNyw0eiBNMjQsMjRIOHYt
+        NiAgaDE2VjI0eiBNMTAsNHY4aDEwVjRIMTB6IE0xNCwxMGgtMlY2aDJWMTB6IiBjbGFzcz0iQmxhY2si
+        IC8+DQo8L3N2Zz4L
+</value>
   </data>
 </root>

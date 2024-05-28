@@ -18,7 +18,7 @@ namespace HKCBusbarInspection.Schemas
         public event 모델변경 모델변경알림;
 
         [JsonIgnore]
-        public const String 프로젝트번호 = "23-1228-002";
+        public const String 프로젝트번호 = "24-0272-003";
         [Description("프로그램 동작구분"), JsonProperty("RunType")]
         public 동작구분 동작구분 { get; set; } = 동작구분.Live;
         [Translation("Config Path", "설정 저장 경로"), JsonProperty("ConfigSavePath")]

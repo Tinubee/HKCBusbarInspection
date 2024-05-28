@@ -5,6 +5,7 @@ using MvUtils;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static HKCBusbarInspection.Schemas.유저정보;
+using HKCBusbarInspection.Schemas;
 
 
 namespace HKCBusbarInspection
@@ -18,7 +19,7 @@ namespace HKCBusbarInspection
         {
             InitializeComponent();
             this.ShowWaitForm();
-            //this.e프로젝트.Caption = $"IVM: {환경설정.프로젝트번호}";
+            this.e프로젝트.Caption = $"IVM: {환경설정.프로젝트번호}";
             this.SetLocalization();
             this.TabFormControl.SelectedPage = this.p결과뷰어;
             this.p환경설정.Enabled = false;
@@ -78,6 +79,7 @@ namespace HKCBusbarInspection
         private void Init()
         {
             this.SetLocalization();
+            //this.e카메라뷰어.Init();
             //this.e결과뷰어.Init(ResultInspection.ViewTypes.Auto);
             //this.e검사도구.Init();
             //this.e검사설정.Init();
