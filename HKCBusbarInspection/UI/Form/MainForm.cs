@@ -80,16 +80,11 @@ namespace HKCBusbarInspection
         {
             this.SetLocalization();
             //this.e카메라뷰어.Init();
-            //this.e결과뷰어.Init(ResultInspection.ViewTypes.Auto);
             //this.e검사도구.Init();
-            //this.e검사설정.Init();
-            //this.e장치설정.Init();
-            //this.e검사내역.Init();
-            //this.e검사피봇.Init();
-            //this.e결과검색.Init();
-            //this.e상태뷰어.Init();
+            this.e검사설정.Init();
+            this.e장치설정.Init();
+            this.e상태뷰어.Init();
             //this.e로그내역.Init();
-            //this.e큐알검증.Init();
             this.p환경설정.Enabled = Global.환경설정.권한여부(유저권한구분.시스템);
             this.p검사내역.Enabled = Global.환경설정.권한여부(유저권한구분.관리자);
             this.TabFormControl.AllowMoveTabs = false;
@@ -98,12 +93,12 @@ namespace HKCBusbarInspection
             if (Global.환경설정.동작구분 == 동작구분.Live)
                 this.WindowState = FormWindowState.Maximized;
         }
-      
+
         private void CloseForm()
         {
-            //this.e장치설정.Close();
+            this.e장치설정.Close();
             //this.e로그내역.Close();
-            //this.e상태뷰어.Close();
+            this.e상태뷰어.Close();
             Global.Close();
         }
 
@@ -116,18 +111,17 @@ namespace HKCBusbarInspection
                 if (!e.Cancel) this.CloseForm();
             }
         }
-    
+
         private void SetLocalization()
         {
             this.Text = this.번역.타이틀;
-            //this.타이틀.Caption = this.번역.타이틀;
+            this.타이틀.Caption = this.번역.타이틀;
             this.p결과뷰어.Text = this.번역.검사하기;
             this.p검사도구.Text = this.번역.카메라;
             this.p검사내역.Text = this.번역.검사내역;
             this.p환경설정.Text = this.번역.환경설정;
-            //this.t검사설정.Text = this.번역.검사설정;
-            //this.t장치설정.Text = this.번역.장치설정;
-            //this.t큐알검증.Text = this.번역.큐알검증;
+            this.t검사설정.Text = this.번역.검사설정;
+            this.t장치설정.Text = this.번역.장치설정;
             //this.t로그내역.Text = this.번역.로그내역;
         }
 

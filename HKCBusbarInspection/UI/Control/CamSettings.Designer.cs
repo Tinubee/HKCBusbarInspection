@@ -58,6 +58,14 @@
             this.b끄기 = new DevExpress.XtraEditors.SimpleButton();
             this.b켜기 = new DevExpress.XtraEditors.SimpleButton();
             this.b저장 = new DevExpress.XtraEditors.SimpleButton();
+            this.조명설정Bind = new System.Windows.Forms.BindingSource(this.components);
+            this.col카메라 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col포트 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col채널 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col밝기 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col설명1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col켜짐 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemToggleSwitch2 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
             ((System.ComponentModel.ISupportInitialize)(this.카메라설정Bind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
@@ -75,6 +83,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.e조명밝기)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.조명설정Bind)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch2)).BeginInit();
             this.SuspendLayout();
             // 
             // 카메라설정Bind
@@ -315,13 +325,15 @@
             // 
             // GridControl2
             // 
+            this.GridControl2.DataSource = this.조명설정Bind;
             this.GridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GridControl2.Location = new System.Drawing.Point(2, 27);
             this.GridControl2.MainView = this.GridView2;
             this.GridControl2.Name = "GridControl2";
             this.GridControl2.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.e조명켜짐,
-            this.e조명밝기});
+            this.e조명밝기,
+            this.repositoryItemToggleSwitch2});
             this.GridControl2.Size = new System.Drawing.Size(1605, 541);
             this.GridControl2.TabIndex = 12;
             this.GridControl2.UseDirectXPaint = DevExpress.Utils.DefaultBoolean.True;
@@ -338,6 +350,13 @@
             this.GridView2.AllowSummaryMenu = true;
             this.GridView2.ApplyFocusedRow = true;
             this.GridView2.Caption = "";
+            this.GridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.col카메라,
+            this.col포트,
+            this.col채널,
+            this.col밝기,
+            this.col설명1,
+            this.col켜짐});
             this.GridView2.FooterPanelHeight = 21;
             this.GridView2.GridControl = this.GridControl2;
             this.GridView2.GroupRowHeight = 21;
@@ -436,6 +455,72 @@
             this.b저장.TabIndex = 7;
             this.b저장.Text = "Save";
             // 
+            // 조명설정Bind
+            // 
+            this.조명설정Bind.DataSource = typeof(HKCBusbarInspection.Schemas.조명제어);
+            // 
+            // col카메라
+            // 
+            this.col카메라.AppearanceHeader.Options.UseTextOptions = true;
+            this.col카메라.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col카메라.FieldName = "카메라";
+            this.col카메라.Name = "col카메라";
+            this.col카메라.Visible = true;
+            this.col카메라.VisibleIndex = 0;
+            // 
+            // col포트
+            // 
+            this.col포트.AppearanceHeader.Options.UseTextOptions = true;
+            this.col포트.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col포트.FieldName = "포트";
+            this.col포트.Name = "col포트";
+            this.col포트.Visible = true;
+            this.col포트.VisibleIndex = 1;
+            // 
+            // col채널
+            // 
+            this.col채널.AppearanceHeader.Options.UseTextOptions = true;
+            this.col채널.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col채널.FieldName = "채널";
+            this.col채널.Name = "col채널";
+            this.col채널.Visible = true;
+            this.col채널.VisibleIndex = 2;
+            // 
+            // col밝기
+            // 
+            this.col밝기.AppearanceHeader.Options.UseTextOptions = true;
+            this.col밝기.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col밝기.FieldName = "밝기";
+            this.col밝기.Name = "col밝기";
+            this.col밝기.Visible = true;
+            this.col밝기.VisibleIndex = 3;
+            // 
+            // col설명1
+            // 
+            this.col설명1.AppearanceHeader.Options.UseTextOptions = true;
+            this.col설명1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col설명1.FieldName = "설명";
+            this.col설명1.Name = "col설명1";
+            this.col설명1.Visible = true;
+            this.col설명1.VisibleIndex = 4;
+            // 
+            // col켜짐
+            // 
+            this.col켜짐.AppearanceHeader.Options.UseTextOptions = true;
+            this.col켜짐.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col켜짐.ColumnEdit = this.repositoryItemToggleSwitch2;
+            this.col켜짐.FieldName = "켜짐";
+            this.col켜짐.Name = "col켜짐";
+            this.col켜짐.Visible = true;
+            this.col켜짐.VisibleIndex = 5;
+            // 
+            // repositoryItemToggleSwitch2
+            // 
+            this.repositoryItemToggleSwitch2.AutoHeight = false;
+            this.repositoryItemToggleSwitch2.Name = "repositoryItemToggleSwitch2";
+            this.repositoryItemToggleSwitch2.OffText = "Off";
+            this.repositoryItemToggleSwitch2.OnText = "On";
+            // 
             // CamSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -462,6 +547,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.e조명밝기)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.조명설정Bind)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -496,5 +583,13 @@
         private DevExpress.XtraGrid.Columns.GridColumn col교정Y;
         private DevExpress.XtraGrid.Columns.GridColumn col상태;
         private DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch repositoryItemToggleSwitch1;
+        private System.Windows.Forms.BindingSource 조명설정Bind;
+        private DevExpress.XtraGrid.Columns.GridColumn col카메라;
+        private DevExpress.XtraGrid.Columns.GridColumn col포트;
+        private DevExpress.XtraGrid.Columns.GridColumn col채널;
+        private DevExpress.XtraGrid.Columns.GridColumn col밝기;
+        private DevExpress.XtraGrid.Columns.GridColumn col설명1;
+        private DevExpress.XtraGrid.Columns.GridColumn col켜짐;
+        private DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch repositoryItemToggleSwitch2;
     }
 }

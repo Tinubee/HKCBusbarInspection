@@ -88,18 +88,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.환경설정Bind)).BeginInit();
             this.SuspendLayout();
             // 
-            // d기본경로
-            // 
-            this.d기본경로.SelectedPath = "xtraFolderBrowserDialog1";
-            // 
-            // d원본저장
-            // 
-            this.d원본저장.SelectedPath = "xtraFolderBrowserDialog1";
-            // 
-            // d사본저장
-            // 
-            this.d사본저장.SelectedPath = "xtraFolderBrowserDialog1";
-            // 
             // g환경설정
             // 
             this.g환경설정.Controls.Add(this.layoutControl2);

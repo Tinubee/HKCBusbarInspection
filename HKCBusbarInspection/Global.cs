@@ -32,6 +32,7 @@ namespace HKCBusbarInspection
         public static 신호제어 신호제어;
         public static VM제어 VM제어;
         public static 검사자료 검사자료;
+        public static 사진자료 사진자료;
 
         public static class 장치상태
         {
@@ -54,9 +55,9 @@ namespace HKCBusbarInspection
                 모델자료.Init();
                 if (Global.환경설정.동작구분 == 동작구분.Live)
                 {
-                    신호제어.Init();
+                    //신호제어.Init();
                     if (!그랩제어.Init()) new Exception("카메라 초기화에 실패하였습니다.");
-                    if (!신호제어.Open()) new Exception("PLC 서버에 연결할 수 없습니다.");
+                    //if (!신호제어.Open()) new Exception("PLC 서버에 연결할 수 없습니다.");
                     조명제어.Init();
                 }
 
@@ -82,17 +83,17 @@ namespace HKCBusbarInspection
             {
                 if (환경설정.동작구분 == 동작구분.Live)
                 {
-                    조명제어.Close();
-                    그랩제어.Close();
+                    조명제어?.Close();
+                    그랩제어?.Close();
                 }
 
                 //유저자료.Close();
-                //환경설정.Close();
-                //사진자료.Close();
-                //모델자료.Close();
+                환경설정?.Close();
+                사진자료?.Close();
+                모델자료?.Close();
                 //로그자료.Close();
 
-                //VM제어.Close();
+                VM제어?.Close();
 
                 Properties.Settings.Default.Save();
                 return true;

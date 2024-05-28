@@ -22,11 +22,11 @@ namespace HKCBusbarInspection.Schemas
         [Description("프로그램 동작구분"), JsonProperty("RunType")]
         public 동작구분 동작구분 { get; set; } = 동작구분.Live;
         [Translation("Config Path", "설정 저장 경로"), JsonProperty("ConfigSavePath")]
-        public String 기본경로 { get; set; } = @"C:\HKC\Busbar\Config";
+        public String 기본경로 { get; set; } = @"C:\IVM\HKC\Busbar\Config";
         [Translation("Document Save Path", "문서 저장 경로"), JsonProperty("DocumentSavePath")]
-        public String 문서저장경로 { get; set; } = @"C:\HKC\Busbar\SaveData";
+        public String 문서저장경로 { get; set; } = @"C:\IVM\HKC\Busbar\SaveData";
         [Translation("Image Save Path", "사진 저장 경로"), JsonProperty("ImageSavePath")]
-        public String 사진저장경로 { get; set; } = @"C:\HKC\Busbar\SaveImage";
+        public String 사진저장경로 { get; set; } = @"C:\IVM\HKC\Busbar\SaveImage";
         [Translation("Decimals", "검사 결과 자릿수"), JsonProperty("Decimals")]
         public Int32 결과자릿수 { get; set; } = 3;
         [Translation("OK Image Save", "OK 이미지 저장"), JsonProperty("SaveOK")]
@@ -59,6 +59,8 @@ namespace HKCBusbarInspection.Schemas
         public 유저권한구분 사용권한 { get; set; } = 유저권한구분.없음;
         [Translation("Origin Save Path", "원본 저장 경로"), JsonProperty("OriginImageSavePath")]
         public String 원본보관폴더 { get { return Path.Combine(기본경로, "OriginImage"); } }
+        [Translation("Origin Storage Days", "원본 보관 일수"), JsonProperty("OriginImageStorageDays")]
+        public Int32 원본보관일수 { get; set; } = 3;
         [JsonIgnore, Description("검사여부"), Translation("Use Inspect", "검사여부")]
         public Boolean 검사여부 { get; set; } = true; // 검사로직 활성화 여부
         [JsonIgnore, Description("티칭모드")]
@@ -134,11 +136,11 @@ namespace HKCBusbarInspection.Schemas
 
         public Boolean Load()
         {
-            if (!CanDbConnect())
-            {
-                Global.오류로그(로그영역.GetString(), "데이터베이스 연결실패", "데이터베이스에 연결할 수 없습니다.", true);
-                return false;
-            }
+            //if (!CanDbConnect())
+            //{
+            //    Global.오류로그(로그영역.GetString(), "데이터베이스 연결실패", "데이터베이스에 연결할 수 없습니다.", true);
+            //    return false;
+            //}
 
             Common.DirectoryExists(Path.Combine(Application.StartupPath, @"Views"), true);
             if (!Common.DirectoryExists(기본경로, true))

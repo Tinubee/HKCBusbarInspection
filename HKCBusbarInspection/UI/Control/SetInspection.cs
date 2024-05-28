@@ -22,7 +22,7 @@ namespace HKCBusbarInspection.UI.Control
         public event 검사항목선택 검사항목변경;
         private LocalizationInspection 번역 = new LocalizationInspection();
         private PopupMenu popupMenu;
-        private Int32 IconSize = 16;
+        //private Int32 IconSize = 16;
 
         public SetInspection() => InitializeComponent();
 

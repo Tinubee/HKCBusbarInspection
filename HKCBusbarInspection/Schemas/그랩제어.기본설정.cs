@@ -1,5 +1,6 @@
 ﻿using MvCamCtrl.NET;
 using MvCamCtrl.NET.CameraParams;
+using MvFGCtrlC.NET;
 using Newtonsoft.Json;
 using OpenCvSharp;
 using System;
@@ -174,6 +175,8 @@ namespace HKCBusbarInspection.Schemas
         internal override Boolean UseMemoryCopy => true;
         [JsonIgnore]
         private CCamera Camera = null;
+        [JsonIgnore]
+        private CInterface Interface = null;
         [JsonIgnore]
         private CCameraInfo Device;
         [JsonIgnore]

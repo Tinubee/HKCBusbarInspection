@@ -22,6 +22,8 @@ namespace HKCBusbarInspection.Schemas
         Cam03 = 3,
         [Description("Cam4(Bottom Camera)")]
         Cam04 = 4,
+        [Description("Cam5(Tray Check)")]
+        Cam05 = 5,
     }
 
     public enum 장치구분
@@ -36,6 +38,8 @@ namespace HKCBusbarInspection.Schemas
         Cam03 = 카메라구분.Cam03,
         [Description("Cam04"), Camera(true)]
         Cam04 = 카메라구분.Cam04,
+        [Description("Cam05"), Camera(true)]
+        Cam05 = 카메라구분.Cam05,
     }
 
     public enum 결과분류
@@ -62,6 +66,41 @@ namespace HKCBusbarInspection.Schemas
     {
         [Result(), ListBindable(false)]
         None,
+        //작은홀
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "s좌상홀")]
+        s좌상홀 = 101,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "s우상홀")]
+        s우상홀 = 102,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "s좌하홀")]
+        s좌하홀 = 103,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "s우하홀")]
+        s우하홀 = 104,
+
+        //사각홀 가로세로
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "r좌상홀가로")]
+        r좌상홀가로 = 201,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "r좌상홀세로")]
+        r좌상홀세로 = 202,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "r우상홀가로")]
+        r우상홀가로 = 203,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "r우상홀세로")]
+        r우상홀세로 = 204,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "r좌중홀가로")]
+        r좌중홀가로 = 205,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "r좌중홀세로")]
+        r좌중홀세로 = 206,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "r우중홀가로")]
+        r우중홀가로 = 207,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "r우중홀세로")]
+        r우중홀세로 = 208,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "r좌하홀가로")]
+        r좌하홀가로 = 209,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "r좌하홀세로")]
+        r좌하홀세로 = 210,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "r우하홀가로")]
+        r우하홀가로 = 211,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "r우하홀세로")]
+        r우하홀세로 = 212,
     }
 
     public enum 단위구분

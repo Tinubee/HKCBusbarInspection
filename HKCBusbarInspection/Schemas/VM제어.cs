@@ -21,6 +21,7 @@ namespace HKCBusbarInspection.Schemas
         측면카메라 = 2,
         LPoint카메라 = 3,
         하부카메라 = 4,
+        트레이검사카메라 = 5,
         NG = 99
     }
 

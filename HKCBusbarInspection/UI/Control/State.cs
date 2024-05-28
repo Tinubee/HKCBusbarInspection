@@ -49,7 +49,9 @@ namespace HKCBusbarInspection.UI.Control
             this.b수량리셋.Click += 수량리셋_Click;
 
             Global.환경설정.모델변경알림 += 모델변경알림;
-            Global.신호제어.동작상태알림 += 동작상태알림;
+            if (Global.신호제어 != null) 
+                Global.신호제어.동작상태알림 += 동작상태알림;
+
             //Global.검사자료.검사완료알림 += 검사완료알림;
 
             this.검사상태표현(결과구분.WA);

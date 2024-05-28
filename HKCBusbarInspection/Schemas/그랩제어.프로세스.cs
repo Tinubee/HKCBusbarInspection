@@ -8,6 +8,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using OpenCvSharp;
+using MvFGCtrlC.NET;
+using OpenCvSharp.Dnn;
 
 namespace HKCBusbarInspection.Schemas
 {
@@ -26,6 +28,8 @@ namespace HKCBusbarInspection.Schemas
         public HikeGigE L부검사카메라 = null;
         [JsonIgnore]
         public HikeGigE 하부검사카메라 = null;
+        [JsonIgnore]
+        public HikeGigE 트레이검사카메라 = null;
 
         [JsonIgnore]
         private const string 로그영역 = "Camera";
@@ -36,15 +40,17 @@ namespace HKCBusbarInspection.Schemas
 
         public Boolean Init()
         {
-            this.상부검사카메라 = new HikeGigE() { 구분 = 카메라구분.Cam01, 코드 = "" };
+            this.상부검사카메라 = new HikeGigE() { 구분 = 카메라구분.Cam01, 코드 = "DA3152184" };
             this.측면검사카메라 = new HikeGigE() { 구분 = 카메라구분.Cam02, 코드 = "" };
             this.L부검사카메라 = new HikeGigE() { 구분 = 카메라구분.Cam03, 코드 = "" };
             this.하부검사카메라 = new HikeGigE() { 구분 = 카메라구분.Cam04, 코드 = "" };
+            this.트레이검사카메라 = new HikeGigE() { 구분 = 카메라구분.Cam05, 코드 = "" };
 
             this.Add(카메라구분.Cam01, this.상부검사카메라);
             this.Add(카메라구분.Cam02, this.측면검사카메라);
             this.Add(카메라구분.Cam03, this.L부검사카메라);
             this.Add(카메라구분.Cam04, this.하부검사카메라);
+            this.Add(카메라구분.Cam04, this.트레이검사카메라);
 
             // 카메라 설정 저장정보 로드
             그랩장치 정보;
@@ -59,10 +65,12 @@ namespace HKCBusbarInspection.Schemas
                 }
             }
             if (Global.환경설정.동작구분 != 동작구분.Live) return true;
-
+            //Test();
             // GigE 카메라 초기화
             List<CCameraInfo> 카메라들 = new List<CCameraInfo>();
-            Int32 nRet = CSystem.EnumDevices(CSystem.MV_GIGE_DEVICE, ref 카메라들);// | CSystem.MV_USB_DEVICE
+
+            Int32 nRet = MvCamCtrl.NET.CSystem.EnumDevices(MvCamCtrl.NET.CSystem.MV_GIGE_DEVICE, ref 카메라들);// | CSystem.MV_USB_DEVICE
+
             if (!Validate("Enumerate devices fail!", nRet, true)) return false;
 
             for (int i = 0; i < 카메라들.Count; i++)
@@ -78,6 +86,71 @@ namespace HKCBusbarInspection.Schemas
             Debug.WriteLine($"카메라 갯수: {this.Count}");
             GC.Collect();
             return true;
+        }
+
+        public void Test()
+        {
+            CInterface m_cInterface = null;
+            CDevice m_cDevice = null;
+
+            int nRet = 0;
+            bool bChanged = false;
+            MvFGCtrlC.NET.CSystem m_cSystem = new MvFGCtrlC.NET.CSystem();
+
+
+            nRet = m_cSystem.UpdateInterfaceList(
+               CParamDefine.MV_FG_CAMERALINK_INTERFACE | CParamDefine.MV_FG_GEV_INTERFACE | CParamDefine.MV_FG_CXP_INTERFACE,
+               ref bChanged);
+
+            uint m_nInterfaceNum = 0;
+
+            nRet = m_cSystem.GetNumInterfaces(ref m_nInterfaceNum);
+
+            MV_FG_INTERFACE_INFO stIfInfo = new MV_FG_INTERFACE_INFO();
+            for (uint i = 0; i < m_nInterfaceNum; i++)
+            {
+                nRet = m_cSystem.GetInterfaceInfo(i, ref stIfInfo);
+                string strShowIfInfo = null;
+                switch (stIfInfo.nTLayerType)
+                {
+                    case CParamDefine.MV_FG_GEV_INTERFACE:
+                        {
+                            MV_GEV_INTERFACE_INFO stGevIFInfo = (MV_GEV_INTERFACE_INFO)CAdditional.ByteToStruct(
+                                stIfInfo.SpecialInfo.stGevIfInfo, typeof(MV_GEV_INTERFACE_INFO));
+                            strShowIfInfo += "GEV[" + i.ToString() + "]: " + stGevIFInfo.chDisplayName + " | " +
+                                stGevIFInfo.chInterfaceID + " | " + stGevIFInfo.chSerialNumber;
+                            break;
+                        }
+                    case CParamDefine.MV_FG_CXP_INTERFACE:
+                        {
+                            MV_CXP_INTERFACE_INFO stCxpIFInfo = (MV_CXP_INTERFACE_INFO)CAdditional.ByteToStruct(
+                                stIfInfo.SpecialInfo.stCXPIfInfo, typeof(MV_CXP_INTERFACE_INFO));
+                            strShowIfInfo += "CXP[" + i.ToString() + "]: " + stCxpIFInfo.chDisplayName + " | " +
+                                stCxpIFInfo.chInterfaceID + " | " + stCxpIFInfo.chSerialNumber;
+                            break;
+                        }
+                    case CParamDefine.MV_FG_CAMERALINK_INTERFACE:
+                        {
+                            MV_CML_INTERFACE_INFO stCmlIFInfo = (MV_CML_INTERFACE_INFO)CAdditional.ByteToStruct(
+                                stIfInfo.SpecialInfo.stCMLIfInfo, typeof(MV_CML_INTERFACE_INFO));
+                            strShowIfInfo += "CML[" + i.ToString() + "]: " + stCmlIFInfo.chDisplayName + " | " +
+                                stCmlIFInfo.chInterfaceID + " | " + stCmlIFInfo.chSerialNumber;
+                            break;
+                        }
+                    default:
+                        {
+                            strShowIfInfo += "Unknown interface[" + i.ToString() + "]";
+                            break;
+                        }
+                }
+
+                Debug.WriteLine(strShowIfInfo);
+             
+            }
+            int nRet2 = m_cSystem.OpenInterface(Convert.ToUInt32(1), out m_cInterface);
+
+            uint nDeviceNum = 0;
+            nRet2 = m_cInterface.GetNumDevices(ref nDeviceNum);
         }
 
         private List<그랩장치> Load()

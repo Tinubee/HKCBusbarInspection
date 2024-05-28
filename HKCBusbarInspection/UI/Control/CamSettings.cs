@@ -33,12 +33,12 @@ namespace HKCBusbarInspection.UI.Control
             this.GridControl2.DataSource = Global.조명제어;
 
             Localization.SetColumnCaption(this.GridView1, typeof(그랩장치));
-            //Localization.SetColumnCaption(this.GridView2, typeof(조명정보));
-            //this.b켜기.Click += 모두켜기;
-            //this.b끄기.Click += 모두끄기;
-            //this.b저장.Text = Localization.저장.GetString();
-            //this.GridView2.CellValueChanged += GridView2_CellValueChanged;
-            //this.e조명켜짐.Toggled += E켜짐_Toggled;
+            Localization.SetColumnCaption(this.GridView2, typeof(조명정보));
+            this.b켜기.Click += 모두켜기;
+            this.b끄기.Click += 모두끄기;
+            this.b저장.Text = Localization.저장.GetString();
+            this.GridView2.CellValueChanged += GridView2_CellValueChanged;
+            this.e조명켜짐.Toggled += E켜짐_Toggled;
         }
         public void Close() { }
 
@@ -51,7 +51,6 @@ namespace HKCBusbarInspection.UI.Control
             this.GridControl2.EmbeddedNavigator.Buttons.DoClick(this.GridControl2.EmbeddedNavigator.Buttons.EndEdit);
             Global.그랩제어.Save();
             Global.조명제어.Save();
-            //Global.비전검사.SetCalib();
             Global.정보로그("카메라 설정", "설정저장", "저장되었습니다.", this.FindForm());
         }
 

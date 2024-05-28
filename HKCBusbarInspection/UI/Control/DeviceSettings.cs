@@ -20,6 +20,7 @@ namespace HKCBusbarInspection.UI.Control
         {
             InitializeComponent();
             this.BindLocalization.DataSource = this.번역;
+            this.환경설정Bind.DataSource = Global.환경설정;
         }
 
         public void Init()
@@ -30,7 +31,7 @@ namespace HKCBusbarInspection.UI.Control
 
         private void 환경설정저장(object sender, EventArgs e)
         {
-            //this.환경설정Bind.EndEdit();
+            this.환경설정Bind.EndEdit();
             if (!Utils.Confirm(this.FindForm(), 번역.저장확인, Localization.확인.GetString())) return;
             Global.환경설정.Save();
             Global.정보로그(환경설정.로그영역.GetString(), 번역.설정저장, 번역.저장완료, true);

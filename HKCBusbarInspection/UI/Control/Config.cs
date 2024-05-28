@@ -19,6 +19,7 @@ namespace HKCBusbarInspection.UI.Control
         public Config()
         {
             InitializeComponent();
+            this.BindLocalization.DataSource = this.번역;
         }
         public void Init()
         {
@@ -77,7 +78,7 @@ namespace HKCBusbarInspection.UI.Control
             public String 문서저장 => Localization.GetString(typeof(환경설정).GetProperty(nameof(환경설정.문서저장경로)));
             public String 사진저장 => Localization.GetString(typeof(환경설정).GetProperty(nameof(환경설정.사진저장경로)));
             public String 원본보관폴더 => Localization.GetString(typeof(환경설정).GetProperty(nameof(환경설정.원본보관폴더)));
-            //public String 원본보관일수 => Localization.GetString(typeof(환경설정).GetProperty(nameof(환경설정.원본보관일수)));
+            public String 원본보관일수 => Localization.GetString(typeof(환경설정).GetProperty(nameof(환경설정.원본보관일수)));
             public String 결과보관 => Localization.GetString(typeof(환경설정).GetProperty(nameof(환경설정.결과보관)));
             public String 로그보관 => Localization.GetString(typeof(환경설정).GetProperty(nameof(환경설정.로그보관)));
             public String 결과자릿수 => Localization.GetString(typeof(환경설정).GetProperty(nameof(환경설정.결과자릿수)));

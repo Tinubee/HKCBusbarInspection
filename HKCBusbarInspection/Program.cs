@@ -24,7 +24,7 @@ namespace HKCBusbarInspection
                 return;
             }
 
-#pragma warning disable
+            #pragma warning disable
             DevExpress.Data.CurrencyDataController.DisableThreadingProblemsDetection = true;
             DevExpress.XtraEditors.WindowsFormsSettings.LoadApplicationSettings();
             DevExpress.XtraEditors.WindowsFormsSettings.FormThickBorder = false;

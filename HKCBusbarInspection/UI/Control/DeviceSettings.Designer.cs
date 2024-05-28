@@ -30,9 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.BindLocalization = new System.Windows.Forms.BindingSource(this.components);
             this.e카메라 = new HKCBusbarInspection.UI.Control.CamSettings();
             this.e기본설정 = new HKCBusbarInspection.UI.Control.Config();
-            this.BindLocalization = new System.Windows.Forms.BindingSource(this.components);
+            this.환경설정Bind = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).BeginInit();
             this.splitContainerControl1.Panel1.SuspendLayout();
@@ -40,6 +41,7 @@
             this.splitContainerControl1.Panel2.SuspendLayout();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BindLocalization)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.환경설정Bind)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainerControl1
@@ -61,6 +63,10 @@
             this.splitContainerControl1.SplitterPosition = 1262;
             this.splitContainerControl1.TabIndex = 0;
             // 
+            // BindLocalization
+            // 
+            this.BindLocalization.DataSource = typeof(HKCBusbarInspection.UI.Control.DeviceSettings.LocalizationDeviceSetting);
+            // 
             // e카메라
             // 
             this.e카메라.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -77,9 +83,9 @@
             this.e기본설정.Size = new System.Drawing.Size(648, 1040);
             this.e기본설정.TabIndex = 0;
             // 
-            // BindLocalization
+            // 환경설정Bind
             // 
-            this.BindLocalization.DataSource = typeof(HKCBusbarInspection.UI.Control.DeviceSettings.LocalizationDeviceSetting);
+            this.환경설정Bind.DataSource = typeof(HKCBusbarInspection.Schemas.환경설정);
             // 
             // DeviceSettings
             // 
@@ -95,6 +101,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.BindLocalization)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.환경설정Bind)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -104,5 +111,6 @@
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
         private CamSettings e카메라;
         private Config e기본설정;
+        private System.Windows.Forms.BindingSource 환경설정Bind;
     }
 }
