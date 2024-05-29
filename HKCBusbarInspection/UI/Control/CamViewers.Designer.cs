@@ -32,16 +32,16 @@
             this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
             this.d하부캠 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.e하부캠 = new VMControls.Winform.Release.VmRenderControl();
             this.d상부캠 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel2_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.e상부캠 = new VMControls.Winform.Release.VmRenderControl();
             this.d측면캠 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel3_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.e측면캠 = new VMControls.Winform.Release.VmRenderControl();
             this.dLPoint캠 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel4_Container = new DevExpress.XtraBars.Docking.ControlContainer();
-            this.e하부캠 = new VMControls.Winform.Release.VmRenderControl();
-            this.e상부캠 = new VMControls.Winform.Release.VmRenderControl();
             this.eLPoint캠 = new VMControls.Winform.Release.VmRenderControl();
-            this.e측면캠 = new VMControls.Winform.Release.VmRenderControl();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.d하부캠.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
@@ -94,6 +94,20 @@
             this.dockPanel1_Container.Size = new System.Drawing.Size(604, 1162);
             this.dockPanel1_Container.TabIndex = 0;
             // 
+            // e하부캠
+            // 
+            this.e하부캠.BackColor = System.Drawing.Color.Black;
+            this.e하부캠.CoordinateInfoVisible = true;
+            this.e하부캠.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.e하부캠.ImageSource = null;
+            this.e하부캠.IsShowCustomROIMenu = false;
+            this.e하부캠.Location = new System.Drawing.Point(0, 0);
+            this.e하부캠.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.e하부캠.ModuleSource = null;
+            this.e하부캠.Name = "e하부캠";
+            this.e하부캠.Size = new System.Drawing.Size(604, 1162);
+            this.e하부캠.TabIndex = 0;
+            // 
             // d상부캠
             // 
             this.d상부캠.Controls.Add(this.dockPanel2_Container);
@@ -112,6 +126,20 @@
             this.dockPanel2_Container.Name = "dockPanel2_Container";
             this.dockPanel2_Container.Size = new System.Drawing.Size(803, 1162);
             this.dockPanel2_Container.TabIndex = 0;
+            // 
+            // e상부캠
+            // 
+            this.e상부캠.BackColor = System.Drawing.Color.Black;
+            this.e상부캠.CoordinateInfoVisible = true;
+            this.e상부캠.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.e상부캠.ImageSource = null;
+            this.e상부캠.IsShowCustomROIMenu = false;
+            this.e상부캠.Location = new System.Drawing.Point(0, 0);
+            this.e상부캠.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.e상부캠.ModuleSource = null;
+            this.e상부캠.Name = "e상부캠";
+            this.e상부캠.Size = new System.Drawing.Size(803, 1162);
+            this.e상부캠.TabIndex = 4;
             // 
             // d측면캠
             // 
@@ -132,6 +160,20 @@
             this.dockPanel3_Container.Size = new System.Drawing.Size(589, 521);
             this.dockPanel3_Container.TabIndex = 0;
             // 
+            // e측면캠
+            // 
+            this.e측면캠.BackColor = System.Drawing.Color.Black;
+            this.e측면캠.CoordinateInfoVisible = true;
+            this.e측면캠.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.e측면캠.ImageSource = null;
+            this.e측면캠.IsShowCustomROIMenu = false;
+            this.e측면캠.Location = new System.Drawing.Point(0, 0);
+            this.e측면캠.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.e측면캠.ModuleSource = null;
+            this.e측면캠.Name = "e측면캠";
+            this.e측면캠.Size = new System.Drawing.Size(589, 521);
+            this.e측면캠.TabIndex = 5;
+            // 
             // dLPoint캠
             // 
             this.dLPoint캠.Controls.Add(this.dockPanel4_Container);
@@ -151,34 +193,6 @@
             this.dockPanel4_Container.Size = new System.Drawing.Size(589, 607);
             this.dockPanel4_Container.TabIndex = 0;
             // 
-            // e하부캠
-            // 
-            this.e하부캠.BackColor = System.Drawing.Color.Black;
-            this.e하부캠.CoordinateInfoVisible = true;
-            this.e하부캠.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.e하부캠.ImageSource = null;
-            this.e하부캠.IsShowCustomROIMenu = false;
-            this.e하부캠.Location = new System.Drawing.Point(0, 0);
-            this.e하부캠.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.e하부캠.ModuleSource = null;
-            this.e하부캠.Name = "e하부캠";
-            this.e하부캠.Size = new System.Drawing.Size(604, 1162);
-            this.e하부캠.TabIndex = 0;
-            // 
-            // e상부캠
-            // 
-            this.e상부캠.BackColor = System.Drawing.Color.Black;
-            this.e상부캠.CoordinateInfoVisible = true;
-            this.e상부캠.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.e상부캠.ImageSource = null;
-            this.e상부캠.IsShowCustomROIMenu = false;
-            this.e상부캠.Location = new System.Drawing.Point(0, 0);
-            this.e상부캠.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.e상부캠.ModuleSource = null;
-            this.e상부캠.Name = "e상부캠";
-            this.e상부캠.Size = new System.Drawing.Size(803, 1162);
-            this.e상부캠.TabIndex = 4;
-            // 
             // eLPoint캠
             // 
             this.eLPoint캠.BackColor = System.Drawing.Color.Black;
@@ -192,20 +206,6 @@
             this.eLPoint캠.Name = "eLPoint캠";
             this.eLPoint캠.Size = new System.Drawing.Size(589, 607);
             this.eLPoint캠.TabIndex = 4;
-            // 
-            // e측면캠
-            // 
-            this.e측면캠.BackColor = System.Drawing.Color.Black;
-            this.e측면캠.CoordinateInfoVisible = true;
-            this.e측면캠.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.e측면캠.ImageSource = null;
-            this.e측면캠.IsShowCustomROIMenu = false;
-            this.e측면캠.Location = new System.Drawing.Point(0, 0);
-            this.e측면캠.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.e측면캠.ModuleSource = null;
-            this.e측면캠.Name = "e측면캠";
-            this.e측면캠.Size = new System.Drawing.Size(589, 521);
-            this.e측면캠.TabIndex = 5;
             // 
             // CamViewers
             // 

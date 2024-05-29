@@ -1,18 +1,14 @@
 ﻿using MvUtils;
 using Newtonsoft.Json;
-using OpenCvSharp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Numerics;
 using System.Reflection;
 
-using static DevExpress.Utils.Drawing.Helpers.NativeMethods;
 
 namespace HKCBusbarInspection.Schemas
 {
@@ -31,22 +27,16 @@ namespace HKCBusbarInspection.Schemas
         public 결과구분 CTQ결과 { get; set; } = 결과구분.WA;
         [Column("ilsuf"), JsonProperty("ilsuf"), Translation("Suface", "외관결과")]
         public 결과구분 외관결과 { get; set; } = 결과구분.WA;
-        //[Column("ilqrg"), JsonProperty("ilqrg"), Translation("QR Legibility", "QR등급")]
-        //public 큐알등급 큐알등급 { get; set; } = 큐알등급.X;
-        [Column("ilqrs"), JsonProperty("ilqrs"), Translation("QR Code", "QR코드")]
-        public String 큐알내용 { get; set; } = String.Empty;
         //[Column("ilngs"), JsonProperty("ilngs"), Translation("NG Items", "불량정보")]
         //public String 불량정보 { get; set; } = String.Empty;
         [NotMapped, JsonIgnore, Translation("NG Items", "불량정보")]
         public String 불량정보 { get; set; } = String.Empty;
-
         [NotMapped, JsonIgnore]
         public String 결과문구 => Localization.GetString(측정결과);
         [NotMapped, JsonIgnore]
         public String 품질문구 => Localization.GetString(CTQ결과);
         [NotMapped, JsonIgnore]
         public String 외관문구 => Localization.GetString(외관결과);
-
         [NotMapped, JsonProperty("inspd")]
         public List<검사정보> 검사내역 { get; set; } = new List<검사정보>();
         [NotMapped, JsonIgnore, Browsable(false)]
@@ -71,7 +61,6 @@ namespace HKCBusbarInspection.Schemas
             this.측정결과 = 결과구분.WA;
             this.CTQ결과 = 결과구분.WA;
             this.외관결과 = 결과구분.WA;
-            this.큐알내용 = String.Empty;
             this.불량정보 = String.Empty;
             this.검사내역.Clear();
             this.불량내역.Clear();
@@ -127,24 +116,19 @@ namespace HKCBusbarInspection.Schemas
         {
             Double result = 0;
             if (value == 0 || 검사.교정값 <= 0) result = value;
-            //else if (검사.카메라여부) result = value * Decimal.ToDouble(검사.교정값) / 1000;
             else if (검사.카메라여부) result = value * (Decimal.ToDouble(검사.교정값) / 1000);
             else result = value;
             return (Decimal)Math.Round(result, Global.환경설정.결과자릿수);
-            //VDA590에서 사용, 여기선 사용하지 않음
-            //if (검사.검사장치 == 장치구분.Flatness) return value + Decimal.ToDouble(검사.교정값);
         }
         private Double MeterToPixel(검사정보 검사, Decimal value)
         {
             if (검사.교정값 <= 0 || !검사.카메라여부) return Decimal.ToDouble(value);
-            //return Decimal.ToDouble(value) / Decimal.ToDouble(검사.교정값) * 1000;
             return Decimal.ToDouble(value) / Decimal.ToDouble(검사.교정값);
         }
 
 
         public Boolean SetResultValue_Client(검사정보 검사, Double value, out Decimal 결과값, out Decimal 측정값, Boolean 마진포함 = false)
         {
-            //Decimal result = PixelToMeter(검사, value);
             Decimal result = (Decimal)value;
             Boolean r = result >= 검사.최소값 && result <= 검사.최대값;
             결과값 = result;

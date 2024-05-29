@@ -32,7 +32,8 @@ namespace HKCBusbarInspection.Schemas
 
         private enum 정보주소 : Int32
         {
-  
+            [Address("W301")]
+            자동수동,
         }
 
         private 통신자료 입출자료 = new 통신자료();
@@ -80,7 +81,7 @@ namespace HKCBusbarInspection.Schemas
         //public Boolean 결과요청결과NG신호 { get => 신호읽기(정보주소.결과요청결과NG); set => 정보쓰기(정보주소.결과요청결과NG, value); }
         //public Boolean 결과요청확인완료신호 { get => 신호읽기(정보주소.결과요청확인완료); set => 정보쓰기(정보주소.결과요청확인완료, value); }
 
-        //public Boolean 자동수동여부 { get => 신호읽기(정보주소.자동수동); }
+        public Boolean 자동수동여부 { get => 신호읽기(정보주소.자동수동); }
         //public Boolean 시작정지여부 { get => 신호읽기(정보주소.시작정지); }
 
         //public Boolean 검사번호리셋 { get => 신호읽기(정보주소.번호리셋); set => 정보쓰기(정보주소.번호리셋, value); }

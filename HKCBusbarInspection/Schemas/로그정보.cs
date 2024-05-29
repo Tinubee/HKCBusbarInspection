@@ -62,15 +62,9 @@ namespace HKCBusbarInspection.Schemas
             this.AllowRemove = true;
         }
 
-        public void Init()
-        {
-            this.Load();
-        }
+        public void Init() => this.Load();
 
-        public void Load()
-        {
-            this.Load(DateTime.Today, DateTime.Today);
-        }
+        public void Load() =>  this.Load(DateTime.Today, DateTime.Today);
 
         public async void Load(DateTime 시작, DateTime 종료)
         {

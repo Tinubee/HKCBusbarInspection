@@ -65,7 +65,6 @@ namespace HKCBusbarInspection.Schemas
         public Boolean 검사여부 { get; set; } = true; // 검사로직 활성화 여부
         [JsonIgnore, Description("티칭모드")]
         public Boolean 티칭모드 { get; set; } = false; // 활성화 시 사진 강제 저장 됨
-        [JsonIgnore, Description("티칭모드")]
         public Boolean 모델변경중 { get; set; } = false;
         public Boolean 권한여부(유저권한구분 요구권한)
         {
@@ -102,7 +101,7 @@ namespace HKCBusbarInspection.Schemas
 
         public static NpgsqlConnection CreateDbConnection()
         {
-            NpgsqlConnectionStringBuilder b = new NpgsqlConnectionStringBuilder() { Host = "localhost", Port = 5432, Username = "postgres", Password = "ivmadmin", Database = "Samhwa" };
+            NpgsqlConnectionStringBuilder b = new NpgsqlConnectionStringBuilder() { Host = "localhost", Port = 5432, Username = "postgres", Password = "ivmadmin", Database = "HKCBusbar" };
             return new NpgsqlConnection(b.ConnectionString);
         }
 
@@ -136,11 +135,11 @@ namespace HKCBusbarInspection.Schemas
 
         public Boolean Load()
         {
-            //if (!CanDbConnect())
-            //{
-            //    Global.오류로그(로그영역.GetString(), "데이터베이스 연결실패", "데이터베이스에 연결할 수 없습니다.", true);
-            //    return false;
-            //}
+            if (!CanDbConnect())
+            {
+                Global.오류로그(로그영역.GetString(), "데이터베이스 연결실패", "데이터베이스에 연결할 수 없습니다.", true);
+                return false;
+            }
 
             Common.DirectoryExists(Path.Combine(Application.StartupPath, @"Views"), true);
             if (!Common.DirectoryExists(기본경로, true))

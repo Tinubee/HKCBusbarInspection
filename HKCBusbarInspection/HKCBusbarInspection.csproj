@@ -301,6 +301,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.cs" />
+    <Compile Include="Migrations\20240529082211_logs.cs" />
+    <Compile Include="Migrations\20240529082211_logs.Designer.cs">
+      <DependentUpon>20240529082211_logs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\로그테이블ModelSnapshot.cs" />
     <Compile Include="Schemas\Data\BaseTable.cs" />
     <Compile Include="Schemas\Viewport\BUSBAR3D.cs" />
     <Compile Include="Schemas\Viewport\Graphics3D.cs" />
@@ -564,6 +569,7 @@
   <ItemGroup>
     <None Include="Resources\LaptopSecure.svg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

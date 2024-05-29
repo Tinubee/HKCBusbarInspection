@@ -53,7 +53,6 @@
             this.e검사설정 = new HKCBusbarInspection.UI.Control.SetInspection();
             this.t장치설정 = new DevExpress.XtraTab.XtraTabPage();
             this.e장치설정 = new HKCBusbarInspection.UI.Control.DeviceSettings();
-            this.deviceLamp1 = new HKCBusbarInspection.UI.Control.DeviceLamp();
             ((System.ComponentModel.ISupportInitialize)(this.tabFormControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabFormDefaultManager1)).BeginInit();
             this.tabFormContentContainer1.SuspendLayout();
@@ -81,7 +80,7 @@
             this.tabFormControl1.Pages.Add(this.p검사도구);
             this.tabFormControl1.Pages.Add(this.p검사내역);
             this.tabFormControl1.Pages.Add(this.p환경설정);
-            this.tabFormControl1.SelectedPage = this.p결과뷰어;
+            this.tabFormControl1.SelectedPage = this.p환경설정;
             this.tabFormControl1.ShowAddPageButton = false;
             this.tabFormControl1.ShowTabCloseButtons = false;
             this.tabFormControl1.ShowTabsInTitleBar = DevExpress.XtraBars.ShowTabsInTitleBar.True;
@@ -266,7 +265,6 @@
             // 
             // t검사설정
             // 
-            this.t검사설정.Controls.Add(this.deviceLamp1);
             this.t검사설정.Controls.Add(this.e검사설정);
             this.t검사설정.Name = "t검사설정";
             this.t검사설정.Size = new System.Drawing.Size(1918, 979);
@@ -295,13 +293,6 @@
             this.e장치설정.Size = new System.Drawing.Size(1918, 979);
             this.e장치설정.TabIndex = 0;
             // 
-            // deviceLamp1
-            // 
-            this.deviceLamp1.Location = new System.Drawing.Point(427, 71);
-            this.deviceLamp1.Name = "deviceLamp1";
-            this.deviceLamp1.Size = new System.Drawing.Size(8, 52);
-            this.deviceLamp1.TabIndex = 1;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -311,7 +302,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Controls.Add(this.tabFormContentContainer1);
+            this.Controls.Add(this.tabFormContentContainer4);
             this.Controls.Add(this.tabFormControl1);
             this.IconOptions.SvgImage = global::HKCBusbarInspection.Properties.Resources.vision;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -360,7 +351,6 @@
         private DevExpress.XtraTab.XtraTabPage t장치설정;
         private UI.Control.SetInspection e검사설정;
         private UI.Control.DeviceSettings e장치설정;
-        private UI.Control.DeviceLamp deviceLamp1;
     }
 }
 

@@ -104,7 +104,7 @@ namespace HKCBusbarInspection.Schemas.Data
             catch (Exception ex)
             {
                 r.오류내용 = ex.Message;
-                MvUtils.Utils.DebugException(ex, 1, "SaveChanges");
+                Utils.DebugException(ex, 1, "SaveChanges");
             }
             return r;
         }

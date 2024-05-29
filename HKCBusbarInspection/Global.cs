@@ -36,7 +36,15 @@ namespace HKCBusbarInspection
 
         public static class 장치상태
         {
-
+            //public static Boolean 정상여부 => 조명장치 && 그랩장치;
+            //public static Boolean 조명장치 => 조명제어.정상여부;
+            public static Boolean 그랩장치 => Global.그랩제어.정상여부;
+            public static Boolean 카메라1 => Global.그랩제어.상부검사카메라.상태;
+            public static Boolean 카메라2 => Global.그랩제어.측면검사카메라.상태;
+            public static Boolean 카메라3 => Global.그랩제어.L부검사카메라.상태;
+            public static Boolean 카메라4 => Global.그랩제어.하부검사카메라.상태;
+            public static Boolean 자동수동 => Global.신호제어.자동수동여부;
+            //public static Boolean 시작정지 => Global.장치통신.시작정지여부;
         }
 
         public static Boolean Init()
@@ -49,15 +57,16 @@ namespace HKCBusbarInspection
                 조명제어 = new 조명제어();
                 VM제어 = new VM제어();
                 그랩제어 = new 그랩제어();
+                신호제어 = new 신호제어();
 
                 로그자료.Init();
                 환경설정.Init();
                 모델자료.Init();
                 if (Global.환경설정.동작구분 == 동작구분.Live)
                 {
-                    //신호제어.Init();
+                    신호제어.Init();
                     if (!그랩제어.Init()) new Exception("카메라 초기화에 실패하였습니다.");
-                    //if (!신호제어.Open()) new Exception("PLC 서버에 연결할 수 없습니다.");
+                    if (!신호제어.Open()) new Exception("PLC 서버에 연결할 수 없습니다.");
                     조명제어.Init();
                 }
 

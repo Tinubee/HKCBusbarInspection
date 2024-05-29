@@ -11,6 +11,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Media3D;
 
 namespace HKCBusbarInspection.Schemas
 {
@@ -148,6 +149,32 @@ namespace HKCBusbarInspection.Schemas
             }
         }
 
+        internal void AcquisitionFinished(ref MV_FG_BUFFER_INFO stBufferInfo, IntPtr pUser)
+        {
+            if (null != stBufferInfo.pBuffer)
+            {
+                Console.WriteLine("FrameNumber: " + Convert.ToInt64(stBufferInfo.nFrameID).ToString() + ", Width: " +
+                    stBufferInfo.nWidth.ToString() + ", Height: " + stBufferInfo.nHeight.ToString());
+            }
+            //if (surfaceAddr == IntPtr.Zero) { AcquisitionFinished("Failed."); return; }
+            //try
+            //{
+            //    if (this.UseMemoryCopy) this.CopyMemory(surfaceAddr, width, height);
+            //    else
+            //    {
+            //        this.BufferAddress = surfaceAddr;
+            //        this.ImageWidth = width;
+            //        this.ImageHeight = height;
+            //    }
+            //    //Global.그랩제어.그랩완료(this);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Global.오류로그(로그영역, "Acquisition", $"[{this.구분}] {ex.Message}", true);
+            //}
+        }
+
+
         internal void AcquisitionFinished(String error) =>
             Global.오류로그(로그영역, "Acquisition", $"[{this.구분.ToString()}] {error}", true);
         internal void AcquisitionFinished(Mat image)
@@ -161,7 +188,7 @@ namespace HKCBusbarInspection.Schemas
             this.Dispose();
             //Global.그랩제어.그랩완료(this);
         }
-       
+
         public Mat MatImage()
         {
             if (this.Image != null) return this.Image;
@@ -175,8 +202,6 @@ namespace HKCBusbarInspection.Schemas
         internal override Boolean UseMemoryCopy => true;
         [JsonIgnore]
         private CCamera Camera = null;
-        [JsonIgnore]
-        private CInterface Interface = null;
         [JsonIgnore]
         private CCameraInfo Device;
         [JsonIgnore]
@@ -228,10 +253,6 @@ namespace HKCBusbarInspection.Schemas
         public override Boolean Active()
         {
             this.Camera.ClearImageBuffer();
-            //if(this.구분 == 카메라구분.Cam08 || this.구분 == 카메라구분.Cam09)
-            //{
-            //    return 그랩제어.Validate($"{this.구분} Active", Camera.StartGrabbing(), false);
-            //}
             return 그랩제어.Validate($"{this.구분} Active", Camera.StartGrabbing(), true);
         }
 
@@ -250,6 +271,91 @@ namespace HKCBusbarInspection.Schemas
         private void ImageCallBack(IntPtr surfaceAddr, ref MV_FRAME_OUT_INFO_EX frameInfo, IntPtr user)
         {
             this.AcquisitionFinished(surfaceAddr, frameInfo.nWidth, frameInfo.nHeight);
+            this.Stop();
+        }
+    }
+
+
+    public class HikeCxp : 그랩장치
+    {
+        internal override Boolean UseMemoryCopy => true;
+        [JsonIgnore]
+        private CInterface Interface = null;
+        [JsonIgnore]
+        private CDevice Device = null;
+        [JsonIgnore]
+        private CParam DeviceParam = null;
+        [JsonIgnore]
+        private CStream Stream = null;
+        [JsonIgnore]
+        private CStream.ImageDelegate ImageCallBackDelegate;
+        [JsonIgnore]
+        public Int32 OffsetX { get; set; } = 0;
+        [JsonIgnore]
+        public Boolean ReverseX { get; set; } = false;
+        [JsonIgnore]
+        public Int32 number { get; set; } = 0;
+
+        public Boolean Init(CInterface cInterface, MV_CXP_DEVICE_INFO info)
+        {
+            try
+            {
+                this.Interface = cInterface;
+                int nRet = this.Interface.OpenDevice(Convert.ToUInt32(0), out this.Device);
+                if (!그랩제어.ValidateMVFG($"[{this.구분}] 카메라 연결 실패!", nRet, true)) return false;
+                Global.정보로그(로그영역, "카메라 연결", $"[{this.구분}] 카메라 연결 성공!", false);
+                this.DeviceParam = new CParam(this.Device);
+                nRet = this.Device.OpenStream(0, out Stream);
+                if (!그랩제어.ValidateMVFG($"[{this.구분}] OpenStream Fail!", nRet, true)) return false;
+                this.ImageCallBackDelegate = new CStream.ImageDelegate(ImageCallBack);
+                this.명칭 = info.chUserDefinedName + " " + info.chModelName;
+                //UInt32 ip1 = (info.nCurrentIp & 0xff000000) >> 24;
+                //UInt32 ip2 = (info.nCurrentIp & 0x00ff0000) >> 16;
+                //UInt32 ip3 = (info.nCurrentIp & 0x0000ff00) >> 8;
+                //UInt32 ip4 = info.nCurrentIp & 0x000000ff;
+                //this.주소 = $"{ip1}.{ip2}.{ip3}.{ip4}";
+                this.상태 = this.Init();
+            }
+            catch (Exception ex)
+            {
+                Global.오류로그(로그영역, "초기화", $"초기화 오류: {ex.Message}", true);
+                this.상태 = false;
+            }
+
+            Debug.WriteLine($"{this.명칭}, {this.코드}, {this.주소}, {this.상태}");
+            return this.상태;
+        }
+
+        public override Boolean Init()
+        {
+            그랩제어.ValidateMVFG("RegisterImageCallBack", this.Stream.RegisterImageCallBack(this.ImageCallBackDelegate, IntPtr.Zero), false);
+            Global.정보로그(로그영역, "카메라 연결", $"[{this.구분}] 카메라 연결 성공!", false);
+            return true;
+        }
+
+        public override Boolean Active()
+        {
+            return 그랩제어.ValidateMVFG($"{this.구분} Active", this.Stream.StartAcquisition(), true);
+        }
+
+        public override Boolean Close()
+        {
+            base.Close();
+            return 그랩제어.ValidateMVFG($"{this.구분} Close", this.Stream.CloseStream(), false);
+        }
+
+        public override Boolean Stop()
+        {
+            return 그랩제어.ValidateMVFG($"{this.구분} Close", this.Stream.StopAcquisition(), false);
+        }
+
+        public void CloseInterface() => this.Interface.CloseInterface();
+
+        public void CloseDevice() => this.Device.CloseDevice();
+
+        private void ImageCallBack(ref MV_FG_BUFFER_INFO stBufferInfo, IntPtr pUser)
+        {
+            this.AcquisitionFinished(ref stBufferInfo, pUser);
             this.Stop();
         }
     }

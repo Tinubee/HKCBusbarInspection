@@ -15,13 +15,13 @@ namespace HKCBusbarInspection.Schemas
 {
     public class 그랩제어 : Dictionary<카메라구분, 그랩장치>
     {
-        public static List<카메라구분> 대상카메라 = new List<카메라구분>() { 카메라구분.Cam01, 카메라구분.Cam02, 카메라구분.Cam03, 카메라구분.Cam04 };
+        public static List<카메라구분> 대상카메라 = new List<카메라구분>() { 카메라구분.Cam01, 카메라구분.Cam02, 카메라구분.Cam03, 카메라구분.Cam04, 카메라구분.Cam05 };
 
         public delegate void 그랩완료대리자(그랩장치 장치);
         public event 그랩완료대리자 그랩완료보고;
 
         [JsonIgnore]
-        public HikeGigE 상부검사카메라 = null;
+        public HikeCxp 상부검사카메라 = null;
         [JsonIgnore]
         public HikeGigE 측면검사카메라 = null;
         [JsonIgnore]
@@ -40,17 +40,17 @@ namespace HKCBusbarInspection.Schemas
 
         public Boolean Init()
         {
-            this.상부검사카메라 = new HikeGigE() { 구분 = 카메라구분.Cam01, 코드 = "DA3152184" };
-            this.측면검사카메라 = new HikeGigE() { 구분 = 카메라구분.Cam02, 코드 = "" };
-            this.L부검사카메라 = new HikeGigE() { 구분 = 카메라구분.Cam03, 코드 = "" };
-            this.하부검사카메라 = new HikeGigE() { 구분 = 카메라구분.Cam04, 코드 = "" };
-            this.트레이검사카메라 = new HikeGigE() { 구분 = 카메라구분.Cam05, 코드 = "" };
+            this.상부검사카메라 = new HikeCxp() { 구분 = 카메라구분.Cam01, 코드 = "DA3152184" };
+            this.측면검사카메라 = new HikeGigE() { 구분 = 카메라구분.Cam02, 코드 = "DA3152197" };
+            this.L부검사카메라 = new HikeGigE() { 구분 = 카메라구분.Cam03, 코드 = "DA0754921" };
+            this.하부검사카메라 = new HikeGigE() { 구분 = 카메라구분.Cam04, 코드 = "DA3151054" };
+            this.트레이검사카메라 = new HikeGigE() { 구분 = 카메라구분.Cam05, 코드 = "DA2144005" };
 
             this.Add(카메라구분.Cam01, this.상부검사카메라);
             this.Add(카메라구분.Cam02, this.측면검사카메라);
             this.Add(카메라구분.Cam03, this.L부검사카메라);
             this.Add(카메라구분.Cam04, this.하부검사카메라);
-            this.Add(카메라구분.Cam04, this.트레이검사카메라);
+            this.Add(카메라구분.Cam05, this.트레이검사카메라);
 
             // 카메라 설정 저장정보 로드
             그랩장치 정보;
@@ -65,92 +65,64 @@ namespace HKCBusbarInspection.Schemas
                 }
             }
             if (Global.환경설정.동작구분 != 동작구분.Live) return true;
-            //Test();
-            // GigE 카메라 초기화
-            List<CCameraInfo> 카메라들 = new List<CCameraInfo>();
 
-            Int32 nRet = MvCamCtrl.NET.CSystem.EnumDevices(MvCamCtrl.NET.CSystem.MV_GIGE_DEVICE, ref 카메라들);// | CSystem.MV_USB_DEVICE
-
-            if (!Validate("Enumerate devices fail!", nRet, true)) return false;
-
-            for (int i = 0; i < 카메라들.Count; i++)
-            {
-                CGigECameraInfo gigeInfo = 카메라들[i] as CGigECameraInfo;
-                HikeGigE gige = this.GetItem(gigeInfo.chSerialNumber) as HikeGigE;
-                if (gige == null) continue;
-                //Debug.WriteLine(gigeInfo.chSerialNumber, "시리얼");
-                gige.Init(gigeInfo);
-                //if (gige.상태) gige.Start();
-            }
+            if (!GIGE카메라연결()) return false;
+            if (!CXP카메라연결()) return false;
 
             Debug.WriteLine($"카메라 갯수: {this.Count}");
             GC.Collect();
             return true;
         }
 
-        public void Test()
+        private Boolean CXP카메라연결()
         {
-            CInterface m_cInterface = null;
-            CDevice m_cDevice = null;
-
-            int nRet = 0;
-            bool bChanged = false;
             MvFGCtrlC.NET.CSystem m_cSystem = new MvFGCtrlC.NET.CSystem();
+            bool bChanged = false;
+            UInt32 nDeviceNum = 0;
+            MV_FG_DEVICE_INFO stDeviceInfo = new MV_FG_DEVICE_INFO();
 
+            //오류처리 해줘야함.
+            int nRet = m_cSystem.UpdateInterfaceList(CParamDefine.MV_FG_CXP_INTERFACE, ref bChanged);
 
-            nRet = m_cSystem.UpdateInterfaceList(
-               CParamDefine.MV_FG_CAMERALINK_INTERFACE | CParamDefine.MV_FG_GEV_INTERFACE | CParamDefine.MV_FG_CXP_INTERFACE,
-               ref bChanged);
+            nRet = m_cSystem.OpenInterface(Convert.ToUInt32(0), out CInterface m_cInterface);
 
-            uint m_nInterfaceNum = 0;
+            nRet = m_cInterface.UpdateDeviceList(ref bChanged);
 
-            nRet = m_cSystem.GetNumInterfaces(ref m_nInterfaceNum);
+            nRet = m_cInterface.GetNumDevices(ref nDeviceNum);
 
-            MV_FG_INTERFACE_INFO stIfInfo = new MV_FG_INTERFACE_INFO();
-            for (uint i = 0; i < m_nInterfaceNum; i++)
+            for (UInt32 lop = 0; lop < nDeviceNum; lop++)
             {
-                nRet = m_cSystem.GetInterfaceInfo(i, ref stIfInfo);
-                string strShowIfInfo = null;
-                switch (stIfInfo.nTLayerType)
+                nRet = m_cInterface.GetDeviceInfo(lop, ref stDeviceInfo);
+                if (stDeviceInfo.nDevType == CParamDefine.MV_FG_CXP_DEVICE)
                 {
-                    case CParamDefine.MV_FG_GEV_INTERFACE:
-                        {
-                            MV_GEV_INTERFACE_INFO stGevIFInfo = (MV_GEV_INTERFACE_INFO)CAdditional.ByteToStruct(
-                                stIfInfo.SpecialInfo.stGevIfInfo, typeof(MV_GEV_INTERFACE_INFO));
-                            strShowIfInfo += "GEV[" + i.ToString() + "]: " + stGevIFInfo.chDisplayName + " | " +
-                                stGevIFInfo.chInterfaceID + " | " + stGevIFInfo.chSerialNumber;
-                            break;
-                        }
-                    case CParamDefine.MV_FG_CXP_INTERFACE:
-                        {
-                            MV_CXP_INTERFACE_INFO stCxpIFInfo = (MV_CXP_INTERFACE_INFO)CAdditional.ByteToStruct(
-                                stIfInfo.SpecialInfo.stCXPIfInfo, typeof(MV_CXP_INTERFACE_INFO));
-                            strShowIfInfo += "CXP[" + i.ToString() + "]: " + stCxpIFInfo.chDisplayName + " | " +
-                                stCxpIFInfo.chInterfaceID + " | " + stCxpIFInfo.chSerialNumber;
-                            break;
-                        }
-                    case CParamDefine.MV_FG_CAMERALINK_INTERFACE:
-                        {
-                            MV_CML_INTERFACE_INFO stCmlIFInfo = (MV_CML_INTERFACE_INFO)CAdditional.ByteToStruct(
-                                stIfInfo.SpecialInfo.stCMLIfInfo, typeof(MV_CML_INTERFACE_INFO));
-                            strShowIfInfo += "CML[" + i.ToString() + "]: " + stCmlIFInfo.chDisplayName + " | " +
-                                stCmlIFInfo.chInterfaceID + " | " + stCmlIFInfo.chSerialNumber;
-                            break;
-                        }
-                    default:
-                        {
-                            strShowIfInfo += "Unknown interface[" + i.ToString() + "]";
-                            break;
-                        }
+                    MV_CXP_DEVICE_INFO stCxpDevInfo = (MV_CXP_DEVICE_INFO)CAdditional.ByteToStruct(
+                                   stDeviceInfo.DevInfo.stCXPDevInfo, typeof(MV_CXP_DEVICE_INFO));
+                    //strShowDevInfo += "CXP[" + i.ToString() + "]: " + stCxpDevInfo.chUserDefinedName + " | " +
+                    //    stCxpDevInfo.chModelName + " | " + stCxpDevInfo.chSerialNumber;
+
+                    if (!(this.GetItem(stCxpDevInfo.chSerialNumber) is HikeCxp gige)) continue;
+                    gige.Init(m_cInterface, stCxpDevInfo);
                 }
-
-                Debug.WriteLine(strShowIfInfo);
-             
             }
-            int nRet2 = m_cSystem.OpenInterface(Convert.ToUInt32(1), out m_cInterface);
 
-            uint nDeviceNum = 0;
-            nRet2 = m_cInterface.GetNumDevices(ref nDeviceNum);
+            return true;
+        }
+
+        private Boolean GIGE카메라연결()
+        {
+            List<CCameraInfo> 카메라들 = new List<CCameraInfo>();
+
+            Int32 nRet = MvCamCtrl.NET.CSystem.EnumDevices(MvCamCtrl.NET.CSystem.MV_GIGE_DEVICE, ref 카메라들);
+
+            if (!Validate("Enumerate devices fail!", nRet, true)) return false;
+
+            for (Int32 lop = 0; lop < 카메라들.Count; lop++)
+            {
+                CGigECameraInfo gigeInfo = 카메라들[lop] as CGigECameraInfo;
+                if (!(this.GetItem(gigeInfo.chSerialNumber) is HikeGigE gige)) continue;
+                gige.Init(gigeInfo);
+            }
+            return true;
         }
 
         private List<그랩장치> Load()
@@ -232,6 +204,67 @@ namespace HKCBusbarInspection.Schemas
                 case CErrorDefine.MV_E_ACCESS_DENIED: errorMsg = "No permission"; break;
                 case CErrorDefine.MV_E_BUSY: errorMsg = "Device is busy, or network disconnected"; break;
                 case CErrorDefine.MV_E_NETER: errorMsg = "Network error"; break;
+                default: errorMsg = "Unknown error"; break;
+            }
+
+            Global.오류로그("Camera", "Error", $"[{errorNum}] {message} {errorMsg}", show);
+            return false;
+        }
+
+        public static Boolean ValidateMVFG(String message, Int32 errorNum, Boolean show)
+        {
+            if (errorNum == CErrorCode.MV_FG_SUCCESS) return true;
+
+            String errorMsg = String.Empty;
+            switch (errorNum)
+            {
+                case CErrorCode.MV_FG_ERR_ERROR: errorMsg = "Unknown error"; break;
+                case CErrorCode.MV_FG_ERR_NOT_INITIALIZED: errorMsg = "Not initialized"; break;
+                case CErrorCode.MV_FG_ERR_NOT_IMPLEMENTED: errorMsg = "Not implemented"; break;
+                case CErrorCode.MV_FG_ERR_RESOURCE_IN_USE: errorMsg = "Resource in use"; break;
+                case CErrorCode.MV_FG_ERR_ACCESS_DENIED: errorMsg = "Access denied"; break;
+                case CErrorCode.MV_FG_ERR_INVALID_HANDLE: errorMsg = "Invalid handle"; break;
+                case CErrorCode.MV_FG_ERR_INVALID_ID: errorMsg = "Invalid ID"; break;
+                case CErrorCode.MV_FG_ERR_NO_DATA: errorMsg = "No data"; break;
+                case CErrorCode.MV_FG_ERR_INVALID_PARAMETER: errorMsg = "Invalid parameter"; break;
+                case CErrorCode.MV_FG_ERR_IO: errorMsg = "IO error"; break;
+                case CErrorCode.MV_FG_ERR_TIMEOUT: errorMsg = "Timeout"; break;
+                case CErrorCode.MV_FG_ERR_ABORT: errorMsg = "Operation aborted"; break;
+                case CErrorCode.MV_FG_ERR_INVALID_BUFFER: errorMsg = "Invalid buffer"; break;
+                case CErrorCode.MV_FG_ERR_NOT_AVAILABLE: errorMsg = "Not available"; break;
+                case CErrorCode.MV_FG_ERR_INVALID_ADDRESS: errorMsg = "Invalid address"; break;
+                case CErrorCode.MV_FG_ERR_BUFFER_TOO_SMALL: errorMsg = "Buffer too small"; break;
+                case CErrorCode.MV_FG_ERR_INVALID_INDEX: errorMsg = "Invalid index"; break;
+                case CErrorCode.MV_FG_ERR_PARSING_CHUNK_DATA: errorMsg = "Parsing chunk data failed"; break;
+                case CErrorCode.MV_FG_ERR_INVALID_VALUE: errorMsg = "Invalid value"; break;
+                case CErrorCode.MV_FG_ERR_RESOURCE_EXHAUSTED: errorMsg = "Resource exhausted"; break;
+                case CErrorCode.MV_FG_ERR_OUT_OF_MEMORY: errorMsg = "Out of memory"; break;
+                case CErrorCode.MV_FG_ERR_BUSY: errorMsg = "Device busy"; break;
+                case CErrorCode.MV_FG_ERR_LOADLIBRARY: errorMsg = "Load library failed"; break;
+                case CErrorCode.MV_FG_ERR_CALLORDER: errorMsg = "Function call order error"; break;
+                case CErrorCode.MV_FG_ERR_GC_GENERIC: errorMsg = "Generic error"; break;
+                case CErrorCode.MV_FG_ERR_GC_ARGUMENT: errorMsg = "Invalid argument"; break;
+                case CErrorCode.MV_FG_ERR_GC_RANGE: errorMsg = "Argument out of range"; break;
+                case CErrorCode.MV_FG_ERR_GC_PROPERTY: errorMsg = "Property error"; break;
+                case CErrorCode.MV_FG_ERR_GC_RUNTIME: errorMsg = "Runtime error"; break;
+                case CErrorCode.MV_FG_ERR_GC_LOGICAL: errorMsg = "Logical error"; break;
+                case CErrorCode.MV_FG_ERR_GC_ACCESS: errorMsg = "Access error"; break;
+                case CErrorCode.MV_FG_ERR_GC_TIMEOUT: errorMsg = "Timeout error"; break;
+                case CErrorCode.MV_FG_ERR_GC_DYNAMICCAST: errorMsg = "Dynamic cast error"; break;
+                case CErrorCode.MV_FG_ERR_GC_UNKNOW: errorMsg = "Unknown error"; break;
+                case CErrorCode.MV_FG_ERR_IMG_HANDLE: errorMsg = "Image handle error"; break;
+                case CErrorCode.MV_FG_ERR_IMG_SUPPORT: errorMsg = "Image not supported"; break;
+                case CErrorCode.MV_FG_ERR_IMG_PARAMETER: errorMsg = "Image parameter error"; break;
+                case CErrorCode.MV_FG_ERR_IMG_OVERFLOW: errorMsg = "Image overflow error"; break;
+                case CErrorCode.MV_FG_ERR_IMG_INITIALIZED: errorMsg = "Image processing not initialized"; break;
+                case CErrorCode.MV_FG_ERR_IMG_RESOURCE: errorMsg = "Image resource error"; break;
+                case CErrorCode.MV_FG_ERR_IMG_ENCRYPT: errorMsg = "Image encryption error"; break;
+                case CErrorCode.MV_FG_ERR_IMG_FORMAT: errorMsg = "Invalid or unsupported image format"; break;
+                case CErrorCode.MV_FG_ERR_IMG_SIZE: errorMsg = "Invalid or out of range image size"; break;
+                case CErrorCode.MV_FG_ERR_IMG_STEP: errorMsg = "Image step parameter mismatch"; break;
+                case CErrorCode.MV_FG_ERR_IMG_DATA_NULL: errorMsg = "Image data null"; break;
+                case CErrorCode.MV_FG_ERR_IMG_ABILITY_ARG: errorMsg = "Invalid image algorithm parameter"; break;
+                case CErrorCode.MV_FG_ERR_IMG_UNKNOW: errorMsg = "Unknown image processing error"; break;
                 default: errorMsg = "Unknown error"; break;
             }
 
