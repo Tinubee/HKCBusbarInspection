@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tabFormControl1 = new DevExpress.XtraBars.TabFormControl();
             this.타이틀 = new DevExpress.XtraBars.BarStaticItem();
             this.skinPaletteDropDownButtonItem1 = new DevExpress.XtraBars.SkinPaletteDropDownButtonItem();
@@ -53,6 +54,9 @@
             this.e검사설정 = new HKCBusbarInspection.UI.Control.SetInspection();
             this.t장치설정 = new DevExpress.XtraTab.XtraTabPage();
             this.e장치설정 = new HKCBusbarInspection.UI.Control.DeviceSettings();
+            this.p로그내역 = new DevExpress.XtraBars.TabFormPage();
+            this.tabFormContentContainer5 = new DevExpress.XtraBars.TabFormContentContainer();
+            this.e로그내역 = new HKCBusbarInspection.UI.Control.LogViewer();
             ((System.ComponentModel.ISupportInitialize)(this.tabFormControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabFormDefaultManager1)).BeginInit();
             this.tabFormContentContainer1.SuspendLayout();
@@ -62,6 +66,7 @@
             this.xtraTabControl1.SuspendLayout();
             this.t검사설정.SuspendLayout();
             this.t장치설정.SuspendLayout();
+            this.tabFormContentContainer5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabFormControl1
@@ -80,7 +85,8 @@
             this.tabFormControl1.Pages.Add(this.p검사도구);
             this.tabFormControl1.Pages.Add(this.p검사내역);
             this.tabFormControl1.Pages.Add(this.p환경설정);
-            this.tabFormControl1.SelectedPage = this.p환경설정;
+            this.tabFormControl1.Pages.Add(this.p로그내역);
+            this.tabFormControl1.SelectedPage = this.p로그내역;
             this.tabFormControl1.ShowAddPageButton = false;
             this.tabFormControl1.ShowTabCloseButtons = false;
             this.tabFormControl1.ShowTabsInTitleBar = DevExpress.XtraBars.ShowTabsInTitleBar.True;
@@ -109,7 +115,6 @@
             // 
             this.e프로젝트.Caption = "IVM : 24-0272-003";
             this.e프로젝트.Id = 2;
-            this.e프로젝트.ImageOptions.SvgImage = global::HKCBusbarInspection.Properties.Resources.LaptopSecure;
             this.e프로젝트.Name = "e프로젝트";
             this.e프로젝트.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
@@ -166,7 +171,7 @@
             // p결과뷰어
             // 
             this.p결과뷰어.ContentContainer = this.tabFormContentContainer1;
-            this.p결과뷰어.ImageOptions.SvgImage = global::HKCBusbarInspection.Properties.Resources.enablesearch;
+            this.p결과뷰어.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("p결과뷰어.ImageOptions.SvgImage")));
             this.p결과뷰어.Name = "p결과뷰어";
             this.p결과뷰어.Text = "Inspection";
             // 
@@ -199,7 +204,7 @@
             // p검사도구
             // 
             this.p검사도구.ContentContainer = this.tabFormContentContainer2;
-            this.p검사도구.ImageOptions.SvgImage = global::HKCBusbarInspection.Properties.Resources.electronics_photo;
+            this.p검사도구.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("p검사도구.ImageOptions.SvgImage")));
             this.p검사도구.Name = "p검사도구";
             this.p검사도구.Text = "Cameras";
             // 
@@ -223,7 +228,7 @@
             // p검사내역
             // 
             this.p검사내역.ContentContainer = this.tabFormContentContainer3;
-            this.p검사내역.ImageOptions.SvgImage = global::HKCBusbarInspection.Properties.Resources.portrait;
+            this.p검사내역.ImageOptions.SvgImage = global::HKCBusbarInspection.Properties.Resources.bo_list;
             this.p검사내역.Name = "p검사내역";
             this.p검사내역.Text = "History";
             // 
@@ -238,7 +243,7 @@
             // p환경설정
             // 
             this.p환경설정.ContentContainer = this.tabFormContentContainer4;
-            this.p환경설정.ImageOptions.SvgImage = global::HKCBusbarInspection.Properties.Resources.properties;
+            this.p환경설정.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("p환경설정.ImageOptions.SvgImage")));
             this.p환경설정.Name = "p환경설정";
             this.p환경설정.Text = "Preferences";
             // 
@@ -293,6 +298,30 @@
             this.e장치설정.Size = new System.Drawing.Size(1918, 979);
             this.e장치설정.TabIndex = 0;
             // 
+            // p로그내역
+            // 
+            this.p로그내역.ContentContainer = this.tabFormContentContainer5;
+            this.p로그내역.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("p로그내역.ImageOptions.SvgImage")));
+            this.p로그내역.Name = "p로그내역";
+            this.p로그내역.Text = "Logs";
+            // 
+            // tabFormContentContainer5
+            // 
+            this.tabFormContentContainer5.Controls.Add(this.e로그내역);
+            this.tabFormContentContainer5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabFormContentContainer5.Location = new System.Drawing.Point(0, 30);
+            this.tabFormContentContainer5.Name = "tabFormContentContainer5";
+            this.tabFormContentContainer5.Size = new System.Drawing.Size(1920, 1010);
+            this.tabFormContentContainer5.TabIndex = 7;
+            // 
+            // e로그내역
+            // 
+            this.e로그내역.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.e로그내역.Location = new System.Drawing.Point(0, 0);
+            this.e로그내역.Name = "e로그내역";
+            this.e로그내역.Size = new System.Drawing.Size(1920, 1010);
+            this.e로그내역.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -302,9 +331,8 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Controls.Add(this.tabFormContentContainer4);
+            this.Controls.Add(this.tabFormContentContainer5);
             this.Controls.Add(this.tabFormControl1);
-            this.IconOptions.SvgImage = global::HKCBusbarInspection.Properties.Resources.vision;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
@@ -319,6 +347,7 @@
             this.xtraTabControl1.ResumeLayout(false);
             this.t검사설정.ResumeLayout(false);
             this.t장치설정.ResumeLayout(false);
+            this.tabFormContentContainer5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -351,6 +380,9 @@
         private DevExpress.XtraTab.XtraTabPage t장치설정;
         private UI.Control.SetInspection e검사설정;
         private UI.Control.DeviceSettings e장치설정;
+        private DevExpress.XtraBars.TabFormContentContainer tabFormContentContainer5;
+        private DevExpress.XtraBars.TabFormPage p로그내역;
+        private UI.Control.LogViewer e로그내역;
     }
 }
 

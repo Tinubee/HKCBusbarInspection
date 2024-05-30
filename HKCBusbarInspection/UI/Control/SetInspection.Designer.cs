@@ -30,27 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SetInspection));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.b측정정보 = new DevExpress.XtraEditors.SimpleButton();
-            this.b설정저장 = new DevExpress.XtraEditors.SimpleButton();
-            this.b도구설정 = new DevExpress.XtraEditors.LookUpEdit();
             this.e모델선택 = new DevExpress.XtraEditors.LookUpEdit();
-            this.GridControl1 = new MvUtils.CustomGrid();
-            this.GridView1 = new MvUtils.CustomView();
-            this.ｅ교정계산 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
-            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.검사설정Bind = new System.Windows.Forms.BindingSource(this.components);
             this.모델자료Bind = new System.Windows.Forms.BindingSource(this.components);
-            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.b설정저장 = new DevExpress.XtraEditors.SimpleButton();
+            this.GridControl1 = new MvUtils.CustomGrid();
+            this.검사설정Bind = new System.Windows.Forms.BindingSource(this.components);
+            this.GridView1 = new MvUtils.CustomView();
             this.col검사일시 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col검사명칭 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col검사항목 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -69,22 +55,28 @@
             this.col측정결과 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col마진값 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col검사여부 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ｅ교정계산 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.b도구설정 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.b도구설정.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.e모델선택.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.모델자료Bind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.검사설정Bind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ｅ교정계산)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.검사설정Bind)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.모델자료Bind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.b측정정보);
             this.panelControl1.Controls.Add(this.b도구설정);
             this.panelControl1.Controls.Add(this.e모델선택);
             this.panelControl1.Controls.Add(this.b설정저장);
@@ -94,47 +86,6 @@
             this.panelControl1.Padding = new System.Windows.Forms.Padding(3);
             this.panelControl1.Size = new System.Drawing.Size(1244, 52);
             this.panelControl1.TabIndex = 6;
-            // 
-            // b측정정보
-            // 
-            this.b측정정보.Appearance.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.b측정정보.Appearance.Options.UseFont = true;
-            this.b측정정보.Dock = System.Windows.Forms.DockStyle.Right;
-            this.b측정정보.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("b측정정보.ImageOptions.SvgImage")));
-            this.b측정정보.ImageOptions.SvgImageSize = new System.Drawing.Size(16, 16);
-            this.b측정정보.Location = new System.Drawing.Point(939, 5);
-            this.b측정정보.Name = "b측정정보";
-            this.b측정정보.Size = new System.Drawing.Size(120, 42);
-            this.b측정정보.TabIndex = 20;
-            this.b측정정보.Text = "측정정보";
-            // 
-            // b설정저장
-            // 
-            this.b설정저장.Appearance.Font = new System.Drawing.Font("맑은 고딕", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.b설정저장.Appearance.Options.UseFont = true;
-            this.b설정저장.Dock = System.Windows.Forms.DockStyle.Right;
-            this.b설정저장.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("b설정저장.ImageOptions.SvgImage")));
-            this.b설정저장.Location = new System.Drawing.Point(1059, 5);
-            this.b설정저장.Name = "b설정저장";
-            this.b설정저장.Size = new System.Drawing.Size(180, 42);
-            this.b설정저장.TabIndex = 0;
-            this.b설정저장.Text = "설정저장";
-            // 
-            // b도구설정
-            // 
-            this.b도구설정.Dock = System.Windows.Forms.DockStyle.Left;
-            this.b도구설정.Location = new System.Drawing.Point(405, 5);
-            this.b도구설정.Name = "b도구설정";
-            this.b도구설정.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.b도구설정.Properties.Appearance.Options.UseFont = true;
-            this.b도구설정.Properties.AutoHeight = false;
-            editorButtonImageOptions1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions1.SvgImage")));
-            this.b도구설정.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "도구설정", "도구설정", null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.b도구설정.Properties.NullText = "[카메라 선택]";
-            this.b도구설정.Size = new System.Drawing.Size(300, 42);
-            this.b도구설정.TabIndex = 10;
             // 
             // e모델선택
             // 
@@ -160,6 +111,18 @@
             this.e모델선택.Size = new System.Drawing.Size(400, 42);
             this.e모델선택.TabIndex = 9;
             // 
+            // b설정저장
+            // 
+            this.b설정저장.Appearance.Font = new System.Drawing.Font("맑은 고딕", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.b설정저장.Appearance.Options.UseFont = true;
+            this.b설정저장.Dock = System.Windows.Forms.DockStyle.Right;
+            this.b설정저장.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("b설정저장.ImageOptions.SvgImage")));
+            this.b설정저장.Location = new System.Drawing.Point(1059, 5);
+            this.b설정저장.Name = "b설정저장";
+            this.b설정저장.Size = new System.Drawing.Size(180, 42);
+            this.b설정저장.TabIndex = 0;
+            this.b설정저장.Text = "설정저장";
+            // 
             // GridControl1
             // 
             this.GridControl1.DataSource = this.검사설정Bind;
@@ -174,6 +137,10 @@
             this.GridControl1.UseDirectXPaint = DevExpress.Utils.DefaultBoolean.True;
             this.GridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridView1});
+            // 
+            // 검사설정Bind
+            // 
+            this.검사설정Bind.DataSource = typeof(HKCBusbarInspection.Schemas.검사설정);
             // 
             // GridView1
             // 
@@ -223,62 +190,6 @@
             this.GridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             this.GridView1.OptionsView.ShowGroupPanel = false;
             this.GridView1.RowHeight = 20;
-            // 
-            // ｅ교정계산
-            // 
-            this.ｅ교정계산.AutoHeight = false;
-            this.ｅ교정계산.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.ｅ교정계산.Name = "ｅ교정계산";
-            // 
-            // barManager1
-            // 
-            this.barManager1.DockControls.Add(this.barDockControlTop);
-            this.barManager1.DockControls.Add(this.barDockControlBottom);
-            this.barManager1.DockControls.Add(this.barDockControlLeft);
-            this.barManager1.DockControls.Add(this.barDockControlRight);
-            this.barManager1.Form = this;
-            // 
-            // barDockControlTop
-            // 
-            this.barDockControlTop.CausesValidation = false;
-            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1244, 0);
-            // 
-            // barDockControlBottom
-            // 
-            this.barDockControlBottom.CausesValidation = false;
-            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 781);
-            this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1244, 0);
-            // 
-            // barDockControlLeft
-            // 
-            this.barDockControlLeft.CausesValidation = false;
-            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 781);
-            // 
-            // barDockControlRight
-            // 
-            this.barDockControlRight.CausesValidation = false;
-            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1244, 0);
-            this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 781);
-            // 
-            // 검사설정Bind
-            // 
-            this.검사설정Bind.DataSource = typeof(HKCBusbarInspection.Schemas.검사설정);
-            // 
-            // popupMenu1
-            // 
-            this.popupMenu1.Manager = this.barManager1;
-            this.popupMenu1.Name = "popupMenu1";
             // 
             // col검사일시
             // 
@@ -442,6 +353,71 @@
             this.col검사여부.Visible = true;
             this.col검사여부.VisibleIndex = 17;
             // 
+            // ｅ교정계산
+            // 
+            this.ｅ교정계산.AutoHeight = false;
+            this.ｅ교정계산.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.ｅ교정계산.Name = "ｅ교정계산";
+            // 
+            // barManager1
+            // 
+            this.barManager1.DockControls.Add(this.barDockControlTop);
+            this.barManager1.DockControls.Add(this.barDockControlBottom);
+            this.barManager1.DockControls.Add(this.barDockControlLeft);
+            this.barManager1.DockControls.Add(this.barDockControlRight);
+            this.barManager1.Form = this;
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Manager = this.barManager1;
+            this.barDockControlTop.Size = new System.Drawing.Size(1244, 0);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 781);
+            this.barDockControlBottom.Manager = this.barManager1;
+            this.barDockControlBottom.Size = new System.Drawing.Size(1244, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlLeft.Manager = this.barManager1;
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 781);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(1244, 0);
+            this.barDockControlRight.Manager = this.barManager1;
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 781);
+            // 
+            // popupMenu1
+            // 
+            this.popupMenu1.Manager = this.barManager1;
+            this.popupMenu1.Name = "popupMenu1";
+            // 
+            // b도구설정
+            // 
+            this.b도구설정.Appearance.Font = new System.Drawing.Font("맑은 고딕", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.b도구설정.Appearance.Options.UseFont = true;
+            this.b도구설정.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b도구설정.Dock = System.Windows.Forms.DockStyle.Left;
+            this.b도구설정.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("b도구설정.ImageOptions.SvgImage")));
+            this.b도구설정.Location = new System.Drawing.Point(405, 5);
+            this.b도구설정.Name = "b도구설정";
+            this.b도구설정.Size = new System.Drawing.Size(172, 42);
+            this.b도구설정.TabIndex = 21;
+            this.b도구설정.Text = "VM 설정";
+            // 
             // SetInspection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -456,14 +432,13 @@
             this.Size = new System.Drawing.Size(1244, 781);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.b도구설정.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.e모델선택.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.모델자료Bind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.검사설정Bind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ｅ교정계산)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.검사설정Bind)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.모델자료Bind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -473,8 +448,6 @@
         #endregion
 
         private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.SimpleButton b측정정보;
-        private DevExpress.XtraEditors.LookUpEdit b도구설정;
         private DevExpress.XtraEditors.LookUpEdit e모델선택;
         private DevExpress.XtraEditors.SimpleButton b설정저장;
         private MvUtils.CustomGrid GridControl1;
@@ -506,5 +479,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn col측정결과;
         private DevExpress.XtraGrid.Columns.GridColumn col마진값;
         private DevExpress.XtraGrid.Columns.GridColumn col검사여부;
+        private DevExpress.XtraEditors.SimpleButton b도구설정;
     }
 }

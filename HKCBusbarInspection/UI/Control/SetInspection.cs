@@ -2,6 +2,7 @@
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using HKCBusbarInspection.Schemas;
+using HKCBusbarInspection.UI.Form;
 using MvUtils;
 using System;
 using System.Collections.Generic;
@@ -35,65 +36,27 @@ namespace HKCBusbarInspection.UI.Control
             this.GridView1.AddEditSelectionMenuItem();
             this.GridView1.AddSelectPopMenuItems();
             this.GridView1.CustomDrawCell += GridView1_CustomDrawCell;
-            //this.col최소값.DisplayFormat.FormatString = Global.환경설정.결과표현;
-            //this.col최대값.DisplayFormat.FormatString = Global.환경설정.결과표현;
-            //this.col기준값.DisplayFormat.FormatString = Global.환경설정.결과표현;
-            //this.col보정값.DisplayFormat.FormatString = Global.환경설정.결과표현;
-            //this.col마진값.DisplayFormat.FormatString = Global.환경설정.결과표현;
-            //this.col실측값.DisplayFormat.FormatString = Global.환경설정.결과표현;
-
-            popupMenu = new PopupMenu(this.barManager1);
-
-            BarButtonItem Cognex = new BarButtonItem(this.barManager1, "Cognex (CTQ)");
-            BarButtonItem Vm = new BarButtonItem(this.barManager1, "VM (Surface)");
-
-            //Cognex.ImageOptions.Image = LoadIconFromResources(Properties.Resources.Cognex, IconSize);
-            //Vm.ImageOptions.Image = LoadIconFromResources(Properties.Resources.Vm, IconSize);
-
-            popupMenu.AddItem(Cognex);
-            popupMenu.AddItem(Vm);
-
-            Vm.ItemClick += VmItemClick;
-            //Cognex.ItemClick += CognexItemClick;
+            this.col최소값.DisplayFormat.FormatString = Global.환경설정.결과표현;
+            this.col최대값.DisplayFormat.FormatString = Global.환경설정.결과표현;
+            this.col기준값.DisplayFormat.FormatString = Global.환경설정.결과표현;
+            this.col보정값.DisplayFormat.FormatString = Global.환경설정.결과표현;
+            this.col마진값.DisplayFormat.FormatString = Global.환경설정.결과표현;
+            this.col실측값.DisplayFormat.FormatString = Global.환경설정.결과표현;
 
             this.e모델선택.EditValueChanged += 모델선택;
             this.e모델선택.Properties.DataSource = Global.모델자료;
             this.e모델선택.EditValue = Global.환경설정.선택모델;
             this.e모델선택.CustomDisplayText += 선택모델표현;
+            this.b도구설정.Click += 도구설정;
             this.b설정저장.Click += 설정저장;
-            this.b도구설정.ButtonClick += 도구설정;
-            EnumToList 캠 = new EnumToList(그랩제어.대상카메라.ToArray());
-            캠.SetLookUpEdit(this.b도구설정);
-            this.b도구설정.EditValue = 그랩제어.대상카메라.First();
 
             //Global.검사자료.수동검사알림 += 수동검사알림;
             this.ｅ교정계산.ButtonClick += 교정계산;
-            this.b측정정보.Click += 측정정보;
 
             Localization.SetColumnCaption(this.e모델선택, typeof(모델정보));
             Localization.SetColumnCaption(this.GridView1, typeof(검사정보));
             this.b설정저장.Text = 번역.설정저장;
             this.모델선택(this.e모델선택, EventArgs.Empty);
-        }
-
-        private Image LoadIconFromResources(Icon icon, Int32 Size)
-        {
-            // Convert Icon to Bitmap
-            Bitmap bitmap = icon.ToBitmap();
-            // Resize the bitmap
-            Bitmap resizedBitmap = new Bitmap(bitmap, new Size(Size, Size));
-            return resizedBitmap;
-        }
-
-        //private void CognexItemClick(object sender, ItemClickEventArgs e) => Global.비전검사.도구설정(카메라구분.Cam01);
-
-        private void VmItemClick(object sender, ItemClickEventArgs e)
-        {
-            //Form opFrm = Application.OpenForms["VMForm"];
-            //if (opFrm != null) return;
-
-            //VMForm form = new VMForm();
-            //form.Show(Global.MainForm);
         }
 
         public void Close() { }
@@ -133,6 +96,16 @@ namespace HKCBusbarInspection.UI.Control
             catch { e.DisplayText = String.Empty; }
         }
 
+        private void 도구설정(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Form opFrm = Application.OpenForms["Teaching"];
+
+            if (opFrm != null) return;
+
+            Teaching form = new Teaching();
+            form.Show(Global.MainForm);
+        }
+
         private 검사정보 GetItem(GridView view, Int32 RowHandle)
         {
             if (view == null) return null;
@@ -145,18 +118,6 @@ namespace HKCBusbarInspection.UI.Control
             if (설정 == null) return;
             if (!Utils.Confirm(this.FindForm(), 번역.저장확인)) return;
             if (설정.Save()) Global.정보로그(검사설정.로그영역.GetString(), 번역.설정저장, 번역.저장완료, true);
-        }
-
-        private void 도구설정(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
-        {
-            //if (this.b도구설정.EditValue == null || e.Button.Index != 1) return;
-
-            //if ((카메라구분)this.b도구설정.EditValue == 카메라구분.Cam01)
-            //{
-            //    Point btnLocation = this.b도구설정.PointToScreen(Point.Empty);
-            //    popupMenu.ShowPopup(new Point(btnLocation.X + this.b도구설정.Width, btnLocation.Y));
-            //}
-            //else Global.비전검사.도구설정((카메라구분)this.b도구설정.EditValue);
         }
 
         private void 검사설정변경()
@@ -187,12 +148,6 @@ namespace HKCBusbarInspection.UI.Control
             if (!Utils.Confirm(this.FindForm(), "캘리브레이션을 수행하시겠습니까?")) return;
             정보.교정계산();
             this.GridView1.RefreshRow(this.GridView1.FocusedRowHandle);
-        }
-
-        private void 측정정보(object sender, EventArgs e)
-        {
-            //Forms.CalibInfo f = new Forms.CalibInfo();
-            //f.Show(Global.MainForm);
         }
 
         private void GridView1_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)

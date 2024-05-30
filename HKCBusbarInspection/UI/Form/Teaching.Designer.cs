@@ -81,8 +81,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1648, 1034);
             this.Controls.Add(this.tablePanel1);
+            this.IconOptions.Image = global::HKCBusbarInspection.Properties.Resources.Vm;
             this.Name = "Teaching";
-            this.Text = " ";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "VisionMaster";
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel1)).EndInit();
             this.tablePanel1.ResumeLayout(false);
             this.ResumeLayout(false);

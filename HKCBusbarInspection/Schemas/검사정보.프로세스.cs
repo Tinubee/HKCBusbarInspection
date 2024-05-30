@@ -27,8 +27,6 @@ namespace HKCBusbarInspection.Schemas
         public 결과구분 CTQ결과 { get; set; } = 결과구분.WA;
         [Column("ilsuf"), JsonProperty("ilsuf"), Translation("Suface", "외관결과")]
         public 결과구분 외관결과 { get; set; } = 결과구분.WA;
-        //[Column("ilngs"), JsonProperty("ilngs"), Translation("NG Items", "불량정보")]
-        //public String 불량정보 { get; set; } = String.Empty;
         [NotMapped, JsonIgnore, Translation("NG Items", "불량정보")]
         public String 불량정보 { get; set; } = String.Empty;
         [NotMapped, JsonIgnore]
@@ -41,11 +39,6 @@ namespace HKCBusbarInspection.Schemas
         public List<검사정보> 검사내역 { get; set; } = new List<검사정보>();
         [NotMapped, JsonIgnore, Browsable(false)]
         public List<String> 불량내역 = new List<String>();
-
-
-        //마킹 전 확인용
-        [NotMapped, JsonIgnore]
-        public 결과구분 마킹전결과 { get; set; } = 결과구분.WA;
 
 
         public 검사결과()

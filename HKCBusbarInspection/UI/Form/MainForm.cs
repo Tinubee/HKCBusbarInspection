@@ -80,11 +80,11 @@ namespace HKCBusbarInspection
         {
             this.SetLocalization();
             this.e카메라뷰어.Init();
-            //this.e검사도구.Init();
             this.e검사설정.Init();
             this.e장치설정.Init();
             this.e상태뷰어.Init();
-            //this.e로그내역.Init();
+            this.e로그내역.Init();
+            this.e결과뷰어.Init();
             this.p환경설정.Enabled = Global.환경설정.권한여부(유저권한구분.시스템);
             this.p검사내역.Enabled = Global.환경설정.권한여부(유저권한구분.관리자);
             this.TabFormControl.AllowMoveTabs = false;
@@ -97,9 +97,8 @@ namespace HKCBusbarInspection
         private void CloseForm()
         {
             this.e장치설정.Close();
-            //this.e로그내역.Close();
+            this.e로그내역.Close();
             this.e상태뷰어.Close();
-            //this.e카메라뷰어.Dispose();
             Global.Close();
         }
 
@@ -123,7 +122,7 @@ namespace HKCBusbarInspection
             this.p환경설정.Text = this.번역.환경설정;
             this.t검사설정.Text = this.번역.검사설정;
             this.t장치설정.Text = this.번역.장치설정;
-            //this.t로그내역.Text = this.번역.로그내역;
+            this.p로그내역.Text = this.번역.로그내역;
         }
 
         private class LocalizationMain
@@ -142,8 +141,6 @@ namespace HKCBusbarInspection
                 장치설정,
                 [Translation("Cameras", "카메라")]
                 카메라,
-                [Translation("QR Validate", "큐알검증")]
-                큐알검증,
                 [Translation("Logs", "로그내역")]
                 로그내역,
                 [Translation("Are you want to exit the program?", "프로그램을 종료하시겠습나까?")]
@@ -158,7 +155,6 @@ namespace HKCBusbarInspection
             public String 검사설정 { get => GetString(Items.검사설정); }
             public String 장치설정 { get => GetString(Items.장치설정); }
             public String 카메라 { get => GetString(Items.카메라); }
-            public String 큐알검증 { get => GetString(Items.큐알검증); }
             public String 로그내역 { get => GetString(Items.로그내역); }
             public String 종료확인 { get => GetString(Items.종료확인); }
         }

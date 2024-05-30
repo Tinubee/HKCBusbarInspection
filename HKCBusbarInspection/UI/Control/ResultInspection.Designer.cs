@@ -45,7 +45,8 @@
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.e결과뷰어 = new HKCBusbarInspection.UI.Control.Viewport3D();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.dockPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -61,7 +62,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             this.SuspendLayout();
             // 
             // dockManager1
@@ -105,6 +106,7 @@
             // layoutControl1
             // 
             this.layoutControl1.AutoScroll = false;
+            this.layoutControl1.Controls.Add(this.e결과뷰어);
             this.layoutControl1.Controls.Add(this.e외관결과);
             this.layoutControl1.Controls.Add(this.eCTQ결과);
             this.layoutControl1.Controls.Add(this.e검사순번);
@@ -214,7 +216,7 @@
             this.layoutControlItem5,
             this.layoutControlItem6,
             this.layoutControlItem7,
-            this.layoutControlItem8});
+            this.layoutControlItem1});
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(4, 4, 4, 4);
             this.Root.Size = new System.Drawing.Size(1331, 900);
@@ -282,13 +284,21 @@
             this.layoutControlItem7.Text = "Surface";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(66, 25);
             // 
-            // layoutControlItem8
+            // e결과뷰어
             // 
-            this.layoutControlItem8.Location = new System.Drawing.Point(0, 90);
-            this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(1323, 802);
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem8.TextVisible = false;
+            this.e결과뷰어.Location = new System.Drawing.Point(6, 96);
+            this.e결과뷰어.Name = "e결과뷰어";
+            this.e결과뷰어.Size = new System.Drawing.Size(1319, 798);
+            this.e결과뷰어.TabIndex = 10;
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.e결과뷰어;
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 90);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(1323, 802);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextVisible = false;
             // 
             // ResultInspection
             // 
@@ -313,7 +323,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -333,8 +343,9 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraBars.Docking.DockPanel dockPanel1;
         private DevExpress.XtraBars.Docking.ControlContainer dockPanel1_Container;
+        private Viewport3D e결과뷰어;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
     }
 }

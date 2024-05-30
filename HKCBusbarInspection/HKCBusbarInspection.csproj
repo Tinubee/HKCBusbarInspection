@@ -202,6 +202,11 @@
       <DependentUpon>20240529082211_logs.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\로그테이블ModelSnapshot.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Schemas\Data\BaseTable.cs" />
     <Compile Include="Schemas\Viewport\BUSBAR3D.cs" />
     <Compile Include="Schemas\Viewport\Graphics3D.cs" />
@@ -394,8 +399,14 @@
     <EmbeddedResource Include="UI\Control\ImageSave.resx">
       <DependentUpon>ImageSave.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Control\LogViewer.resx">
+      <DependentUpon>LogViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Control\ResultInspection.resx">
       <DependentUpon>ResultInspection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Control\Results.resx">
+      <DependentUpon>Results.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Control\SetInspection.resx">
       <DependentUpon>SetInspection.cs</DependentUpon>
@@ -417,14 +428,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="UI\Form\ResultViewer.resx">
       <DependentUpon>ResultViewer.cs</DependentUpon>
     </EmbeddedResource>
@@ -436,8 +442,10 @@
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.검사설정.datasource" />
+    <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.검사자료.datasource" />
     <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.검사정보.datasource" />
     <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.그랩장치.datasource" />
+    <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.로그자료.datasource" />
     <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.모델자료.datasource" />
     <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.사진저장.datasource" />
     <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.조명제어.datasource" />
@@ -463,30 +471,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\vision.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\enablesearch.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\electronics_photo.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\portrait.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\viewsettings.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\properties.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\LaptopSecure.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\electronics_photo1.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\weather_lightning.svg" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="HelixToolkit.Wpf">
@@ -520,9 +504,8 @@
     <Content Include="icon.ico" />
     <None Include="Resources\actions_removecircled.svg" />
     <None Include="Resources\gettingstarted.svg" />
-    <None Include="Resources\electronics_photo4.svg" />
-    <None Include="Resources\electronics_photo3.svg" />
-    <None Include="Resources\electronics_photo2.svg" />
+    <None Include="Resources\bo_list.svg" />
+    <None Include="Resources\Vm.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

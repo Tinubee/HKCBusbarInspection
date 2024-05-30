@@ -15,6 +15,28 @@ using System.Windows.Media.Media3D;
 
 namespace HKCBusbarInspection.Schemas
 {
+    public enum AcquisitionMode
+    {
+        SingleFrame = 0,
+        Continuous = 2,
+    }
+
+    public enum TriggerMode
+    {
+        TRIGGER_MODE_OFF = 0,
+        TRIGGER_MODE_ON = 1,
+    }
+
+    public enum TriggerSource
+    {
+        Line0 = 0,
+        Line1 = 1,
+        Line2 = 2,
+        Line3 = 3,
+        Counter = 4,
+        Software = 7,
+    }
+
     public class 그랩장치 : IDisposable
     {
         [JsonProperty("Camera"), Translation("Camera", "카메라")]
@@ -58,7 +80,7 @@ namespace HKCBusbarInspection.Schemas
         [JsonIgnore]
         internal Mat Image => Images.LastOrDefault<Mat>();
         [JsonIgnore]
-        public Boolean 라이브 = false;
+        public Boolean 라이브 { get; set; } = false;
         [JsonIgnore]
         public const String 로그영역 = "Camera";
 
@@ -96,6 +118,8 @@ namespace HKCBusbarInspection.Schemas
         public virtual Boolean StartLive() => false;
 
         public virtual Boolean StopLive() => false;
+
+        public virtual Boolean SoftwareTrigger() => false;
 
         #region 이미지그랩
         internal void InitBuffers(Int32 width, Int32 height)
@@ -253,17 +277,21 @@ namespace HKCBusbarInspection.Schemas
             return this.상태;
         }
 
-        public override bool StartLive()
+        public override Boolean StartLive()
         {
             this.라이브 = true;
             return 그랩제어.Validate($"{this.구분} Active", Camera.StartGrabbing(), true);
         }
 
-        public override bool StopLive()
+        public override Boolean StopLive()
         {
             this.라이브 = false;
-            //return true;
             return 그랩제어.Validate($"{this.구분} Active", Camera.StopGrabbing(), true);
+        }
+
+        public override Boolean SoftwareTrigger()
+        {
+            return true;
         }
 
         public override Boolean Init()
@@ -298,11 +326,10 @@ namespace HKCBusbarInspection.Schemas
         private void ImageCallBack(IntPtr surfaceAddr, ref MV_FRAME_OUT_INFO_EX frameInfo, IntPtr user)
         {
             this.AcquisitionFinished(surfaceAddr, frameInfo.nWidth, frameInfo.nHeight);
-            //if (!this.라이브)
-            //    this.Stop();
+            if (!this.라이브)
+                this.StopLive();
         }
     }
-
 
     public class HikeCxp : 그랩장치
     {
@@ -364,17 +391,26 @@ namespace HKCBusbarInspection.Schemas
             return true;
         }
 
-        public override bool StartLive()
+        public override Boolean StartLive()
         {
+            this.DeviceParam.SetEnumValue("AcquisitionMode", (UInt32)AcquisitionMode.Continuous);
+            this.DeviceParam.SetEnumValue("TriggerMode", (UInt32)TriggerMode.TRIGGER_MODE_OFF);
             this.라이브 = true;
             return 그랩제어.ValidateMVFG($"{this.구분} Active", this.Stream.StartAcquisition(), true);
         }
 
-        public override bool StopLive()
+        public override Boolean StopLive()
         {
+            this.DeviceParam.SetEnumValue("AcquisitionMode", (UInt32)AcquisitionMode.SingleFrame);
+            this.DeviceParam.SetEnumValue("TriggerMode", (UInt32)TriggerMode.TRIGGER_MODE_ON);
+            this.DeviceParam.SetEnumValue("TriggerSource", (UInt32)TriggerSource.Software);
             this.라이브 = false;
-            //return true;
             return 그랩제어.ValidateMVFG($"{this.구분} Close", this.Stream.StopAcquisition(), false);
+        }
+
+        public override Boolean SoftwareTrigger()
+        {
+            return 그랩제어.ValidateMVFG($"{this.구분} TriggerExec", this.DeviceParam.SetCommandValue("TiggerSoftware"), false);
         }
 
         public override Boolean Active()
@@ -399,14 +435,17 @@ namespace HKCBusbarInspection.Schemas
 
         private void ImageCallBack(ref MV_FG_BUFFER_INFO stBufferInfo, IntPtr pUser)
         {
+            //if (null != stBufferInfo.pBuffer)
+            //{
+            //    Debug.WriteLine("FrameNumber: " + Convert.ToInt64(stBufferInfo.nFrameID).ToString() + ", Width: " +
+            //        stBufferInfo.nWidth.ToString() + ", Height: " + stBufferInfo.nHeight.ToString());
+            //}
             if (null != stBufferInfo.pBuffer)
             {
-                Debug.WriteLine("FrameNumber: " + Convert.ToInt64(stBufferInfo.nFrameID).ToString() + ", Width: " +
-                    stBufferInfo.nWidth.ToString() + ", Height: " + stBufferInfo.nHeight.ToString());
+                this.AcquisitionFinished(stBufferInfo.pBuffer, (Int32)stBufferInfo.nWidth, (Int32)stBufferInfo.nHeight);
+                if (!this.라이브)
+                    this.StopLive();
             }
-
-             this.AcquisitionFinished(stBufferInfo.pBuffer, (Int32)stBufferInfo.nWidth, (Int32)stBufferInfo.nHeight);
-            //this.Stop();
         }
     }
 }

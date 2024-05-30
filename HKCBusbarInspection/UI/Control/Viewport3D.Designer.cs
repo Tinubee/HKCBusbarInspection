@@ -35,7 +35,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "Viewport3D";
-            this.Size = new System.Drawing.Size(479, 471);
+            this.Size = new System.Drawing.Size(990, 763);
             this.ResumeLayout(false);
 
         }

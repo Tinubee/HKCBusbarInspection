@@ -1,6 +1,7 @@
 ﻿using DevExpress.Utils;
 using GlobalVariableModuleCs;
 using GraphicsSetModuleCs;
+using HKCBusbarInspection.UI.Form;
 using ImageSourceModuleCs;
 using OpenCvSharp;
 using ShellModuleCs;
@@ -22,6 +23,7 @@ namespace HKCBusbarInspection.Schemas
         LPoint카메라 = 3,
         하부카메라 = 4,
         트레이검사카메라 = 5,
+        Live = 6,
         NG = 99
     }
 
@@ -88,9 +90,7 @@ namespace HKCBusbarInspection.Schemas
         {
             this.결과상태갱신알림?.Invoke(구분);
         }
-
         public void Close() => VmSolution.Instance.CloseSolution();
-
     }
 
     public class 비전마스터플로우
@@ -115,8 +115,11 @@ namespace HKCBusbarInspection.Schemas
             if (this.graphicsSetModuleTool != null)
             {
                 this.graphicsSetModuleTool.EnableResultCallback();
-                this.shellModuleTool.EnableResultCallback();
-                this.shellModuleTool.ModuleResultCallBackArrived += ShellModuleTool_ModuleResultCallBackArrived;
+                if (this.shellModuleTool != null)
+                {
+                    this.shellModuleTool.EnableResultCallback();
+                    this.shellModuleTool.ModuleResultCallBackArrived += ShellModuleTool_ModuleResultCallBackArrived;
+                }
             }
         }
 
