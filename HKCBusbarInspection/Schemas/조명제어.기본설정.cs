@@ -104,12 +104,12 @@ namespace HKCBusbarInspection.Schemas
         {
             SerialPort sp = (SerialPort)sender;
             String data = sp.ReadExisting();
-            Debug.WriteLine($"DataReceived 포트={this.포트}, {data}", this.로그영역);
+            //Debug.WriteLine($"DataReceived 포트={this.포트}, {data}", this.로그영역);
         }
 
         public virtual Boolean SendCommand(String 구분, String Command)
         {
-            Debug.WriteLine("커맨드 구분 : " + Command);
+            //Debug.WriteLine("커맨드 구분 : " + Command);
             if (!IsOpen())
             {
                 Global.오류로그(로그영역, 구분, "조명컨트롤러 포트에 연결할 수 없습니다.", true);
@@ -128,65 +128,7 @@ namespace HKCBusbarInspection.Schemas
             }
         }
     }
-
-    // LCP100DC
-    public class LCP100DC : 조명컨트롤러
-    {
-        public override String 로그영역 { get; set; } = nameof(LCP100DC);
-        public override 직렬포트 포트 { get; set; } = 직렬포트.None;
-        public override Int32 통신속도 { get; set; } = 19200;
-        public override Int32 최대밝기 { get; } = 100;
-        public override String STX { get; set; } = $"{Convert.ToChar(2)}";
-        public override String ETX { get; set; } = $"{Convert.ToChar(3)}";
-        public override Boolean Set(조명정보 정보) => SendCommand($"{정보.카메라} Set", $"{(Int32)정보.채널}d{this.밝기변환(정보.밝기).ToString("d4")}");
-        public override Boolean Save(조명정보 정보) => false; // 커맨드가 있는지 모름
-        public override Boolean TurnOn(조명정보 정보) => SendCommand($"{정보.카메라} On", $"{(Int32)정보.채널}d{this.밝기변환(정보.밝기).ToString("d4")}");
-        public override Boolean TurnOff(조명정보 정보) => SendCommand($"{정보.카메라} Off", $"{(Int32)정보.채널}d0000");
-    }
-    // LCP30DC
-    public class LCP30DC : 조명컨트롤러
-    {
-        public override String 로그영역 { get; set; } = nameof(LCP30DC);
-        public override 직렬포트 포트 { get; set; } = 직렬포트.None;
-        public override Int32 통신속도 { get; set; } = 9600;
-        public override Int32 최대밝기 { get; } = 1023;
-        public override String STX { get; set; } = $"{Convert.ToChar(2)}";
-        public override String ETX { get; set; } = $"{Convert.ToChar(3)}";
-        public override Boolean Set(조명정보 정보) => SendCommand($"{정보.카메라} Set", $"{(Int32)정보.채널 - 1}w{this.밝기변환(정보.밝기).ToString("d4")}");
-        public override Boolean Save(조명정보 정보) => false; // 커맨드가 있는지 모름
-        public override Boolean TurnOn(조명정보 정보) => SendCommand($"{정보.카메라} On", $"{(Int32)정보.채널 - 1}o");//{this.밝기변환(정보.밝기).ToString("d4")}
-        public override Boolean TurnOff(조명정보 정보) => SendCommand($"{정보.카메라} Off", $"{(Int32)정보.채널 - 1}f");//0000
-    }
-
-    // LCP30QC
-    public class LCP30QC : 조명컨트롤러
-    {
-        public override String 로그영역 { get; set; } = nameof(LCP30QC);
-        public override 직렬포트 포트 { get; set; } = 직렬포트.None;
-        public override Int32 통신속도 { get; set; } = 9600;
-        public override Int32 최대밝기 { get; } = 1023;
-        public override String STX { get; set; } = $"{Convert.ToChar(2)}";
-        public override String ETX { get; set; } = $"{Convert.ToChar(3)}";
-        public override Boolean Set(조명정보 정보) => SendCommand($"{정보.카메라} Set", $"{(Int32)정보.채널 - 1}w{this.밝기변환(정보.밝기).ToString("d4")}");
-        public override Boolean Save(조명정보 정보) => false; // 커맨드가 있는지 모름
-        public override Boolean TurnOn(조명정보 정보) => SendCommand($"{정보.카메라} On", $"{(Int32)정보.채널 - 1}o");//{this.밝기변환(정보.밝기).ToString("d4")}
-        public override Boolean TurnOff(조명정보 정보) => SendCommand($"{정보.카메라} Off", $"{(Int32)정보.채널 - 1}f");//0000
-    }
-
-    public class LCP200QC : 조명컨트롤러
-    {
-        public override String 로그영역 { get; set; } = nameof(LCP200QC);
-        public override 직렬포트 포트 { get; set; } = 직렬포트.None;
-        public override Int32 통신속도 { get; set; } = 9600;
-        public override Int32 최대밝기 { get; } = 1023;
-        public override String STX { get; set; } = $"{Convert.ToChar(2)}";
-        public override String ETX { get; set; } = $"{Convert.ToChar(3)}";
-        public override Boolean Set(조명정보 정보) => SendCommand($"{정보.카메라} Set", $"{(Int32)정보.채널 - 1}w{this.밝기변환(정보.밝기).ToString("d4")}");
-        public override Boolean Save(조명정보 정보) => false; // 커맨드가 있는지 모름
-        public override Boolean TurnOn(조명정보 정보) => SendCommand($"{정보.카메라} On", $"{(Int32)정보.채널 - 1}o");//{this.밝기변환(정보.밝기).ToString("d4")}
-        public override Boolean TurnOff(조명정보 정보) => SendCommand($"{정보.카메라} Off", $"{(Int32)정보.채널 - 1}f");//0000
-    }
-
+   
     public class LCP24_150U : 조명컨트롤러
     {
         public override String 로그영역 { get; set; } = nameof(LCP24_150U);
@@ -195,26 +137,12 @@ namespace HKCBusbarInspection.Schemas
         public override Int32 최대밝기 { get; } = 1023;
         public override String STX { get; set; } = $"{Convert.ToChar(2)}";
         public override String ETX { get; set; } = $"{Convert.ToChar(3)}";
-        public override Boolean Set(조명정보 정보) => SendCommand($"{정보.카메라} Set", $"{(Int32)정보.채널 - 1}w{this.밝기변환(정보.밝기).ToString("d4")}");
+        public override Boolean Set(조명정보 정보) => SendCommand($"{정보.카메라} Set", $"{(Int32)정보.채널 - 1}w{this.밝기변환(정보.밝기):d4}");
         public override Boolean Save(조명정보 정보) => false; // 커맨드가 있는지 모름
-        public override Boolean TurnOn(조명정보 정보) => SendCommand($"{정보.카메라} On", $"{(Int32)정보.채널 - 1}o");//{this.밝기변환(정보.밝기).ToString("d4")}
-        public override Boolean TurnOff(조명정보 정보) => SendCommand($"{정보.카메라} Off", $"{(Int32)정보.채널 - 1}f");//0000
+        public override Boolean TurnOn(조명정보 정보) => SendCommand($"{정보.카메라} Set", $"{(Int32)정보.채널 - 1}w{this.밝기변환(정보.밝기):d4}");
+        public override Boolean TurnOff(조명정보 정보) => SendCommand($"{정보.카메라} Set", $"{(Int32)정보.채널 - 1}w0000");//SendCommand($"{정보.카메라} Off", $"{(Int32)정보.채널 - 1}f");//0000
     }
-
-    public class LCP24_30Q : 조명컨트롤러
-    {
-        public override String 로그영역 { get; set; } = nameof(LCP24_30Q);
-        public override 직렬포트 포트 { get; set; } = 직렬포트.None;
-        public override Int32 통신속도 { get; set; } = 9600;
-        public override Int32 최대밝기 { get; } = 1023;
-        public override String STX { get; set; } = $"{Convert.ToChar(2)}";
-        public override String ETX { get; set; } = $"{Convert.ToChar(3)}";
-        public override Boolean Set(조명정보 정보) => SendCommand($"{정보.카메라} Set", $"{(Int32)정보.채널 - 1}w{this.밝기변환(정보.밝기).ToString("d4")}");
-        public override Boolean Save(조명정보 정보) => false; // 커맨드가 있는지 모름
-        public override Boolean TurnOn(조명정보 정보) => SendCommand($"{정보.카메라} On", $"{(Int32)정보.채널 - 1}o");//{this.밝기변환(정보.밝기).ToString("d4")}
-        public override Boolean TurnOff(조명정보 정보) => SendCommand($"{정보.카메라} Off", $"{(Int32)정보.채널 - 1}f");//0000
-    }
-
+   
     public class 조명정보
     {
         [JsonProperty("Camera"), Translation("Camera", "카메라")]

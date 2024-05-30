@@ -154,6 +154,8 @@ namespace HKCBusbarInspection.Schemas
 
         public void 그랩완료(그랩장치 장치)
         {
+            //Global.비전검사.Run(장치.구분, 장치.MatImage(), Global.검사자료.수동검사);
+            this.그랩완료보고?.Invoke(장치);
             //장치.TurnOff();
             //if (Global.장치상태.자동수동)
             //{

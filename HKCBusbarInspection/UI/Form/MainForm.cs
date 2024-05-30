@@ -79,7 +79,7 @@ namespace HKCBusbarInspection
         private void Init()
         {
             this.SetLocalization();
-            //this.e카메라뷰어.Init();
+            this.e카메라뷰어.Init();
             //this.e검사도구.Init();
             this.e검사설정.Init();
             this.e장치설정.Init();
@@ -99,6 +99,7 @@ namespace HKCBusbarInspection
             this.e장치설정.Close();
             //this.e로그내역.Close();
             this.e상태뷰어.Close();
+            //this.e카메라뷰어.Dispose();
             Global.Close();
         }
 

@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.BindLocalization = new System.Windows.Forms.BindingSource(this.components);
             this.e카메라 = new HKCBusbarInspection.UI.Control.CamSettings();
             this.e기본설정 = new HKCBusbarInspection.UI.Control.Config();
+            this.BindLocalization = new System.Windows.Forms.BindingSource(this.components);
             this.환경설정Bind = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).BeginInit();
@@ -60,19 +60,15 @@
             this.splitContainerControl1.Panel2.Controls.Add(this.e기본설정);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(1920, 1040);
-            this.splitContainerControl1.SplitterPosition = 1262;
+            this.splitContainerControl1.SplitterPosition = 1386;
             this.splitContainerControl1.TabIndex = 0;
-            // 
-            // BindLocalization
-            // 
-            this.BindLocalization.DataSource = typeof(HKCBusbarInspection.UI.Control.DeviceSettings.LocalizationDeviceSetting);
             // 
             // e카메라
             // 
             this.e카메라.Dock = System.Windows.Forms.DockStyle.Fill;
             this.e카메라.Location = new System.Drawing.Point(0, 0);
             this.e카메라.Name = "e카메라";
-            this.e카메라.Size = new System.Drawing.Size(1262, 1040);
+            this.e카메라.Size = new System.Drawing.Size(1386, 1040);
             this.e카메라.TabIndex = 0;
             // 
             // e기본설정
@@ -80,8 +76,12 @@
             this.e기본설정.Dock = System.Windows.Forms.DockStyle.Fill;
             this.e기본설정.Location = new System.Drawing.Point(0, 0);
             this.e기본설정.Name = "e기본설정";
-            this.e기본설정.Size = new System.Drawing.Size(648, 1040);
+            this.e기본설정.Size = new System.Drawing.Size(524, 1040);
             this.e기본설정.TabIndex = 0;
+            // 
+            // BindLocalization
+            // 
+            this.BindLocalization.DataSource = typeof(HKCBusbarInspection.UI.Control.DeviceSettings.LocalizationDeviceSetting);
             // 
             // 환경설정Bind
             // 

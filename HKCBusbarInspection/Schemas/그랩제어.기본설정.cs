@@ -58,6 +58,8 @@ namespace HKCBusbarInspection.Schemas
         [JsonIgnore]
         internal Mat Image => Images.LastOrDefault<Mat>();
         [JsonIgnore]
+        public Boolean 라이브 = false;
+        [JsonIgnore]
         public const String 로그영역 = "Camera";
 
         public void Dispose()
@@ -88,8 +90,12 @@ namespace HKCBusbarInspection.Schemas
                 this.Dispose(this.Images.Dequeue());
             return true;
         }
-        //public virtual void TurnOn() => Global.조명제어.TurnOn(this.구분);
-        //public virtual void TurnOff() => Global.조명제어.TurnOff(this.구분);
+        public virtual void TurnOn() => Global.조명제어.TurnOn(this.구분);
+        public virtual void TurnOff() => Global.조명제어.TurnOff(this.구분);
+
+        public virtual Boolean StartLive() => false;
+
+        public virtual Boolean StopLive() => false;
 
         #region 이미지그랩
         internal void InitBuffers(Int32 width, Int32 height)
@@ -141,7 +147,7 @@ namespace HKCBusbarInspection.Schemas
                     this.ImageWidth = width;
                     this.ImageHeight = height;
                 }
-                //Global.그랩제어.그랩완료(this);
+                Global.그랩제어.그랩완료(this);
             }
             catch (Exception ex)
             {
@@ -149,31 +155,25 @@ namespace HKCBusbarInspection.Schemas
             }
         }
 
-        internal void AcquisitionFinished(ref MV_FG_BUFFER_INFO stBufferInfo, IntPtr pUser)
-        {
-            if (null != stBufferInfo.pBuffer)
-            {
-                Console.WriteLine("FrameNumber: " + Convert.ToInt64(stBufferInfo.nFrameID).ToString() + ", Width: " +
-                    stBufferInfo.nWidth.ToString() + ", Height: " + stBufferInfo.nHeight.ToString());
-            }
-            //if (surfaceAddr == IntPtr.Zero) { AcquisitionFinished("Failed."); return; }
-            //try
-            //{
-            //    if (this.UseMemoryCopy) this.CopyMemory(surfaceAddr, width, height);
-            //    else
-            //    {
-            //        this.BufferAddress = surfaceAddr;
-            //        this.ImageWidth = width;
-            //        this.ImageHeight = height;
-            //    }
-            //    //Global.그랩제어.그랩완료(this);
-            //}
-            //catch (Exception ex)
-            //{
-            //    Global.오류로그(로그영역, "Acquisition", $"[{this.구분}] {ex.Message}", true);
-            //}
-        }
-
+        //internal void AcquisitionFinished(IntPtr surfaceAddr, Int32 width, Int32 height)
+        //{
+        //    if (surfaceAddr == IntPtr.Zero) { AcquisitionFinished("Failed."); return; }
+        //    try
+        //    {
+        //        if (this.UseMemoryCopy) this.CopyMemory(surfaceAddr, width, height);
+        //        else
+        //        {
+        //            this.BufferAddress = surfaceAddr;
+        //            this.ImageWidth = width;
+        //            this.ImageHeight = height;
+        //        }
+        //        Global.그랩제어.그랩완료(this);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Global.오류로그(로그영역, "Acquisition", $"[{this.구분}] {ex.Message}", true);
+        //    }
+        //}
 
         internal void AcquisitionFinished(String error) =>
             Global.오류로그(로그영역, "Acquisition", $"[{this.구분.ToString()}] {error}", true);
@@ -194,6 +194,20 @@ namespace HKCBusbarInspection.Schemas
             if (this.Image != null) return this.Image;
             if (BufferAddress == IntPtr.Zero) return null;
             return new Mat(ImageHeight, ImageWidth, ImageType, BufferAddress);
+        }
+
+        public Mat MatImageRotate()
+        {
+            if (this.Image != null) return this.Image;
+            if (BufferAddress == IntPtr.Zero) return null;
+
+            Mat Image = new Mat(ImageHeight, ImageWidth, ImageType, BufferAddress);
+            Mat rotateImage = new Mat();
+
+            Cv2.Transpose(Image, rotateImage);
+            Cv2.Flip(rotateImage, rotateImage, FlipMode.Y);
+
+            return rotateImage;
         }
         #endregion
     }
@@ -239,6 +253,19 @@ namespace HKCBusbarInspection.Schemas
             return this.상태;
         }
 
+        public override bool StartLive()
+        {
+            this.라이브 = true;
+            return 그랩제어.Validate($"{this.구분} Active", Camera.StartGrabbing(), true);
+        }
+
+        public override bool StopLive()
+        {
+            this.라이브 = false;
+            //return true;
+            return 그랩제어.Validate($"{this.구분} Active", Camera.StopGrabbing(), true);
+        }
+
         public override Boolean Init()
         {
             Int32 nRet = this.Camera.CreateHandle(ref Device);
@@ -271,7 +298,8 @@ namespace HKCBusbarInspection.Schemas
         private void ImageCallBack(IntPtr surfaceAddr, ref MV_FRAME_OUT_INFO_EX frameInfo, IntPtr user)
         {
             this.AcquisitionFinished(surfaceAddr, frameInfo.nWidth, frameInfo.nHeight);
-            this.Stop();
+            //if (!this.라이브)
+            //    this.Stop();
         }
     }
 
@@ -295,6 +323,8 @@ namespace HKCBusbarInspection.Schemas
         public Boolean ReverseX { get; set; } = false;
         [JsonIgnore]
         public Int32 number { get; set; } = 0;
+        [JsonIgnore]
+        public const Int32 BufNum = 3;
 
         public Boolean Init(CInterface cInterface, MV_CXP_DEVICE_INFO info)
         {
@@ -303,12 +333,12 @@ namespace HKCBusbarInspection.Schemas
                 this.Interface = cInterface;
                 int nRet = this.Interface.OpenDevice(Convert.ToUInt32(0), out this.Device);
                 if (!그랩제어.ValidateMVFG($"[{this.구분}] 카메라 연결 실패!", nRet, true)) return false;
-                Global.정보로그(로그영역, "카메라 연결", $"[{this.구분}] 카메라 연결 성공!", false);
+                //Global.정보로그(로그영역, "카메라 연결", $"[{this.구분}] 카메라 연결 성공!", false);
                 this.DeviceParam = new CParam(this.Device);
                 nRet = this.Device.OpenStream(0, out Stream);
                 if (!그랩제어.ValidateMVFG($"[{this.구분}] OpenStream Fail!", nRet, true)) return false;
                 this.ImageCallBackDelegate = new CStream.ImageDelegate(ImageCallBack);
-                this.명칭 = info.chUserDefinedName + " " + info.chModelName;
+                this.명칭 = info.chModelName;
                 //UInt32 ip1 = (info.nCurrentIp & 0xff000000) >> 24;
                 //UInt32 ip2 = (info.nCurrentIp & 0x00ff0000) >> 16;
                 //UInt32 ip3 = (info.nCurrentIp & 0x0000ff00) >> 8;
@@ -328,9 +358,23 @@ namespace HKCBusbarInspection.Schemas
 
         public override Boolean Init()
         {
+            this.Stream.SetBufferNum(BufNum);
             그랩제어.ValidateMVFG("RegisterImageCallBack", this.Stream.RegisterImageCallBack(this.ImageCallBackDelegate, IntPtr.Zero), false);
             Global.정보로그(로그영역, "카메라 연결", $"[{this.구분}] 카메라 연결 성공!", false);
             return true;
+        }
+
+        public override bool StartLive()
+        {
+            this.라이브 = true;
+            return 그랩제어.ValidateMVFG($"{this.구분} Active", this.Stream.StartAcquisition(), true);
+        }
+
+        public override bool StopLive()
+        {
+            this.라이브 = false;
+            //return true;
+            return 그랩제어.ValidateMVFG($"{this.구분} Close", this.Stream.StopAcquisition(), false);
         }
 
         public override Boolean Active()
@@ -355,8 +399,14 @@ namespace HKCBusbarInspection.Schemas
 
         private void ImageCallBack(ref MV_FG_BUFFER_INFO stBufferInfo, IntPtr pUser)
         {
-            this.AcquisitionFinished(ref stBufferInfo, pUser);
-            this.Stop();
+            if (null != stBufferInfo.pBuffer)
+            {
+                Debug.WriteLine("FrameNumber: " + Convert.ToInt64(stBufferInfo.nFrameID).ToString() + ", Width: " +
+                    stBufferInfo.nWidth.ToString() + ", Height: " + stBufferInfo.nHeight.ToString());
+            }
+
+             this.AcquisitionFinished(stBufferInfo.pBuffer, (Int32)stBufferInfo.nWidth, (Int32)stBufferInfo.nHeight);
+            //this.Stop();
         }
     }
 }

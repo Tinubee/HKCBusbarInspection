@@ -69,9 +69,7 @@ namespace HKCBusbarInspection
                     if (!신호제어.Open()) new Exception("PLC 서버에 연결할 수 없습니다.");
                     조명제어.Init();
                 }
-
-                //VM제어.Init();
-
+                VM제어.Init();
                 Global.정보로그(로그영역, "초기화", "시스템을 초기화 합니다.", false);
                 Initialized?.Invoke(null, true);
                 return true;

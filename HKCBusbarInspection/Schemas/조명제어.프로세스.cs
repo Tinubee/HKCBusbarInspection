@@ -7,41 +7,35 @@ namespace HKCBusbarInspection.Schemas
 {
     public partial class 조명제어
     {
-        //[JsonIgnore]
-        //private LCP200QC 상부조명컨트롤러;
-        //private LCP100DC 측면조명컨트롤러;
-        //private LCP100DC 하부조명컨트롤러;
-        //private LCP24_30Q 커넥터조명컨트롤러;
+        [JsonIgnore]
+        private LCP24_150U 조명컨트롤러;
 
-        //[JsonIgnore]
-        //public Boolean 정상여부 => 측면조명컨트롤러.IsOpen() && 상부조명컨트롤러.IsOpen() && 하부조명컨트롤러.IsOpen() && 커넥터조명컨트롤러.IsOpen();
+        [JsonIgnore]
+        public Boolean 정상여부 => 조명컨트롤러.IsOpen();
 
         public void Init()
         {
-            //this.상부조명컨트롤러 = new LCP200QC() { 포트 = 직렬포트.COM3 };
-            //this.측면조명컨트롤러 = new LCP100DC() { 포트 = 직렬포트.COM5, 통신속도 = 19200 };
-            //this.하부조명컨트롤러 = new LCP100DC() { 포트 = 직렬포트.COM4, 통신속도 = 19200 };
-            //this.커넥터조명컨트롤러 = new LCP24_30Q() { 포트 = 직렬포트.COM2 };
+            this.조명컨트롤러 = new LCP24_150U() { 포트 = 직렬포트.COM3, 통신속도 = 9600 };
 
-            //this.상부조명컨트롤러.Init();
-            //this.측면조명컨트롤러.Init();
-            //this.하부조명컨트롤러.Init();
-            //this.커넥터조명컨트롤러.Init();
+            this.조명컨트롤러.Init();
 
-            //this.Add(new 조명정보(카메라구분.Cam01, 상부조명컨트롤러) { 채널 = 조명채널.CH01, 밝기 = 100 });
-            //this.Add(new 조명정보(카메라구분.Cam01, 상부조명컨트롤러) { 채널 = 조명채널.CH02, 밝기 = 100 });
-            //this.Add(new 조명정보(카메라구분.Cam01, 상부조명컨트롤러) { 채널 = 조명채널.CH03, 밝기 = 100 });
-            //this.Add(new 조명정보(카메라구분.Cam01, 상부조명컨트롤러) { 채널 = 조명채널.CH04, 밝기 = 100 });
+            //상부카메라 조명
+            this.Add(new 조명정보(카메라구분.Cam01, 조명컨트롤러) { 채널 = 조명채널.CH08, 밝기 = 100 }); //BackLight
+            this.Add(new 조명정보(카메라구분.Cam01, 조명컨트롤러) { 채널 = 조명채널.CH09, 밝기 = 100 }); //4면조명
+            this.Add(new 조명정보(카메라구분.Cam01, 조명컨트롤러) { 채널 = 조명채널.CH10, 밝기 = 100 }); //4면조명
 
-            //this.Add(new 조명정보(카메라구분.Cam02, 측면조명컨트롤러) { 채널 = 조명채널.CH01, 밝기 = 100 });
-            //this.Add(new 조명정보(카메라구분.Cam02, 측면조명컨트롤러) { 채널 = 조명채널.CH02, 밝기 = 100 });
-            //this.Add(new 조명정보(카메라구분.Cam03, 측면조명컨트롤러) { 채널 = 조명채널.CH03, 밝기 = 100 });
-            //this.Add(new 조명정보(카메라구분.Cam03, 측면조명컨트롤러) { 채널 = 조명채널.CH04, 밝기 = 100 });
+            //측면카메라 조명
+            this.Add(new 조명정보(카메라구분.Cam02, 조명컨트롤러) { 채널 = 조명채널.CH03, 밝기 = 100 });
+            this.Add(new 조명정보(카메라구분.Cam02, 조명컨트롤러) { 채널 = 조명채널.CH04, 밝기 = 100 });
+            this.Add(new 조명정보(카메라구분.Cam02, 조명컨트롤러) { 채널 = 조명채널.CH05, 밝기 = 100 });
+            this.Add(new 조명정보(카메라구분.Cam02, 조명컨트롤러) { 채널 = 조명채널.CH06, 밝기 = 100 }); //BackLight
 
-            //this.Add(new 조명정보(카메라구분.Cam04, 하부조명컨트롤러) { 채널 = 조명채널.CH01, 밝기 = 100 });
-            //this.Add(new 조명정보(카메라구분.Cam04, 하부조명컨트롤러) { 채널 = 조명채널.CH02, 밝기 = 100 });
-            //this.Add(new 조명정보(카메라구분.Cam05, 하부조명컨트롤러) { 채널 = 조명채널.CH03, 밝기 = 100 });
-            //this.Add(new 조명정보(카메라구분.Cam05, 하부조명컨트롤러) { 채널 = 조명채널.CH04, 밝기 = 100 });
+            //LPoint카메라 조명
+            this.Add(new 조명정보(카메라구분.Cam03, 조명컨트롤러) { 채널 = 조명채널.CH08, 밝기 = 100 });
+
+            //하부카메라조명
+            this.Add(new 조명정보(카메라구분.Cam04, 조명컨트롤러) { 채널 = 조명채널.CH01, 밝기 = 100 }); 
+            this.Add(new 조명정보(카메라구분.Cam04, 조명컨트롤러) { 채널 = 조명채널.CH02, 밝기 = 100 });
 
             this.Load();
             if (Global.환경설정.동작구분 != 동작구분.Live) return;

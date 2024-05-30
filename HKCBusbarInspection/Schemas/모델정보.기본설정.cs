@@ -14,9 +14,9 @@ namespace HKCBusbarInspection.Schemas
     {
         [ListBindable(false)]
         None,
-        [DXDescription("POS 3P"), Description("POS 3P")]
+        [DXDescription("POS_3P"), Description("POS_3P")]
         POS_3P,
-        [DXDescription("NEG 3P"), Description("NEG 3P")]
+        [DXDescription("NEG_3P"), Description("NEG_3P")]
         NEG_3P,
     }
 

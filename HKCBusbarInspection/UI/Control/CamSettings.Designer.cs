@@ -51,14 +51,8 @@
             this.e밝기 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.GridControl2 = new MvUtils.CustomGrid();
-            this.GridView2 = new MvUtils.CustomView();
-            this.e조명켜짐 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
-            this.e조명밝기 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.b끄기 = new DevExpress.XtraEditors.SimpleButton();
-            this.b켜기 = new DevExpress.XtraEditors.SimpleButton();
-            this.b저장 = new DevExpress.XtraEditors.SimpleButton();
             this.조명설정Bind = new System.Windows.Forms.BindingSource(this.components);
+            this.GridView2 = new MvUtils.CustomView();
             this.col카메라 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col포트 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col채널 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -66,6 +60,12 @@
             this.col설명1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col켜짐 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemToggleSwitch2 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
+            this.e조명켜짐 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
+            this.e조명밝기 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.b끄기 = new DevExpress.XtraEditors.SimpleButton();
+            this.b켜기 = new DevExpress.XtraEditors.SimpleButton();
+            this.b저장 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.카메라설정Bind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
@@ -78,13 +78,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.조명설정Bind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.e조명켜짐)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.e조명밝기)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.조명설정Bind)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch2)).BeginInit();
             this.SuspendLayout();
             // 
             // 카메라설정Bind
@@ -181,8 +181,6 @@
             this.col번호.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.col번호.FieldName = "번호";
             this.col번호.Name = "col번호";
-            this.col번호.Visible = true;
-            this.col번호.VisibleIndex = 1;
             // 
             // col코드
             // 
@@ -191,7 +189,7 @@
             this.col코드.FieldName = "코드";
             this.col코드.Name = "col코드";
             this.col코드.Visible = true;
-            this.col코드.VisibleIndex = 2;
+            this.col코드.VisibleIndex = 1;
             // 
             // col명칭
             // 
@@ -200,7 +198,7 @@
             this.col명칭.FieldName = "명칭";
             this.col명칭.Name = "col명칭";
             this.col명칭.Visible = true;
-            this.col명칭.VisibleIndex = 3;
+            this.col명칭.VisibleIndex = 2;
             // 
             // col설명
             // 
@@ -209,7 +207,7 @@
             this.col설명.FieldName = "설명";
             this.col설명.Name = "col설명";
             this.col설명.Visible = true;
-            this.col설명.VisibleIndex = 4;
+            this.col설명.VisibleIndex = 3;
             // 
             // col주소
             // 
@@ -218,7 +216,7 @@
             this.col주소.FieldName = "주소";
             this.col주소.Name = "col주소";
             this.col주소.Visible = true;
-            this.col주소.VisibleIndex = 5;
+            this.col주소.VisibleIndex = 4;
             // 
             // col가로
             // 
@@ -227,7 +225,7 @@
             this.col가로.FieldName = "가로";
             this.col가로.Name = "col가로";
             this.col가로.Visible = true;
-            this.col가로.VisibleIndex = 6;
+            this.col가로.VisibleIndex = 5;
             // 
             // col세로
             // 
@@ -236,7 +234,7 @@
             this.col세로.FieldName = "세로";
             this.col세로.Name = "col세로";
             this.col세로.Visible = true;
-            this.col세로.VisibleIndex = 7;
+            this.col세로.VisibleIndex = 6;
             // 
             // col교정X
             // 
@@ -245,7 +243,7 @@
             this.col교정X.FieldName = "교정X";
             this.col교정X.Name = "col교정X";
             this.col교정X.Visible = true;
-            this.col교정X.VisibleIndex = 8;
+            this.col교정X.VisibleIndex = 7;
             // 
             // col교정Y
             // 
@@ -254,7 +252,7 @@
             this.col교정Y.FieldName = "교정Y";
             this.col교정Y.Name = "col교정Y";
             this.col교정Y.Visible = true;
-            this.col교정Y.VisibleIndex = 9;
+            this.col교정Y.VisibleIndex = 8;
             // 
             // col상태
             // 
@@ -264,7 +262,7 @@
             this.col상태.FieldName = "상태";
             this.col상태.Name = "col상태";
             this.col상태.Visible = true;
-            this.col상태.VisibleIndex = 10;
+            this.col상태.VisibleIndex = 9;
             // 
             // repositoryItemToggleSwitch1
             // 
@@ -340,6 +338,10 @@
             this.GridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridView2});
             // 
+            // 조명설정Bind
+            // 
+            this.조명설정Bind.DataSource = typeof(HKCBusbarInspection.Schemas.조명제어);
+            // 
             // GridView2
             // 
             this.GridView2.AllowColumnMenu = true;
@@ -378,6 +380,69 @@
             this.GridView2.OptionsView.ShowGroupPanel = false;
             this.GridView2.OptionsView.ShowIndicator = false;
             this.GridView2.RowHeight = 20;
+            // 
+            // col카메라
+            // 
+            this.col카메라.AppearanceHeader.Options.UseTextOptions = true;
+            this.col카메라.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col카메라.FieldName = "카메라";
+            this.col카메라.Name = "col카메라";
+            this.col카메라.Visible = true;
+            this.col카메라.VisibleIndex = 0;
+            // 
+            // col포트
+            // 
+            this.col포트.AppearanceHeader.Options.UseTextOptions = true;
+            this.col포트.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col포트.FieldName = "포트";
+            this.col포트.Name = "col포트";
+            this.col포트.Visible = true;
+            this.col포트.VisibleIndex = 1;
+            // 
+            // col채널
+            // 
+            this.col채널.AppearanceHeader.Options.UseTextOptions = true;
+            this.col채널.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col채널.FieldName = "채널";
+            this.col채널.Name = "col채널";
+            this.col채널.Visible = true;
+            this.col채널.VisibleIndex = 2;
+            // 
+            // col밝기
+            // 
+            this.col밝기.AppearanceHeader.Options.UseTextOptions = true;
+            this.col밝기.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col밝기.ColumnEdit = this.e조명밝기;
+            this.col밝기.FieldName = "밝기";
+            this.col밝기.Name = "col밝기";
+            this.col밝기.Visible = true;
+            this.col밝기.VisibleIndex = 3;
+            // 
+            // col설명1
+            // 
+            this.col설명1.AppearanceHeader.Options.UseTextOptions = true;
+            this.col설명1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col설명1.FieldName = "설명";
+            this.col설명1.Name = "col설명1";
+            this.col설명1.Visible = true;
+            this.col설명1.VisibleIndex = 4;
+            // 
+            // col켜짐
+            // 
+            this.col켜짐.AppearanceHeader.Options.UseTextOptions = true;
+            this.col켜짐.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col켜짐.ColumnEdit = this.e조명켜짐;
+            this.col켜짐.FieldName = "켜짐";
+            this.col켜짐.Name = "col켜짐";
+            this.col켜짐.Visible = true;
+            this.col켜짐.VisibleIndex = 5;
+            // 
+            // repositoryItemToggleSwitch2
+            // 
+            this.repositoryItemToggleSwitch2.AutoHeight = false;
+            this.repositoryItemToggleSwitch2.Name = "repositoryItemToggleSwitch2";
+            this.repositoryItemToggleSwitch2.OffText = "Off";
+            this.repositoryItemToggleSwitch2.OnText = "On";
             // 
             // e조명켜짐
             // 
@@ -455,72 +520,6 @@
             this.b저장.TabIndex = 7;
             this.b저장.Text = "Save";
             // 
-            // 조명설정Bind
-            // 
-            this.조명설정Bind.DataSource = typeof(HKCBusbarInspection.Schemas.조명제어);
-            // 
-            // col카메라
-            // 
-            this.col카메라.AppearanceHeader.Options.UseTextOptions = true;
-            this.col카메라.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.col카메라.FieldName = "카메라";
-            this.col카메라.Name = "col카메라";
-            this.col카메라.Visible = true;
-            this.col카메라.VisibleIndex = 0;
-            // 
-            // col포트
-            // 
-            this.col포트.AppearanceHeader.Options.UseTextOptions = true;
-            this.col포트.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.col포트.FieldName = "포트";
-            this.col포트.Name = "col포트";
-            this.col포트.Visible = true;
-            this.col포트.VisibleIndex = 1;
-            // 
-            // col채널
-            // 
-            this.col채널.AppearanceHeader.Options.UseTextOptions = true;
-            this.col채널.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.col채널.FieldName = "채널";
-            this.col채널.Name = "col채널";
-            this.col채널.Visible = true;
-            this.col채널.VisibleIndex = 2;
-            // 
-            // col밝기
-            // 
-            this.col밝기.AppearanceHeader.Options.UseTextOptions = true;
-            this.col밝기.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.col밝기.FieldName = "밝기";
-            this.col밝기.Name = "col밝기";
-            this.col밝기.Visible = true;
-            this.col밝기.VisibleIndex = 3;
-            // 
-            // col설명1
-            // 
-            this.col설명1.AppearanceHeader.Options.UseTextOptions = true;
-            this.col설명1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.col설명1.FieldName = "설명";
-            this.col설명1.Name = "col설명1";
-            this.col설명1.Visible = true;
-            this.col설명1.VisibleIndex = 4;
-            // 
-            // col켜짐
-            // 
-            this.col켜짐.AppearanceHeader.Options.UseTextOptions = true;
-            this.col켜짐.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.col켜짐.ColumnEdit = this.repositoryItemToggleSwitch2;
-            this.col켜짐.FieldName = "켜짐";
-            this.col켜짐.Name = "col켜짐";
-            this.col켜짐.Visible = true;
-            this.col켜짐.VisibleIndex = 5;
-            // 
-            // repositoryItemToggleSwitch2
-            // 
-            this.repositoryItemToggleSwitch2.AutoHeight = false;
-            this.repositoryItemToggleSwitch2.Name = "repositoryItemToggleSwitch2";
-            this.repositoryItemToggleSwitch2.OffText = "Off";
-            this.repositoryItemToggleSwitch2.OnText = "On";
-            // 
             // CamSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -542,13 +541,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.조명설정Bind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.e조명켜짐)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.e조명밝기)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.조명설정Bind)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch2)).EndInit();
             this.ResumeLayout(false);
 
         }

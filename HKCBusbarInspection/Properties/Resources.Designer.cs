@@ -63,6 +63,16 @@ namespace HKCBusbarInspection.Properties {
         /// <summary>
         ///   DevExpress.Utils.Svg.SvgImage 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage actions_removecircled {
+            get {
+                object obj = ResourceManager.GetObject("actions_removecircled", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   DevExpress.Utils.Svg.SvgImage 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static DevExpress.Utils.Svg.SvgImage electronics_photo {
             get {
                 object obj = ResourceManager.GetObject("electronics_photo", resourceCulture);
@@ -73,9 +83,59 @@ namespace HKCBusbarInspection.Properties {
         /// <summary>
         ///   DevExpress.Utils.Svg.SvgImage 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage electronics_photo1 {
+            get {
+                object obj = ResourceManager.GetObject("electronics_photo1", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   DevExpress.Utils.Svg.SvgImage 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage electronics_photo2 {
+            get {
+                object obj = ResourceManager.GetObject("electronics_photo2", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   DevExpress.Utils.Svg.SvgImage 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage electronics_photo3 {
+            get {
+                object obj = ResourceManager.GetObject("electronics_photo3", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   DevExpress.Utils.Svg.SvgImage 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage electronics_photo4 {
+            get {
+                object obj = ResourceManager.GetObject("electronics_photo4", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   DevExpress.Utils.Svg.SvgImage 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static DevExpress.Utils.Svg.SvgImage enablesearch {
             get {
                 object obj = ResourceManager.GetObject("enablesearch", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   DevExpress.Utils.Svg.SvgImage 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage gettingstarted {
+            get {
+                object obj = ResourceManager.GetObject("gettingstarted", resourceCulture);
                 return ((DevExpress.Utils.Svg.SvgImage)(obj));
             }
         }
@@ -136,6 +196,16 @@ namespace HKCBusbarInspection.Properties {
         internal static DevExpress.Utils.Svg.SvgImage vision {
             get {
                 object obj = ResourceManager.GetObject("vision", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   DevExpress.Utils.Svg.SvgImage 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage weather_lightning {
+            get {
+                object obj = ResourceManager.GetObject("weather_lightning", resourceCulture);
                 return ((DevExpress.Utils.Svg.SvgImage)(obj));
             }
         }

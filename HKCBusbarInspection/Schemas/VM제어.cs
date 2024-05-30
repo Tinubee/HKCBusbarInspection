@@ -50,11 +50,11 @@ namespace HKCBusbarInspection.Schemas
                 }
                 else
                 {
-                    VmSolution.Load(기본도구파일, null);
-                    VmSolution.SaveAs(도구파일, null);
-                    VmSolution.Instance.CloseSolution();
-                    VmSolution.Load(도구파일, null);
-                    Global.오류로그(로그영역, 로그영역, "VmSolution파일이 없어 기본 Solution파일 생성 후 로드 완료.", true);
+                    //VmSolution.Load(기본도구파일, null);
+                    //VmSolution.SaveAs(도구파일, null);
+                    //VmSolution.Instance.CloseSolution();
+                    //VmSolution.Load(도구파일, null);
+                    Global.오류로그(로그영역, 로그영역, $"[ {Global.환경설정.선택모델} ] VmSolution파일이 없습니다.", true);
                 }
 
                 //모듈 콜백 Disable
@@ -104,14 +104,10 @@ namespace HKCBusbarInspection.Schemas
         public ImageSourceModuleTool imageSourceModuleTool;
         public GraphicsSetModuleTool graphicsSetModuleTool;
         public ShellModuleTool shellModuleTool;
-        public ShellModuleTool slot1ShellModuleTool;
-        public ShellModuleTool slot2ShellModuleTool;
         public GlobalVariableModuleTool GlobalVariableModuleTool;
-        public ShellModuleTool indexShellModuleTool;
 
         public 비전마스터플로우(Flow구분 구분)
         {
-
             this.구분 = 구분;
             this.결과 = false;
             this.검사시간 = DateTime.Now;
