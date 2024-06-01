@@ -57,10 +57,12 @@
             this.p로그내역 = new DevExpress.XtraBars.TabFormPage();
             this.tabFormContentContainer5 = new DevExpress.XtraBars.TabFormContentContainer();
             this.e로그내역 = new HKCBusbarInspection.UI.Control.LogViewer();
+            this.e검사내역 = new HKCBusbarInspection.UI.Control.Results();
             ((System.ComponentModel.ISupportInitialize)(this.tabFormControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabFormDefaultManager1)).BeginInit();
             this.tabFormContentContainer1.SuspendLayout();
             this.tabFormContentContainer2.SuspendLayout();
+            this.tabFormContentContainer3.SuspendLayout();
             this.tabFormContentContainer4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
@@ -86,7 +88,7 @@
             this.tabFormControl1.Pages.Add(this.p검사내역);
             this.tabFormControl1.Pages.Add(this.p환경설정);
             this.tabFormControl1.Pages.Add(this.p로그내역);
-            this.tabFormControl1.SelectedPage = this.p로그내역;
+            this.tabFormControl1.SelectedPage = this.p검사내역;
             this.tabFormControl1.ShowAddPageButton = false;
             this.tabFormControl1.ShowTabCloseButtons = false;
             this.tabFormControl1.ShowTabsInTitleBar = DevExpress.XtraBars.ShowTabsInTitleBar.True;
@@ -234,6 +236,7 @@
             // 
             // tabFormContentContainer3
             // 
+            this.tabFormContentContainer3.Controls.Add(this.e검사내역);
             this.tabFormContentContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabFormContentContainer3.Location = new System.Drawing.Point(0, 30);
             this.tabFormContentContainer3.Name = "tabFormContentContainer3";
@@ -322,6 +325,14 @@
             this.e로그내역.Size = new System.Drawing.Size(1920, 1010);
             this.e로그내역.TabIndex = 0;
             // 
+            // e검사내역
+            // 
+            this.e검사내역.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.e검사내역.Location = new System.Drawing.Point(0, 0);
+            this.e검사내역.Name = "e검사내역";
+            this.e검사내역.Size = new System.Drawing.Size(1920, 1010);
+            this.e검사내역.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -331,7 +342,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Controls.Add(this.tabFormContentContainer5);
+            this.Controls.Add(this.tabFormContentContainer3);
             this.Controls.Add(this.tabFormControl1);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "MainForm";
@@ -342,6 +353,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tabFormDefaultManager1)).EndInit();
             this.tabFormContentContainer1.ResumeLayout(false);
             this.tabFormContentContainer2.ResumeLayout(false);
+            this.tabFormContentContainer3.ResumeLayout(false);
             this.tabFormContentContainer4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
@@ -383,6 +395,7 @@
         private DevExpress.XtraBars.TabFormContentContainer tabFormContentContainer5;
         private DevExpress.XtraBars.TabFormPage p로그내역;
         private UI.Control.LogViewer e로그내역;
+        private UI.Control.Results e검사내역;
     }
 }
 

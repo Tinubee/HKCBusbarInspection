@@ -22,6 +22,10 @@ namespace HKCBusbarInspection.UI.Form
             this.구분 = Global.그랩제어.GetItem((카메라구분)Num).구분;
             this.Text =$"LiveForm {this.구분}";
             this.e캠라이브.Init(this.구분);
+
+            this.FormClosing += FormClose;
         }
+
+        private void FormClose(object sender, FormClosingEventArgs e) => Global.그랩제어.GetItem(this.구분).StopLive();
     }
 }

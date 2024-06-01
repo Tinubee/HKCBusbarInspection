@@ -101,6 +101,62 @@ namespace HKCBusbarInspection.Schemas
         r우하홀가로 = 211,
         [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "r우하홀세로")]
         r우하홀세로 = 212,
+
+        //좌측슬롯[ -2.5 / 8.375 / 19.25 / 30.125 / 41 ]
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯1")]
+        좌슬롯1 = 301,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯2")]
+        좌슬롯2 = 302,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯3")]
+        좌슬롯3 = 303,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯4")]
+        좌슬롯4 = 304,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯5")]
+        좌슬롯5 = 305,
+
+        //중앙슬롯[ -2.5 / 8.375 / 19.25 / 30.125 / 41 ]
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯1")]
+        중슬롯1 = 401,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯2")]
+        중슬롯2 = 402,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯3")]
+        중슬롯3 = 403,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯4")]
+        중슬롯4 = 404,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯5")]
+        중슬롯5 = 405,
+
+        //우측슬롯[ -2.5 / 8.375 / 19.25 / 30.125 / 41 ]
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯1")]
+        우슬롯1 = 501,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯2")]
+        우슬롯2 = 502,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯3")]
+        우슬롯3 = 503,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯4")]
+        우슬롯4 = 504,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯5")]
+        우슬롯5 = 505,
+
+        //측면카메라
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam02, None, "측면가로")]
+        측면가로 = 601,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam02, None, "측면세로")]
+        측면세로 = 602,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam02, None, "측면홀경")]
+        측면홀경 = 603,
+
+        //버검사
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam03, None, "L자부버")]
+        L자부버 = 701,
+
+        //표면검사
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "상부표면")]
+        상부표면 = 801,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam04, None, "하부표면")]
+        하부표면 = 802,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam02, None, "측면표면")]
+        측면표면 = 803,
     }
 
     public enum 단위구분

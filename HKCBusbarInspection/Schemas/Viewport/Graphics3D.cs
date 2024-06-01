@@ -9,7 +9,7 @@ namespace HKCBusbarInspection.Schemas
 {
     public partial class Viewport
     {
-        public enum NamePrintType { Left, Right, Up, Down, Center }
+        public enum NamePrintType { Left, Right, Up, Down, Center, Side }
 
         public abstract class Base3D
         {
@@ -40,7 +40,7 @@ namespace HKCBusbarInspection.Schemas
 
                 String val = Utils.FormatNumeric(Value, Global.환경설정.결과표현);
                 if (String.IsNullOrEmpty(Name)) return val;
-                if (LabelStyle == NamePrintType.Up || LabelStyle == NamePrintType.Down) return val;
+                if (LabelStyle == NamePrintType.Up || LabelStyle == NamePrintType.Down || LabelStyle == NamePrintType.Side) return val;
                 return $"{Name}: {val}";
             }
         }
@@ -71,8 +71,16 @@ namespace HKCBusbarInspection.Schemas
                 {
                     if (LabelStyle == NamePrintType.Up) p.Y += FontHeight * 0.3;
                     else if (LabelStyle == NamePrintType.Down) p.Y -= FontHeight * 0.3;
+                    else if (LabelStyle == NamePrintType.Side)
+                    {
+                        p.Y += FontHeight * 0.3;
+                    }
                 }
+                var rotateTransform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(1, 0, 0), 90));
                 TextLabel = Schemas.Viewport.CreateLabel(p, Label, FontHeight, Color);
+                if (LabelStyle == NamePrintType.Side)
+                    TextLabel.Transform = rotateTransform;
+
                 collectioin.Add(TextLabel);
                 if (!String.IsNullOrEmpty(Name))
                 {
@@ -80,6 +88,12 @@ namespace HKCBusbarInspection.Schemas
                         TextName = Schemas.Viewport.CreateLabel(new Point3D(p.X, p.Y + FontHeight * 0.6, p.Z + 0.2), Name, FontHeight, Color);
                     else if (LabelStyle == NamePrintType.Down)
                         TextName = Schemas.Viewport.CreateLabel(new Point3D(p.X, p.Y - FontHeight * 0.6, p.Z + 0.2), Name, FontHeight, Color);
+                    else if (LabelStyle == NamePrintType.Side)
+                    {
+                        TextName = Schemas.Viewport.CreateLabel(new Point3D(p.X, p.Y + FontHeight * 0.8, p.Z + 0.2), Name, FontHeight, Color);
+                        TextName.Transform = rotateTransform;
+                    }
+
                     if (TextName != null) collectioin.Add(TextName);
                     else
                     {
@@ -194,7 +208,15 @@ namespace HKCBusbarInspection.Schemas
             public override void Create(Visual3DCollection collectioin)
             {
                 base.Create(collectioin);
-                Circle = CreateCircle(new Point3D(Point.X, Point.Y, Point.Z + 1.0), Radius, BackColor);
+                Double z = Point.Z + 1.0;
+                if (LabelStyle == NamePrintType.Side) z = Point.Z - 2.0;
+
+                Circle = CreateCircle(new Point3D(Point.X, Point.Y, z), Radius, BackColor);
+                var rotateTransform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(1, 0, 0), 90));
+
+                if (LabelStyle == NamePrintType.Side)
+                    Circle.Transform = rotateTransform;
+
                 collectioin.Add(Circle);
             }
             public override void Draw()

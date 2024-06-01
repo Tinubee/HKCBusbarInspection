@@ -31,33 +31,25 @@
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Results));
-            this.GridControl1 = new MvUtils.CustomGrid();
             this.GridView2 = new MvUtils.CustomView();
+            this.GridControl1 = new MvUtils.CustomGrid();
+            this.검사자료Bind = new System.Windows.Forms.BindingSource(this.components);
             this.GridView1 = new MvUtils.CustomView();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.b그래프보기 = new DevExpress.XtraEditors.SimpleButton();
+            this.e종료일자 = new DevExpress.XtraEditors.DateEdit();
             this.b엑셀파일 = new DevExpress.XtraEditors.SimpleButton();
             this.b자료조회 = new DevExpress.XtraEditors.SimpleButton();
+            this.e시작일자 = new DevExpress.XtraEditors.DateEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.col결과분류 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.col검사장치 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.col측정단위 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.col최소값 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.col기준값 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.col최대값 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.col결과값 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.col검사결과 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.e종료일자 = new DevExpress.XtraEditors.DateEdit();
-            this.e시작일자 = new DevExpress.XtraEditors.DateEdit();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.검사자료Bind = new System.Windows.Forms.BindingSource(this.components);
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -71,46 +63,28 @@
             this.colCTQ결과 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col외관결과 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col불량정보 = new DevExpress.XtraGrid.Columns.GridColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.GridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.검사자료Bind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.e종료일자.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.e종료일자.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.e시작일자.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.e시작일자.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.검사자료Bind)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindLocalization)).BeginInit();
             this.SuspendLayout();
-            // 
-            // GridControl1
-            // 
-            this.GridControl1.DataSource = this.검사자료Bind;
-            this.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode1.LevelTemplate = this.GridView2;
-            gridLevelNode1.RelationName = "검사내역";
-            this.GridControl1.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
-            this.GridControl1.Location = new System.Drawing.Point(0, 41);
-            this.GridControl1.MainView = this.GridView1;
-            this.GridControl1.Name = "GridControl1";
-            this.GridControl1.Size = new System.Drawing.Size(1591, 814);
-            this.GridControl1.TabIndex = 18;
-            this.GridControl1.UseDirectXPaint = DevExpress.Utils.DefaultBoolean.True;
-            this.GridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.GridView2,
-            this.GridView1});
             // 
             // GridView2
             // 
@@ -122,15 +96,6 @@
             this.GridView2.AllowSummaryMenu = true;
             this.GridView2.ApplyFocusedRow = true;
             this.GridView2.Caption = "표시내역";
-            this.GridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.col결과분류,
-            this.col검사장치,
-            this.col측정단위,
-            this.col최소값,
-            this.col기준값,
-            this.col최대값,
-            this.col결과값,
-            this.col검사결과});
             this.GridView2.DetailHeight = 375;
             this.GridView2.FooterPanelHeight = 22;
             this.GridView2.GridControl = this.GridControl1;
@@ -155,6 +120,28 @@
             this.GridView2.OptionsView.ShowIndicator = false;
             this.GridView2.RowHeight = 21;
             this.GridView2.ViewCaption = "표시내역";
+            // 
+            // GridControl1
+            // 
+            this.GridControl1.DataSource = this.검사자료Bind;
+            this.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            gridLevelNode1.LevelTemplate = this.GridView2;
+            gridLevelNode1.RelationName = "검사내역";
+            this.GridControl1.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
+            gridLevelNode1});
+            this.GridControl1.Location = new System.Drawing.Point(0, 41);
+            this.GridControl1.MainView = this.GridView1;
+            this.GridControl1.Name = "GridControl1";
+            this.GridControl1.Size = new System.Drawing.Size(1591, 814);
+            this.GridControl1.TabIndex = 18;
+            this.GridControl1.UseDirectXPaint = DevExpress.Utils.DefaultBoolean.True;
+            this.GridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.GridView1,
+            this.GridView2});
+            // 
+            // 검사자료Bind
+            // 
+            this.검사자료Bind.DataSource = typeof(HKCBusbarInspection.Schemas.검사자료);
             // 
             // GridView1
             // 
@@ -227,6 +214,22 @@
             this.b그래프보기.TabIndex = 5;
             this.b그래프보기.Text = "그래프 보기";
             // 
+            // e종료일자
+            // 
+            this.e종료일자.EditValue = null;
+            this.e종료일자.Location = new System.Drawing.Point(210, 9);
+            this.e종료일자.Name = "e종료일자";
+            this.e종료일자.Properties.Appearance.Options.UseTextOptions = true;
+            this.e종료일자.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.e종료일자.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.e종료일자.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.e종료일자.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.e종료일자.Size = new System.Drawing.Size(119, 22);
+            this.e종료일자.StyleController = this.layoutControl1;
+            this.e종료일자.TabIndex = 2;
+            // 
             // b엑셀파일
             // 
             this.b엑셀파일.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("b엑셀파일.ImageOptions.SvgImage")));
@@ -249,6 +252,22 @@
             this.b자료조회.TabIndex = 3;
             this.b자료조회.Text = "Search";
             // 
+            // e시작일자
+            // 
+            this.e시작일자.EditValue = null;
+            this.e시작일자.Location = new System.Drawing.Point(46, 9);
+            this.e시작일자.Name = "e시작일자";
+            this.e시작일자.Properties.Appearance.Options.UseTextOptions = true;
+            this.e시작일자.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.e시작일자.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.e시작일자.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.e시작일자.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.e시작일자.Size = new System.Drawing.Size(119, 22);
+            this.e시작일자.StyleController = this.layoutControl1;
+            this.e시작일자.TabIndex = 0;
+            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -266,6 +285,19 @@
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
             this.Root.Size = new System.Drawing.Size(1591, 42);
             this.Root.TextVisible = false;
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.e시작일자;
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem1.MaxSize = new System.Drawing.Size(164, 28);
+            this.layoutControlItem1.MinSize = new System.Drawing.Size(164, 28);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(4, 4, 4, 4);
+            this.layoutControlItem1.Size = new System.Drawing.Size(164, 32);
+            this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem1.Text = "Start";
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(25, 15);
             // 
             // layoutControlItem3
             // 
@@ -304,6 +336,19 @@
             this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // layoutControlItem5
+            // 
+            this.layoutControlItem5.Control = this.e종료일자;
+            this.layoutControlItem5.Location = new System.Drawing.Point(164, 0);
+            this.layoutControlItem5.MaxSize = new System.Drawing.Size(164, 32);
+            this.layoutControlItem5.MinSize = new System.Drawing.Size(164, 32);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(4, 4, 4, 4);
+            this.layoutControlItem5.Size = new System.Drawing.Size(164, 32);
+            this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem5.Text = "End";
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(25, 15);
+            // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.ContentVertAlignment = DevExpress.Utils.VertAlignment.Center;
@@ -332,166 +377,6 @@
             this.emptySpaceItem3.Name = "emptySpaceItem3";
             this.emptySpaceItem3.Size = new System.Drawing.Size(73, 32);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // col결과분류
-            // 
-            this.col결과분류.AppearanceHeader.Options.UseTextOptions = true;
-            this.col결과분류.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.col결과분류.FieldName = "결과분류";
-            this.col결과분류.Name = "col결과분류";
-            this.col결과분류.Visible = true;
-            this.col결과분류.VisibleIndex = 0;
-            // 
-            // col검사장치
-            // 
-            this.col검사장치.AppearanceHeader.Options.UseTextOptions = true;
-            this.col검사장치.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.col검사장치.FieldName = "검사장치";
-            this.col검사장치.Name = "col검사장치";
-            this.col검사장치.Visible = true;
-            this.col검사장치.VisibleIndex = 1;
-            // 
-            // col측정단위
-            // 
-            this.col측정단위.AppearanceCell.Options.UseTextOptions = true;
-            this.col측정단위.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.col측정단위.AppearanceHeader.Options.UseTextOptions = true;
-            this.col측정단위.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.col측정단위.Caption = "Unit";
-            this.col측정단위.FieldName = "측정단위";
-            this.col측정단위.Name = "col측정단위";
-            this.col측정단위.Visible = true;
-            this.col측정단위.VisibleIndex = 2;
-            // 
-            // col최소값
-            // 
-            this.col최소값.AppearanceCell.Options.UseTextOptions = true;
-            this.col최소값.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.col최소값.AppearanceHeader.Options.UseTextOptions = true;
-            this.col최소값.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.col최소값.Caption = "Min";
-            this.col최소값.DisplayFormat.FormatString = "{0:#,0.000}";
-            this.col최소값.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.col최소값.FieldName = "최소값";
-            this.col최소값.Name = "col최소값";
-            this.col최소값.Visible = true;
-            this.col최소값.VisibleIndex = 3;
-            // 
-            // col기준값
-            // 
-            this.col기준값.AppearanceCell.Options.UseTextOptions = true;
-            this.col기준값.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.col기준값.AppearanceHeader.Options.UseTextOptions = true;
-            this.col기준값.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.col기준값.Caption = "Standard";
-            this.col기준값.DisplayFormat.FormatString = "{0:#,0.000}";
-            this.col기준값.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.col기준값.FieldName = "기준값";
-            this.col기준값.Name = "col기준값";
-            this.col기준값.Visible = true;
-            this.col기준값.VisibleIndex = 4;
-            // 
-            // col최대값
-            // 
-            this.col최대값.AppearanceCell.Options.UseTextOptions = true;
-            this.col최대값.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.col최대값.AppearanceHeader.Options.UseTextOptions = true;
-            this.col최대값.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.col최대값.Caption = "Max";
-            this.col최대값.DisplayFormat.FormatString = "{0:#,0.000}";
-            this.col최대값.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.col최대값.FieldName = "최대값";
-            this.col최대값.Name = "col최대값";
-            this.col최대값.Visible = true;
-            this.col최대값.VisibleIndex = 5;
-            // 
-            // col결과값
-            // 
-            this.col결과값.AppearanceCell.Options.UseTextOptions = true;
-            this.col결과값.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.col결과값.AppearanceHeader.Options.UseTextOptions = true;
-            this.col결과값.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.col결과값.Caption = "Value";
-            this.col결과값.DisplayFormat.FormatString = "{0:#,0.000}";
-            this.col결과값.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.col결과값.FieldName = "결과값";
-            this.col결과값.Name = "col결과값";
-            this.col결과값.Visible = true;
-            this.col결과값.VisibleIndex = 6;
-            // 
-            // col검사결과
-            // 
-            this.col검사결과.AppearanceCell.Options.UseTextOptions = true;
-            this.col검사결과.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.col검사결과.AppearanceHeader.Options.UseTextOptions = true;
-            this.col검사결과.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.col검사결과.Caption = "Result";
-            this.col검사결과.FieldName = "측정결과";
-            this.col검사결과.Name = "col검사결과";
-            this.col검사결과.Visible = true;
-            this.col검사결과.VisibleIndex = 7;
-            // 
-            // e종료일자
-            // 
-            this.e종료일자.EditValue = null;
-            this.e종료일자.Location = new System.Drawing.Point(210, 9);
-            this.e종료일자.Name = "e종료일자";
-            this.e종료일자.Properties.Appearance.Options.UseTextOptions = true;
-            this.e종료일자.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.e종료일자.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.e종료일자.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.e종료일자.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.e종료일자.Size = new System.Drawing.Size(119, 22);
-            this.e종료일자.StyleController = this.layoutControl1;
-            this.e종료일자.TabIndex = 2;
-            // 
-            // e시작일자
-            // 
-            this.e시작일자.EditValue = null;
-            this.e시작일자.Location = new System.Drawing.Point(46, 9);
-            this.e시작일자.Name = "e시작일자";
-            this.e시작일자.Properties.Appearance.Options.UseTextOptions = true;
-            this.e시작일자.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.e시작일자.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.e시작일자.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.e시작일자.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.e시작일자.Size = new System.Drawing.Size(119, 22);
-            this.e시작일자.StyleController = this.layoutControl1;
-            this.e시작일자.TabIndex = 0;
-            // 
-            // layoutControlItem1
-            // 
-            this.layoutControlItem1.Control = this.e시작일자;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem1.MaxSize = new System.Drawing.Size(164, 28);
-            this.layoutControlItem1.MinSize = new System.Drawing.Size(164, 28);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(4, 4, 4, 4);
-            this.layoutControlItem1.Size = new System.Drawing.Size(164, 32);
-            this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem1.Text = "Start";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(25, 15);
-            // 
-            // layoutControlItem5
-            // 
-            this.layoutControlItem5.Control = this.e종료일자;
-            this.layoutControlItem5.Location = new System.Drawing.Point(164, 0);
-            this.layoutControlItem5.MaxSize = new System.Drawing.Size(164, 32);
-            this.layoutControlItem5.MinSize = new System.Drawing.Size(164, 32);
-            this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(4, 4, 4, 4);
-            this.layoutControlItem5.Size = new System.Drawing.Size(164, 32);
-            this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem5.Text = "End";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(25, 15);
-            // 
-            // 검사자료Bind
-            // 
-            this.검사자료Bind.DataSource = typeof(HKCBusbarInspection.Schemas.검사자료);
             // 
             // barManager1
             // 
@@ -608,25 +493,25 @@
             this.Controls.Add(this.barDockControlTop);
             this.Name = "Results";
             this.Size = new System.Drawing.Size(1591, 855);
-            ((System.ComponentModel.ISupportInitialize)(this.GridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.검사자료Bind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.e종료일자.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.e종료일자.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.e시작일자.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.e시작일자.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.검사자료Bind)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindLocalization)).EndInit();
             this.ResumeLayout(false);
@@ -638,14 +523,6 @@
 
         private MvUtils.CustomGrid GridControl1;
         private MvUtils.CustomView GridView2;
-        private DevExpress.XtraGrid.Columns.GridColumn col결과분류;
-        private DevExpress.XtraGrid.Columns.GridColumn col검사장치;
-        private DevExpress.XtraGrid.Columns.GridColumn col측정단위;
-        private DevExpress.XtraGrid.Columns.GridColumn col최소값;
-        private DevExpress.XtraGrid.Columns.GridColumn col기준값;
-        private DevExpress.XtraGrid.Columns.GridColumn col최대값;
-        private DevExpress.XtraGrid.Columns.GridColumn col결과값;
-        private DevExpress.XtraGrid.Columns.GridColumn col검사결과;
         private MvUtils.CustomView GridView1;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraEditors.SimpleButton b그래프보기;

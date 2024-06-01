@@ -33,6 +33,10 @@ namespace HKCBusbarInspection
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             //Test용
+            if(e.KeyCode == Keys.T)
+            {
+                //this.e결과뷰어.Init();
+            }
         }
 
         private void ShowWaitForm()
@@ -85,6 +89,7 @@ namespace HKCBusbarInspection
             this.e상태뷰어.Init();
             this.e로그내역.Init();
             this.e결과뷰어.Init();
+            this.e검사내역.Init();
             this.p환경설정.Enabled = Global.환경설정.권한여부(유저권한구분.시스템);
             this.p검사내역.Enabled = Global.환경설정.권한여부(유저권한구분.관리자);
             this.TabFormControl.AllowMoveTabs = false;
