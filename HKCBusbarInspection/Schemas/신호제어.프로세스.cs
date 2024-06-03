@@ -53,8 +53,8 @@ namespace HKCBusbarInspection.Schemas
 
         private void 장치상태확인()
         {
-            //if (this.입출자료.Changed(정보주소.자동수동) || this.입출자료.Changed(정보주소.시작정지))
-            //    this.동작상태알림?.Invoke();
+            if (this.입출자료.Changed(정보주소.수동모드) || this.입출자료.Changed(정보주소.자동운전))
+                this.동작상태알림?.Invoke();
         }
 
         // 검사위치 변경 확인

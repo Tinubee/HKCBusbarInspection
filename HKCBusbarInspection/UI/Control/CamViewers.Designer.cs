@@ -126,6 +126,7 @@
             this.d상부캠.OriginalSize = new System.Drawing.Size(960, 200);
             this.d상부캠.Size = new System.Drawing.Size(960, 1080);
             this.d상부캠.TabStop = false;
+            this.d상부캠.Tag = "1";
             this.d상부캠.Text = "Top";
             // 
             // dockPanel2_Container
@@ -175,7 +176,7 @@
             this.d측면캠.CustomHeaderButtons.AddRange(new DevExpress.XtraBars.Docking2010.IButton[] {
             new DevExpress.XtraBars.Docking.CustomHeaderButton("2", false, customHeaderButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "Light", -1, true, null, true, false, true, serializableAppearanceObject4, null, -1),
             new DevExpress.XtraBars.Docking.CustomHeaderButton("2", false, customHeaderButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "Live", -1, true, null, true, false, true, serializableAppearanceObject5, null, -1),
-            new DevExpress.XtraBars.Docking.CustomHeaderButton("Button", false, customHeaderButtonImageOptions6, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "SnapShot", -1, true, null, true, false, true, serializableAppearanceObject6, null, -1)});
+            new DevExpress.XtraBars.Docking.CustomHeaderButton("２", false, customHeaderButtonImageOptions6, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "SnapShot", -1, true, null, true, false, true, serializableAppearanceObject6, null, -1)});
             this.d측면캠.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
             this.d측면캠.FloatVertical = true;
             this.d측면캠.ID = new System.Guid("846ae92e-b2d3-4f04-a9dd-3bbe6d0bd736");
@@ -187,6 +188,7 @@
             this.d측면캠.OriginalSize = new System.Drawing.Size(480, 540);
             this.d측면캠.Size = new System.Drawing.Size(480, 540);
             this.d측면캠.TabStop = false;
+            this.d측면캠.Tag = "2";
             this.d측면캠.Text = "Side";
             // 
             // dockPanel3_Container
@@ -223,7 +225,7 @@
             this.dLPoint캠.CustomHeaderButtons.AddRange(new DevExpress.XtraBars.Docking2010.IButton[] {
             new DevExpress.XtraBars.Docking.CustomHeaderButton("3", false, customHeaderButtonImageOptions7, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "Light", -1, true, null, true, false, true, serializableAppearanceObject7, null, -1),
             new DevExpress.XtraBars.Docking.CustomHeaderButton("3", false, customHeaderButtonImageOptions8, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "Live", -1, true, null, true, false, true, serializableAppearanceObject8, null, -1),
-            new DevExpress.XtraBars.Docking.CustomHeaderButton("Button", false, customHeaderButtonImageOptions9, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "SnapShot", -1, true, null, true, false, true, serializableAppearanceObject9, null, -1)});
+            new DevExpress.XtraBars.Docking.CustomHeaderButton("３", false, customHeaderButtonImageOptions9, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "SnapShot", -1, true, null, true, false, true, serializableAppearanceObject9, null, -1)});
             this.dLPoint캠.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
             this.dLPoint캠.ID = new System.Guid("be9aaecf-0c60-4a6f-a88c-5c8a6466b842");
             this.dLPoint캠.Location = new System.Drawing.Point(480, 0);
@@ -234,6 +236,7 @@
             this.dLPoint캠.OriginalSize = new System.Drawing.Size(480, 540);
             this.dLPoint캠.Size = new System.Drawing.Size(480, 540);
             this.dLPoint캠.TabStop = false;
+            this.dLPoint캠.Tag = "3";
             this.dLPoint캠.Text = "LPoint";
             // 
             // dockPanel4_Container
@@ -270,7 +273,7 @@
             this.d하부캠.CustomHeaderButtons.AddRange(new DevExpress.XtraBars.Docking2010.IButton[] {
             new DevExpress.XtraBars.Docking.CustomHeaderButton("4", false, customHeaderButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, " Light", -1, true, null, true, false, true, serializableAppearanceObject1, null, -1),
             new DevExpress.XtraBars.Docking.CustomHeaderButton("4", false, customHeaderButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "Live", -1, true, null, true, false, true, serializableAppearanceObject2, null, -1),
-            new DevExpress.XtraBars.Docking.CustomHeaderButton("Button", false, customHeaderButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "SnapShot", -1, true, null, true, false, true, serializableAppearanceObject3, null, -1)});
+            new DevExpress.XtraBars.Docking.CustomHeaderButton("４", false, customHeaderButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "SnapShot", -1, true, null, true, false, true, serializableAppearanceObject3, null, -1)});
             this.d하부캠.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
             this.d하부캠.FloatVertical = true;
             this.d하부캠.ID = new System.Guid("823061fc-b810-4841-ab32-dccc049db34a");
@@ -282,6 +285,7 @@
             this.d하부캠.OriginalSize = new System.Drawing.Size(960, 596);
             this.d하부캠.Size = new System.Drawing.Size(960, 540);
             this.d하부캠.TabStop = false;
+            this.d하부캠.Tag = "4";
             this.d하부캠.Text = "Bottom";
             // 
             // dockPanel1_Container

@@ -102,7 +102,6 @@ namespace HKCBusbarInspection.Schemas
         }
         public 검사결과 결과조회(DateTime 일자, 모델구분 모델, Int32 코드) => this.테이블.Select(일자, 모델, 코드);
 
-
         #region 검사로직
         // PLC에서 검사번호 요청 시 새 검사 자료를 생성하여 스플에 넣음
         public 검사결과 검사시작(Int32 검사코드)

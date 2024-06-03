@@ -43,7 +43,7 @@ namespace HKCBusbarInspection
             public static Boolean 카메라2 => Global.그랩제어.측면검사카메라.상태;
             public static Boolean 카메라3 => Global.그랩제어.L부검사카메라.상태;
             public static Boolean 카메라4 => Global.그랩제어.하부검사카메라.상태;
-            public static Boolean 자동수동 => !Global.신호제어.자동수동여부;
+            public static Boolean 자동수동 => Global.신호제어.자동수동여부;
             public static Boolean 시작정지 => Global.신호제어.시작정지여부;
         }
 

@@ -173,6 +173,7 @@ namespace HKCBusbarInspection.Schemas
                     this.ImageWidth = width;
                     this.ImageHeight = height;
                 }
+
                 Global.그랩제어.그랩완료(this);
             }
             catch (Exception ex)
@@ -219,21 +220,19 @@ namespace HKCBusbarInspection.Schemas
         {
             if (this.Image != null) return this.Image;
             if (BufferAddress == IntPtr.Zero) return null;
+
+            if(this.구분 == 카메라구분.Cam01)
+            {
+                Mat Image = new Mat(ImageHeight, ImageWidth, ImageType, BufferAddress);
+                Mat rotateImage = new Mat();
+
+                Cv2.Transpose(Image, rotateImage);
+                Cv2.Flip(rotateImage, rotateImage, FlipMode.Y);
+
+                return rotateImage;
+            }
+
             return new Mat(ImageHeight, ImageWidth, ImageType, BufferAddress);
-        }
-
-        public Mat MatImageRotate()
-        {
-            if (this.Image != null) return this.Image;
-            if (BufferAddress == IntPtr.Zero) return null;
-
-            Mat Image = new Mat(ImageHeight, ImageWidth, ImageType, BufferAddress);
-            Mat rotateImage = new Mat();
-
-            Cv2.Transpose(Image, rotateImage);
-            Cv2.Flip(rotateImage, rotateImage, FlipMode.Y);
-
-            return rotateImage;
         }
         #endregion
     }
@@ -252,7 +251,12 @@ namespace HKCBusbarInspection.Schemas
         public Boolean ReverseX { get; set; } = false;
         [JsonIgnore]
         public Int32 number { get; set; } = 0;
-
+        [JsonIgnore]
+        public uint ImageCount = 3;
+        [JsonIgnore, Description("Trig Mode")]
+        public TriggerMode TrigMode { get; set; } = TriggerMode.TRIGGER_MODE_ON;
+        [JsonIgnore, Description("Trig Source")]
+        public TriggerSource TrigSource { get; set; } = TriggerSource.Software;
         public Boolean Init(CGigECameraInfo info)
         {
             try
@@ -267,7 +271,9 @@ namespace HKCBusbarInspection.Schemas
                 UInt32 ip3 = (info.nCurrentIp & 0x0000ff00) >> 8;
                 UInt32 ip4 = info.nCurrentIp & 0x000000ff;
                 this.주소 = $"{ip1}.{ip2}.{ip3}.{ip4}";
+                this.번호 = (int)this.구분;
                 this.상태 = this.Init();
+                this.Active();
             }
             catch (Exception ex)
             {
@@ -291,22 +297,45 @@ namespace HKCBusbarInspection.Schemas
             return 그랩제어.Validate($"{this.구분} Active", Camera.StopGrabbing(), false);
         }
 
-        public override Boolean SoftwareTrigger()
-        {
-            return true;
-        }
+        public override Boolean SoftwareTrigger() => 그랩제어.Validate($"{this.구분} TriggerSoftware", this.Camera.SetCommandValue("TriggerSoftware"), true);
 
         public override Boolean Init()
         {
             Int32 nRet = this.Camera.CreateHandle(ref Device);
             if (!그랩제어.Validate($"[{this.구분}] 카메라 초기화에 실패하였습니다.", nRet, true)) return false;
+
             nRet = this.Camera.OpenDevice();
             if (!그랩제어.Validate($"[{this.구분}] 카메라 연결 실패!", nRet, true)) return false;
+
             그랩제어.Validate("RegisterImageCallBackEx", this.Camera.RegisterImageCallBackEx(this.ImageCallBackDelegate, IntPtr.Zero), false);
+            this.Camera.SetImageNodeNum(ImageCount);
+            this.옵션적용();
+
             Global.정보로그(로그영역, "카메라 연결", $"[{this.구분}] 카메라 연결 성공!", false);
             return true;
         }
+        private void 옵션적용()
+        {
+            this.트리거모드적용();
+            this.트리거소스적용();
+        }
+        public void 트리거모드적용()
+        {
+            if (this.Camera == null) return;
+            Int32 nRet = this.Camera.SetEnumValue("TriggerMode", (uint)this.TrigMode);
+            그랩제어.Validate($"[{this.구분}] 트리거모드 설정에 실패하였습니다.", nRet, true);
+        }
 
+        public void 트리거소스적용()
+        {
+            if (this.Camera == null) return;
+
+            if (this.구분 == 카메라구분.Cam04)
+                this.TrigSource = TriggerSource.Line0;
+
+            Int32 nRet = this.Camera.SetEnumValue("TriggerSource", (uint)this.TrigSource);
+            그랩제어.Validate($"[{this.구분}] 트리거소스 설정에 실패하였습니다.", nRet, true);
+        }
         public override Boolean Active()
         {
             this.Camera.ClearImageBuffer();
@@ -322,6 +351,7 @@ namespace HKCBusbarInspection.Schemas
 
         public override Boolean Stop()
         {
+            Camera.ClearImageBuffer();
             return 그랩제어.Validate($"{this.구분} Stop", Camera.StopGrabbing(), false);
         }
 
@@ -332,8 +362,8 @@ namespace HKCBusbarInspection.Schemas
             this.Count++;
 
             this.AcquisitionFinished(surfaceAddr, frameInfo.nWidth, frameInfo.nHeight);
-            if (!this.라이브)
-                this.StopLive();
+            //if (!this.라이브)
+            //    this.StopLive();
         }
     }
 
@@ -358,6 +388,10 @@ namespace HKCBusbarInspection.Schemas
         public Int32 number { get; set; } = 0;
         [JsonIgnore]
         public const Int32 BufNum = 3;
+        [JsonIgnore, Description("Trig Mode")]
+        public TriggerMode TrigMode { get; set; } = TriggerMode.TRIGGER_MODE_ON;
+        [JsonIgnore, Description("Trig Source")]
+        public TriggerSource TrigSource { get; set; } = TriggerSource.Software;
 
         public Boolean Init(CInterface cInterface, MV_CXP_DEVICE_INFO info)
         {
@@ -377,7 +411,9 @@ namespace HKCBusbarInspection.Schemas
                 //UInt32 ip3 = (info.nCurrentIp & 0x0000ff00) >> 8;
                 //UInt32 ip4 = info.nCurrentIp & 0x000000ff;
                 //this.주소 = $"{ip1}.{ip2}.{ip3}.{ip4}";
+                this.번호 = (int)this.구분;
                 this.상태 = this.Init();
+                this.Active();
             }
             catch (Exception ex)
             {
@@ -393,30 +429,51 @@ namespace HKCBusbarInspection.Schemas
         {
             this.Stream.SetBufferNum(BufNum);
             그랩제어.ValidateMVFG("RegisterImageCallBack", this.Stream.RegisterImageCallBack(this.ImageCallBackDelegate, IntPtr.Zero), false);
+            옵션적용();
             Global.정보로그(로그영역, "카메라 연결", $"[{this.구분}] 카메라 연결 성공!", false);
             return true;
         }
+        private void 옵션적용()
+        {
+            //this.DeviceParam.SetEnumValue("AcquisitionMode", (UInt32)AcquisitionMode.Continuous);
+            this.트리거모드적용();
+            this.트리거소스적용();
+        }
+        public void 트리거모드적용()
+        {
+            if (this.DeviceParam == null) return;
+            Int32 nRet = this.DeviceParam.SetEnumValue("TriggerMode", (uint)this.TrigMode);
+            그랩제어.Validate($"[{this.구분}] 트리거모드 설정에 실패하였습니다.", nRet, true);
+        }
 
+        public void 트리거소스적용()
+        {
+            if (this.DeviceParam == null) return;
+
+            Int32 nRet = this.DeviceParam.SetEnumValue("TriggerSource", (uint)this.TrigSource);
+            그랩제어.Validate($"[{this.구분}] 트리거소스 설정에 실패하였습니다.", nRet, true);
+        }
         public override Boolean StartLive()
         {
-            this.DeviceParam.SetEnumValue("AcquisitionMode", (UInt32)AcquisitionMode.Continuous);
-            this.DeviceParam.SetEnumValue("TriggerMode", (UInt32)TriggerMode.TRIGGER_MODE_OFF);
-            this.라이브 = true;
+            //this.DeviceParam.SetEnumValue("AcquisitionMode", (UInt32)AcquisitionMode.Continuous);
+            //this.DeviceParam.SetEnumValue("TriggerMode", (UInt32)TriggerMode.TRIGGER_MODE_OFF);
+            //this.라이브 = true;
             return 그랩제어.ValidateMVFG($"{this.구분} Active", this.Stream.StartAcquisition(), false);
         }
 
         public override Boolean StopLive()
         {
-            this.DeviceParam.SetEnumValue("AcquisitionMode", (UInt32)AcquisitionMode.SingleFrame);
-            this.DeviceParam.SetEnumValue("TriggerMode", (UInt32)TriggerMode.TRIGGER_MODE_ON);
-            this.DeviceParam.SetEnumValue("TriggerSource", (UInt32)TriggerSource.Software);
+            //this.DeviceParam.SetEnumValue("AcquisitionMode", (UInt32)AcquisitionMode.SingleFrame);
+            //this.DeviceParam.SetEnumValue("TriggerMode", (UInt32)TriggerMode.TRIGGER_MODE_ON);
+            //this.DeviceParam.SetEnumValue("TriggerSource", (UInt32)TriggerSource.Software);
             this.라이브 = false;
             return 그랩제어.ValidateMVFG($"{this.구분} Close", this.Stream.StopAcquisition(), false);
         }
 
         public override Boolean SoftwareTrigger()
         {
-            return 그랩제어.ValidateMVFG($"{this.구분} TriggerExec", this.DeviceParam.SetCommandValue("TiggerSoftware"), false);
+            //this.Active();
+            return 그랩제어.ValidateMVFG($"{this.구분} Trigger software", this.DeviceParam.SetCommandValue("TriggerSoftware"), false);
         }
 
         public override Boolean Active()
@@ -427,17 +484,15 @@ namespace HKCBusbarInspection.Schemas
         public override Boolean Close()
         {
             base.Close();
-            return 그랩제어.ValidateMVFG($"{this.구분} Close", this.Stream.CloseStream(), false);
+            그랩제어.ValidateMVFG($"{this.구분} Close Stream", this.Stream.CloseStream(), false);
+            그랩제어.ValidateMVFG($"{this.구분} Close Device", this.Device.CloseDevice(), false);
+            return 그랩제어.ValidateMVFG($"{this.구분} Close Interface", this.Interface.CloseInterface(), false);
         }
 
         public override Boolean Stop()
         {
             return 그랩제어.ValidateMVFG($"{this.구분} Close", this.Stream.StopAcquisition(), false);
         }
-
-        public void CloseInterface() => this.Interface.CloseInterface();
-
-        public void CloseDevice() => this.Device.CloseDevice();
 
         private void ImageCallBack(ref MV_FG_BUFFER_INFO stBufferInfo, IntPtr pUser)
         {
@@ -448,8 +503,8 @@ namespace HKCBusbarInspection.Schemas
                 this.Count++;
 
                 this.AcquisitionFinished(stBufferInfo.pBuffer, (Int32)stBufferInfo.nWidth, (Int32)stBufferInfo.nHeight);
-                if (!this.라이브)
-                    this.StopLive();
+                //if (!this.라이브)
+                //    this.StopLive();
             }
         }
     }

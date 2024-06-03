@@ -133,6 +133,7 @@ namespace HKCBusbarInspection.Schemas
         public Boolean 셔틀03결과신호 { get => 신호읽기(정보주소.셔틀03결과); set => 결과쓰기(정보주소.셔틀03결과, value); }
 
         public Boolean 자동수동여부 { get => !신호읽기(정보주소.수동모드); }
+        public Boolean 자동대기여부 { get => 신호읽기(정보주소.자동대기); }
         public Boolean 시작정지여부 { get => 신호읽기(정보주소.자동운전); }
         public Int32 하부01인덱스 => this.입출자료.Get(정보주소.하부01인덱스);
         public Int32 하부02인덱스 => this.입출자료.Get(정보주소.하부02인덱스);

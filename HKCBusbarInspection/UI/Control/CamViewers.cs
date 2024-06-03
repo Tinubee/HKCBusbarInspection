@@ -4,6 +4,8 @@ using HKCBusbarInspection.Schemas;
 using HKCBusbarInspection.UI.Form;
 using System;
 using System.Diagnostics;
+using System.Linq;
+using System.Text;
 
 namespace HKCBusbarInspection.UI.Control
 {
@@ -36,20 +38,29 @@ namespace HKCBusbarInspection.UI.Control
 
         private void 상단메뉴클릭(object sender, DevExpress.XtraBars.Docking2010.ButtonEventArgs e)
         {
-            if (e.Button == ((DockPanel)sender).CustomHeaderButtons[0]) //조명켜기
+            try
             {
-                카메라구분 구분 =(카메라구분)Convert.ToInt32(e.Button.Properties.Caption);
-                Global.조명제어.GetItem(구분).OnOff();
+                Int32 번호 = Convert.ToInt32((sender as DockPanel).Tag);
+                카메라구분 구분 = (카메라구분)번호;
+
+                if (e.Button == ((DockPanel)sender).CustomHeaderButtons[0]) //조명켜기
+                {
+                    Boolean 상태 = Global.조명제어.GetItem(구분).켜짐;
+                    Global.조명제어.TurnOnOff(구분, !상태);
+                }
+                else if (e.Button == ((DockPanel)sender).CustomHeaderButtons[1]) //라이브보기
+                {
+                    LiveForm LiveForm = new LiveForm(e.Button.Properties.Caption);
+                    LiveForm.ShowDialog();
+                }
+                else if (e.Button == ((DockPanel)sender).CustomHeaderButtons[2]) // Master Image 검사? 1회 촬영후 검사?
+                {
+                    Global.그랩제어.GetItem(구분).SoftwareTrigger();
+                }
             }
-            else if (e.Button == ((DockPanel)sender).CustomHeaderButtons[1]) //라이브보기
+            catch(Exception ex)
             {
-                LiveForm LiveForm = new LiveForm(e.Button.Properties.Caption);
-                LiveForm.ShowDialog();
-            }
-            else if (e.Button == ((DockPanel)sender).CustomHeaderButtons[2]) //1회촬영 후 검사
-            {
-                //LiveForm LiveForm = new LiveForm(e.Button.Properties.Caption);
-                //LiveForm.ShowDialog();
+                Debug.WriteLine(ex.Message);
             }
         }
     }

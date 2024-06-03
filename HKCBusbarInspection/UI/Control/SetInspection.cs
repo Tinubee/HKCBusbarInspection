@@ -45,7 +45,7 @@ namespace HKCBusbarInspection.UI.Control
             this.b도구설정.Click += 도구설정;
             this.b설정저장.Click += 설정저장;
 
-            //Global.검사자료.수동검사알림 += 수동검사알림;
+            Global.검사자료.수동검사알림 += 수동검사알림;
             this.ｅ교정계산.ButtonClick += 교정계산;
 
             Localization.SetColumnCaption(this.e모델선택, typeof(모델정보));
@@ -113,6 +113,8 @@ namespace HKCBusbarInspection.UI.Control
             if (설정 == null) return;
             if (!Utils.Confirm(this.FindForm(), 번역.저장확인)) return;
             if (설정.Save()) Global.정보로그(검사설정.로그영역.GetString(), 번역.설정저장, 번역.저장완료, true);
+
+            Global.MainForm.e결과뷰어.e결과목록.RefreshData();
         }
 
         private void 검사설정변경()

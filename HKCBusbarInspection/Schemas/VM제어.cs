@@ -92,6 +92,7 @@ namespace HKCBusbarInspection.Schemas
     public class 비전마스터플로우
     {
         public Flow구분 구분;
+        public 카메라구분 카메라;
         public Boolean 결과;
         public DateTime 검사시간;
         public String 로그영역 { get => $"비전도구({구분})"; }
@@ -105,6 +106,7 @@ namespace HKCBusbarInspection.Schemas
         public 비전마스터플로우(Flow구분 구분)
         {
             this.구분 = 구분;
+            this.카메라 = (카메라구분)구분;
             this.결과 = false;
             this.검사시간 = DateTime.Now;
             this.Init();
@@ -132,8 +134,8 @@ namespace HKCBusbarInspection.Schemas
                 this.graphicsSetModuleTool = this.Procedure["OutputImage"] as GraphicsSetModuleTool;
                 this.shellModuleTool = this.Procedure["Resulte"] as ShellModuleTool;
 
-                //if (this.imageSourceModuleTool != null)
-                //    this.imageSourceModuleTool.ModuParams.ImageSourceType = ImageSourceParam.ImageSourceTypeEnum.SDK;
+                if (this.imageSourceModuleTool != null)
+                    this.imageSourceModuleTool.ModuParams.ImageSourceType = ImageSourceParam.ImageSourceTypeEnum.SDK;
             }
         }
 
@@ -152,22 +154,62 @@ namespace HKCBusbarInspection.Schemas
             //String resStr = str == String.Empty ? "3" : str;
             return str;
         }
-        private Boolean GetResult(Flow구분 구분)
+        //private Boolean GetResult(Flow구분 구분)
+        //{
+        //    ShellModuleTool shell = Global.VM제어.GetItem(구분).shellModuleTool;
+        //    String str = "";
+        //    List<VmIO> t = shell.Outputs[6].GetAllIO();
+        //    String name = t[0].UniqueName.Split('%')[1];
+        //    if (t[0].Value != null)
+        //    {
+        //        str = ((ImvsSdkDefine.IMVS_MODULE_STRING_VALUE_EX[])t[0].Value)[0].strValue;
+        //        Common.DebugWriteLine(로그영역, 로그구분.정보, $"{this.구분} - {str}");
+        //    }
+
+        //    Boolean resBool = str == "0" ? true : false;
+
+        //    return resBool;
+        //}
+
+        public Dictionary<String, Double> GetResults()
         {
-            ShellModuleTool shell = Global.VM제어.GetItem(구분).shellModuleTool;
-            String str = "";
-            List<VmIO> t = shell.Outputs[6].GetAllIO();
-            String name = t[0].UniqueName.Split('%')[1];
-            if (t[0].Value != null)
+            Dictionary<String, Double> results = new Dictionary<String, Double>();
+            //ShellModuleTool shell = Global.VM제어.GetItem(구분).shellModuleTool;
+            foreach (var item in this.shellModuleTool.Outputs)
             {
-                str = ((ImvsSdkDefine.IMVS_MODULE_STRING_VALUE_EX[])t[0].Value)[0].strValue;
-                Common.DebugWriteLine(로그영역, 로그구분.정보, $"{this.구분} - {str}");
+                List<VmIO> t = item.GetAllIO();
+                if (t[0].Value != null && t[0].UniqueName != "ModuStatus" && t[0].UniqueName != "ResultShow")
+                {
+                    String name = t[0].UniqueName.Split('%')[1];
+                    if (t[0].Value != null)
+                    {
+                        String str = ((ImvsSdkDefine.IMVS_MODULE_STRING_VALUE_EX[])t[0].Value)[0].strValue;
+                        if (str == null) continue;
+                        try
+                        {
+                            String[] vals = str.Split(';');
+                            Boolean ok = false;
+                            Single val = Single.NaN;
+                            if (!String.IsNullOrEmpty(vals[0])) val = Convert.ToSingle(vals[0]);
+                            if (vals.Length > 1) ok = MvUtils.Utils.IntValue(vals[1]) == 1;
+
+                            Debug.WriteLine($"{name} : {val}");
+                            results.Add(name, Convert.ToDouble(val));
+                            //obal.검사자료.항목검사(this.구분, 지그, name, val);
+                        }
+                        catch (Exception e)
+                        {
+                            Debug.WriteLine(e.Message, name);
+                        }
+                    } 
+                }
+                //if (terminal.ValueType != typeof(Double)) continue;
+                //results.Add(terminal.Name, terminal.Value == null ? Double.NaN : (Double)terminal.Value);
             }
 
-            Boolean resBool = str == "0" ? true : false;
-
-            return resBool;
+            return results;
         }
+
 
         private void SetResult(Flow구분 구분)
         {
@@ -214,7 +256,7 @@ namespace HKCBusbarInspection.Schemas
             return true;
         }
 
-        public Boolean Run(Mat mat, ImageBaseData imageBaseData, String imagePath)
+        public Boolean Run(Mat mat, ImageBaseData imageBaseData, String imagePath, 검사결과 검사)
         {
             this.결과 = false;
             //this.결과업데이트완료 = false;
@@ -236,6 +278,8 @@ namespace HKCBusbarInspection.Schemas
                 }
 
                 this.Procedure.Run();
+
+                검사?.SetResults(this.카메라, this.GetResults());
 
                 return true;
             }

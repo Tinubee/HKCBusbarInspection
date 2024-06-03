@@ -35,16 +35,16 @@ namespace HKCBusbarInspection.UI.Control
 
         private void 그랩완료보고(그랩장치 장치)
         {
-            if (this.InvokeRequired) { this.BeginInvoke((Action)(() => 그랩완료보고(장치))); return; }
+            //if (this.InvokeRequired) { this.BeginInvoke((Action)(() => 그랩완료보고(장치))); return; }
 
-            if (장치.구분 == 카메라구분.Cam01)
-            {
-                this.eLive.ImageSource = MatToImageBaseData(장치.MatImageRotate());
-            }
-            else
-            {
-                this.eLive.ImageSource = MatToImageBaseData(장치.MatImage());
-            }
+            //if (장치.구분 == 카메라구분.Cam01)
+            //{
+            //    this.eLive.ImageSource = MatToImageBaseData(장치.MatImageRotate());
+            //}
+            //else
+            //{
+            //    this.eLive.ImageSource = MatToImageBaseData(장치.MatImage());
+            //}
         }
 
         private void 라이브종료(object sender, EventArgs e)

@@ -102,7 +102,7 @@ namespace HKCBusbarInspection.Schemas
             e.Appearance.ForeColor = 환경설정.결과표현색상((결과구분)v);
         }
 
-        public 검사정보 GetItem(장치구분 장치, String name) => 검사내역.Where(e => e.검사장치 == 장치 && e.변수명칭 == name).FirstOrDefault();
+        public 검사정보 GetItem(장치구분 장치, String name) => 검사내역.Where(e => e.검사장치 == 장치 && e.검사명칭 == name).FirstOrDefault();
         public 검사정보 GetItem(검사항목 항목) => 검사내역.Where(e => e.검사항목 == 항목).FirstOrDefault();
 
         private Decimal PixelToMeter(검사정보 검사, Double value)
@@ -187,7 +187,7 @@ namespace HKCBusbarInspection.Schemas
         }
         public 검사정보 SetResult(String name, Double value) => SetResult(검사내역.Where(e => e.검사항목.ToString() == name).FirstOrDefault(), value);
         public 검사정보 SetResult(검사항목 항목, Double value) => SetResult(검사내역.Where(e => e.검사항목 == 항목).FirstOrDefault(), value);
-        public void SetResults(카메라구분 카메라, Dictionary<String, Object> results)
+        public void SetResults(카메라구분 카메라, Dictionary<String, Double> results)
         {
             //불량영역제거(카메라);
             //String scratch = ResultAttribute.VarName(검사항목.BottomScratch);
@@ -201,8 +201,8 @@ namespace HKCBusbarInspection.Schemas
                 //}
                 검사정보 정보 = GetItem((장치구분)카메라, result.Key);
                 if (정보 == null) continue;
-                Double value = result.Value == null ? Double.NaN : (Double)result.Value;
-                SetResult(정보, value);
+
+                SetResult(정보, result.Value);
             }
         }
         public void SetResults(Dictionary<Int32, Decimal> 내역)
