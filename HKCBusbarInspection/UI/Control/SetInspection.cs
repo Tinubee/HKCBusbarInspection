@@ -5,15 +5,10 @@ using HKCBusbarInspection.Schemas;
 using HKCBusbarInspection.UI.Form;
 using MvUtils;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static DevExpress.Utils.Drawing.Helpers.NativeMethods;
 
 namespace HKCBusbarInspection.UI.Control
 {
@@ -22,7 +17,7 @@ namespace HKCBusbarInspection.UI.Control
         public delegate void 검사항목선택(모델정보 모델, 검사정보 설정);
         public event 검사항목선택 검사항목변경;
         private LocalizationInspection 번역 = new LocalizationInspection();
-        private PopupMenu popupMenu;
+        //private PopupMenu popupMenu;
         //private Int32 IconSize = 16;
 
         public SetInspection() => InitializeComponent();

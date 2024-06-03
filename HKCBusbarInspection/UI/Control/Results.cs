@@ -2,18 +2,9 @@
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using HKCBusbarInspection.Schemas;
-using HKCBusbarInspection.UI.Form;
 using MvUtils;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using static HKCBusbarInspection.Schemas.유저정보;
 
 namespace HKCBusbarInspection.UI.Control

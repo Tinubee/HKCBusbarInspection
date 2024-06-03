@@ -2,18 +2,10 @@
 using HKCBusbarInspection.Schemas;
 using MvUtils;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace HKCBusbarInspection.UI.Control
 {
-    public partial class ImageSave : DevExpress.XtraEditors.XtraUserControl
+    public partial class ImageSave : XtraUserControl
     {
         LocalizationSaveImage 번역 = new LocalizationSaveImage();
         public ImageSave() => InitializeComponent();

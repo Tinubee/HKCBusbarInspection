@@ -1,13 +1,11 @@
 ﻿using DevExpress.Utils;
 using GlobalVariableModuleCs;
 using GraphicsSetModuleCs;
-using HKCBusbarInspection.UI.Form;
 using ImageSourceModuleCs;
 using OpenCvSharp;
 using ShellModuleCs;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
