@@ -40,7 +40,7 @@ namespace HKCBusbarInspection.UI.Control
             this.col최대값.DisplayFormat.FormatString = Global.환경설정.결과표현;
             this.col기준값.DisplayFormat.FormatString = Global.환경설정.결과표현;
             this.col보정값.DisplayFormat.FormatString = Global.환경설정.결과표현;
-            this.col마진값.DisplayFormat.FormatString = Global.환경설정.결과표현;
+            //this.col마진값.DisplayFormat.FormatString = Global.환경설정.결과표현;
             this.col실측값.DisplayFormat.FormatString = Global.환경설정.결과표현;
 
             this.e모델선택.EditValueChanged += 모델선택;

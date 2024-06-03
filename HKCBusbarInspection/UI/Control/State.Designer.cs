@@ -164,6 +164,7 @@
             this.e양품수율.Caption = "Yield";
             this.e양품수율.CaptionFont = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tablePanel1.SetColumn(this.e양품수율, 3);
+            this.e양품수율.DataBindings.Add(new System.Windows.Forms.Binding("ValueText", this.모델자료Bind, "양품수율표현", true));
             this.e양품수율.Dock = System.Windows.Forms.DockStyle.Fill;
             this.e양품수율.Location = new System.Drawing.Point(303, 3);
             this.e양품수율.Name = "e양품수율";
@@ -179,6 +180,7 @@
             this.e전체수량.Caption = "Total";
             this.e전체수량.CaptionFont = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tablePanel1.SetColumn(this.e전체수량, 2);
+            this.e전체수량.DataBindings.Add(new System.Windows.Forms.Binding("ValueText", this.모델자료Bind, "전체갯수표현", true));
             this.e전체수량.Dock = System.Windows.Forms.DockStyle.Fill;
             this.e전체수량.Location = new System.Drawing.Point(203, 3);
             this.e전체수량.Name = "e전체수량";
@@ -194,6 +196,7 @@
             this.e불량수량.Caption = "NG";
             this.e불량수량.CaptionFont = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tablePanel1.SetColumn(this.e불량수량, 1);
+            this.e불량수량.DataBindings.Add(new System.Windows.Forms.Binding("ValueText", this.모델자료Bind, "불량갯수표현", true));
             this.e불량수량.Dock = System.Windows.Forms.DockStyle.Fill;
             this.e불량수량.Location = new System.Drawing.Point(103, 3);
             this.e불량수량.Name = "e불량수량";
@@ -209,6 +212,7 @@
             this.e양품수량.Caption = "OK";
             this.e양품수량.CaptionFont = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tablePanel1.SetColumn(this.e양품수량, 0);
+            this.e양품수량.DataBindings.Add(new System.Windows.Forms.Binding("ValueText", this.모델자료Bind, "양품갯수표현", true));
             this.e양품수량.Dock = System.Windows.Forms.DockStyle.Fill;
             this.e양품수량.Location = new System.Drawing.Point(3, 3);
             this.e양품수량.Name = "e양품수량";

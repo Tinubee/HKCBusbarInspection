@@ -82,6 +82,8 @@ namespace HKCBusbarInspection.Schemas
         [JsonIgnore]
         public Boolean 라이브 { get; set; } = false;
         [JsonIgnore]
+        internal Int32 Count { get; set; } = 0;
+        [JsonIgnore]
         public const String 로그영역 = "Camera";
 
         public void Dispose()
@@ -325,6 +327,10 @@ namespace HKCBusbarInspection.Schemas
 
         private void ImageCallBack(IntPtr surfaceAddr, ref MV_FRAME_OUT_INFO_EX frameInfo, IntPtr user)
         {
+            if (this.Count == 3) this.Count = 0;
+
+            this.Count++;
+
             this.AcquisitionFinished(surfaceAddr, frameInfo.nWidth, frameInfo.nHeight);
             if (!this.라이브)
                 this.StopLive();
@@ -437,6 +443,10 @@ namespace HKCBusbarInspection.Schemas
         {
             if (null != stBufferInfo.pBuffer)
             {
+                if (this.Count == 3) this.Count = 0;
+
+                this.Count++;
+
                 this.AcquisitionFinished(stBufferInfo.pBuffer, (Int32)stBufferInfo.nWidth, (Int32)stBufferInfo.nHeight);
                 if (!this.라이브)
                     this.StopLive();

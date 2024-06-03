@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static HKCBusbarInspection.Schemas.유저정보;
 using HKCBusbarInspection.Schemas;
+using HKCBusbarInspection.UI.Control;
 
 
 namespace HKCBusbarInspection
@@ -83,12 +84,12 @@ namespace HKCBusbarInspection
         private void Init()
         {
             this.SetLocalization();
+            this.e결과뷰어.Init(ResultInspection.ViewTypes.Auto);
             this.e카메라뷰어.Init();
             this.e검사설정.Init();
             this.e장치설정.Init();
             this.e상태뷰어.Init();
             this.e로그내역.Init();
-            this.e결과뷰어.Init();
             this.e검사내역.Init();
             this.p환경설정.Enabled = Global.환경설정.권한여부(유저권한구분.시스템);
             this.p검사내역.Enabled = Global.환경설정.권한여부(유저권한구분.관리자);

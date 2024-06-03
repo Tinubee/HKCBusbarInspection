@@ -37,14 +37,14 @@ namespace HKCBusbarInspection
         public static class 장치상태
         {
             //public static Boolean 정상여부 => 조명장치 && 그랩장치;
-            //public static Boolean 조명장치 => 조명제어.정상여부;
+            public static Boolean 조명장치 => 조명제어.정상여부;
             public static Boolean 그랩장치 => Global.그랩제어.정상여부;
             public static Boolean 카메라1 => Global.그랩제어.상부검사카메라.상태;
             public static Boolean 카메라2 => Global.그랩제어.측면검사카메라.상태;
             public static Boolean 카메라3 => Global.그랩제어.L부검사카메라.상태;
             public static Boolean 카메라4 => Global.그랩제어.하부검사카메라.상태;
-            public static Boolean 자동수동 => Global.신호제어.자동수동여부;
-            //public static Boolean 시작정지 => Global.장치통신.시작정지여부;
+            public static Boolean 자동수동 => !Global.신호제어.자동수동여부;
+            public static Boolean 시작정지 => Global.신호제어.시작정지여부;
         }
 
         public static Boolean Init()
@@ -55,6 +55,7 @@ namespace HKCBusbarInspection
                 환경설정 = new 환경설정();
                 모델자료 = new 모델자료();
                 조명제어 = new 조명제어();
+                검사자료 = new 검사자료();
                 VM제어 = new VM제어();
                 그랩제어 = new 그랩제어();
                 신호제어 = new 신호제어();
@@ -62,6 +63,7 @@ namespace HKCBusbarInspection
                 로그자료.Init();
                 환경설정.Init();
                 모델자료.Init();
+                검사자료.Init();
                 if (Global.환경설정.동작구분 == 동작구분.Live)
                 {
                     신호제어.Init();
@@ -95,12 +97,13 @@ namespace HKCBusbarInspection
                 }
 
                 //유저자료.Close();
+                신호제어?.Close();
                 환경설정?.Close();
                 사진자료?.Close();
                 모델자료?.Close();
-                //로그자료.Close();
-
+                로그자료.Close();
                 VM제어?.Close();
+                로그자료?.Close();
 
                 Properties.Settings.Default.Save();
                 return true;
@@ -113,7 +116,8 @@ namespace HKCBusbarInspection
 
         public static void Start()
         {
-
+            신호제어.Start();
+            if (Global.환경설정.동작구분 != 동작구분.Live) return;
         }
 
 

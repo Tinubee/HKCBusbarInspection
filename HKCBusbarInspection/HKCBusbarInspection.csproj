@@ -201,6 +201,11 @@
     <Compile Include="Migrations\20240529082211_logs.Designer.cs">
       <DependentUpon>20240529082211_logs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\검사결과테이블Migrations\20240603134104_insp.cs" />
+    <Compile Include="Migrations\검사결과테이블Migrations\20240603134104_insp.Designer.cs">
+      <DependentUpon>20240603134104_insp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\검사결과테이블Migrations\검사결과테이블ModelSnapshot.cs" />
     <Compile Include="Migrations\로그테이블ModelSnapshot.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -294,6 +299,12 @@
     </Compile>
     <Compile Include="UI\Control\LogViewer.Designer.cs">
       <DependentUpon>LogViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Control\ResultGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Control\ResultGrid.Designer.cs">
+      <DependentUpon>ResultGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Control\ResultInspection.cs">
       <SubType>UserControl</SubType>
@@ -402,6 +413,9 @@
     <EmbeddedResource Include="UI\Control\LogViewer.resx">
       <DependentUpon>LogViewer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Control\ResultGrid.resx">
+      <DependentUpon>ResultGrid.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Control\ResultInspection.resx">
       <DependentUpon>ResultInspection.cs</DependentUpon>
     </EmbeddedResource>
@@ -441,6 +455,7 @@
       <DependentUpon>WaitForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
+    <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.검사결과.datasource" />
     <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.검사설정.datasource" />
     <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.검사자료.datasource" />
     <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.검사정보.datasource" />
@@ -502,6 +517,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\bo_security_permission_action.svg" />
     <None Include="Resources\actions_removecircled.svg" />
     <None Include="Resources\gettingstarted.svg" />
     <None Include="Resources\bo_list.svg" />

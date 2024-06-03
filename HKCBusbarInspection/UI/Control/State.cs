@@ -52,11 +52,11 @@ namespace HKCBusbarInspection.UI.Control
             if (Global.신호제어 != null) 
                 Global.신호제어.동작상태알림 += 동작상태알림;
 
-            //Global.검사자료.검사완료알림 += 검사완료알림;
+            Global.검사자료.검사완료알림 += 검사완료알림;
 
             this.검사상태표현(결과구분.WA);
             this.e모델선택.Refresh();
-            //this.e장치상태.Init();
+            this.e장치상태.Init();
             this.e저장용량.EditValue = Global.환경설정.저장비율;
         }
 
@@ -113,7 +113,7 @@ namespace HKCBusbarInspection.UI.Control
             if (결과 == null) return;
             if (this.InvokeRequired) { this.BeginInvoke((Action)(() => 검사완료알림(결과))); return; }
             // DB 저장
-            //Global.검사자료.Save();
+            Global.검사자료.Save();
             this.검사상태표현(결과.측정결과);
             this.e저장용량.EditValue = Global.환경설정.저장비율;
             GC.Collect();
@@ -122,8 +122,8 @@ namespace HKCBusbarInspection.UI.Control
         private void 동작상태알림()
         {
             if (this.InvokeRequired) { this.BeginInvoke(new Action(동작상태알림)); return; }
-            //this.b동작구분.Text = Global.장치상태.자동수동 ? 번역.자동 : 번역.수동;
-            //this.b동작구분.Appearance.ForeColor = Global.장치상태.시작정지 ? DXSkinColors.ForeColors.Information : DXSkinColors.ForeColors.DisabledText;
+            this.b동작구분.Text = Global.장치상태.자동수동 ? 번역.자동 : 번역.수동;
+            this.b동작구분.Appearance.ForeColor = Global.장치상태.시작정지 ? DXSkinColors.ForeColors.Information : DXSkinColors.ForeColors.DisabledText;
         }
 
         private void 수량리셋_Click(object sender, EventArgs e)

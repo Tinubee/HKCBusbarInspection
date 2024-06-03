@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Views.Grid;
 using HKCBusbarInspection.Schemas;
 using System;
 using System.Collections.Generic;
@@ -13,12 +14,9 @@ using System.Windows.Media.Media3D;
 
 namespace HKCBusbarInspection.UI.Control
 {
-    public partial class ResultInspection : DevExpress.XtraEditors.XtraUserControl
+    public partial class ResultInspection : XtraUserControl
     {
-        public ResultInspection()
-        {
-            InitializeComponent();
-        }
+        public ResultInspection() => InitializeComponent();
 
         public enum ViewTypes { Auto, Manual }
         private ViewTypes RunType = ViewTypes.Manual;
@@ -34,7 +32,7 @@ namespace HKCBusbarInspection.UI.Control
             }
 
             this.e결과뷰어.Init(Busbar);
-            //this.e결과목록.Init();
+            this.e결과목록.Init();
 
             if (this.RunType == ViewTypes.Auto)
             {
@@ -47,26 +45,24 @@ namespace HKCBusbarInspection.UI.Control
 
         public void 검사완료알림(검사결과 결과)
         {
-            //if (this.InvokeRequired) { this.BeginInvoke(new Action(() => { 검사완료알림(결과); })); return; }
-            //if (Global.장치상태.자동수동) Global.검사자료.Save();
-            //this.e결과뷰어.SetResults(결과);
-            //this.e결과목록.SetResults(결과);
-            //this.e측정결과.Appearance.ForeColor = 환경설정.ResultColor(결과.측정결과);
-            //this.eCTQ결과.Properties.Appearance.ForeColor = 환경설정.ResultColor(결과.CTQ결과);
-            //this.e외관결과.Properties.Appearance.ForeColor = 환경설정.ResultColor(결과.외관결과);
-            //this.e큐알코드.Properties.Appearance.ForeColor = 환경설정.ResultColor(결과.큐알결과());
-            ////this.e큐알등급.Properties.Appearance.ForeColor = 환경설정.ResultColor(결과.GetItem(검사항목.QrLegibility).측정결과);
-            //this.Bind검사결과.DataSource = 결과;
-            //this.Bind검사결과.ResetBindings(false);
+            if (this.InvokeRequired) { this.BeginInvoke(new Action(() => { 검사완료알림(결과); })); return; }
+            if (Global.장치상태.자동수동) Global.검사자료.Save();
+            this.e결과뷰어.SetResults(결과);
+            this.e결과목록.SetResults(결과);
+            this.e측정결과.Appearance.ForeColor = 환경설정.결과표현색상(결과.측정결과);
+            this.eCTQ결과.Properties.Appearance.ForeColor = 환경설정.결과표현색상(결과.CTQ결과);
+            this.e외관결과.Properties.Appearance.ForeColor = 환경설정.결과표현색상(결과.외관결과);
+            this.검사결과Bind.DataSource = 결과;
+            this.검사결과Bind.ResetBindings(false);
         }
 
         private void GridView1_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
         {
-            //if (e.RowHandle < 0) return;
-            //GridView view = sender as GridView;
-            //검사정보 정보 = view.GetRow(e.RowHandle) as 검사정보;
-            //if (정보 == null) return;
-            //정보.SetAppearance(e);
+            if (e.RowHandle < 0) return;
+            GridView view = sender as GridView;
+            검사정보 정보 = view.GetRow(e.RowHandle) as 검사정보;
+            if (정보 == null) return;
+            정보.SetAppearance(e);
         }
     }
 }

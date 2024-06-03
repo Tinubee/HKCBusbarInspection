@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace HKCBusbarInspection.Schemas
 {
@@ -33,7 +34,7 @@ namespace HKCBusbarInspection.Schemas
             if (오류 != 0)
             {
                 통신오류알림(오류);
-                Debug.WriteLine("오휴확인");
+                Debug.WriteLine("오류확인");
                 return false;
             }
             this.입출자료.Set(자료);
@@ -61,9 +62,9 @@ namespace HKCBusbarInspection.Schemas
         // 검사위치 변경 확인
         private void 검사위치확인()
         {
-            //Dictionary<정보주소, Int32> 변경 = this.입출자료.Changes(정보주소.하부큐알트리거, 정보주소.결과요청트리거);
-            //if (변경.Count < 1) return;
-            //this.검사위치알림?.Invoke();
+            Dictionary<정보주소, Int32> 변경 = this.입출자료.Changes(정보주소.트레이검사트리거, 정보주소.셔틀03검사트리거);
+            if (변경.Count < 1) return;
+            this.검사위치알림?.Invoke();
         }
 
         private void 제품검사수행()
@@ -73,11 +74,21 @@ namespace HKCBusbarInspection.Schemas
         }
 
         // 카메라 별 현재 검사 위치의 검사번호를 요청
-        public Int32 촬영위치번호(카메라구분 구분)
+        public Int32 촬영위치번호(카메라구분 구분, Int32 순서)
         {
-            //if (구분 == 카메라구분.Cam01 || 구분 == 카메라구분.Cam02 || 구분 == 카메라구분.Cam03) return this.인덱스버퍼[정보주소.측상촬영트리거];
-            //if (구분 == 카메라구분.Cam04 || 구분 == 카메라구분.Cam05) return this.인덱스버퍼[정보주소.하부촬영트리거];
-            //if (구분 == 카메라구분.Cam06 || 구분 == 카메라구분.Cam07) return this.인덱스버퍼[정보주소.커넥터촬영트리거];
+            if (구분 == 카메라구분.Cam01 || 구분 == 카메라구분.Cam02 || 구분 == 카메라구분.Cam03)
+            {
+                if (순서 == 1) return this.인덱스버퍼[정보주소.셔틀01검사트리거];
+                if (순서 == 2) return this.인덱스버퍼[정보주소.셔틀02검사트리거];
+                if (순서 == 3) return this.인덱스버퍼[정보주소.셔틀03검사트리거];
+            }
+            if (구분 == 카메라구분.Cam04)
+            {
+                if (순서 == 1) return this.인덱스버퍼[정보주소.하부01검사트리거];
+                if (순서 == 2) return this.인덱스버퍼[정보주소.하부02검사트리거];
+                if (순서 == 3) return this.인덱스버퍼[정보주소.하부03검사트리거];
+            }
+
             return 0;
         }
 
@@ -90,52 +101,89 @@ namespace HKCBusbarInspection.Schemas
             }
 
             Int32 index = 0;
-            //if (구분 == 정보주소.하부큐알트리거) index = this.제품투입번호;
-            //else if (구분 == 정보주소.바닥평면트리거) index = this.평탄도측정검사번호;
-            //else if (구분 == 정보주소.측상촬영트리거) index = this.측상검사번호;
-            //else if (구분 == 정보주소.상부큐알트리거) index = this.상부큐알검사번호;
-            //else if (구분 == 정보주소.하부촬영트리거) index = this.인슐폭측정검사번호;
-            //else if (구분 == 정보주소.커넥터촬영트리거) index = this.커넥턱검사번호;
-            //else if (구분 == 정보주소.커버조립트리거) index = this.커버체결번호;
-            //else if (구분 == 정보주소.커버들뜸트리거) index = this.커버검사번호;
-            //else if (구분 == 정보주소.결과요청트리거) index = this.결과요청번호;
+
+            if (구분 == 정보주소.하부01검사트리거) index = this.하부01인덱스;
+            if (구분 == 정보주소.하부02검사트리거) index = this.하부02인덱스;
+            if (구분 == 정보주소.하부03검사트리거) index = this.하부03인덱스;
+            if (구분 == 정보주소.셔틀01검사트리거) index = this.셔틀01인덱스;
+            if (구분 == 정보주소.셔틀02검사트리거) index = this.셔틀02인덱스;
+            if (구분 == 정보주소.셔틀03검사트리거) index = this.셔틀03인덱스;
 
             this.인덱스버퍼[구분] = index;
 
             if (index == 0) Global.경고로그(로그영역, 구분.ToString(), $"해당 위치에 검사할 제품의 Index가 없습니다.", false);
             else Debug.WriteLine($"{Utils.FormatDate(DateTime.Now, "{0:HH:mm:ss.fff}")}  {구분} => {index}", "Trigger");
+
             return index;
         }
 
         public List<Int32> 검사중인항목()
         {
             List<Int32> 대상 = new List<Int32>();
-            //Int32 시작 = (Int32)정보주소.셔틀08제품인덱스;
-            //Int32 종료 = (Int32)정보주소.셔틀01제품인덱스;
-            //for (Int32 i = 종료; i >= 시작; i--)
-            //{
-            //    정보주소 구분 = (정보주소)i;
-            //    if (this.입출자료[구분].정보 <= 0) continue;
-            //    대상.Add(this.입출자료[구분].정보);
-            //}
+            Int32 시작 = (Int32)정보주소.셔틀03인덱스;
+            Int32 종료 = (Int32)정보주소.하부01인덱스;
+            for (Int32 i = 종료; i >= 시작; i--)
+            {
+                정보주소 구분 = (정보주소)i;
+                if (this.입출자료[구분].정보 <= 0) continue;
+                대상.Add(this.입출자료[구분].정보);
+            }
             return 대상;
         }
 
         private void 영상촬영수행()
         {
-            //Int32 측상카메라검사번호 = this.검사위치번호(정보주소.측상촬영트리거);
-            //Int32 하부카메라검사번호 = this.검사위치번호(정보주소.하부촬영트리거);
-            //Int32 커넥터카메라검사번호 = this.검사위치번호(정보주소.커넥터촬영트리거);
+            Int32 하부01검사번호 = this.검사위치번호(정보주소.하부01검사트리거);
+            Int32 하부02검사번호 = this.검사위치번호(정보주소.하부02검사트리거);
+            Int32 하부03검사번호 = this.검사위치번호(정보주소.하부03검사트리거);
 
-            //if (측상카메라검사번호 > 0)
-            //{
-            //    new Thread(() =>
-            //    {
-            //        Global.조명제어.TurnOn(카메라구분.Cam01);
-            //        Global.그랩제어.Active(카메라구분.Cam01);
-            //    })
-            //    { Priority = ThreadPriority.Highest }.Start();
-            //}
+            Int32 셔틀01검사번호 = this.검사위치번호(정보주소.셔틀01검사트리거);
+            Int32 셔틀02검사번호 = this.검사위치번호(정보주소.셔틀02검사트리거);
+            Int32 셔틀03검사번호 = this.검사위치번호(정보주소.셔틀03검사트리거);
+
+            if (셔틀01검사번호 > 0)
+            {
+                //new Thread(() =>
+                //{
+                //    Global.조명제어.TurnOn(카메라구분.Cam01);
+                //    Global.그랩제어.Active(카메라구분.Cam01);
+                //})
+                //{ Priority = ThreadPriority.Highest }.Start();
+            }
+            if (하부01검사번호 > 0)
+            {
+                new Thread(() =>
+                {
+                    Global.모델자료.선택모델.검사시작(하부01검사번호);
+                    Global.검사자료.검사시작(하부01검사번호);
+                    Global.조명제어.TurnOn(카메라구분.Cam04);
+                })
+                { Priority = ThreadPriority.Highest }.Start();
+            }
+            if (하부02검사번호 > 0)
+            {
+                new Thread(() =>
+                {
+                    Global.모델자료.선택모델.검사시작(하부02검사번호);
+                    Global.검사자료.검사시작(하부02검사번호);
+                })
+                { Priority = ThreadPriority.Highest }.Start();
+            }
+            if (하부03검사번호 > 0)
+            {
+                //Common.DebugWriteLine(로그영역, 로그구분.정보, "하부표면검사 트리거 수신.");
+                //Global.그랩제어.GetItem(카메라구분.Cam04).ClearImage();
+                new Thread(() =>
+                {
+                    Global.모델자료.선택모델.검사시작(하부03검사번호);
+                    Global.검사자료.검사시작(하부03검사번호);
+                    //Global.그랩제어.Ready(카메라구분.Cam04);
+                }).Start();
+
+                this.하부01검사트리거 = false;
+                this.하부02검사트리거 = false;
+                this.하부03검사트리거 = false;
+            }
         }
 
         // 최종 검사 결과 보고
@@ -193,17 +241,15 @@ namespace HKCBusbarInspection.Schemas
         // 핑퐁
         private void 통신핑퐁수행()
         {
-            //if (!this.입출자료[정보주소.통신핑퐁].Passed()) return;
-            //if (this.시작일시.Day != DateTime.Today.Day)
-            //{
-            //    this.시작일시 = DateTime.Now;
-            //    this.검사번호리셋 = true;
-            //    Global.모델자료.선택모델.날짜변경();
-            //}
+            //Boolean 연결신호확인 = 신호읽기(정보주소.통신확인전송);
+           
+            //정보쓰기(정보주소.통신확인전송, !연결신호확인);
 
-            //this.통신확인핑퐁 = !this.통신확인핑퐁;
-            ////Debug.WriteLine($"통신확인핑퐁 : {this.통신확인핑퐁}");
-            //this.통신상태알림?.Invoke();
+            if (this.입출자료.Changed(정보주소.통신확인수신))
+            {
+                this.통신확인핑퐁 = !this.통신확인핑퐁;
+                this.통신상태알림?.Invoke();
+            }
         }
         private Boolean 테스트수행()
         {

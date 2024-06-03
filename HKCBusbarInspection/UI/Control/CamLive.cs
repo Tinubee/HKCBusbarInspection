@@ -1,8 +1,11 @@
 ﻿using DevExpress.XtraEditors;
 using HKCBusbarInspection.Schemas;
+using OpenCvSharp;
 using OpenCvSharp.Extensions;
 using System;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
+using VM.PlatformSDKCS;
 
 namespace HKCBusbarInspection.UI.Control
 {
@@ -17,7 +20,9 @@ namespace HKCBusbarInspection.UI.Control
             this.카메라 = 구분;
             b라이브시작.Click += 라이브시작;
             b라이브종료.Click += 라이브종료;
-            this.eLive.ModuleSource = Global.VM제어.GetItem(Flow구분.Live).graphicsSetModuleTool;
+            if (this.eLive.ImageSource != null)
+                this.eLive.ImageSource = null;
+
             Global.그랩제어.그랩완료보고 += 그랩완료보고;
             버튼상태표시();
         }
@@ -36,10 +41,12 @@ namespace HKCBusbarInspection.UI.Control
 
             if (장치.구분 == 카메라구분.Cam01)
             {
-                Global.VM제어.GetItem(Flow구분.Live).Run(장치.MatImageRotate(), null, null);
+                this.eLive.ImageSource = MatToImageBaseData(장치.MatImageRotate());
             }
             else
-                Global.VM제어.GetItem(Flow구분.Live).Run(장치.MatImage(), null, null);
+            {
+                this.eLive.ImageSource = MatToImageBaseData(장치.MatImage());
+            }
         }
 
         private void 라이브종료(object sender, EventArgs e)
@@ -53,6 +60,17 @@ namespace HKCBusbarInspection.UI.Control
             Global.그랩제어.GetItem(카메라).라이브 = true;
             Global.그랩제어.GetItem(카메라).StartLive();
             버튼상태표시();
+        }
+
+        private ImageBaseData MatToImageBaseData(Mat mat)
+        {
+            if (mat.Channels() != 1) return null;
+            ImageBaseData imageBaseData;
+            uint dataLen = (uint)(mat.Width * mat.Height * mat.Channels());
+            byte[] buffer = new byte[dataLen];
+            Marshal.Copy(mat.Ptr(0), buffer, 0, buffer.Length);
+            imageBaseData = new ImageBaseData(buffer, dataLen, mat.Width, mat.Height, (int)VMPixelFormat.VM_PIXEL_MONO_08);
+            return imageBaseData;
         }
     }
 }

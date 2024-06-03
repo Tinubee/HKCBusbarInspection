@@ -32,64 +32,118 @@ namespace HKCBusbarInspection.Schemas
 
         private enum 정보주소 : Int32
         {
-            [Address("W301")]
-            자동수동,
+            [Address("W0020")]
+            트레이검사트리거,
+            [Address("W0050")]
+            하부01검사트리거,
+            [Address("W0051")]
+            하부02검사트리거,
+            [Address("W0052")]
+            하부03검사트리거,
+            [Address("W0060")]
+            셔틀01검사트리거,
+            [Address("W0061")]
+            셔틀02검사트리거,
+            [Address("W0062")]
+            셔틀03검사트리거,
+
+            [Address("W0000")]
+            모델번호,
+            [Address("W0001")]
+            원점복귀완료,
+
+            [Address("W0100")]
+            하부01인덱스,
+            [Address("W0102")]
+            하부02인덱스,
+            [Address("W0104")]
+            하부03인덱스,
+            [Address("W0110")]
+            셔틀01인덱스,
+            [Address("W0112")]
+            셔틀02인덱스,
+            [Address("W0114")]
+            셔틀03인덱스,
+
+            [Address("W0021")]
+            트레이검사결과,
+            [Address("W0101")]
+            하부01결과, 
+            [Address("W0103")]
+            하부02결과,
+            [Address("W0105")]
+            하부03결과,
+            [Address("W0111")]
+            셔틀01결과,
+            [Address("W0113")]
+            셔틀02결과,
+            [Address("W0115")]
+            셔틀03결과,
+
+            [Address("B1000")]
+            통신확인전송,
+            [Address("B1010")]
+            통신확인수신,
+
+            [Address("B1011")]
+            수동모드,
+            [Address("B1012")]
+            자동대기,
+            [Address("B1013")]
+            자동운전,
         }
 
         private 통신자료 입출자료 = new 통신자료();
 
+        public static Int32 OK = 1;
+        public static Int32 NG = 2;
         public static Boolean ToBool(Int32 val) { return val != 0; }
         public static Int32 ToInt(Boolean val) { return val ? 1 : 0; }
+        public static Int32 ToIntResult(Boolean val) { return val ? 1 : 2; }
         private Int32 정보읽기(정보주소 구분) { return this.입출자료.Get(구분); }
         private Boolean 신호읽기(정보주소 구분) { return ToBool(this.입출자료.Get(구분)); }
         private void 정보쓰기(정보주소 구분, Int32 val) { this.입출자료.Set(구분, val); }
         private void 정보쓰기(정보주소 구분, Boolean val) { this.입출자료.Set(구분, ToInt(val)); }
+        private void 결과쓰기(정보주소 구분, Boolean val) { this.입출자료.Set(구분, ToIntResult(val)); }
 
 
 
-        //#region 입출신호
-        //public Boolean 하부큐알트리거신호 { get => 신호읽기(정보주소.하부큐알트리거); set => 정보쓰기(정보주소.하부큐알트리거, value); }
-        //public Boolean 하부큐알결과OK신호 { get => 신호읽기(정보주소.하부큐알결과OK); set => 정보쓰기(정보주소.하부큐알결과OK, value); }
-        //public Boolean 하부큐알결과NG신호 { get => 신호읽기(정보주소.하부큐알결과NG); set => 정보쓰기(정보주소.하부큐알결과NG, value); }
-        //public Boolean 하부큐알확인완료신호 { get => 신호읽기(정보주소.하부큐알확인완료); set => 정보쓰기(정보주소.하부큐알확인완료, value); }
+        #region 입출신호
+        public Boolean 하부01검사트리거 { get => 신호읽기(정보주소.하부01검사트리거); set => 정보쓰기(정보주소.하부01검사트리거, value); }
+        public Boolean 하부02검사트리거 { get => 신호읽기(정보주소.하부02검사트리거); set => 정보쓰기(정보주소.하부02검사트리거, value); }
+        public Boolean 하부03검사트리거 { get => 신호읽기(정보주소.하부03검사트리거); set => 정보쓰기(정보주소.하부03검사트리거, value); }
+        public Boolean 셔틀01검사트리거 { get => 신호읽기(정보주소.셔틀01검사트리거); set => 정보쓰기(정보주소.셔틀01검사트리거, value); }
+        public Boolean 셔틀02검사트리거 { get => 신호읽기(정보주소.셔틀02검사트리거); set => 정보쓰기(정보주소.셔틀02검사트리거, value); }
+        public Boolean 셔틀03검사트리거 { get => 신호읽기(정보주소.셔틀03검사트리거); set => 정보쓰기(정보주소.셔틀03검사트리거, value); }
 
-        //public Boolean 바닥평면트리거신호 { get => 신호읽기(정보주소.바닥평면트리거); set => 정보쓰기(정보주소.바닥평면트리거, value); }
-        //public Boolean 바닥평면확인완료신호 { get => 신호읽기(정보주소.바닥평면확인완료); set => 정보쓰기(정보주소.바닥평면확인완료, value); }
+        public Boolean 하부01결과신호초기화 { get => 신호읽기(정보주소.하부01결과); set => 정보쓰기(정보주소.하부01결과, value); }
+        public Boolean 하부02결과신호초기화 { get => 신호읽기(정보주소.하부02결과); set => 정보쓰기(정보주소.하부02결과, value); }
+        public Boolean 하부03결과신호초기화 { get => 신호읽기(정보주소.하부03결과); set => 정보쓰기(정보주소.하부03결과, value); }
 
-        //public Boolean 측상촬영트리거신호 { get => 신호읽기(정보주소.측상촬영트리거); set => 정보쓰기(정보주소.측상촬영트리거, value); }
-        //public Boolean 측상촬영완료신호 { get => 신호읽기(정보주소.측상촬영완료); set => 정보쓰기(정보주소.측상촬영완료, value); }
+        public Boolean 셔틀01결과신호초기화 { get => 신호읽기(정보주소.셔틀01결과); set => 정보쓰기(정보주소.셔틀01결과, value); }
+        public Boolean 셔틀02결과신호초기화 { get => 신호읽기(정보주소.셔틀02결과); set => 정보쓰기(정보주소.셔틀02결과, value); }
+        public Boolean 셔틀03결과신호초기화 { get => 신호읽기(정보주소.셔틀03결과); set => 정보쓰기(정보주소.셔틀03결과, value); }
 
-        //public Boolean 상부큐알트리거신호 { get => 신호읽기(정보주소.상부큐알트리거); set => 정보쓰기(정보주소.상부큐알트리거, value); }
-        //public Boolean 상부큐알확인완료신호 { get => 신호읽기(정보주소.상부큐알확인완료); set => 정보쓰기(정보주소.상부큐알확인완료, value); }
+        public Boolean 하부01결과신호 { get => 신호읽기(정보주소.하부01결과); set => 결과쓰기(정보주소.하부01결과, value); }
+        public Boolean 하부02결과신호 { get => 신호읽기(정보주소.하부02결과); set => 결과쓰기(정보주소.하부02결과, value); }
+        public Boolean 하부03결과신호 { get => 신호읽기(정보주소.하부03결과); set => 결과쓰기(정보주소.하부03결과, value); }
 
-        //public Boolean 하부촬영트리거신호 { get => 신호읽기(정보주소.하부촬영트리거); set => 정보쓰기(정보주소.하부촬영트리거, value); }
-        //public Boolean 하부촬영완료신호 { get => 신호읽기(정보주소.하부촬영완료); set => 정보쓰기(정보주소.하부촬영완료, value); }
+        public Boolean 셔틀01결과신호 { get => 신호읽기(정보주소.셔틀01결과); set => 결과쓰기(정보주소.셔틀01결과, value); }
+        public Boolean 셔틀02결과신호 { get => 신호읽기(정보주소.셔틀02결과); set => 결과쓰기(정보주소.셔틀02결과, value); }
+        public Boolean 셔틀03결과신호 { get => 신호읽기(정보주소.셔틀03결과); set => 결과쓰기(정보주소.셔틀03결과, value); }
 
-        //public Boolean 커넥터촬영트리거신호 { get => 신호읽기(정보주소.커넥터촬영트리거); set => 정보쓰기(정보주소.커넥터촬영트리거, value); }
-        //public Boolean 커넥터촬영완료신호 { get => 신호읽기(정보주소.커넥터촬영완료); set => 정보쓰기(정보주소.커넥터촬영완료, value); }
+        public Boolean 자동수동여부 { get => !신호읽기(정보주소.수동모드); }
+        public Boolean 시작정지여부 { get => 신호읽기(정보주소.자동운전); }
+        public Int32 하부01인덱스 => this.입출자료.Get(정보주소.하부01인덱스);
+        public Int32 하부02인덱스 => this.입출자료.Get(정보주소.하부02인덱스);
+        public Int32 하부03인덱스 => this.입출자료.Get(정보주소.하부03인덱스);
 
-        //public Boolean 커버조립트리거신호 { get => 신호읽기(정보주소.커버조립트리거); set => 정보쓰기(정보주소.커버조립트리거, value); }
-        //public Boolean 커버조립결과OK신호 { get => 신호읽기(정보주소.커버조립결과OK); set => 정보쓰기(정보주소.커버조립결과OK, value); }
-        //public Boolean 커버조립결과NG신호 { get => 신호읽기(정보주소.커버조립결과NG); set => 정보쓰기(정보주소.커버조립결과NG, value); }
-        //public Boolean 커버조립확인완료신호 { get => 신호읽기(정보주소.커버조립확인완료); set => 정보쓰기(정보주소.커버조립확인완료, value); }
+        public Int32 셔틀01인덱스 => this.입출자료.Get(정보주소.셔틀01인덱스);
+        public Int32 셔틀02인덱스 => this.입출자료.Get(정보주소.셔틀02인덱스);
+        public Int32 셔틀03인덱스 => this.입출자료.Get(정보주소.셔틀03인덱스);
 
-        //public Boolean 커버들뜸트리거신호 { get => 신호읽기(정보주소.커버들뜸트리거); set => 정보쓰기(정보주소.커버들뜸트리거, value); }
-        //public Boolean 커버들뜸확인완료신호 { get => 신호읽기(정보주소.커버들뜸확인완료); set => 정보쓰기(정보주소.커버들뜸확인완료, value); }
-
-        //public Boolean 결과요청트리거신호 { get => 신호읽기(정보주소.결과요청트리거); set => 정보쓰기(정보주소.결과요청트리거, value); }
-        //public Boolean 결과요청결과OK신호 { get => 신호읽기(정보주소.결과요청결과OK); set => 정보쓰기(정보주소.결과요청결과OK, value); }
-        //public Boolean 결과요청결과NG신호 { get => 신호읽기(정보주소.결과요청결과NG); set => 정보쓰기(정보주소.결과요청결과NG, value); }
-        //public Boolean 결과요청확인완료신호 { get => 신호읽기(정보주소.결과요청확인완료); set => 정보쓰기(정보주소.결과요청확인완료, value); }
-
-        public Boolean 자동수동여부 { get => 신호읽기(정보주소.자동수동); }
-        //public Boolean 시작정지여부 { get => 신호읽기(정보주소.시작정지); }
-
-        //public Boolean 검사번호리셋 { get => 신호읽기(정보주소.번호리셋); set => 정보쓰기(정보주소.번호리셋, value); }
-
-        //public Boolean 통신확인핑퐁 { get => 신호읽기(정보주소.통신핑퐁); set => 정보쓰기(정보주소.통신핑퐁, value); }
-
-        //public Boolean MES오류 { get => 신호읽기(정보주소.MES오류); }
-        //#endregion
+        public Boolean 통신확인핑퐁 { get => 신호읽기(정보주소.통신확인수신); set => 정보쓰기(정보주소.통신확인전송, value); }
+        #endregion
 
         private Dictionary<정보주소, Int32> 인덱스버퍼 = new Dictionary<정보주소, Int32>();
         #endregion
@@ -167,53 +221,39 @@ namespace HKCBusbarInspection.Schemas
 
         private void 출력자료리셋()
         {
-            //this.하부큐알트리거신호 = false;
-            //this.하부큐알결과OK신호 = false;
-            //this.하부큐알결과NG신호 = false;
-            //this.하부큐알확인완료신호 = false;
-            //this.바닥평면트리거신호 = false;
-            //this.바닥평면확인완료신호 = false;
-            //this.측상촬영트리거신호 = false;
-            //this.측상촬영완료신호 = false;
-            //this.상부큐알트리거신호 = false;
-            //this.상부큐알확인완료신호 = false;
-            //this.하부촬영트리거신호 = false;
-            //this.하부촬영완료신호 = false;
-            //this.커넥터촬영트리거신호 = false;
-            //this.커넥터촬영완료신호 = false;
-            //this.커버조립트리거신호 = false;
-            //this.커버조립결과OK신호 = false;
-            //this.커버조립결과NG신호 = false;
-            //this.커버조립확인완료신호 = false;
-            //this.커버들뜸트리거신호 = false;
-            //this.커버들뜸확인완료신호 = false;
-            //this.결과요청트리거신호 = false;
-            //this.결과요청결과OK신호 = false;
-            //this.결과요청결과NG신호 = false;
+            this.하부01검사트리거 = false;
+            this.하부02검사트리거 = false;
+            this.하부03검사트리거 = false;
+            this.셔틀01검사트리거 = false;
+            this.셔틀02검사트리거 = false;
+            this.셔틀03검사트리거 = false;
+            this.하부01결과신호초기화 = false;
+            this.하부02결과신호초기화 = false;
+            this.하부03결과신호초기화 = false;
+            this.셔틀01결과신호초기화 = false;
+            this.셔틀02결과신호초기화 = false;
+            this.셔틀03결과신호초기화 = false;
         }
 
         private void 인덱스버퍼리셋()
         {
             this.인덱스버퍼.Clear();
-            //this.인덱스버퍼.Add(정보주소.하부큐알트리거, 0);
-            //this.인덱스버퍼.Add(정보주소.바닥평면트리거, 0);
-            //this.인덱스버퍼.Add(정보주소.측상촬영트리거, 0);
-            //this.인덱스버퍼.Add(정보주소.상부큐알트리거, 0);
-            //this.인덱스버퍼.Add(정보주소.하부촬영트리거, 0);
-            //this.인덱스버퍼.Add(정보주소.커넥터촬영트리거, 0);
-            //this.인덱스버퍼.Add(정보주소.커버조립트리거, 0);
-            //this.인덱스버퍼.Add(정보주소.커버들뜸트리거, 0);
-            //this.인덱스버퍼.Add(정보주소.결과요청트리거, 0);
+            this.인덱스버퍼.Add(정보주소.하부01검사트리거, 0);
+            this.인덱스버퍼.Add(정보주소.하부02검사트리거, 0);
+            this.인덱스버퍼.Add(정보주소.하부03검사트리거, 0);
+            this.인덱스버퍼.Add(정보주소.셔틀01검사트리거, 0);
+            this.인덱스버퍼.Add(정보주소.셔틀02검사트리거, 0);
+            this.인덱스버퍼.Add(정보주소.셔틀03검사트리거, 0);
         }
 
         // 검사자료 로드 후 수행해야 함
         public void 인덱스리셋확인()
         {
-            //if (Global.검사자료.Count < 1)
-            //{
-            //    Debug.WriteLine("인덱스 리셋");
-            //    this.검사번호리셋 = true;
-            //}
+            if (Global.검사자료?.Count < 1)
+            {
+                //Debug.WriteLine("인덱스 리셋");
+                //this.검사번호리셋 = true;
+            }
         }
         //public void 생산수량전송() => this.생산수량정보 = Global.모델자료.선택모델.전체갯수;
         #endregion

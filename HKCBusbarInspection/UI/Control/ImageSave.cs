@@ -16,10 +16,8 @@ namespace HKCBusbarInspection.UI.Control
     public partial class ImageSave : DevExpress.XtraEditors.XtraUserControl
     {
         LocalizationSaveImage 번역 = new LocalizationSaveImage();
-        public ImageSave()
-        {
-            InitializeComponent();
-        }
+        public ImageSave() => InitializeComponent();
+
         public void Init()
         {
             this.GridView1.Init(this.barManager1);

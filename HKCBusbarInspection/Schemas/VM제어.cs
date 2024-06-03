@@ -23,8 +23,6 @@ namespace HKCBusbarInspection.Schemas
         LPoint카메라 = 3,
         하부카메라 = 4,
         트레이검사카메라 = 5,
-        Live = 6,
-        NG = 99
     }
 
     public class VM제어 : List<비전마스터플로우>
@@ -139,12 +137,6 @@ namespace HKCBusbarInspection.Schemas
                 //if (this.imageSourceModuleTool != null)
                 //    this.imageSourceModuleTool.ModuParams.ImageSourceType = ImageSourceParam.ImageSourceTypeEnum.SDK;
             }
-        }
-
-        private void GetRenderImage(Flow구분 구분)
-        {
-            GraphicsSetModuleTool tool = Global.VM제어.GetItem(구분).graphicsSetModuleTool;
-
         }
 
         private String GetResultStr(Flow구분 구분)
