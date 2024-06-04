@@ -7,6 +7,7 @@ using MvUtils;
 using System;
 using System.Data;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -44,6 +45,7 @@ namespace HKCBusbarInspection.UI.Control
             this.e모델선택.CustomDisplayText += 선택모델표현;
             this.b도구설정.Click += 도구설정;
             this.b설정저장.Click += 설정저장;
+            this.b수동검사.Click += 수동검사;
 
             Global.검사자료.수동검사알림 += 수동검사알림;
             this.ｅ교정계산.ButtonClick += 교정계산;
@@ -52,6 +54,21 @@ namespace HKCBusbarInspection.UI.Control
             Localization.SetColumnCaption(this.GridView1, typeof(검사정보));
             this.b설정저장.Text = 번역.설정저장;
             this.모델선택(this.e모델선택, EventArgs.Empty);
+        }
+
+        private void 수동검사(object sender, EventArgs e)
+        {
+            if (Global.장치상태.자동수동) { Utils.WarningMsg("자동상태에서는 실행 할 수 없습니다."); return; }
+
+            new Thread(() =>
+            {
+                Global.조명제어.TurnOn(카메라구분.Cam01);
+                Global.조명제어.TurnOn(카메라구분.Cam02);
+
+                Global.그랩제어.GetItem(카메라구분.Cam01).SoftwareTrigger();
+                Global.그랩제어.GetItem(카메라구분.Cam02).SoftwareTrigger();
+            })
+            { Priority = ThreadPriority.Highest }.Start();
         }
 
         public void Close() { }

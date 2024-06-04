@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Reflection;
 
@@ -142,6 +143,11 @@ namespace HKCBusbarInspection.Schemas
         }
         public Boolean SetResultValue(검사정보 검사, Double value, out Decimal 결과값, out Decimal 측정값, Boolean 마진포함 = false)
         {
+            if(검사.측정단위 == 단위구분.ON)
+            {
+             
+            }
+
             Decimal result = PixelToMeter(검사, value);
             result += 검사.보정값;
             result *= 검사.결과부호;
@@ -182,23 +188,22 @@ namespace HKCBusbarInspection.Schemas
             Boolean ok = SetResultValue(검사, value, out Decimal 결과값, out Decimal 측정값);
             검사.측정값 = 측정값;
             검사.결과값 = 결과값;
-            검사.측정결과 = ok ? 결과구분.OK : 결과구분.NG;
+            if(검사.측정단위 == 단위구분.ON)
+            {
+                검사.측정결과 = 측정값 == 0 ? 결과구분.OK : 결과구분.NG;
+            }
+            else
+                검사.측정결과 = ok ? 결과구분.OK : 결과구분.NG;
+            
+            Common.DebugWriteLine("검사정보", 로그구분.정보, $"검사결과 - {검사.측정결과}");
             return 검사;
         }
         public 검사정보 SetResult(String name, Double value) => SetResult(검사내역.Where(e => e.검사항목.ToString() == name).FirstOrDefault(), value);
         public 검사정보 SetResult(검사항목 항목, Double value) => SetResult(검사내역.Where(e => e.검사항목 == 항목).FirstOrDefault(), value);
         public void SetResults(카메라구분 카메라, Dictionary<String, Double> results)
         {
-            //불량영역제거(카메라);
-            //String scratch = ResultAttribute.VarName(검사항목.BottomScratch);
-            //String dent = ResultAttribute.VarName(검사항목.BottomDent);
             foreach (var result in results)
             {
-                //if (result.Key.Equals(scratch) || result.Key.Equals(dent))
-                //{
-                //    this.표면불량.AddRange(result.Value as List<불량영역>);
-                //    continue;
-                //}
                 검사정보 정보 = GetItem((장치구분)카메라, result.Key);
                 if (정보 == null) continue;
 

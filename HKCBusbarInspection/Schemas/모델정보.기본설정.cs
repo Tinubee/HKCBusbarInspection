@@ -48,7 +48,7 @@ namespace HKCBusbarInspection.Schemas
         [JsonIgnore]
         public String 모델코드 { get { return Utils.GetDescription(this.모델구분); } }
         [JsonIgnore]
-        public String 모델사진 { get { return Path.Combine(Global.환경설정.사진경로, 모델번호.ToString("d2") + ".png"); } }
+        public String 모델사진 { get { return Path.Combine(Global.환경설정.사진경로, 모델번호.ToString("d2") + ".jpg"); } }
 
         [JsonProperty("StartIndex")]
         public Int32 시작번호 { get; set; } = 0;

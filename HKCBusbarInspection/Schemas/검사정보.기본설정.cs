@@ -139,8 +139,8 @@ namespace HKCBusbarInspection.Schemas
         좌슬롯4위치도 = 309,
         [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯5위치도")]
         좌슬롯5위치도 = 310,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯1Burr")]
-        좌슬롯1Burr = 311,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯Burr")]
+        좌슬롯Burr = 311,
 
         //중앙슬롯[ -2.5 / 8.375 / 19.25 / 30.125 / 41 ]
         [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯1거리")]
@@ -163,8 +163,8 @@ namespace HKCBusbarInspection.Schemas
         중슬롯4위치도 = 409,
         [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯5위치도")]
         중슬롯5위치도 = 410,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯1Burr")]
-        중슬롯1Burr = 411,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯Burr")]
+        중슬롯Burr = 411,
 
         //우측슬롯[ -2.5 / 8.375 / 19.25 / 30.125 / 41 ]
         [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯1거리")]
@@ -187,8 +187,8 @@ namespace HKCBusbarInspection.Schemas
         우슬롯4위치도 = 509,
         [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯5위치도")]
         우슬롯5위치도 = 510,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯1Burr")]
-        우슬롯1Burr = 511,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯Burr")]
+        우슬롯Burr = 511,
 
         //측면카메라
         [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam02, None, "측면가로")]
@@ -199,15 +199,15 @@ namespace HKCBusbarInspection.Schemas
         측면홀경 = 603,
 
         //버검사
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam03, None, "L자부버")]
+        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam03, None, "L자부버")]
         L자부버 = 701,
 
         //표면검사
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "상부표면")]
+        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "상부표면")]
         상부표면 = 801,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam04, None, "하부표면")]
+        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam04, None, "하부표면")]
         하부표면 = 802,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam02, None, "측면표면")]
+        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam02, None, "측면표면")]
         측면표면 = 803,
     }
 

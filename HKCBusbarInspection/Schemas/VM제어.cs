@@ -195,13 +195,12 @@ namespace HKCBusbarInspection.Schemas
 
                             Debug.WriteLine($"{name} : {val}");
                             results.Add(name, Convert.ToDouble(val));
-                            //obal.검사자료.항목검사(this.구분, 지그, name, val);
                         }
                         catch (Exception e)
                         {
                             Debug.WriteLine(e.Message, name);
                         }
-                    } 
+                    }
                 }
                 //if (terminal.ValueType != typeof(Double)) continue;
                 //results.Add(terminal.Name, terminal.Value == null ? Double.NaN : (Double)terminal.Value);
@@ -269,7 +268,10 @@ namespace HKCBusbarInspection.Schemas
                 }
 
                 if (mat == null && imageBaseData == null)
-                    this.imageSourceModuleTool.SetImagePath(imagePath);
+                {
+                    if (imagePath != null) 
+                        this.imageSourceModuleTool.SetImagePath(imagePath);
+                }
                 else
                 {
                     imageBaseData = mat == null ? imageBaseData : MatToImageBaseData(mat);

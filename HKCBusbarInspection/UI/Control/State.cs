@@ -3,6 +3,8 @@ using DevExpress.XtraEditors;
 using HKCBusbarInspection.Schemas;
 using MvUtils;
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace HKCBusbarInspection.UI.Control
 {
@@ -45,10 +47,27 @@ namespace HKCBusbarInspection.UI.Control
 
             Global.검사자료.검사완료알림 += 검사완료알림;
 
+            b동작구분.DoubleClick += 수동검사;
+
             this.검사상태표현(결과구분.WA);
             this.e모델선택.Refresh();
             this.e장치상태.Init();
             this.e저장용량.EditValue = Global.환경설정.저장비율;
+        }
+
+        private  void 수동검사(object sender, EventArgs e)
+        {
+            if (Global.장치상태.자동수동) { Utils.WarningMsg("자동상태에서는 실행 할 수 없습니다."); return; }
+
+            new Thread(() =>
+            {
+                Global.조명제어.TurnOn(카메라구분.Cam01);
+                Global.그랩제어.GetItem(카메라구분.Cam01).SoftwareTrigger();
+
+                Global.조명제어.TurnOn(카메라구분.Cam02);
+                Global.그랩제어.GetItem(카메라구분.Cam02).SoftwareTrigger();
+            })
+            { Priority = ThreadPriority.Highest }.Start();
         }
 
         public void Close() { }

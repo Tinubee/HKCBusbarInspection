@@ -45,7 +45,7 @@ namespace HKCBusbarInspection.Schemas
             if (Global.환경설정.동작구분 == 동작구분.LocalTest) return 테스트수행();
             if (!입출자료갱신()) return false;
             검사위치확인();
-            제품검사수행();
+            //제품검사수행();
             장치상태확인();
             통신핑퐁수행();
             return true;
@@ -141,12 +141,15 @@ namespace HKCBusbarInspection.Schemas
 
             if (셔틀01검사번호 > 0)
             {
-                //new Thread(() =>
-                //{
-                //    Global.조명제어.TurnOn(카메라구분.Cam01);
-                //    Global.그랩제어.Active(카메라구분.Cam01);
-                //})
-                //{ Priority = ThreadPriority.Highest }.Start();
+                new Thread(() =>
+                {
+                    Global.조명제어.TurnOn(카메라구분.Cam01);
+                    Global.그랩제어.GetItem(카메라구분.Cam01).SoftwareTrigger();
+
+                    Global.조명제어.TurnOn(카메라구분.Cam02);
+                    Global.그랩제어.GetItem(카메라구분.Cam02).SoftwareTrigger();
+                })
+                { Priority = ThreadPriority.Highest }.Start();
             }
             if (하부01검사번호 > 0)
             {
@@ -169,13 +172,10 @@ namespace HKCBusbarInspection.Schemas
             }
             if (하부03검사번호 > 0)
             {
-                //Common.DebugWriteLine(로그영역, 로그구분.정보, "하부표면검사 트리거 수신.");
-                //Global.그랩제어.GetItem(카메라구분.Cam04).ClearImage();
                 new Thread(() =>
                 {
                     Global.모델자료.선택모델.검사시작(하부03검사번호);
                     Global.검사자료.검사시작(하부03검사번호);
-                    //Global.그랩제어.Ready(카메라구분.Cam04);
                 }).Start();
 
                 this.하부01검사트리거 = false;
