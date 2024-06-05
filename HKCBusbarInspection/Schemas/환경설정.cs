@@ -47,8 +47,10 @@ namespace HKCBusbarInspection.Schemas
         public String 사진경로 { get { return Path.Combine(기본경로, "Master"); } } // =  @"C:\HKC\Busbar\Config\Master";
         [Description("비젼 Tools"), JsonIgnore]
         public String 도구경로 { get { return Path.Combine(기본경로, "Tools"); } }
-        [JsonIgnore]
+        [JsonProperty("Forced Ejection")]
         public Boolean 강제배출 { get; set; } = true;
+        [JsonProperty("Forced Ejection OK/NG")]
+        public Boolean 양품불량 { get; set; } = true;
         [JsonIgnore]
         public String Format { get { return "#,0." + String.Empty.PadLeft(this.결과자릿수, '0'); } }
         [JsonIgnore]

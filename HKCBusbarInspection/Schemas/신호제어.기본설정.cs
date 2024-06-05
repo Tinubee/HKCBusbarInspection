@@ -46,11 +46,24 @@ namespace HKCBusbarInspection.Schemas
             셔틀02검사트리거,
             [Address("W0062")]
             셔틀03검사트리거,
+            [Address("W0080")]
+            셔틀01결과값요청,
+            [Address("W0081")]
+            셔틀02결과값요청,
+            [Address("W0082")]
+            셔틀03결과값요청,
 
             [Address("W0000")]
             모델번호,
             [Address("W0001")]
             원점복귀완료,
+
+            [Address("W0070")]
+            셔틀01촬영완료,
+            [Address("W0071")]
+            셔틀02촬영완료,
+            [Address("W0072")]
+            셔틀03촬영완료,
 
             [Address("W0100")]
             하부01인덱스,
@@ -68,7 +81,7 @@ namespace HKCBusbarInspection.Schemas
             [Address("W0021")]
             트레이검사결과,
             [Address("W0101")]
-            하부01결과, 
+            하부01결과,
             [Address("W0103")]
             하부02결과,
             [Address("W0105")]
@@ -79,6 +92,10 @@ namespace HKCBusbarInspection.Schemas
             셔틀02결과,
             [Address("W0115")]
             셔틀03결과,
+
+           
+            //[Address("W0080")]
+            //셔틀검사결과값요청,
 
             [Address("B1000")]
             통신확인전송,
@@ -91,6 +108,9 @@ namespace HKCBusbarInspection.Schemas
             자동대기,
             [Address("B1013")]
             자동운전,
+
+            [Address("B1017")]
+            마스터모드,
         }
 
         private 통신자료 입출자료 = new 통신자료();
@@ -128,6 +148,10 @@ namespace HKCBusbarInspection.Schemas
         public Boolean 하부02결과신호 { get => 신호읽기(정보주소.하부02결과); set => 결과쓰기(정보주소.하부02결과, value); }
         public Boolean 하부03결과신호 { get => 신호읽기(정보주소.하부03결과); set => 결과쓰기(정보주소.하부03결과, value); }
 
+        public Boolean 셔틀01촬영완료신호 { get => 신호읽기(정보주소.셔틀01촬영완료); set => 정보쓰기(정보주소.셔틀01촬영완료, value); }
+        public Boolean 셔틀02촬영완료신호 { get => 신호읽기(정보주소.셔틀02촬영완료); set => 정보쓰기(정보주소.셔틀02촬영완료, value); }
+        public Boolean 셔틀03촬영완료신호 { get => 신호읽기(정보주소.셔틀03촬영완료); set => 정보쓰기(정보주소.셔틀03촬영완료, value); }
+
         public Boolean 셔틀01결과신호 { get => 신호읽기(정보주소.셔틀01결과); set => 결과쓰기(정보주소.셔틀01결과, value); }
         public Boolean 셔틀02결과신호 { get => 신호읽기(정보주소.셔틀02결과); set => 결과쓰기(정보주소.셔틀02결과, value); }
         public Boolean 셔틀03결과신호 { get => 신호읽기(정보주소.셔틀03결과); set => 결과쓰기(정보주소.셔틀03결과, value); }
@@ -152,14 +176,11 @@ namespace HKCBusbarInspection.Schemas
         #region 기본함수
         public void Init()
         {
-            this.PLC = new ActUtlType64();
-            this.PLC.ActLogicalStationNumber = 스테이션번호;
+            this.PLC = new ActUtlType64 { ActLogicalStationNumber = 스테이션번호 };
             if (Global.환경설정.동작구분 == 동작구분.Live)
-            {
                 this.입출자료.Init(new Action<정보주소, Int32>((주소, 값) => 자료전송(주소, 값)));
-            }
-            else this.입출자료.Init(null);
-
+            else 
+                this.입출자료.Init(null);
         }
         public void Close() { this.Stop(); }
 
@@ -228,6 +249,9 @@ namespace HKCBusbarInspection.Schemas
             this.셔틀01검사트리거 = false;
             this.셔틀02검사트리거 = false;
             this.셔틀03검사트리거 = false;
+            this.셔틀01촬영완료신호 = false;
+            this.셔틀02촬영완료신호 = false;
+            this.셔틀03촬영완료신호 = false;
             this.하부01결과신호초기화 = false;
             this.하부02결과신호초기화 = false;
             this.하부03결과신호초기화 = false;
