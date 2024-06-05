@@ -179,7 +179,12 @@ namespace HKCBusbarInspection.Schemas
         public 검사정보 SetResult(검사정보 검사, Double value)
         {
             if (검사 == null) return null;
-            if (Double.IsNaN(value)) { 검사.측정결과 = 결과구분.ER; return 검사; }
+            if (Double.IsNaN(value)) {
+                검사.측정값 = 0;
+                검사.결과값 = 0;
+                검사.측정결과 = 결과구분.ER; 
+                return 검사; 
+            }
             Boolean ok = SetResultValue(검사, value, out Decimal 결과값, out Decimal 측정값);
             검사.측정값 = 측정값;
             검사.결과값 = 결과값;
