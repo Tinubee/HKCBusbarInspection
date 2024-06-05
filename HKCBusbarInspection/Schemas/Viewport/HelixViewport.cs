@@ -120,6 +120,13 @@ namespace HKCBusbarInspection.Schemas
             Children.Add(CreateArrowLine(center, s, color));
             Children.Add(CreateArrowLine(center, e, color));
         }
+
+        internal virtual void AddOneArrowLine(Point3D s, Point3D e, Color color)
+        {
+            Point3D center = new Point3D((s.X + e.X) / 2, (s.Y + e.Y) / 2, (s.Z + e.Z) / 2);
+            Children.Add(CreateArrowLine(center, s, color));
+            //Children.Add(CreateArrowLine(center, e, color));
+        }
         internal virtual void AddStaticLine(Point3D s, Point3D e, Color color) =>
             Children.Add(new LinesVisual3D { Points = new Point3DCollection { s, e }, Color = color });
         internal virtual void AddText3D(Point3D point, String text, Double size, Color color) =>
@@ -160,6 +167,9 @@ namespace HKCBusbarInspection.Schemas
 
         public static ArrowVisual3D CreateArrowLine(Point3D s, Point3D e, Color color) =>
             new ArrowVisual3D() { Point1 = s, Point2 = e, Diameter = 1, HeadLength = 4, Fill = new SolidColorBrush(color) };
+
+        //public static ArrowVisual3D CreateOneArrowLine(Point3D s, Color color) =>
+        //   new ArrowVisual3D() { Point1 = s, Diameter = 1, HeadLength = 4, Fill = new SolidColorBrush(color) };
 
         public static RectangleVisual3D CreateRectangle(Point3D prigin, Double width, Double height, Color color, Vector3D normal) =>
             new RectangleVisual3D() { Origin = prigin, Width = width, Length = height, Normal = normal, Fill = new SolidColorBrush(color) };

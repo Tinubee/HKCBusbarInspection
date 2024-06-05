@@ -143,11 +143,6 @@ namespace HKCBusbarInspection.Schemas
         }
         public Boolean SetResultValue(검사정보 검사, Double value, out Decimal 결과값, out Decimal 측정값, Boolean 마진포함 = false)
         {
-            if(검사.측정단위 == 단위구분.ON)
-            {
-             
-            }
-
             Decimal result = PixelToMeter(검사, value);
             result += 검사.보정값;
             result *= 검사.결과부호;
@@ -190,12 +185,14 @@ namespace HKCBusbarInspection.Schemas
             검사.결과값 = 결과값;
             if(검사.측정단위 == 단위구분.ON)
             {
+                //값이 0이면 OK / 1이상이면 NG
                 검사.측정결과 = 측정값 == 0 ? 결과구분.OK : 결과구분.NG;
+                검사.결과값 = 측정값 == 0 ? 1 : 0;
             }
             else
                 검사.측정결과 = ok ? 결과구분.OK : 결과구분.NG;
             
-            Common.DebugWriteLine("검사정보", 로그구분.정보, $"검사결과 - {검사.측정결과}");
+            //Common.DebugWriteLine("검사정보", 로그구분.정보, $"검사결과 - {검사.측정결과}");
             return 검사;
         }
         public 검사정보 SetResult(String name, Double value) => SetResult(검사내역.Where(e => e.검사항목.ToString() == name).FirstOrDefault(), value);

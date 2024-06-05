@@ -182,26 +182,6 @@ namespace HKCBusbarInspection.Schemas
             }
         }
 
-        //internal void AcquisitionFinished(IntPtr surfaceAddr, Int32 width, Int32 height)
-        //{
-        //    if (surfaceAddr == IntPtr.Zero) { AcquisitionFinished("Failed."); return; }
-        //    try
-        //    {
-        //        if (this.UseMemoryCopy) this.CopyMemory(surfaceAddr, width, height);
-        //        else
-        //        {
-        //            this.BufferAddress = surfaceAddr;
-        //            this.ImageWidth = width;
-        //            this.ImageHeight = height;
-        //        }
-        //        Global.그랩제어.그랩완료(this);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Global.오류로그(로그영역, "Acquisition", $"[{this.구분}] {ex.Message}", true);
-        //    }
-        //}
-
         internal void AcquisitionFinished(String error) =>
             Global.오류로그(로그영역, "Acquisition", $"[{this.구분.ToString()}] {error}", true);
         internal void AcquisitionFinished(Mat image)

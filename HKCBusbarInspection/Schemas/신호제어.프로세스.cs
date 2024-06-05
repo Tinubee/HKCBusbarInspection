@@ -45,7 +45,7 @@ namespace HKCBusbarInspection.Schemas
             if (Global.환경설정.동작구분 == 동작구분.LocalTest) return 테스트수행();
             if (!입출자료갱신()) return false;
             검사위치확인();
-            //제품검사수행();
+            제품검사수행();
             장치상태확인();
             통신핑퐁수행();
             return true;

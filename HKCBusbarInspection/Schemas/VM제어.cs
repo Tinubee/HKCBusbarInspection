@@ -193,7 +193,7 @@ namespace HKCBusbarInspection.Schemas
                             if (!String.IsNullOrEmpty(vals[0])) val = Convert.ToSingle(vals[0]);
                             if (vals.Length > 1) ok = MvUtils.Utils.IntValue(vals[1]) == 1;
 
-                            Debug.WriteLine($"{name} : {val}");
+                            //Debug.WriteLine($"{name} : {val}");
                             results.Add(name, Convert.ToDouble(val));
                         }
                         catch (Exception e)
@@ -269,8 +269,7 @@ namespace HKCBusbarInspection.Schemas
 
                 if (mat == null && imageBaseData == null)
                 {
-                    if (imagePath != null) 
-                        this.imageSourceModuleTool.SetImagePath(imagePath);
+                    this.imageSourceModuleTool.SetImagePath(imagePath);
                 }
                 else
                 {

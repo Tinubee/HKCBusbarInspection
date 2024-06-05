@@ -19,9 +19,8 @@ namespace HKCBusbarInspection.Schemas
 
             foreach (GlobalVarInfo info in GlobalVarInfo)
             {
-                if (info.strValueType.ToLower() == typeof(String).Name.ToLower()) continue;
-                if (info.strValueName.Contains("calValue") || info.strValueName.Contains("offset")) continue;
-
+                //if (info.strValueType.ToLower() == typeof(String).Name.ToLower()) continue;
+                //if (info.strValueName.Contains("calValue") || info.strValueName.Contains("offset")) continue;
                 this.Add(new VmVariable(info));
             }
         }

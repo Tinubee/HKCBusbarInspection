@@ -91,6 +91,7 @@ namespace HKCBusbarInspection
             this.e상태뷰어.Init();
             this.e로그내역.Init();
             this.e검사내역.Init();
+            this.e변수설정.Init();
             this.p환경설정.Enabled = Global.환경설정.권한여부(유저권한구분.시스템);
             this.p검사내역.Enabled = Global.환경설정.권한여부(유저권한구분.관리자);
             this.TabFormControl.AllowMoveTabs = false;
