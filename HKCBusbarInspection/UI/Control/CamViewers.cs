@@ -77,7 +77,8 @@ namespace HKCBusbarInspection.UI.Control
             //Mat image = Cv2.ImRead(filePath, ImreadModes.Color);
 
             플로우.Run(null, null, filePath, Global.검사자료.수동검사);
-            Global.검사자료.수동검사결과(this.구분, Global.검사자료.수동검사);
+            검사결과 검사 = Global.검사자료.검사결과계산(Global.검사자료.수동검사.검사코드);
+            Global.검사자료.수동검사결과(this.구분, 검사);
         }
 
         private void 이미지그랩후검사(object sender, ItemClickEventArgs e)
@@ -109,14 +110,6 @@ namespace HKCBusbarInspection.UI.Control
                 {
                     System.Drawing.Point btnLocation = new System.Drawing.Point(Cursor.Position.X, Cursor.Position.Y);
                     popupMenu.ShowPopup(btnLocation);
-                    //if (Global.장치상태.자동수동)
-                    //{
-                    //    String filePath = Global.모델자료.GetItem(Global.환경설정.선택모델).모델사진;
-                    //    Global.VM제어.GetItem(구분).Run(null, null, filePath, Global.검사자료.수동검사);
-                    //    Global.검사자료.수동검사결과(구분, Global.검사자료.수동검사);
-                    //}
-                    //else
-                    //    Global.그랩제어.GetItem(구분).SoftwareTrigger();
                 }
             }
             catch (Exception ex)

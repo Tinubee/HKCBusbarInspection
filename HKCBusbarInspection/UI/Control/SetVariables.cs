@@ -44,7 +44,11 @@ namespace HKCBusbarInspection.UI.Control
             Localization.SetColumnCaption(this.GridView1, typeof(VmVariable));
         }
 
-        public void UpdateGridView() => this.GridView1.RefreshData();
+        public void UpdateGridView() 
+        {
+            Global.VM제어.글로벌변수제어.Init();
+            this.GridView1.RefreshData();
+        }
 
         private void 설정적용(object sender, EventArgs e)
         {

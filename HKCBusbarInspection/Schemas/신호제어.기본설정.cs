@@ -92,11 +92,8 @@ namespace HKCBusbarInspection.Schemas
             셔틀02결과,
             [Address("W0115")]
             셔틀03결과,
-
-           
             //[Address("W0080")]
             //셔틀검사결과값요청,
-
             [Address("B1000")]
             통신확인전송,
             [Address("B1010")]

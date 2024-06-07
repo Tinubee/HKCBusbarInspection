@@ -56,10 +56,10 @@
             this.t장치설정 = new DevExpress.XtraTab.XtraTabPage();
             this.e장치설정 = new HKCBusbarInspection.UI.Control.DeviceSettings();
             this.t변수설정 = new DevExpress.XtraTab.XtraTabPage();
+            this.e변수설정 = new HKCBusbarInspection.UI.Control.SetVariables();
             this.p로그내역 = new DevExpress.XtraBars.TabFormPage();
             this.tabFormContentContainer5 = new DevExpress.XtraBars.TabFormContentContainer();
             this.e로그내역 = new HKCBusbarInspection.UI.Control.LogViewer();
-            this.e변수설정 = new HKCBusbarInspection.UI.Control.SetVariables();
             ((System.ComponentModel.ISupportInitialize)(this.tabFormControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabFormDefaultManager1)).BeginInit();
             this.tabFormContentContainer1.SuspendLayout();
@@ -320,6 +320,14 @@
             this.t변수설정.Size = new System.Drawing.Size(1918, 979);
             this.t변수설정.Text = "변수설정";
             // 
+            // e변수설정
+            // 
+            this.e변수설정.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.e변수설정.Location = new System.Drawing.Point(0, 0);
+            this.e변수설정.Name = "e변수설정";
+            this.e변수설정.Size = new System.Drawing.Size(1918, 979);
+            this.e변수설정.TabIndex = 0;
+            // 
             // p로그내역
             // 
             this.p로그내역.ContentContainer = this.tabFormContentContainer5;
@@ -343,14 +351,6 @@
             this.e로그내역.Name = "e로그내역";
             this.e로그내역.Size = new System.Drawing.Size(1920, 1010);
             this.e로그내역.TabIndex = 0;
-            // 
-            // e변수설정
-            // 
-            this.e변수설정.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.e변수설정.Location = new System.Drawing.Point(0, 0);
-            this.e변수설정.Name = "e변수설정";
-            this.e변수설정.Size = new System.Drawing.Size(1918, 979);
-            this.e변수설정.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -417,7 +417,7 @@
         private UI.Control.Results e검사내역;
         public UI.Control.ResultInspection e결과뷰어;
         private DevExpress.XtraTab.XtraTabPage t변수설정;
-        private UI.Control.SetVariables e변수설정;
+        public UI.Control.SetVariables e변수설정;
     }
 }
 

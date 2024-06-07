@@ -41,6 +41,18 @@ namespace HKCBusbarInspection.Schemas
         Cam05 = 카메라구분.Cam05,
     }
 
+    public enum 셔틀위치
+    {
+        [Description("None"), Camera(false)]
+        None = -1,
+        [Description("셔틀01"), Camera(true)]
+        Shuttle01 = 카메라구분.Cam01,
+        [Description("셔틀02"), Camera(true)]
+        Shuttle02 = 카메라구분.Cam02,
+        [Description("셔틀03"), Camera(true)]
+        Shuttle03 = 카메라구분.Cam03,
+    }
+
     public enum 결과분류
     {
         None,
@@ -276,7 +288,7 @@ namespace HKCBusbarInspection.Schemas
         public Decimal 최대값 { get; set; } = 0m;
         [Column("idoff"), JsonProperty("idoff"), Translation("Offset", "보정값"), BatchEdit(true)]
         public Decimal 보정값 { get; set; } = 0m;
-        [Column("idcal"), JsonProperty("idcal"), Translation("Calib(µm)", "교정(µm)"), BatchEdit(true)]
+        [Column("idcal"), JsonProperty("idcal"), Translation("CalValue(mm)", "교정값(mm)"), BatchEdit(true)]
         public Decimal 교정값 { get; set; } = 0m;
         [Column("idmes"), JsonProperty("idmes"), Translation("Measure", "측정값")]
         public Decimal 측정값 { get; set; } = 0m;
@@ -335,11 +347,11 @@ namespace HKCBusbarInspection.Schemas
             this.Init();
         }
 
-        public Boolean 교정계산()
+        public Decimal 교정계산()
         {
-            if (this.측정값 <= 0) return false;
-            this.교정값 = Convert.ToDecimal(Math.Round((this.실측값 - this.보정값) / this.측정값 * 1000, 9));
-            return true;
+            if (this.측정값 <= 0 || this.실측값 <= 0) return this.교정값;
+
+            return this.교정값 = Convert.ToDecimal(Math.Round((this.실측값 - this.보정값) / this.측정값, 9));
         }
 
         public 결과구분 결과계산()

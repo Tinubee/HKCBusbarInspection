@@ -114,7 +114,10 @@ namespace HKCBusbarInspection.Schemas
             검사결과 검사 = 검사항목찾기(검사코드, true);
             if (검사 == null)
             {
-                검사 = new 검사결과() { 검사코드 = 검사코드 };
+                Int32 셔틀위치확인 = 검사코드 % 3;
+                셔틀위치확인 = 셔틀위치확인 == 0 ? 3 : 셔틀위치확인;
+
+                검사 = new 검사결과() { 검사코드 = 검사코드, 셔틀위치 = (셔틀위치)셔틀위치확인 };
                 검사.Reset();
                 this.자료추가(검사);
                 this.검사스플.Add(검사.검사코드, 검사);
@@ -123,12 +126,12 @@ namespace HKCBusbarInspection.Schemas
 
             return 검사;
         }
-        
+
         public 검사결과 검사결과계산(Int32 검사코드)
         {
             if (검사코드 < 1) return null;
             검사결과 검사 = null;
-            if (Global.장치상태.자동수동)
+            if (Global.장치상태.자동수동 && 검사코드 < 9999)
             {
                 검사 = this.검사항목찾기(검사코드);
                 if (검사 == null)
@@ -261,7 +264,8 @@ namespace HKCBusbarInspection.Schemas
                 select d;
             List<검사정보> 정보 = query2.AsNoTracking().ToList();
 
-            자료.ForEach(l => {
+            자료.ForEach(l =>
+            {
                 l.AddRange(정보.Where(d => d.검사일시 == l.검사일시).ToList());
             });
             return 자료;

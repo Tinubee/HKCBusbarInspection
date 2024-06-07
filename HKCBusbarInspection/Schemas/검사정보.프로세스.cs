@@ -20,6 +20,8 @@ namespace HKCBusbarInspection.Schemas
         public DateTime 검사일시 { get; set; } = DateTime.Now;
         [Column("ilmcd"), JsonProperty("ilmcd"), Translation("Model", "모델")]
         public 모델구분 모델구분 { get; set; } = 모델구분.None;
+        [Column("ilshu"), JsonProperty("ilres"), Translation("Result", "판정")]
+        public 셔틀위치 셔틀위치 { get; set; } = 셔틀위치.None;
         [Column("ilnum"), JsonProperty("ilnum"), Translation("Index", "번호")]
         public Int32 검사코드 { get; set; } = 0;
         [Column("ilres"), JsonProperty("ilres"), Translation("Result", "판정")]
@@ -52,6 +54,7 @@ namespace HKCBusbarInspection.Schemas
         {
             this.검사일시 = DateTime.Now;
             this.모델구분 = Global.환경설정.선택모델;
+            this.셔틀위치 = 셔틀위치.None;
             this.측정결과 = 결과구분.WA;
             this.CTQ결과 = 결과구분.WA;
             this.외관결과 = 결과구분.WA;
@@ -179,16 +182,17 @@ namespace HKCBusbarInspection.Schemas
         public 검사정보 SetResult(검사정보 검사, Double value)
         {
             if (검사 == null) return null;
-            if (Double.IsNaN(value)) {
+            if (Double.IsNaN(value))
+            {
                 검사.측정값 = 0;
                 검사.결과값 = 0;
-                검사.측정결과 = 결과구분.ER; 
-                return 검사; 
+                검사.측정결과 = 결과구분.ER;
+                return 검사;
             }
             Boolean ok = SetResultValue(검사, value, out Decimal 결과값, out Decimal 측정값);
             검사.측정값 = 측정값;
             검사.결과값 = 결과값;
-            if(검사.측정단위 == 단위구분.ON)
+            if (검사.측정단위 == 단위구분.ON)
             {
                 //값이 0이면 OK / 1이상이면 NG
                 검사.측정결과 = 측정값 == 0 ? 결과구분.OK : 결과구분.NG;
@@ -196,7 +200,7 @@ namespace HKCBusbarInspection.Schemas
             }
             else
                 검사.측정결과 = ok ? 결과구분.OK : 결과구분.NG;
-            
+
             //Common.DebugWriteLine("검사정보", 로그구분.정보, $"검사결과 - {검사.측정결과}");
             return 검사;
         }
@@ -259,7 +263,7 @@ namespace HKCBusbarInspection.Schemas
             List<결과구분> 전체결과 = new List<결과구분>();
             List<결과구분> 품질결과 = new List<결과구분>();
             List<결과구분> 외관결과 = new List<결과구분>();
-           
+
             foreach (검사정보 정보 in this.검사내역)
             {
                 // 임시로 검사중인 항목 완료 처리
@@ -280,7 +284,7 @@ namespace HKCBusbarInspection.Schemas
             }
 
             this.측정결과 = 최종결과(전체결과);
-         
+
             if (this.측정결과 == 결과구분.OK)
             {
                 this.CTQ결과 = 결과구분.OK;

@@ -16,6 +16,7 @@ namespace HKCBusbarInspection.Schemas
     public class 그랩제어 : Dictionary<카메라구분, 그랩장치>
     {
         public static List<카메라구분> 대상카메라 = new List<카메라구분>() { 카메라구분.Cam01, 카메라구분.Cam02, 카메라구분.Cam03, 카메라구분.Cam04, 카메라구분.Cam05 };
+        public static List<셔틀위치> 대상셔틀 = new List<셔틀위치>() { 셔틀위치.Shuttle01, 셔틀위치.Shuttle02, 셔틀위치.Shuttle03 };
 
         public delegate void 그랩완료대리자(그랩장치 장치);
         public event 그랩완료대리자 그랩완료보고;
@@ -182,7 +183,9 @@ namespace HKCBusbarInspection.Schemas
             else
             {
                 Global.VM제어.GetItem(장치.구분).Run(장치.MatImage(), null, null, Global.검사자료.수동검사);
-                Global.검사자료.수동검사결과(장치.구분, Global.검사자료.수동검사);
+
+                검사결과 검사 = Global.검사자료.검사결과계산(Global.검사자료.수동검사.검사코드);
+                Global.검사자료.수동검사결과(장치.구분, 검사);
                 //this.그랩완료보고?.Invoke(장치);
             }
         }

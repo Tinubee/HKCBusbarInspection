@@ -25,7 +25,7 @@ namespace HKCBusbarInspection.Schemas
             }
         }
 
-        public List<VmVariable> 보정값불러오기()
+        public List<VmVariable> 전체보정값불러오기()
         {
             List<GlobalVarInfo> lists = Variables.GetAllGlobalVar();
             List<VmVariable> calValueList = new List<VmVariable>();
@@ -38,6 +38,33 @@ namespace HKCBusbarInspection.Schemas
             }
 
             return calValueList;
+        }
+
+        public String 교정값불러오기(String 이름, Int32 셔틀위치)
+        {
+            이름 += "_CalValue";
+            VmVariable info = this.Where(e => e.Name == 이름).FirstOrDefault();
+
+            String[] arrStrValue = info.StringValue.Split(';');
+
+            return arrStrValue[셔틀위치];
+        }
+
+        public void 교정값적용하기(String 이름, Int32 셔틀위치, Decimal 교정값)
+        {
+            이름 += "_CalValue";
+            VmVariable info = this.Where(e => e.Name == 이름).FirstOrDefault();
+
+            if (info == null) return;
+
+            String value = info.StringValue;
+            String[] arrStrValue = value.Split(';');
+
+            arrStrValue[셔틀위치] = 교정값.ToString();
+             
+            value = String.Join(";", arrStrValue);
+
+            this.SetValue(이름, value);
         }
 
         public String GetValue(string name)

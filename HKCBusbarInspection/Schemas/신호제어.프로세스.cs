@@ -218,6 +218,29 @@ namespace HKCBusbarInspection.Schemas
             }
         }
 
+        private Boolean 검사결과(Int32 검사번호)
+        {
+            if (검사번호 <= 0) return false;
+
+            Global.모델자료.선택모델.검사종료(검사번호);
+            검사결과 검사 = Global.검사자료.검사결과계산(검사번호);
+
+            // 강제배출
+            if (Global.환경설정.강제배출)
+            {
+                Global.검사자료.검사완료알림함수(검사);
+                return Global.환경설정.양품불량;
+            }
+            if (검사 == null)
+            {
+                Global.검사자료.검사완료알림함수(검사);
+                return false;
+            }
+            // 배출 수행
+            Global.검사자료.검사완료알림함수(검사);
+            return 검사.측정결과 == 결과구분.OK;
+        }
+
         // 최종 검사 결과 보고
         private void 검사결과전송()
         {
@@ -229,83 +252,21 @@ namespace HKCBusbarInspection.Schemas
             {
                 if (셔틀01검사번호 <= 0) return;
 
-                Global.모델자료.선택모델.검사종료(셔틀01검사번호);
-                검사결과 검사 = Global.검사자료.검사결과계산(셔틀01검사번호);
-
-                // 강제배출
-                if (Global.환경설정.강제배출)
-                {
-                    셔틀01결과전송(Global.환경설정.양품불량);
-                    Global.검사자료.검사완료알림함수(검사);
-                    return;
-                }
-                if (검사 == null)
-                {
-                    셔틀01결과전송(false);
-                    Global.검사자료.검사완료알림함수(검사);
-                    return;
-                }
-                // 배출 수행
-                셔틀01결과전송(검사.측정결과 == 결과구분.OK);
-                Debug.WriteLine($"{검사.측정결과}");
-                Global.검사자료.검사완료알림함수(검사);
+                this.셔틀01결과신호 = 검사결과(셔틀01검사번호);
             }
             if (셔틀02검사번호 > 0)
             {
                 if (셔틀02검사번호 <= 0) return;
 
-                Global.모델자료.선택모델.검사종료(셔틀02검사번호);
-                검사결과 검사 = Global.검사자료.검사결과계산(셔틀02검사번호);
-
-                // 강제배출
-                if (Global.환경설정.강제배출)
-                {
-                    셔틀02결과전송(Global.환경설정.양품불량);
-                    Global.검사자료.검사완료알림함수(검사);
-                    return;
-                }
-                if (검사 == null)
-                {
-                    셔틀02결과전송(false);
-                    Global.검사자료.검사완료알림함수(검사);
-                    return;
-                }
-                // 배출 수행
-                셔틀02결과전송(검사.측정결과 == 결과구분.OK);
-                Debug.WriteLine($"{검사.측정결과}");
-                Global.검사자료.검사완료알림함수(검사);
+                this.셔틀02결과신호 = 검사결과(셔틀02검사번호);
             }
             if (셔틀03검사번호 > 0)
             {
                 if (셔틀03검사번호 <= 0) return;
 
-                Global.모델자료.선택모델.검사종료(셔틀03검사번호);
-                검사결과 검사 = Global.검사자료.검사결과계산(셔틀03검사번호);
-
-                // 강제배출
-                if (Global.환경설정.강제배출)
-                {
-                    셔틀03결과전송(Global.환경설정.양품불량);
-                    Global.검사자료.검사완료알림함수(검사);
-                    return;
-                }
-                if (검사 == null)
-                {
-                    셔틀03결과전송(false);
-                    Global.검사자료.검사완료알림함수(검사);
-                    return;
-                }
-                // 배출 수행
-                셔틀01결과전송(검사.측정결과 == 결과구분.OK);
-                Debug.WriteLine($"{검사.측정결과}");
-                Global.검사자료.검사완료알림함수(검사);
+                this.셔틀03결과신호 = 검사결과(셔틀03검사번호);
             }
         }
-
-        // 신호 Writing 순서 중요
-        private void 셔틀01결과전송(Boolean 양품여부) => this.셔틀01결과신호 = 양품여부;
-        private void 셔틀02결과전송(Boolean 양품여부) => this.셔틀02결과신호 = 양품여부;
-        private void 셔틀03결과전송(Boolean 양품여부) => this.셔틀03결과신호 = 양품여부;
 
         // 핑퐁
         private void 통신핑퐁수행()
