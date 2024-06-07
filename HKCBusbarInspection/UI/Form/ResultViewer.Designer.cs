@@ -28,13 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.e결과뷰어 = new HKCBusbarInspection.UI.Control.ResultInspection();
             this.SuspendLayout();
+            // 
+            // e결과뷰어
+            // 
+            this.e결과뷰어.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.e결과뷰어.Location = new System.Drawing.Point(0, 0);
+            this.e결과뷰어.Name = "e결과뷰어";
+            this.e결과뷰어.Size = new System.Drawing.Size(1920, 1010);
+            this.e결과뷰어.TabIndex = 0;
             // 
             // ResultViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(555, 525);
+            this.ClientSize = new System.Drawing.Size(1920, 1010);
+            this.Controls.Add(this.e결과뷰어);
+            this.IconOptions.SvgImage = global::HKCBusbarInspection.Properties.Resources.vision;
             this.Name = "ResultViewer";
             this.Text = "ResultViewer";
             this.ResumeLayout(false);
@@ -42,5 +53,7 @@
         }
 
         #endregion
+
+        private Control.ResultInspection e결과뷰어;
     }
 }

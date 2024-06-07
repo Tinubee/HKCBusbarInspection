@@ -218,7 +218,7 @@ namespace HKCBusbarInspection.Schemas
             }
         }
 
-        private Boolean 검사결과(Int32 검사번호)
+        public Boolean 검사결과(Int32 검사번호)
         {
             if (검사번호 <= 0) return false;
 

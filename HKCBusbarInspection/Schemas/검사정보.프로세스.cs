@@ -20,7 +20,7 @@ namespace HKCBusbarInspection.Schemas
         public DateTime 검사일시 { get; set; } = DateTime.Now;
         [Column("ilmcd"), JsonProperty("ilmcd"), Translation("Model", "모델")]
         public 모델구분 모델구분 { get; set; } = 모델구분.None;
-        [Column("ilshu"), JsonProperty("ilres"), Translation("Result", "판정")]
+        [Column("ilshu"), JsonProperty("ilshu"), Translation("Shuttle", "셔틀")]
         public 셔틀위치 셔틀위치 { get; set; } = 셔틀위치.None;
         [Column("ilnum"), JsonProperty("ilnum"), Translation("Index", "번호")]
         public Int32 검사코드 { get; set; } = 0;
@@ -54,7 +54,7 @@ namespace HKCBusbarInspection.Schemas
         {
             this.검사일시 = DateTime.Now;
             this.모델구분 = Global.환경설정.선택모델;
-            this.셔틀위치 = 셔틀위치.None;
+            //this.셔틀위치 = 셔틀위치.None;
             this.측정결과 = 결과구분.WA;
             this.CTQ결과 = 결과구분.WA;
             this.외관결과 = 결과구분.WA;
@@ -113,7 +113,7 @@ namespace HKCBusbarInspection.Schemas
         {
             Double result = 0;
             if (value == 0 || 검사.교정값 <= 0) result = value;
-            else if (검사.카메라여부) result = value * (Decimal.ToDouble(검사.교정값) / 1000);
+            else if (검사.카메라여부) result = value;// * (Decimal.ToDouble(검사.교정값) / 1000);
             else result = value;
             return (Decimal)Math.Round(result, Global.환경설정.결과자릿수);
         }
@@ -152,6 +152,7 @@ namespace HKCBusbarInspection.Schemas
             Boolean r = result >= 검사.최소값 && result <= 검사.최대값;
             결과값 = result;
             측정값 = (Decimal)Math.Round(value, Global.환경설정.결과자릿수);
+
             if (r) return true;
             if (검사.마진값 <= 0 || 마진포함) return false;
 
@@ -190,6 +191,7 @@ namespace HKCBusbarInspection.Schemas
                 return 검사;
             }
             Boolean ok = SetResultValue(검사, value, out Decimal 결과값, out Decimal 측정값);
+            
             검사.측정값 = 측정값;
             검사.결과값 = 결과값;
             if (검사.측정단위 == 단위구분.ON)

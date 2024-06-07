@@ -15,7 +15,7 @@ namespace HKCBusbarInspection.UI.Form
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
             this.결과 = 결과;
-            //this.e결과뷰어.Init(Control.ResultInspection.ViewTypes.Manual);
+            this.e결과뷰어.Init(Control.ResultInspection.ViewTypes.Manual);
             this.Shown += FormShown;
         }
 
@@ -23,7 +23,7 @@ namespace HKCBusbarInspection.UI.Form
         private void FormShown(object sender, EventArgs e)
         {
             if (this.결과 == null) return;
-            //this.e결과뷰어.검사완료알림(this.결과);
+            this.e결과뷰어.검사완료알림(this.결과);
         }
     }
 }

@@ -140,9 +140,7 @@ namespace HKCBusbarInspection.Schemas
                     return null;
                 }
                 검사.결과계산();
-                Debug.WriteLine("수량추가전");
                 Global.모델자료.수량추가(검사.모델구분, 검사.측정결과);
-                Debug.WriteLine("수량추가후");
                 this.검사스플.Remove(검사코드);
             }
             else
@@ -205,6 +203,7 @@ namespace HKCBusbarInspection.Schemas
             modelBuilder.Entity<검사결과>().Property(e => e.측정결과).HasConversion(new EnumToNumberConverter<결과구분, Int32>());
             modelBuilder.Entity<검사결과>().Property(e => e.CTQ결과).HasConversion(new EnumToNumberConverter<결과구분, Int32>());
             modelBuilder.Entity<검사결과>().Property(e => e.외관결과).HasConversion(new EnumToNumberConverter<결과구분, Int32>());
+            modelBuilder.Entity<검사결과>().Property(e => e.셔틀위치).HasConversion(new EnumToNumberConverter<셔틀위치, Int32>());
 
             modelBuilder.Entity<검사정보>().HasKey(e => new { e.검사일시, e.검사항목 });
             modelBuilder.Entity<검사정보>().Property(e => e.검사그룹).HasConversion(new EnumToNumberConverter<검사그룹, Int32>());

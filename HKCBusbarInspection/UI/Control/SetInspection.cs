@@ -37,11 +37,11 @@ namespace HKCBusbarInspection.UI.Control
             this.GridView1.AddEditSelectionMenuItem();
             this.GridView1.AddSelectPopMenuItems();
             this.GridView1.CustomDrawCell += GridView1_CustomDrawCell;
+            this.GridView1.CellValueChanged += GridView1_CellValueChanged;
             this.col최소값.DisplayFormat.FormatString = Global.환경설정.결과표현;
             this.col최대값.DisplayFormat.FormatString = Global.환경설정.결과표현;
             this.col기준값.DisplayFormat.FormatString = Global.환경설정.결과표현;
             this.col보정값.DisplayFormat.FormatString = Global.환경설정.결과표현;
-            //this.col마진값.DisplayFormat.FormatString = Global.환경설정.결과표현;
             this.col실측값.DisplayFormat.FormatString = Global.환경설정.결과표현;
 
             popupMenu = new PopupMenu(this.barManager1);
@@ -80,6 +80,12 @@ namespace HKCBusbarInspection.UI.Control
             this.모델선택(this.e모델선택, EventArgs.Empty);
         }
 
+        private void GridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            if (e.Column.FieldName != this.col보정값.FieldName || e.Column.FieldName != this.col검사여부.FieldName) return;
+          
+        }
+
         private void 보정값계산(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             if (this.b셔틀위치.EditValue == null) return;
@@ -90,7 +96,7 @@ namespace HKCBusbarInspection.UI.Control
         }
         public void 교정값전체초기화()
         {
-            if (!Utils.Confirm(this.FindForm(), $"{this.b셔틀위치.EditValue}  캘리브레이션을 초기화 하시겠습니까?")) return;
+            if (!Utils.Confirm(this.FindForm(), $"{this.b셔틀위치.EditValue}  교정값 및 실측값을 초기화 하시겠습니까?")) return;
 
             Int32 셔틀위치 = (Int32)this.b셔틀위치.EditValue - 1;
             for (int lop = 0; lop < this.검사설정.Count; lop++)
@@ -98,12 +104,13 @@ namespace HKCBusbarInspection.UI.Control
                 검사정보 정보 = this.검사설정[lop] as 검사정보;
 
                 정보.교정값 = 1;
+                정보.실측값 = 0;
 
                 if (정보.측정단위 == 단위구분.mm)
                     Global.VM제어.글로벌변수제어.교정값적용하기(정보.검사명칭, 셔틀위치, 정보.교정값);
             }
 
-            Global.정보로그(로그영역, "초기화", $"[{this.b셔틀위치.EditValue}] 교정값 전체 초기화.", true);
+            Global.정보로그(로그영역, "초기화", $"[{this.b셔틀위치.EditValue}] 교정값 및 실측값 전체 초기화.", true);
             this.GridView1.RefreshData();
         }
 
@@ -122,7 +129,7 @@ namespace HKCBusbarInspection.UI.Control
                     Global.VM제어.글로벌변수제어.교정값적용하기(정보.검사명칭, 셔틀위치, 적용할교정값);
             }
 
-            Global.정보로그(로그영역, "초기화", $"[{this.b셔틀위치.EditValue}] 교정값 전체 캘리브레이션 완료.", true);
+            Global.정보로그(로그영역, "초기화", $"[{this.b셔틀위치.EditValue}] 전체항목 캘리브레이션 완료.", true);
             this.GridView1.RefreshData();
         }
 
@@ -138,7 +145,12 @@ namespace HKCBusbarInspection.UI.Control
                 비전마스터플로우 플로우 = Global.VM제어.GetItem(구분);
 
                 플로우.Run(null, null, filePath, Global.검사자료.수동검사);
-                검사결과 검사 = Global.검사자료.검사결과계산(Global.검사자료.수동검사.검사코드);
+            }
+
+            검사결과 검사 = Global.검사자료.검사결과계산(Global.검사자료.수동검사.검사코드);
+
+            foreach (카메라구분 구분 in typeof(카메라구분).GetValues())
+            {
                 Global.검사자료.수동검사결과(구분, 검사);
             }
         }
@@ -226,6 +238,8 @@ namespace HKCBusbarInspection.UI.Control
             if (!Utils.Confirm(this.FindForm(), 번역.저장확인)) return;
 
             Global.VM제어.Save();
+            Global.검사자료.수동검사.Reset();
+
             if (설정.Save()) Global.정보로그(검사설정.로그영역.GetString(), 번역.설정저장, 번역.저장완료, true);
 
             Global.MainForm.e결과뷰어.e결과목록.RefreshData();
@@ -248,6 +262,7 @@ namespace HKCBusbarInspection.UI.Control
 
                 if (검사 == null || 검사.측정결과 <= 결과구분.ER) continue;
                 설정.측정값 = 검사.측정값;
+                설정.결과값 = 검사.결과값;
             }
             this.GridView1.RefreshData();
         }

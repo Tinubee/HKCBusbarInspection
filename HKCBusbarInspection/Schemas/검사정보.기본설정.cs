@@ -9,7 +9,7 @@ using System.Reflection;
 
 namespace HKCBusbarInspection.Schemas
 {
-    public enum 카메라구분
+    public enum 카메라구분 //Flow랑 맞춰줘야함
     {
         [ListBindable(false)]
         None = 0,

@@ -121,6 +121,8 @@
             // 
             this.col시간.AppearanceHeader.Options.UseTextOptions = true;
             this.col시간.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col시간.DisplayFormat.FormatString = "{0:yy-MM-dd HH:mm:ss.fff}";
+            this.col시간.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.col시간.FieldName = "시간";
             this.col시간.Name = "col시간";
             this.col시간.Visible = true;

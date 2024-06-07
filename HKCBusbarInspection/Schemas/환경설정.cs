@@ -51,6 +51,8 @@ namespace HKCBusbarInspection.Schemas
         public Boolean 강제배출 { get; set; } = true;
         [JsonProperty("Forced Ejection OK/NG")]
         public Boolean 양품불량 { get; set; } = true;
+        [JsonProperty("Index test number")]
+        public Int32 인덱스테스트 { get; set; } = 0;
         [JsonIgnore]
         public String Format { get { return "#,0." + String.Empty.PadLeft(this.결과자릿수, '0'); } }
         [JsonIgnore]

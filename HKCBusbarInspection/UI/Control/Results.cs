@@ -2,6 +2,7 @@
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using HKCBusbarInspection.Schemas;
+using HKCBusbarInspection.UI.Form;
 using MvUtils;
 using System;
 using System.Collections;
@@ -21,11 +22,11 @@ namespace HKCBusbarInspection.UI.Control
             this.e종료일자.DateTime = DateTime.Today;
             this.b자료조회.Click += 자료조회;
             this.b엑셀파일.Click += 엑셀파일;
-            //this.col최소값.DisplayFormat.FormatString = Global.환경설정.결과표현;
-            //this.col기준값.DisplayFormat.FormatString = Global.환경설정.결과표현;
-            //this.col최대값.DisplayFormat.FormatString = Global.환경설정.결과표현;
-            //this.col보정값.DisplayFormat.FormatString = Global.환경설정.결과표현;
-            //this.col결과값.DisplayFormat.FormatString = Global.환경설정.결과표현;
+            this.col최소값.DisplayFormat.FormatString = Global.환경설정.결과표현;
+            this.col기준값.DisplayFormat.FormatString = Global.환경설정.결과표현;
+            this.col최대값.DisplayFormat.FormatString = Global.환경설정.결과표현;
+            this.col결과값.DisplayFormat.FormatString = Global.환경설정.결과표현;
+            this.col측정값.DisplayFormat.FormatString = Global.환경설정.결과표현;
             this.GridView1.Init(this.barManager1);
             this.GridView1.AddRowSelectedEvent(검사결과보기);
             this.GridView1.AddPopupMemuItem(번역.결과보기, Resources.보기, 검사결과보기);
@@ -71,10 +72,10 @@ namespace HKCBusbarInspection.UI.Control
             검사결과보기(this.GridView1, this.GridView1.FocusedRowHandle);
         private void 검사결과보기(GridView view, Int32 RowHandle)
         {
-            //검사결과 결과 = view.GetRow(RowHandle) as 검사결과;
-            //if (결과 == null) return;
-            //ResultViewer viewer = new ResultViewer(결과);
-            //viewer.Show(this.FindForm());
+            if (!(view.GetRow(RowHandle) is 검사결과 결과)) return;
+
+            ResultViewer viewer = new ResultViewer(결과);
+            viewer.Show(this.FindForm());
         }
 
         private void 카메라검사보기(GridView view, Int32 RowHandle)
