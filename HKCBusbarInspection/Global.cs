@@ -33,6 +33,7 @@ namespace HKCBusbarInspection
         public static VM제어 VM제어;
         public static 검사자료 검사자료;
         public static 사진자료 사진자료;
+        public static 유저자료 유저자료;
 
         public static class 장치상태
         {
@@ -59,11 +60,17 @@ namespace HKCBusbarInspection
                 VM제어 = new VM제어();
                 그랩제어 = new 그랩제어();
                 신호제어 = new 신호제어();
+                사진자료 = new 사진자료();
+                유저자료 = new 유저자료();
 
                 로그자료.Init();
                 환경설정.Init();
+                유저자료.Init();
                 모델자료.Init();
                 검사자료.Init();
+                VM제어.Init();
+                사진자료.Init();
+
                 if (Global.환경설정.동작구분 == 동작구분.Live)
                 {
                     신호제어.Init();
@@ -71,7 +78,7 @@ namespace HKCBusbarInspection
                     if (!신호제어.Open()) new Exception("PLC 서버에 연결할 수 없습니다.");
                     조명제어.Init();
                 }
-                VM제어.Init();
+              
                 Global.정보로그(로그영역, "초기화", "시스템을 초기화 합니다.", false);
                 Initialized?.Invoke(null, true);
                 return true;
@@ -96,7 +103,7 @@ namespace HKCBusbarInspection
                     그랩제어?.Close();
                 }
 
-                //유저자료.Close();
+                유저자료.Close();
                 신호제어?.Close();
                 환경설정?.Close();
                 사진자료?.Close();

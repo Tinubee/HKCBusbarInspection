@@ -41,7 +41,7 @@
             this.e불량수량 = new HKCBusbarInspection.UI.Control.CountViewer();
             this.e양품수량 = new HKCBusbarInspection.UI.Control.CountViewer();
             this.b수량리셋 = new DevExpress.XtraEditors.SimpleButton();
-            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.g디스크사용량 = new DevExpress.XtraEditors.GroupControl();
             this.e저장용량 = new DevExpress.XtraEditors.ProgressBarControl();
             this.ciView1 = new HKCBusbarInspection.UI.Control.CiView();
             this.titleView1 = new HKCBusbarInspection.UI.Control.TitleView();
@@ -54,8 +54,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.모델자료Bind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel1)).BeginInit();
             this.tablePanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.g디스크사용량)).BeginInit();
+            this.g디스크사용량.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.e저장용량.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindLocalization)).BeginInit();
             this.SuspendLayout();
@@ -77,7 +77,7 @@
             this.panelControl2.Controls.Add(this.b동작구분);
             this.panelControl2.Controls.Add(this.e장치상태);
             this.panelControl2.Controls.Add(this.tablePanel1);
-            this.panelControl2.Controls.Add(this.groupControl1);
+            this.panelControl2.Controls.Add(this.g디스크사용량);
             this.panelControl2.Controls.Add(this.ciView1);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(222, 2);
@@ -234,18 +234,18 @@
             this.b수량리셋.TabIndex = 0;
             this.b수량리셋.Text = "Count\r\nReset";
             // 
-            // groupControl1
+            // g디스크사용량
             // 
-            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupControl1.AppearanceCaption.Options.UseFont = true;
-            this.groupControl1.Controls.Add(this.e저장용량);
-            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupControl1.Location = new System.Drawing.Point(1343, 3);
-            this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Padding = new System.Windows.Forms.Padding(5);
-            this.groupControl1.Size = new System.Drawing.Size(150, 95);
-            this.groupControl1.TabIndex = 13;
-            this.groupControl1.Text = "Disk Usage";
+            this.g디스크사용량.AppearanceCaption.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.g디스크사용량.AppearanceCaption.Options.UseFont = true;
+            this.g디스크사용량.Controls.Add(this.e저장용량);
+            this.g디스크사용량.Dock = System.Windows.Forms.DockStyle.Right;
+            this.g디스크사용량.Location = new System.Drawing.Point(1343, 3);
+            this.g디스크사용량.Name = "g디스크사용량";
+            this.g디스크사용량.Padding = new System.Windows.Forms.Padding(5);
+            this.g디스크사용량.Size = new System.Drawing.Size(150, 95);
+            this.g디스크사용량.TabIndex = 13;
+            this.g디스크사용량.Text = "Disk Usage";
             // 
             // e저장용량
             // 
@@ -289,8 +289,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.모델자료Bind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel1)).EndInit();
             this.tablePanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            this.groupControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.g디스크사용량)).EndInit();
+            this.g디스크사용량.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.e저장용량.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindLocalization)).EndInit();
             this.ResumeLayout(false);
@@ -303,7 +303,7 @@
         private TitleView titleView1;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private CiView ciView1;
-        private DevExpress.XtraEditors.GroupControl groupControl1;
+        private DevExpress.XtraEditors.GroupControl g디스크사용량;
         private DevExpress.XtraEditors.ProgressBarControl e저장용량;
         private DevExpress.Utils.Layout.TablePanel tablePanel1;
         private DevExpress.XtraEditors.SimpleButton b수량리셋;

@@ -135,7 +135,7 @@ namespace HKCBusbarInspection.Schemas
             Double hx = r.SizeX / 2;
             Double hy = r.SizeY / 2;
             Double tz = 100;
-            Double fz = 90;
+            //Double fz = 90;
             Double sz = 80;
             Double standardX = -52.5;
             Double standardY = -150;

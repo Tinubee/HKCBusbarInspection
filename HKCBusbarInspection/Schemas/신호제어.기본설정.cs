@@ -18,6 +18,7 @@ namespace HKCBusbarInspection.Schemas
         public event Global.BaseEvent 동작상태알림;
         public event Global.BaseEvent 통신상태알림;
         public event Global.BaseEvent 검사위치알림;
+        public event Global.BaseEvent 입출변경알림;
 
         #region 기본상수 및 멤버
         private static String 로그영역 = "PLC";
@@ -30,7 +31,7 @@ namespace HKCBusbarInspection.Schemas
         public DateTime 통신확인주기시간 = DateTime.Now;
         public Int32 통신확인주기 = 1;
 
-        private enum 정보주소 : Int32
+        public enum 정보주소 : Int32
         {
             [Address("W0020")]
             트레이검사트리거,
@@ -46,11 +47,11 @@ namespace HKCBusbarInspection.Schemas
             셔틀02검사트리거,
             [Address("W0062")]
             셔틀03검사트리거,
-            [Address("W0080")]
+            [Address("W0090")]
             셔틀01결과값요청,
-            [Address("W0081")]
+            [Address("W0091")]
             셔틀02결과값요청,
-            [Address("W0082")]
+            [Address("W0092")]
             셔틀03결과값요청,
 
             [Address("W0000")]
@@ -79,7 +80,7 @@ namespace HKCBusbarInspection.Schemas
             셔틀03인덱스,
 
             [Address("W0021")]
-            트레이검사결과,
+            트레이결과,
             [Address("W0101")]
             하부01결과,
             [Address("W0103")]
@@ -92,8 +93,6 @@ namespace HKCBusbarInspection.Schemas
             셔틀02결과,
             [Address("W0115")]
             셔틀03결과,
-            //[Address("W0080")]
-            //셔틀검사결과값요청,
             [Address("B1000")]
             통신확인전송,
             [Address("B1010")]
@@ -117,7 +116,7 @@ namespace HKCBusbarInspection.Schemas
         public static Boolean ToBool(Int32 val) { return val != 0; }
         public static Int32 ToInt(Boolean val) { return val ? 1 : 0; }
         public static Int32 ToIntResult(Boolean val) { return val ? 1 : 2; }
-        private Int32 정보읽기(정보주소 구분) { return this.입출자료.Get(구분); }
+        public Int32 정보읽기(정보주소 구분) { return this.입출자료.Get(구분); }
         private Boolean 신호읽기(정보주소 구분) { return ToBool(this.입출자료.Get(구분)); }
         private void 정보쓰기(정보주소 구분, Int32 val) { this.입출자료.Set(구분, val); }
         private void 정보쓰기(정보주소 구분, Boolean val) { this.입출자료.Set(구분, ToInt(val)); }
@@ -315,7 +314,7 @@ namespace HKCBusbarInspection.Schemas
         }
         private static BitArray FromUInt16(UInt16 val) => new BitArray(BitConverter.GetBytes(val));
 
-        private class AddressAttribute : System.Attribute
+        public class AddressAttribute : Attribute
         {
             public String Address = String.Empty;
             public Int32 Delay = 0;

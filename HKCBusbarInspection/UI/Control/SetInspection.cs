@@ -24,12 +24,12 @@ namespace HKCBusbarInspection.UI.Control
         private LocalizationInspection 번역 = new LocalizationInspection();
         private PopupMenu popupMenu;
         private String 로그영역 = "검사설정";
-        //private Int32 IconSize = 16;
 
         public SetInspection() => InitializeComponent();
 
         public void Init()
         {
+            this.SetLocalization();
             this.GridView1.Init(this.barManager1);
             this.GridView1.OptionsBehavior.Editable = true;
             this.GridView1.OptionsSelection.MultiSelect = true;
@@ -76,14 +76,13 @@ namespace HKCBusbarInspection.UI.Control
 
             Localization.SetColumnCaption(this.e모델선택, typeof(모델정보));
             Localization.SetColumnCaption(this.GridView1, typeof(검사정보));
-            this.b설정저장.Text = 번역.설정저장;
             this.모델선택(this.e모델선택, EventArgs.Empty);
         }
 
         private void GridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             if (e.Column.FieldName != this.col보정값.FieldName || e.Column.FieldName != this.col검사여부.FieldName) return;
-          
+
         }
 
         private void 보정값계산(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -96,7 +95,7 @@ namespace HKCBusbarInspection.UI.Control
         }
         public void 교정값전체초기화()
         {
-            if (!Utils.Confirm(this.FindForm(), $"{this.b셔틀위치.EditValue}  교정값 및 실측값을 초기화 하시겠습니까?")) return;
+            if (!Utils.Confirm(this.FindForm(), $"{this.b셔틀위치.EditValue}  {번역.전체캘초기화}")) return;
 
             Int32 셔틀위치 = (Int32)this.b셔틀위치.EditValue - 1;
             for (int lop = 0; lop < this.검사설정.Count; lop++)
@@ -116,7 +115,7 @@ namespace HKCBusbarInspection.UI.Control
 
         public void 교정값전체계산()
         {
-            if (!Utils.Confirm(this.FindForm(), $"{this.b셔틀위치.EditValue} 전체 캘리브레이션을 수행하시겠습니까?")) return;
+            if (!Utils.Confirm(this.FindForm(), $"{this.b셔틀위치.EditValue} {번역.전체캘작업실행}")) return;
             //전체 보정값계산로직 추가
             Int32 셔틀위치 = (Int32)this.b셔틀위치.EditValue - 1;
             for (int lop = 0; lop < this.검사설정.Count; lop++)
@@ -271,10 +270,10 @@ namespace HKCBusbarInspection.UI.Control
         {
             검사정보 정보 = this.GridView1.GetFocusedRow() as 검사정보;
             if (정보 == null) return;
-            if (정보.실측값 <= 0) { Utils.WarningMsg("실측값을 입력 후 실행하세요."); return; }
-            if (정보.측정값 <= 0) { Utils.WarningMsg("검사를 수행 후 실행하세요."); return; }
-            if (정보.측정단위 != 단위구분.mm) { Utils.WarningMsg($"{정보.검사명칭} 항목은 캘리브레이션 작업을 수행 할 수 없는 항목입니다."); return; }
-            if (!Utils.Confirm(this.FindForm(), $"{this.b셔틀위치.EditValue} {정보.검사명칭} 캘리브레이션을 수행하시겠습니까?")) return;
+            if (정보.실측값 <= 0) { Utils.WarningMsg($"{번역.실측값없음}"); return; }
+            if (정보.측정값 <= 0) { Utils.WarningMsg($"{번역.측정값없음}"); return; }
+            if (정보.측정단위 != 단위구분.mm) { Utils.WarningMsg($"{정보.검사명칭} {번역.캘작업불가능}"); return; }
+            if (!Utils.Confirm(this.FindForm(), $"{this.b셔틀위치.EditValue} {정보.검사명칭} {번역.캘작업실행}")) return;
 
             Int32 셔틀위치 = (Int32)this.b셔틀위치.EditValue - 1;
             Decimal 적용할교정값 = 정보.교정계산();
@@ -295,10 +294,29 @@ namespace HKCBusbarInspection.UI.Control
             정보.SetAppearance(e);
         }
 
+        private void SetLocalization()
+        {
+            this.b설정저장.Text = 번역.설정저장;
+            this.b도구설정.Text = this.번역.도구설정;
+            this.b수동검사.Text = this.번역.수동검사;
+            this.b셔틀위치.Properties.Buttons[1].ToolTip = this.번역.교정값계산;
+            this.b셔틀위치.Properties.Buttons[3].ToolTip = this.번역.교정값초기화;
+        }
+
         private class LocalizationInspection
         {
             private enum Items
             {
+                [Translation("VM", "VM설정")]
+                도구설정,
+                [Translation("Manual Inspection", "수동검사")]
+                수동검사,
+
+                [Translation("Calibration Calculation", "교정값 계산")]
+                교정값계산,
+                [Translation("Calibration Initialize", "교정값 초기화")]
+                교정값초기화,
+
                 [Translation("Save", "설정저장")]
                 설정저장,
                 [Translation("It's saved.", "저장되었습니다.")]
@@ -316,16 +334,42 @@ namespace HKCBusbarInspection.UI.Control
                 위치회전,
                 [Translation("Do you want to rotate Viewer position?", "뷰어 위치를 회전하시겠습니까?")]
                 회전확인,
+
+                [Translation("Enter the measured value and run it.", "실측값을 입력 후 실행하세요.")]
+                실측값없음,
+                [Translation("Perform a scan and run it.", "검사를 수행 후 실행하세요.")]
+                측정값없음,
+                [Translation("This is can't calibration item.", "항목은 캘리브레이션 작업을 수행 할 수 없는 항목입니다.")]
+                캘작업불가능,
+                [Translation("Do you want to run calibration?", "캘리브레이션을 수행하시겠습니까?")]
+                캘작업실행,
+                [Translation("Do you want to run calibration all items?", "전체항목 캘리브레이션을 수행하시겠습니까?")]
+                전체캘작업실행,
+                [Translation("Do you want to run initialize calibration all items?", "전체항목 교정값 및 실측값을 초기화 하시겠습니까?")]
+                전체캘초기화,
+                [Translation("It can't use when it is in Auto Mode.", "자동모드 일때는 사용할 수 없습니다.")]
+                자동모드사용불가,
             }
 
-            public String 설정저장 { get { return Localization.GetString(Items.설정저장); } }
-            public String 저장완료 { get { return Localization.GetString(Items.저장완료); } }
-            public String 저장확인 { get { return Localization.GetString(Items.저장확인); } }
-            public String 삭제확인 { get { return Localization.GetString(Items.삭제확인); } }
-            public String 모델선택 { get { return Localization.GetString(Items.모델선택); } }
-            public String 모델없음 { get { return Localization.GetString(Items.모델없음); } }
-            public String 위치회전 { get { return Localization.GetString(Items.위치회전); } }
-            public String 회전확인 { get { return Localization.GetString(Items.회전확인); } }
+            public String 설정저장 { get => Localization.GetString(Items.설정저장); }
+            public String 저장완료 { get => Localization.GetString(Items.저장완료); }
+            public String 저장확인 { get => Localization.GetString(Items.저장확인); }
+            public String 삭제확인 { get => Localization.GetString(Items.삭제확인); }
+            public String 모델선택 { get => Localization.GetString(Items.모델선택); }
+            public String 모델없음 { get => Localization.GetString(Items.모델없음); }
+            public String 위치회전 { get => Localization.GetString(Items.위치회전); }
+            public String 회전확인 { get => Localization.GetString(Items.회전확인); }
+            public String 도구설정 { get => Localization.GetString(Items.도구설정); }
+            public String 수동검사 { get => Localization.GetString(Items.수동검사); }
+            public String 교정값계산 { get => Localization.GetString(Items.교정값계산); }
+            public String 교정값초기화 { get => Localization.GetString(Items.교정값초기화); }
+            public String 실측값없음 { get => Localization.GetString(Items.실측값없음); }
+            public String 측정값없음 { get => Localization.GetString(Items.측정값없음); }
+            public String 캘작업불가능 { get => Localization.GetString(Items.캘작업불가능); }
+            public String 캘작업실행 { get => Localization.GetString(Items.캘작업실행); }
+            public String 전체캘작업실행 { get => Localization.GetString(Items.전체캘작업실행); }
+            public String 전체캘초기화 { get => Localization.GetString(Items.전체캘초기화); }
+            public String 자동모드사용불가 { get => Localization.GetString(Items.자동모드사용불가); }
         }
     }
 }

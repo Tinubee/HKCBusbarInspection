@@ -1,12 +1,14 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using HKCBusbarInspection.Schemas;
+using MvUtils;
 using System;
 
 namespace HKCBusbarInspection.UI.Control
 {
     public partial class CamSettings : XtraUserControl
     {
+        private LocalizationCamSetting 번역 = new LocalizationCamSetting();
         public CamSettings() => InitializeComponent();
 
         public void Init()
@@ -41,6 +43,8 @@ namespace HKCBusbarInspection.UI.Control
 
         private void 저장하기(object sender, EventArgs e)
         {
+            if (!Utils.Confirm(this.FindForm(), 번역.저장확인, Localization.확인.GetString())) return;
+
             this.GridControl1.EmbeddedNavigator.Buttons.DoClick(this.GridControl1.EmbeddedNavigator.Buttons.EndEdit);
             this.GridControl2.EmbeddedNavigator.Buttons.DoClick(this.GridControl2.EmbeddedNavigator.Buttons.EndEdit);
             Global.그랩제어.Save();
@@ -62,6 +66,22 @@ namespace HKCBusbarInspection.UI.Control
             조명정보 정보 = this.GridView2.GetRow(this.GridView2.FocusedRowHandle) as 조명정보;
             if (정보 == null) return;
             정보.OnOff();
+        }
+
+        private class LocalizationCamSetting
+        {
+            private enum Items
+            {
+                [Translation("Save", "설정저장")]
+                설정저장,
+                [Translation("It's saved.", "저장되었습니다.")]
+                저장완료,
+                [Translation("Save your Camera & Light Setting?", "카메라 및 조명설정을 저장하시겠습니까?")]
+                저장확인,
+            }
+            public String 설정저장 => Localization.GetString(Items.설정저장);
+            public String 저장완료 => Localization.GetString(Items.저장완료);
+            public String 저장확인 => Localization.GetString(Items.저장확인);
         }
     }
 }

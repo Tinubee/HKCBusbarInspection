@@ -32,7 +32,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImageSave));
             this.g사진관리 = new DevExpress.XtraEditors.GroupControl();
             this.GridControl1 = new MvUtils.CustomGrid();
+            this.BindSaveImage = new System.Windows.Forms.BindingSource(this.components);
             this.GridView1 = new MvUtils.CustomView();
+            this.col카메라 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col원본저장 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col사본저장 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col사본유형 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col사진비율 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col사진품질 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.e비율 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.b정보저장 = new DevExpress.XtraEditors.SimpleButton();
@@ -42,22 +49,21 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
-            this.BindSaveImage = new System.Windows.Forms.BindingSource(this.components);
-            this.col카메라 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.col원본저장 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.col사본저장 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.col사본유형 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.col사진비율 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.col사진품질 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemToggleSwitch1 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
+            this.repositoryItemToggleSwitch2 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
+            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.g사진관리)).BeginInit();
             this.g사진관리.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindSaveImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.e비율)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BindSaveImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // g사진관리
@@ -79,12 +85,18 @@
             this.GridControl1.MainView = this.GridView1;
             this.GridControl1.Name = "GridControl1";
             this.GridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.e비율});
+            this.e비율,
+            this.repositoryItemToggleSwitch1,
+            this.repositoryItemToggleSwitch2});
             this.GridControl1.Size = new System.Drawing.Size(678, 415);
             this.GridControl1.TabIndex = 0;
             this.GridControl1.UseDirectXPaint = DevExpress.Utils.DefaultBoolean.True;
             this.GridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridView1});
+            // 
+            // BindSaveImage
+            // 
+            this.BindSaveImage.DataSource = typeof(HKCBusbarInspection.Schemas.사진저장);
             // 
             // GridView1
             // 
@@ -124,6 +136,62 @@
             this.GridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             this.GridView1.OptionsView.ShowGroupPanel = false;
             this.GridView1.RowHeight = 20;
+            // 
+            // col카메라
+            // 
+            this.col카메라.AppearanceHeader.Options.UseTextOptions = true;
+            this.col카메라.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col카메라.FieldName = "카메라";
+            this.col카메라.Name = "col카메라";
+            this.col카메라.Visible = true;
+            this.col카메라.VisibleIndex = 0;
+            // 
+            // col원본저장
+            // 
+            this.col원본저장.AppearanceHeader.Options.UseTextOptions = true;
+            this.col원본저장.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col원본저장.ColumnEdit = this.repositoryItemToggleSwitch1;
+            this.col원본저장.FieldName = "원본저장";
+            this.col원본저장.Name = "col원본저장";
+            this.col원본저장.Visible = true;
+            this.col원본저장.VisibleIndex = 1;
+            // 
+            // col사본저장
+            // 
+            this.col사본저장.AppearanceHeader.Options.UseTextOptions = true;
+            this.col사본저장.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col사본저장.ColumnEdit = this.repositoryItemToggleSwitch2;
+            this.col사본저장.FieldName = "사본저장";
+            this.col사본저장.Name = "col사본저장";
+            this.col사본저장.Visible = true;
+            this.col사본저장.VisibleIndex = 2;
+            // 
+            // col사본유형
+            // 
+            this.col사본유형.AppearanceHeader.Options.UseTextOptions = true;
+            this.col사본유형.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col사본유형.FieldName = "사본유형";
+            this.col사본유형.Name = "col사본유형";
+            this.col사본유형.Visible = true;
+            this.col사본유형.VisibleIndex = 3;
+            // 
+            // col사진비율
+            // 
+            this.col사진비율.AppearanceHeader.Options.UseTextOptions = true;
+            this.col사진비율.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col사진비율.FieldName = "사진비율";
+            this.col사진비율.Name = "col사진비율";
+            this.col사진비율.Visible = true;
+            this.col사진비율.VisibleIndex = 4;
+            // 
+            // col사진품질
+            // 
+            this.col사진품질.AppearanceHeader.Options.UseTextOptions = true;
+            this.col사진품질.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col사진품질.FieldName = "사진품질";
+            this.col사진품질.Name = "col사진품질";
+            this.col사진품질.Visible = true;
+            this.col사진품질.VisibleIndex = 5;
             // 
             // e비율
             // 
@@ -221,63 +289,19 @@
             this.barButtonItem1.Id = 0;
             this.barButtonItem1.Name = "barButtonItem1";
             // 
-            // BindSaveImage
+            // repositoryItemToggleSwitch1
             // 
-            this.BindSaveImage.DataSource = typeof(HKCBusbarInspection.Schemas.사진저장);
+            this.repositoryItemToggleSwitch1.AutoHeight = false;
+            this.repositoryItemToggleSwitch1.Name = "repositoryItemToggleSwitch1";
+            this.repositoryItemToggleSwitch1.OffText = "Off";
+            this.repositoryItemToggleSwitch1.OnText = "On";
             // 
-            // col카메라
+            // repositoryItemToggleSwitch2
             // 
-            this.col카메라.AppearanceHeader.Options.UseTextOptions = true;
-            this.col카메라.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.col카메라.FieldName = "카메라";
-            this.col카메라.Name = "col카메라";
-            this.col카메라.Visible = true;
-            this.col카메라.VisibleIndex = 0;
-            // 
-            // col원본저장
-            // 
-            this.col원본저장.AppearanceHeader.Options.UseTextOptions = true;
-            this.col원본저장.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.col원본저장.FieldName = "원본저장";
-            this.col원본저장.Name = "col원본저장";
-            this.col원본저장.Visible = true;
-            this.col원본저장.VisibleIndex = 1;
-            // 
-            // col사본저장
-            // 
-            this.col사본저장.AppearanceHeader.Options.UseTextOptions = true;
-            this.col사본저장.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.col사본저장.FieldName = "사본저장";
-            this.col사본저장.Name = "col사본저장";
-            this.col사본저장.Visible = true;
-            this.col사본저장.VisibleIndex = 2;
-            // 
-            // col사본유형
-            // 
-            this.col사본유형.AppearanceHeader.Options.UseTextOptions = true;
-            this.col사본유형.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.col사본유형.FieldName = "사본유형";
-            this.col사본유형.Name = "col사본유형";
-            this.col사본유형.Visible = true;
-            this.col사본유형.VisibleIndex = 3;
-            // 
-            // col사진비율
-            // 
-            this.col사진비율.AppearanceHeader.Options.UseTextOptions = true;
-            this.col사진비율.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.col사진비율.FieldName = "사진비율";
-            this.col사진비율.Name = "col사진비율";
-            this.col사진비율.Visible = true;
-            this.col사진비율.VisibleIndex = 4;
-            // 
-            // col사진품질
-            // 
-            this.col사진품질.AppearanceHeader.Options.UseTextOptions = true;
-            this.col사진품질.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.col사진품질.FieldName = "사진품질";
-            this.col사진품질.Name = "col사진품질";
-            this.col사진품질.Visible = true;
-            this.col사진품질.VisibleIndex = 5;
+            this.repositoryItemToggleSwitch2.AutoHeight = false;
+            this.repositoryItemToggleSwitch2.Name = "repositoryItemToggleSwitch2";
+            this.repositoryItemToggleSwitch2.OffText = "Off";
+            this.repositoryItemToggleSwitch2.OnText = "On";
             // 
             // ImageSave
             // 
@@ -293,12 +317,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.g사진관리)).EndInit();
             this.g사진관리.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindSaveImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.e비율)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BindSaveImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -325,5 +352,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn col사본유형;
         private DevExpress.XtraGrid.Columns.GridColumn col사진비율;
         private DevExpress.XtraGrid.Columns.GridColumn col사진품질;
+        private DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch repositoryItemToggleSwitch1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch repositoryItemToggleSwitch2;
+        private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
     }
 }

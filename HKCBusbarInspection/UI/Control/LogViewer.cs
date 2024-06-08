@@ -14,13 +14,15 @@ namespace HKCBusbarInspection.UI.Control
         {
             this.BindLocalization.DataSource = 번역;
             Localization.SetColumnCaption(this.GridView1, typeof(로그정보));
-
             e시작.DateTime = DateTime.Today;
             e종료.DateTime = DateTime.Today;
             b검색.ImageOptions.SvgImage = Resources.GetSvgImage(SvgImageType.검색);
             GridView1.Init();
             GridControl1.DataSource = Global.로그자료;
             this.b검색.Click += B검색_Click;
+            this.b검색.Text = this.번역.조회버튼;
+            this.layout시작.Text = this.번역.시작일자;
+            this.layout종료.Text = this.번역.종료일자;
         }
         public void Close() { }
         public void Shown()

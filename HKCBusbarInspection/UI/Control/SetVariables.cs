@@ -27,6 +27,7 @@ namespace HKCBusbarInspection.UI.Control
 
         public void Init()
         {
+            this.SetLocalization();
             this.GridView1.Init(this.barManager1);
             this.GridView1.OptionsBehavior.Editable = true;
             this.GridView1.OptionsSelection.MultiSelect = true;
@@ -88,12 +89,24 @@ namespace HKCBusbarInspection.UI.Control
             return info;
         }
 
+        private void SetLocalization()
+        {
+            this.b도구설정.Text = this.번역.도구설정;
+            this.b도구저장.Text = this.번역.설정저장;
+            this.b설정적용.Text = this.번역.설정적용;
+        }
+
         private class LocalizationSetVariables
         {
             private enum Items
             {
+                [Translation("VM", "VM설정")]
+                도구설정,
                 [Translation("Save", "설정저장")]
                 설정저장,
+                [Translation("Apply", "설정적용")]
+                설정적용,
+
                 [Translation("It's saved.", "저장되었습니다.")]
                 저장완료,
                 [Translation("Save the global variable settings?", "Global 변수 설정을 저장하시겠습니까?")]
@@ -103,9 +116,12 @@ namespace HKCBusbarInspection.UI.Control
             }
 
             public String 설정저장 { get { return Localization.GetString(Items.설정저장); } }
+            public String 설정적용 { get { return Localization.GetString(Items.설정적용); } }
             public String 저장완료 { get { return Localization.GetString(Items.저장완료); } }
             public String 저장확인 { get { return Localization.GetString(Items.저장확인); } }
             public String 적용확인 { get { return Localization.GetString(Items.적용확인); } }
+
+            public String 도구설정 { get => Localization.GetString(Items.도구설정); }
         }
     }
 }

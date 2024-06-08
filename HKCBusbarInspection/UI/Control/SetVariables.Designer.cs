@@ -170,7 +170,7 @@
             this.b설정적용.Appearance.Options.UseFont = true;
             this.b설정적용.Dock = System.Windows.Forms.DockStyle.Right;
             this.b설정적용.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("b설정적용.ImageOptions.SvgImage")));
-            this.b설정적용.Location = new System.Drawing.Point(1018, 5);
+            this.b설정적용.Location = new System.Drawing.Point(846, 5);
             this.b설정적용.Name = "b설정적용";
             this.b설정적용.Size = new System.Drawing.Size(180, 46);
             this.b설정적용.TabIndex = 0;
@@ -180,9 +180,9 @@
             // 
             this.b도구저장.Appearance.Font = new System.Drawing.Font("맑은 고딕", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.b도구저장.Appearance.Options.UseFont = true;
-            this.b도구저장.Dock = System.Windows.Forms.DockStyle.Left;
+            this.b도구저장.Dock = System.Windows.Forms.DockStyle.Right;
             this.b도구저장.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("b도구저장.ImageOptions.SvgImage")));
-            this.b도구저장.Location = new System.Drawing.Point(177, 5);
+            this.b도구저장.Location = new System.Drawing.Point(1026, 5);
             this.b도구저장.Name = "b도구저장";
             this.b도구저장.Size = new System.Drawing.Size(172, 46);
             this.b도구저장.TabIndex = 11;

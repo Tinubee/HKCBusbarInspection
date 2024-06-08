@@ -72,8 +72,8 @@
             this.col실측값 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ｅ교정계산 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.col검사여부 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
             this.repositoryItemToggleSwitch1 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
+            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.b셔틀위치.Properties)).BeginInit();
@@ -84,8 +84,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.검사설정Bind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ｅ교정계산)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -169,9 +169,9 @@
             this.b수동검사.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b수동검사.Dock = System.Windows.Forms.DockStyle.Left;
             this.b수동검사.ImageOptions.SvgImage = global::HKCBusbarInspection.Properties.Resources.bo_security_permission_action;
-            this.b수동검사.Location = new System.Drawing.Point(577, 5);
+            this.b수동검사.Location = new System.Drawing.Point(565, 5);
             this.b수동검사.Name = "b수동검사";
-            this.b수동검사.Size = new System.Drawing.Size(172, 42);
+            this.b수동검사.Size = new System.Drawing.Size(240, 42);
             this.b수동검사.TabIndex = 22;
             this.b수동검사.Text = "수동검사";
             // 
@@ -182,9 +182,9 @@
             this.b도구설정.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b도구설정.Dock = System.Windows.Forms.DockStyle.Left;
             this.b도구설정.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("b도구설정.ImageOptions.SvgImage")));
-            this.b도구설정.Location = new System.Drawing.Point(405, 5);
+            this.b도구설정.Location = new System.Drawing.Point(325, 5);
             this.b도구설정.Name = "b도구설정";
-            this.b도구설정.Size = new System.Drawing.Size(172, 42);
+            this.b도구설정.Size = new System.Drawing.Size(240, 42);
             this.b도구설정.TabIndex = 21;
             this.b도구설정.Text = "VM 설정";
             // 
@@ -209,7 +209,7 @@
             this.e모델선택.Properties.DisplayMember = "모델구분";
             this.e모델선택.Properties.NullText = "[모델선택]";
             this.e모델선택.Properties.ValueMember = "모델구분";
-            this.e모델선택.Size = new System.Drawing.Size(400, 42);
+            this.e모델선택.Size = new System.Drawing.Size(320, 42);
             this.e모델선택.TabIndex = 9;
             // 
             // b설정저장
@@ -451,17 +451,17 @@
             this.col검사여부.Visible = true;
             this.col검사여부.VisibleIndex = 14;
             // 
-            // popupMenu1
-            // 
-            this.popupMenu1.Manager = this.barManager1;
-            this.popupMenu1.Name = "popupMenu1";
-            // 
             // repositoryItemToggleSwitch1
             // 
             this.repositoryItemToggleSwitch1.AutoHeight = false;
             this.repositoryItemToggleSwitch1.Name = "repositoryItemToggleSwitch1";
             this.repositoryItemToggleSwitch1.OffText = "Off";
             this.repositoryItemToggleSwitch1.OnText = "On";
+            // 
+            // popupMenu1
+            // 
+            this.popupMenu1.Manager = this.barManager1;
+            this.popupMenu1.Name = "popupMenu1";
             // 
             // SetInspection
             // 
@@ -485,8 +485,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.검사설정Bind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ｅ교정계산)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

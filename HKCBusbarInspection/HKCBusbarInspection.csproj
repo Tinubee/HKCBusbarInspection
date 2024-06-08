@@ -376,6 +376,12 @@
     <Compile Include="UI\Form\LiveForm.Designer.cs">
       <DependentUpon>LiveForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Form\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Form\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Form\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -435,6 +441,9 @@
     <EmbeddedResource Include="UI\Control\ImageSave.resx">
       <DependentUpon>ImageSave.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Control\IOControl.resx">
+      <DependentUpon>IOControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Control\LogViewer.resx">
       <DependentUpon>LogViewer.cs</DependentUpon>
     </EmbeddedResource>
@@ -468,6 +477,9 @@
     <EmbeddedResource Include="UI\Form\LiveForm.resx">
       <DependentUpon>LiveForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Form\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Form\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -497,6 +509,7 @@
     <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.사진저장.datasource" />
     <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.조명제어.datasource" />
     <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.환경설정.datasource" />
+    <None Include="Properties\DataSources\HKCBusbarInspection.UI.Control.IOControl.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -549,6 +562,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\bo_user.svg" />
+    <None Include="Resources\Korea.svg" />
     <None Include="Resources\resetlayoutoptions.svg" />
     <None Include="Resources\business_calculator.svg" />
     <None Include="Resources\bo_security_permission_action.svg" />

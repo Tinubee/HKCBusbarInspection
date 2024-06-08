@@ -44,8 +44,8 @@
             this.e종료 = new DevExpress.XtraEditors.DateEdit();
             this.e시작 = new DevExpress.XtraEditors.DateEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layout시작 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layout종료 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.BindLocalization = new System.Windows.Forms.BindingSource(this.components);
@@ -59,8 +59,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.e시작.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.e시작.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layout시작)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layout종료)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindLocalization)).BeginInit();
@@ -231,8 +231,8 @@
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.Root.GroupBordersVisible = false;
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem1,
-            this.layoutControlItem2,
+            this.layout시작,
+            this.layout종료,
             this.emptySpaceItem1,
             this.layoutControlItem3});
             this.Root.Name = "Root";
@@ -240,31 +240,31 @@
             this.Root.Size = new System.Drawing.Size(836, 40);
             this.Root.TextVisible = false;
             // 
-            // layoutControlItem1
+            // layout시작
             // 
-            this.layoutControlItem1.Control = this.e시작;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem1.MaxSize = new System.Drawing.Size(164, 26);
-            this.layoutControlItem1.MinSize = new System.Drawing.Size(164, 26);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(4, 4, 4, 4);
-            this.layoutControlItem1.Size = new System.Drawing.Size(164, 30);
-            this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem1.Text = "시작일자";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(48, 15);
+            this.layout시작.Control = this.e시작;
+            this.layout시작.Location = new System.Drawing.Point(0, 0);
+            this.layout시작.MaxSize = new System.Drawing.Size(164, 26);
+            this.layout시작.MinSize = new System.Drawing.Size(164, 26);
+            this.layout시작.Name = "layout시작";
+            this.layout시작.Padding = new DevExpress.XtraLayout.Utils.Padding(4, 4, 4, 4);
+            this.layout시작.Size = new System.Drawing.Size(164, 30);
+            this.layout시작.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layout시작.Text = "시작일자";
+            this.layout시작.TextSize = new System.Drawing.Size(48, 15);
             // 
-            // layoutControlItem2
+            // layout종료
             // 
-            this.layoutControlItem2.Control = this.e종료;
-            this.layoutControlItem2.Location = new System.Drawing.Point(164, 0);
-            this.layoutControlItem2.MaxSize = new System.Drawing.Size(164, 26);
-            this.layoutControlItem2.MinSize = new System.Drawing.Size(164, 26);
-            this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(4, 4, 4, 4);
-            this.layoutControlItem2.Size = new System.Drawing.Size(164, 30);
-            this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem2.Text = "종료일자";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(48, 15);
+            this.layout종료.Control = this.e종료;
+            this.layout종료.Location = new System.Drawing.Point(164, 0);
+            this.layout종료.MaxSize = new System.Drawing.Size(164, 26);
+            this.layout종료.MinSize = new System.Drawing.Size(164, 26);
+            this.layout종료.Name = "layout종료";
+            this.layout종료.Padding = new DevExpress.XtraLayout.Utils.Padding(4, 4, 4, 4);
+            this.layout종료.Size = new System.Drawing.Size(164, 30);
+            this.layout종료.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layout종료.Text = "종료일자";
+            this.layout종료.TextSize = new System.Drawing.Size(48, 15);
             // 
             // emptySpaceItem1
             // 
@@ -305,8 +305,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.e시작.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.e시작.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layout시작)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layout종료)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindLocalization)).EndInit();
@@ -323,8 +323,8 @@
         private DevExpress.XtraEditors.DateEdit e종료;
         private DevExpress.XtraEditors.DateEdit e시작;
         private DevExpress.XtraLayout.LayoutControlGroup Root;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
+        private DevExpress.XtraLayout.LayoutControlItem layout시작;
+        private DevExpress.XtraLayout.LayoutControlItem layout종료;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private System.Windows.Forms.BindingSource 로그자료Bind;

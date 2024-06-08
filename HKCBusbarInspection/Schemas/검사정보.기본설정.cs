@@ -43,13 +43,13 @@ namespace HKCBusbarInspection.Schemas
 
     public enum 셔틀위치
     {
-        [Description("None"), Camera(false)]
+        [Translation("None"), Camera(false)]
         None = -1,
-        [Description("셔틀01"), Camera(true)]
+        [Translation("셔틀01","Shuttle01"), Camera(true)]
         Shuttle01 = 카메라구분.Cam01,
-        [Description("셔틀02"), Camera(true)]
+        [Translation("셔틀02", "Shuttle02"), Camera(true)]
         Shuttle02 = 카메라구분.Cam02,
-        [Description("셔틀03"), Camera(true)]
+        [Translation("셔틀03", "Shuttle03"), Camera(true)]
         Shuttle03 = 카메라구분.Cam03,
     }
 

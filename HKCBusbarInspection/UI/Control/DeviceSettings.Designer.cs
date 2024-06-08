@@ -34,6 +34,7 @@
             this.e카메라 = new HKCBusbarInspection.UI.Control.CamSettings();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.t기타설정 = new DevExpress.XtraTab.XtraTabPage();
+            this.e입출신호 = new HKCBusbarInspection.UI.Control.IOControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.b설정저장 = new DevExpress.XtraEditors.SimpleButton();
@@ -41,25 +42,23 @@
             this.e배출구분 = new DevExpress.XtraEditors.ToggleSwitch();
             this.e강제배출 = new DevExpress.XtraEditors.ToggleSwitch();
             this.e표면검사이미지저장 = new DevExpress.XtraEditors.ToggleSwitch();
-            this.e표면검사사용 = new DevExpress.XtraEditors.ToggleSwitch();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.g강제배출 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.g트리거보드 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutControlGroup8 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlGroup8 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.b표면검사이미지저장 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.t환경설정 = new DevExpress.XtraTab.XtraTabPage();
             this.e기본설정 = new HKCBusbarInspection.UI.Control.Config();
             this.BindLocalization = new System.Windows.Forms.BindingSource(this.components);
             this.환경설정Bind = new System.Windows.Forms.BindingSource(this.components);
-            this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).BeginInit();
             this.splitContainerControl1.Panel1.SuspendLayout();
@@ -76,24 +75,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.e배출구분.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.e강제배출.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.e표면검사이미지저장.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.e표면검사사용.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.g강제배출)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.g트리거보드)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.b표면검사이미지저장)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
             this.t환경설정.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BindLocalization)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.환경설정Bind)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainerControl1
@@ -137,10 +134,19 @@
             // 
             // t기타설정
             // 
+            this.t기타설정.Controls.Add(this.e입출신호);
             this.t기타설정.Controls.Add(this.groupControl1);
             this.t기타설정.Name = "t기타설정";
             this.t기타설정.Size = new System.Drawing.Size(670, 1009);
             this.t기타설정.Text = "Others";
+            // 
+            // e입출신호
+            // 
+            this.e입출신호.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.e입출신호.Location = new System.Drawing.Point(0, 418);
+            this.e입출신호.Name = "e입출신호";
+            this.e입출신호.Size = new System.Drawing.Size(670, 591);
+            this.e입출신호.TabIndex = 4;
             // 
             // groupControl1
             // 
@@ -148,7 +154,7 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(670, 543);
+            this.groupControl1.Size = new System.Drawing.Size(670, 418);
             this.groupControl1.TabIndex = 3;
             this.groupControl1.Text = "Tools";
             // 
@@ -159,13 +165,12 @@
             this.layoutControl1.Controls.Add(this.e배출구분);
             this.layoutControl1.Controls.Add(this.e강제배출);
             this.layoutControl1.Controls.Add(this.e표면검사이미지저장);
-            this.layoutControl1.Controls.Add(this.e표면검사사용);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(2, 27);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(221, 134, 650, 511);
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(666, 514);
+            this.layoutControl1.Size = new System.Drawing.Size(666, 389);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -175,7 +180,7 @@
             this.b설정저장.Appearance.Options.UseFont = true;
             this.b설정저장.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("b설정저장.ImageOptions.SvgImage")));
             this.b설정저장.ImageOptions.SvgImageSize = new System.Drawing.Size(24, 24);
-            this.b설정저장.Location = new System.Drawing.Point(432, 472);
+            this.b설정저장.Location = new System.Drawing.Point(432, 347);
             this.b설정저장.Name = "b설정저장";
             this.b설정저장.Size = new System.Drawing.Size(222, 30);
             this.b설정저장.StyleController = this.layoutControl1;
@@ -218,7 +223,7 @@
             // 
             // e표면검사이미지저장
             // 
-            this.e표면검사이미지저장.Location = new System.Drawing.Point(222, 299);
+            this.e표면검사이미지저장.Location = new System.Drawing.Point(222, 257);
             this.e표면검사이미지저장.Name = "e표면검사이미지저장";
             this.e표면검사이미지저장.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.e표면검사이미지저장.Properties.Appearance.Options.UseFont = true;
@@ -228,18 +233,6 @@
             this.e표면검사이미지저장.StyleController = this.layoutControl1;
             this.e표면검사이미지저장.TabIndex = 6;
             // 
-            // e표면검사사용
-            // 
-            this.e표면검사사용.Location = new System.Drawing.Point(222, 257);
-            this.e표면검사사용.Name = "e표면검사사용";
-            this.e표면검사사용.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.e표면검사사용.Properties.Appearance.Options.UseFont = true;
-            this.e표면검사사용.Properties.OffText = "Off";
-            this.e표면검사사용.Properties.OnText = "On";
-            this.e표면검사사용.Size = new System.Drawing.Size(102, 22);
-            this.e표면검사사용.StyleController = this.layoutControl1;
-            this.e표면검사사용.TabIndex = 6;
-            // 
             // Root
             // 
             this.Root.AppearanceItemCaption.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -247,8 +240,8 @@
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.Root.GroupBordersVisible = false;
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlGroup1,
-            this.layoutControlGroup3,
+            this.g강제배출,
+            this.g트리거보드,
             this.layoutControlItem6,
             this.emptySpaceItem2,
             this.emptySpaceItem1,
@@ -256,20 +249,20 @@
             this.emptySpaceItem3,
             this.emptySpaceItem4});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(666, 514);
+            this.Root.Size = new System.Drawing.Size(666, 389);
             this.Root.TextVisible = false;
             // 
-            // layoutControlGroup1
+            // g강제배출
             // 
-            this.layoutControlGroup1.AppearanceGroup.Options.UseTextOptions = true;
-            this.layoutControlGroup1.AppearanceGroup.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.g강제배출.AppearanceGroup.Options.UseTextOptions = true;
+            this.g강제배출.AppearanceGroup.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.g강제배출.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1,
             this.layoutControlItem2});
-            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(646, 94);
-            this.layoutControlGroup1.Text = "Forced Ejection";
+            this.g강제배출.Location = new System.Drawing.Point(0, 0);
+            this.g강제배출.Name = "g강제배출";
+            this.g강제배출.Size = new System.Drawing.Size(646, 94);
+            this.g강제배출.Text = "Forced Ejection";
             // 
             // layoutControlItem1
             // 
@@ -296,16 +289,16 @@
             this.layoutControlItem2.Text = "NG/OK";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(178, 25);
             // 
-            // layoutControlGroup3
+            // g트리거보드
             // 
-            this.layoutControlGroup3.AppearanceGroup.Options.UseTextOptions = true;
-            this.layoutControlGroup3.AppearanceGroup.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.g트리거보드.AppearanceGroup.Options.UseTextOptions = true;
+            this.g트리거보드.AppearanceGroup.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.g트리거보드.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem3});
-            this.layoutControlGroup3.Location = new System.Drawing.Point(0, 94);
-            this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(336, 106);
-            this.layoutControlGroup3.Text = "Camera Trigger Board Position Reset";
+            this.g트리거보드.Location = new System.Drawing.Point(0, 94);
+            this.g트리거보드.Name = "g트리거보드";
+            this.g트리거보드.Size = new System.Drawing.Size(336, 106);
+            this.g트리거보드.Text = "Camera Trigger Board Position Reset";
             // 
             // layoutControlItem3
             // 
@@ -320,7 +313,7 @@
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.b설정저장;
-            this.layoutControlItem6.Location = new System.Drawing.Point(420, 460);
+            this.layoutControlItem6.Location = new System.Drawing.Point(420, 335);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Size = new System.Drawing.Size(226, 34);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
@@ -329,10 +322,18 @@
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 460);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 335);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
             this.emptySpaceItem2.Size = new System.Drawing.Size(420, 34);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem1
+            // 
+            this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 291);
+            this.emptySpaceItem1.Name = "emptySpaceItem1";
+            this.emptySpaceItem1.Size = new System.Drawing.Size(646, 44);
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlGroup8
             // 
@@ -342,76 +343,28 @@
             this.layoutControlGroup8.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlGroup8.CustomizationFormText = "Sensors Zero Set Mode";
             this.layoutControlGroup8.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem13,
-            this.layoutControlItem9});
+            this.b표면검사이미지저장});
             this.layoutControlGroup8.Location = new System.Drawing.Point(0, 200);
             this.layoutControlGroup8.Name = "layoutControlGroup8";
             this.layoutControlGroup8.OptionsItemText.TextToControlDistance = 3;
-            this.layoutControlGroup8.Size = new System.Drawing.Size(336, 133);
+            this.layoutControlGroup8.Size = new System.Drawing.Size(336, 91);
             this.layoutControlGroup8.Text = "Surface Inspection";
             // 
-            // layoutControlItem13
+            // b표면검사이미지저장
             // 
-            this.layoutControlItem13.AppearanceItemCaption.Font = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Bold);
-            this.layoutControlItem13.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem13.AppearanceItemCaption.Options.UseTextOptions = true;
-            this.layoutControlItem13.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.layoutControlItem13.Control = this.e표면검사사용;
-            this.layoutControlItem13.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
-            this.layoutControlItem13.CustomizationFormText = "State";
-            this.layoutControlItem13.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem13.Size = new System.Drawing.Size(312, 42);
-            this.layoutControlItem13.Text = "Used";
-            this.layoutControlItem13.TextSize = new System.Drawing.Size(178, 20);
-            // 
-            // layoutControlItem9
-            // 
-            this.layoutControlItem9.AppearanceItemCaption.Font = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.layoutControlItem9.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem9.AppearanceItemCaption.Options.UseTextOptions = true;
-            this.layoutControlItem9.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.layoutControlItem9.Control = this.e표면검사이미지저장;
-            this.layoutControlItem9.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
-            this.layoutControlItem9.CustomizationFormText = "State";
-            this.layoutControlItem9.Location = new System.Drawing.Point(0, 42);
-            this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.layoutControlItem9.Size = new System.Drawing.Size(312, 42);
-            this.layoutControlItem9.Text = "Surface Image Save Used";
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(178, 20);
-            // 
-            // emptySpaceItem1
-            // 
-            this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 333);
-            this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(646, 127);
-            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // t환경설정
-            // 
-            this.t환경설정.Controls.Add(this.e기본설정);
-            this.t환경설정.Name = "t환경설정";
-            this.t환경설정.Size = new System.Drawing.Size(550, 1009);
-            this.t환경설정.Text = "Config";
-            // 
-            // e기본설정
-            // 
-            this.e기본설정.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.e기본설정.Location = new System.Drawing.Point(0, 0);
-            this.e기본설정.Name = "e기본설정";
-            this.e기본설정.Size = new System.Drawing.Size(550, 1009);
-            this.e기본설정.TabIndex = 0;
-            // 
-            // BindLocalization
-            // 
-            this.BindLocalization.DataSource = typeof(HKCBusbarInspection.UI.Control.DeviceSettings.LocalizationDeviceSetting);
-            // 
-            // 환경설정Bind
-            // 
-            this.환경설정Bind.DataSource = typeof(HKCBusbarInspection.Schemas.환경설정);
+            this.b표면검사이미지저장.AppearanceItemCaption.Font = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.b표면검사이미지저장.AppearanceItemCaption.Options.UseFont = true;
+            this.b표면검사이미지저장.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.b표면검사이미지저장.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.b표면검사이미지저장.Control = this.e표면검사이미지저장;
+            this.b표면검사이미지저장.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.b표면검사이미지저장.CustomizationFormText = "State";
+            this.b표면검사이미지저장.Location = new System.Drawing.Point(0, 0);
+            this.b표면검사이미지저장.Name = "b표면검사이미지저장";
+            this.b표면검사이미지저장.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
+            this.b표면검사이미지저장.Size = new System.Drawing.Size(312, 42);
+            this.b표면검사이미지저장.Text = "Surface Image Save Used";
+            this.b표면검사이미지저장.TextSize = new System.Drawing.Size(178, 20);
             // 
             // emptySpaceItem3
             // 
@@ -426,8 +379,31 @@
             this.emptySpaceItem4.AllowHotTrack = false;
             this.emptySpaceItem4.Location = new System.Drawing.Point(336, 200);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
-            this.emptySpaceItem4.Size = new System.Drawing.Size(310, 133);
+            this.emptySpaceItem4.Size = new System.Drawing.Size(310, 91);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // t환경설정
+            // 
+            this.t환경설정.Controls.Add(this.e기본설정);
+            this.t환경설정.Name = "t환경설정";
+            this.t환경설정.Size = new System.Drawing.Size(670, 1009);
+            this.t환경설정.Text = "Config";
+            // 
+            // e기본설정
+            // 
+            this.e기본설정.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.e기본설정.Location = new System.Drawing.Point(0, 0);
+            this.e기본설정.Name = "e기본설정";
+            this.e기본설정.Size = new System.Drawing.Size(670, 1009);
+            this.e기본설정.TabIndex = 0;
+            // 
+            // BindLocalization
+            // 
+            this.BindLocalization.DataSource = typeof(HKCBusbarInspection.UI.Control.DeviceSettings.LocalizationDeviceSetting);
+            // 
+            // 환경설정Bind
+            // 
+            this.환경설정Bind.DataSource = typeof(HKCBusbarInspection.Schemas.환경설정);
             // 
             // DeviceSettings
             // 
@@ -452,24 +428,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.e배출구분.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.e강제배출.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.e표면검사이미지저장.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.e표면검사사용.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.g강제배출)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.g트리거보드)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.b표면검사이미지저장)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
             this.t환경설정.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.BindLocalization)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.환경설정Bind)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -490,20 +464,19 @@
         private DevExpress.XtraEditors.ToggleSwitch e배출구분;
         private DevExpress.XtraEditors.ToggleSwitch e강제배출;
         private DevExpress.XtraEditors.ToggleSwitch e표면검사이미지저장;
-        private DevExpress.XtraEditors.ToggleSwitch e표면검사사용;
         private DevExpress.XtraLayout.LayoutControlGroup Root;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
-        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
+        private DevExpress.XtraLayout.LayoutControlGroup g강제배출;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
-        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
+        private DevExpress.XtraLayout.LayoutControlGroup g트리거보드;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup8;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
+        private DevExpress.XtraLayout.LayoutControlItem b표면검사이미지저장;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
+        private IOControl e입출신호;
     }
 }

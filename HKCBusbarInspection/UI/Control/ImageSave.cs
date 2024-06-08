@@ -15,7 +15,7 @@ namespace HKCBusbarInspection.UI.Control
             this.GridView1.Init(this.barManager1);
             this.GridView1.OptionsBehavior.Editable = true;
             this.GridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.None;
-            this.GridControl1.DataSource = Global.사진자료.Values;
+            this.GridControl1.DataSource = Global.사진자료?.Values;
             this.GridView1.BestFitColumns();
             this.b정보저장.Click += 정보저장;
             Localization.SetColumnCaption(this.GridView1, typeof(사진저장));
@@ -39,7 +39,7 @@ namespace HKCBusbarInspection.UI.Control
                 정보저장,
                 [Translation("It's saved.", "저장되었습니다.")]
                 저장완료,
-                [Translation("Save this data?", "정보를 저장하시겠습니까?")]
+                [Translation("Save this ImageSave data?", "이미지 저장 정보를 저장하시겠습니까?")]
                 저장확인,
             }
 

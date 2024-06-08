@@ -16,7 +16,7 @@ namespace HKCBusbarInspection.UI.Control
         }
         public void Init()
         {
-            //this.e사진저장.Init();
+            this.e사진저장.Init();
             this.환경설정Bind.DataSource = Global.환경설정;
             this.d기본경로.SelectedPath = Global.환경설정.기본경로;
             this.d사본저장.SelectedPath = Global.환경설정.사진저장경로;

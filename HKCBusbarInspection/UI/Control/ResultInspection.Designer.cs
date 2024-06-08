@@ -222,9 +222,9 @@
             this.e검사시간.Properties.Appearance.Options.UseFont = true;
             this.e검사시간.Properties.Appearance.Options.UseTextOptions = true;
             this.e검사시간.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.e검사시간.Properties.DisplayFormat.FormatString = "{0:yyyy-MM-dd HH:mm:ss}";
+            this.e검사시간.Properties.DisplayFormat.FormatString = "{0:yyyy-MM-dd HH:mm:ss.fff}";
             this.e검사시간.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.e검사시간.Properties.EditFormat.FormatString = "{0:yyyy-MM-dd HH:mm:ss}";
+            this.e검사시간.Properties.EditFormat.FormatString = "{0:yyyy-MM-dd HH:mm:ss.fff}";
             this.e검사시간.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.e검사시간.Properties.ReadOnly = true;
             this.e검사시간.Size = new System.Drawing.Size(232, 32);

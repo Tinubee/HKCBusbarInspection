@@ -16,6 +16,7 @@ namespace HKCBusbarInspection.UI.Control
             InitializeComponent();
             this.BindLocalization.DataSource = this.번역;
             this.BindLocalization.ResetBindings(false);
+            this.SetLocalization();
         }
 
         public void Init()
@@ -42,7 +43,7 @@ namespace HKCBusbarInspection.UI.Control
             this.b수량리셋.Click += 수량리셋_Click;
 
             Global.환경설정.모델변경알림 += 모델변경알림;
-            if (Global.신호제어 != null) 
+            if (Global.신호제어 != null)
                 Global.신호제어.동작상태알림 += 동작상태알림;
 
             Global.검사자료.검사완료알림 += 검사완료알림;
@@ -55,7 +56,7 @@ namespace HKCBusbarInspection.UI.Control
             this.e저장용량.EditValue = Global.환경설정.저장비율;
         }
 
-        private  void 수동검사(object sender, EventArgs e)
+        private void 수동검사(object sender, EventArgs e)
         {
             if (Global.장치상태.자동수동) { Utils.WarningMsg("자동상태에서는 실행 할 수 없습니다."); return; }
 
@@ -143,6 +144,16 @@ namespace HKCBusbarInspection.UI.Control
             this.모델자료Bind.ResetBindings(false);
         }
 
+        private void SetLocalization()
+        {
+            this.e양품수량.Caption = this.번역.양품갯수;
+            this.e불량수량.Caption = this.번역.불량갯수;
+            this.e전체수량.Caption = this.번역.전체갯수;
+            this.e양품수율.Caption = this.번역.양품수율;
+            this.b수량리셋.Text = this.번역.수량리셋;
+            this.g디스크사용량.Text = this.번역.디스크사용량;
+        }
+
         private class LocalizationState
         {
             private enum Items
@@ -153,6 +164,8 @@ namespace HKCBusbarInspection.UI.Control
                 수동,
                 [Translation("Count\r\nReset", "수량\r\n초기화")]
                 수량리셋,
+                [Translation("Disk Usage", "디스크 사용량")]
+                디스크사용량,
                 [Translation("Initialize the inspection quantity?", "검사수량을 초기화하시겠습니까?")]
                 리셋확인,
                 [Translation("Change the inspection model?", "검사모델을 변경하시겠습니까?")]
@@ -160,15 +173,16 @@ namespace HKCBusbarInspection.UI.Control
             }
 
             private String GetString(Items item) { return Localization.GetString(item); }
-            public String 자동 { get { return GetString(Items.자동); } }
-            public String 수동 { get { return GetString(Items.수동); } }
-            public String 수량리셋 { get { return GetString(Items.수량리셋); } }
-            public String 리셋확인 { get { return GetString(Items.리셋확인); } }
-            public String 모델변경 { get { return GetString(Items.모델변경); } }
-            public String 양품갯수 { get { return Localization.GetString(typeof(모델정보).GetProperty(nameof(모델정보.양품갯수))); } }
-            public String 불량갯수 { get { return Localization.GetString(typeof(모델정보).GetProperty(nameof(모델정보.불량갯수))); } }
-            public String 전체갯수 { get { return Localization.GetString(typeof(모델정보).GetProperty(nameof(모델정보.전체갯수))); } }
-            public String 양품수율 { get { return Localization.GetString(typeof(모델정보).GetProperty(nameof(모델정보.양품수율))); } }
+            public String 자동 { get => GetString(Items.자동); }
+            public String 수동 { get => GetString(Items.수동); }
+            public String 수량리셋 { get => GetString(Items.수량리셋); }
+            public String 리셋확인 { get => GetString(Items.리셋확인); }
+            public String 모델변경 { get => GetString(Items.모델변경); }
+            public String 디스크사용량 { get => GetString(Items.디스크사용량); }
+            public String 양품갯수 { get => Localization.GetString(typeof(모델정보).GetProperty(nameof(모델정보.양품갯수))); }
+            public String 불량갯수 { get => Localization.GetString(typeof(모델정보).GetProperty(nameof(모델정보.불량갯수))); }
+            public String 전체갯수 { get => Localization.GetString(typeof(모델정보).GetProperty(nameof(모델정보.전체갯수))); }
+            public String 양품수율 { get => Localization.GetString(typeof(모델정보).GetProperty(nameof(모델정보.양품수율))); }
         }
     }
 }

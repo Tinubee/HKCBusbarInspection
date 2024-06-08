@@ -17,6 +17,7 @@ namespace HKCBusbarInspection.UI.Control
 
         public void Init()
         {
+            this.SetLocalization();
             this.BindLocalization.DataSource = this.번역;
             this.e시작일자.DateTime = DateTime.Today;
             this.e종료일자.DateTime = DateTime.Today;
@@ -108,6 +109,15 @@ namespace HKCBusbarInspection.UI.Control
             정보.SetAppearance(e);
         }
 
+        private void SetLocalization()
+        {
+            this.c시작일자.Text = this.번역.시작일자;
+            this.c종료일자.Text = this.번역.종료일자;
+            this.b자료조회.Text = this.번역.조회버튼;
+            this.b엑셀파일.Text = this.번역.엑셀버튼;
+        }
+
+
         public class LocalizationResults
         {
             private enum Items
@@ -124,8 +134,6 @@ namespace HKCBusbarInspection.UI.Control
                 자료삭제,
                 [Translation("View inspection results", "검사 결과 보기")]
                 결과보기,
-                [Translation("Enter the QR Code.", "QR Code를 입력하세요.")]
-                큐알입력,
                 [Translation("No information is available.", "검사정보가 없습니다.")]
                 결과없음,
             }
@@ -136,7 +144,6 @@ namespace HKCBusbarInspection.UI.Control
             public String 엑셀버튼 => Localization.GetString(Items.엑셀버튼);
             public String 자료삭제 => Localization.GetString(Items.자료삭제);
             public String 결과보기 => Localization.GetString(Items.결과보기);
-            public String 큐알입력 => Localization.GetString(Items.큐알입력);
             public String 결과없음 => Localization.GetString(Items.결과없음);
         }
     }

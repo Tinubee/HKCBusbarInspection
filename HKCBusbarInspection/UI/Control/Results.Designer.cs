@@ -61,11 +61,11 @@
             this.b자료조회 = new DevExpress.XtraEditors.SimpleButton();
             this.e시작일자 = new DevExpress.XtraEditors.DateEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.c시작일자 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.c종료일자 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -86,11 +86,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.e시작일자.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.e시작일자.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.c시작일자)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.c종료일자)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
@@ -471,11 +471,11 @@
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.Root.GroupBordersVisible = false;
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem1,
+            this.c시작일자,
             this.layoutControlItem3,
             this.layoutControlItem2,
             this.emptySpaceItem2,
-            this.layoutControlItem5,
+            this.c종료일자,
             this.layoutControlItem4,
             this.emptySpaceItem1,
             this.emptySpaceItem3});
@@ -484,18 +484,18 @@
             this.Root.Size = new System.Drawing.Size(1591, 42);
             this.Root.TextVisible = false;
             // 
-            // layoutControlItem1
+            // c시작일자
             // 
-            this.layoutControlItem1.Control = this.e시작일자;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem1.MaxSize = new System.Drawing.Size(164, 28);
-            this.layoutControlItem1.MinSize = new System.Drawing.Size(164, 28);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Padding = new DevExpress.XtraLayout.Utils.Padding(4, 4, 4, 4);
-            this.layoutControlItem1.Size = new System.Drawing.Size(164, 32);
-            this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem1.Text = "Start";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(25, 15);
+            this.c시작일자.Control = this.e시작일자;
+            this.c시작일자.Location = new System.Drawing.Point(0, 0);
+            this.c시작일자.MaxSize = new System.Drawing.Size(164, 28);
+            this.c시작일자.MinSize = new System.Drawing.Size(164, 28);
+            this.c시작일자.Name = "c시작일자";
+            this.c시작일자.Padding = new DevExpress.XtraLayout.Utils.Padding(4, 4, 4, 4);
+            this.c시작일자.Size = new System.Drawing.Size(164, 32);
+            this.c시작일자.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.c시작일자.Text = "Start";
+            this.c시작일자.TextSize = new System.Drawing.Size(25, 15);
             // 
             // layoutControlItem3
             // 
@@ -534,18 +534,18 @@
             this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // layoutControlItem5
+            // c종료일자
             // 
-            this.layoutControlItem5.Control = this.e종료일자;
-            this.layoutControlItem5.Location = new System.Drawing.Point(164, 0);
-            this.layoutControlItem5.MaxSize = new System.Drawing.Size(164, 32);
-            this.layoutControlItem5.MinSize = new System.Drawing.Size(164, 32);
-            this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(4, 4, 4, 4);
-            this.layoutControlItem5.Size = new System.Drawing.Size(164, 32);
-            this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem5.Text = "End";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(25, 15);
+            this.c종료일자.Control = this.e종료일자;
+            this.c종료일자.Location = new System.Drawing.Point(164, 0);
+            this.c종료일자.MaxSize = new System.Drawing.Size(164, 32);
+            this.c종료일자.MinSize = new System.Drawing.Size(164, 32);
+            this.c종료일자.Name = "c종료일자";
+            this.c종료일자.Padding = new DevExpress.XtraLayout.Utils.Padding(4, 4, 4, 4);
+            this.c종료일자.Size = new System.Drawing.Size(164, 32);
+            this.c종료일자.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.c종료일자.Text = "End";
+            this.c종료일자.TextSize = new System.Drawing.Size(25, 15);
             // 
             // layoutControlItem4
             // 
@@ -639,11 +639,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.e시작일자.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.e시작일자.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.c시작일자)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.c종료일자)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
@@ -666,11 +666,11 @@
         private DevExpress.XtraEditors.SimpleButton b자료조회;
         private DevExpress.XtraEditors.DateEdit e시작일자;
         private DevExpress.XtraLayout.LayoutControlGroup Root;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private DevExpress.XtraLayout.LayoutControlItem c시작일자;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraLayout.LayoutControlItem c종료일자;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;

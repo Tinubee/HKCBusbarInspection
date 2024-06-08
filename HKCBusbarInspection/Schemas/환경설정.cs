@@ -65,10 +65,6 @@ namespace HKCBusbarInspection.Schemas
         public String 원본보관폴더 { get { return Path.Combine(기본경로, "OriginImage"); } }
         [Translation("Origin Storage Days", "원본 보관 일수"), JsonProperty("OriginImageStorageDays")]
         public Int32 원본보관일수 { get; set; } = 3;
-        [JsonIgnore, Description("검사여부"), Translation("Use Inspect", "검사여부")]
-        public Boolean 검사여부 { get; set; } = true; // 검사로직 활성화 여부
-        [JsonIgnore, Description("티칭모드")]
-        public Boolean 티칭모드 { get; set; } = false; // 활성화 시 사진 강제 저장 됨
         public Boolean 모델변경중 { get; set; } = false;
         public Boolean 권한여부(유저권한구분 요구권한)
         {

@@ -12,7 +12,7 @@ namespace HKCBusbarInspection
 {
     public static class Localization
     {
-        public static TranslationAttribute 제목 = new TranslationAttribute("HKC Busbar Inspection","한국기능공사 Busbar 검사");
+        public static TranslationAttribute 제목 = new TranslationAttribute("HKC Busbar Inspection System","한국기능공사 Busbar 검사 시스템");
         public static TranslationAttribute 취소 = new TranslationAttribute("Cancel", "취소");
         public static TranslationAttribute 닫기 = new TranslationAttribute("Close", "닫기");
         public static TranslationAttribute 저장 = new TranslationAttribute("Save", "저장");
