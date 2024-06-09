@@ -140,7 +140,7 @@ namespace HKCBusbarInspection.Schemas
         public override Boolean Set(조명정보 정보) => SendCommand($"{정보.카메라} Set", $"{(Int32)정보.채널 - 1}w{this.밝기변환(정보.밝기):d4}");
         public override Boolean Save(조명정보 정보) => false; // 커맨드가 있는지 모름
         public override Boolean TurnOn(조명정보 정보) => SendCommand($"{정보.카메라} Set", $"{(Int32)정보.채널 - 1}w{this.밝기변환(정보.밝기):d4}");
-        public override Boolean TurnOff(조명정보 정보) => SendCommand($"{정보.카메라} Set", $"{(Int32)정보.채널 - 1}w0000");//SendCommand($"{정보.카메라} Off", $"{(Int32)정보.채널 - 1}f");//0000
+        public override Boolean TurnOff(조명정보 정보) => SendCommand($"{정보.카메라} Set", $"{(Int32)정보.채널 - 1}w0000");
     }
    
     public class 조명정보

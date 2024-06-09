@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using OpenCvSharp;
 using MvFGCtrlC.NET;
 using OpenCvSharp.Dnn;
+using DevExpress.XtraPrinting;
 
 namespace HKCBusbarInspection.Schemas
 {
@@ -153,36 +154,26 @@ namespace HKCBusbarInspection.Schemas
 
         public void 그랩완료(그랩장치 장치)
         {
-            if(장치.구분 == 카메라구분.Cam04)
+            if (장치.Count == 3)
             {
-                Debug.WriteLine("Cam04 이미지 획득 완료.");
+                Common.DebugWriteLine(로그영역, 로그구분.정보, $"{장치.구분} {장치.Count} 개 이미지 획득 완료 및 조명 Off");
+                Global.조명제어.TurnOnOff(장치.구분, false);
+                //장치.TurnOff();
             }
-            //Global.비전검사.Run(장치.구분, 장치.MatImage(), Global.검사자료.수동검사);
-            장치.TurnOff();
+
             if (Global.장치상태.자동수동)
             {
                 Int32 검사번호 = Global.신호제어.촬영위치번호(장치.구분, 장치.Count);
-                검사결과 검사 = Global.검사자료.검사항목찾기(검사번호);
+                검사결과 검사 = Global.검사자료.검사항목찾기(검사번호, true);
                 if (검사 == null) return;
                 Global.VM제어.GetItem(장치.구분).Run(장치.MatImage(), null, null, 검사);
                 Global.사진자료.SaveImage(장치, 검사);
-                //if (장치.구분 == 카메라구분.Cam01)
-                //{
-                //    Mat 표면검사용이미지 = Common.ResizeImage(장치.MatImage(), 장치.ResizeScale);
-                //    if (Global.환경설정.표면검사사용)
-                //    {
-                //        Debug.WriteLine($"{DateTime.Now.ToString("HH:mm:ss.fff")} : 표면 검사시작");
-                //        Task.Run(() => { Global.VM제어.GetItem(Flow구분.표면검사).Run(표면검사용이미지, null, 검사번호); });
-                //    }
-
-                //    if (Global.환경설정.표면검사이미지저장) Global.사진자료.SaveImage(표면검사용이미지, 검사번호);
-                //}
             }
             else
             {
                 Global.VM제어.GetItem(장치.구분).Run(장치.MatImage(), null, null, Global.검사자료.수동검사);
 
-                검사결과 검사 = Global.검사자료.검사결과계산(Global.검사자료.수동검사.검사코드);
+                검사결과 검사 = Global.검사자료.검사결과계산(Global.검사자료.수동검사.검사코드, false);
                 Global.검사자료.수동검사결과(장치.구분, 검사);
                 //this.그랩완료보고?.Invoke(장치);
             }

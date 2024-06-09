@@ -146,7 +146,7 @@ namespace HKCBusbarInspection.UI.Control
                 플로우.Run(null, null, filePath, Global.검사자료.수동검사);
             }
 
-            검사결과 검사 = Global.검사자료.검사결과계산(Global.검사자료.수동검사.검사코드);
+            검사결과 검사 = Global.검사자료.검사결과계산(Global.검사자료.수동검사.검사코드,false);
 
             foreach (카메라구분 구분 in typeof(카메라구분).GetValues())
             {
@@ -156,7 +156,7 @@ namespace HKCBusbarInspection.UI.Control
 
         private void 이미지그랩후검사(object sender, ItemClickEventArgs e)
         {
-            if (Global.장치상태.자동수동) { Utils.WarningMsg("자동모드 일때는 사용할 수 없습니다."); return; }
+            if (Global.장치상태.자동수동) { Utils.WarningMsg($"{this.번역.자동모드사용불가}"); return; }
 
             new Thread(() =>
             {

@@ -104,14 +104,14 @@ namespace HKCBusbarInspection.Schemas
 
         #region 검사로직
         // PLC에서 검사번호 요청 시 새 검사 자료를 생성하여 스플에 넣음
-        public 검사결과 검사시작(Int32 검사코드)
+        public 검사결과 검사시작(Int32 검사코드, Boolean 자동모드)
         {
-            if (!Global.장치상태.자동수동)
+            if (!자동모드)
             {
                 this.수동검사.Reset();
                 return this.수동검사;
             }
-            검사결과 검사 = 검사항목찾기(검사코드, true);
+            검사결과 검사 = 검사항목찾기(검사코드, true, true);
             if (검사 == null)
             {
                 Int32 셔틀위치확인 = 검사코드 % 3;
@@ -127,13 +127,13 @@ namespace HKCBusbarInspection.Schemas
             return 검사;
         }
 
-        public 검사결과 검사결과계산(Int32 검사코드)
+        public 검사결과 검사결과계산(Int32 검사코드, Boolean 자동모드)
         {
             if (검사코드 < 1) return null;
             검사결과 검사 = null;
-            if (Global.장치상태.자동수동 && 검사코드 < 9999)
+            if (자동모드 && 검사코드 < 9999)
             {
-                검사 = this.검사항목찾기(검사코드);
+                검사 = this.검사항목찾기(검사코드, true);
                 if (검사 == null)
                 {
                     Global.오류로그(로그영역.GetString(), "결과계산", $"[{(Int32)Global.환경설정.선택모델}.{검사코드}] 해당 검사가 없습니다.", false);
@@ -149,7 +149,7 @@ namespace HKCBusbarInspection.Schemas
                 검사.결과계산();
             }
 
-            Debug.WriteLine("결과계산완료");
+            Common.DebugWriteLine("검사결과계산", 로그구분.정보, $"결과계산완료.");
             return 검사;
         }
 
@@ -163,9 +163,10 @@ namespace HKCBusbarInspection.Schemas
         }
 
         // 현재 검사중인 정보를 검색
-        public 검사결과 검사항목찾기(Int32 검사코드, Boolean 신규여부 = false)
+        public 검사결과 검사항목찾기(Int32 검사코드, Boolean 자동모드, Boolean 신규여부 = false)
         {
-            if (!Global.장치상태.자동수동) return this.수동검사;
+            //if (!Global.장치상태.자동수동) return this.수동검사;
+            if (!자동모드) return this.수동검사;
             검사결과 검사 = null;
             if (검사코드 > 0 && this.검사스플.ContainsKey(검사코드))
                 검사 = this.검사스플[검사코드];
@@ -218,13 +219,13 @@ namespace HKCBusbarInspection.Schemas
         public void Save()
         {
             try { this.SaveChanges(); }
-            catch (Exception ex) { Debug.WriteLine(ex.ToString(), "자료저장"); }
+            catch (Exception ex) { Common.DebugWriteLine("자료저장", 로그구분.오류, $"{ex.Message}"); }
         }
 
         public void SaveAsync()
         {
             try { this.SaveChangesAsync(); }
-            catch (Exception ex) { Debug.WriteLine(ex.ToString(), "자료저장"); }
+            catch (Exception ex) { Common.DebugWriteLine("자료저장", 로그구분.오류, $"{ex.Message}"); }
         }
 
         public void Add(검사결과 정보)

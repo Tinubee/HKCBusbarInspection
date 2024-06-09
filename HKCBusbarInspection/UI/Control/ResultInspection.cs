@@ -8,6 +8,7 @@ namespace HKCBusbarInspection.UI.Control
 {
     public partial class ResultInspection : XtraUserControl
     {
+        private LocalizationResultInspection 번역 = new LocalizationResultInspection();
         public ResultInspection() => InitializeComponent();
 
         public enum ViewTypes { Auto, Manual }
@@ -23,6 +24,7 @@ namespace HKCBusbarInspection.UI.Control
                 Busbar.CameraUpDirection = new Vector3D(0, 1, 0);
             }
 
+            this.d검사결과.Text = this.번역.검사결과;
             this.e결과뷰어.Init(Busbar);
             this.e결과목록.Init();
 
@@ -55,6 +57,17 @@ namespace HKCBusbarInspection.UI.Control
             검사정보 정보 = view.GetRow(e.RowHandle) as 검사정보;
             if (정보 == null) return;
             정보.SetAppearance(e);
+        }
+
+        public class LocalizationResultInspection
+        {
+            private enum Items
+            {
+                [Translation("Inspection Results", "검사결과")]
+                검사결과,
+            }
+
+            public String 검사결과 => Localization.GetString(Items.검사결과);
         }
     }
 }

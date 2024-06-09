@@ -34,6 +34,9 @@ namespace HKCBusbarInspection.UI.Control
             this.b저장.Text = Localization.저장.GetString();
             this.GridView2.CellValueChanged += GridView2_CellValueChanged;
             this.e조명켜짐.Toggled += E켜짐_Toggled;
+
+            this.g카메라들.Text = this.번역.카메라목록;
+            this.g조명들.Text = this.번역.조명목록;
         }
 
         public void Close() { }
@@ -72,6 +75,10 @@ namespace HKCBusbarInspection.UI.Control
         {
             private enum Items
             {
+                [Translation("Cameras", "카메라목록")]
+                카메라목록,
+                [Translation("Lisghts", "조명목록")]
+                조명목록,
                 [Translation("Save", "설정저장")]
                 설정저장,
                 [Translation("It's saved.", "저장되었습니다.")]
@@ -79,6 +86,8 @@ namespace HKCBusbarInspection.UI.Control
                 [Translation("Save your Camera & Light Setting?", "카메라 및 조명설정을 저장하시겠습니까?")]
                 저장확인,
             }
+            public String 카메라목록 => Localization.GetString(Items.카메라목록);
+            public String 조명목록 => Localization.GetString(Items.조명목록);
             public String 설정저장 => Localization.GetString(Items.설정저장);
             public String 저장완료 => Localization.GetString(Items.저장완료);
             public String 저장확인 => Localization.GetString(Items.저장확인);

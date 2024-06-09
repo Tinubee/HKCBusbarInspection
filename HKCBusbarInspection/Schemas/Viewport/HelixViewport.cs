@@ -83,7 +83,7 @@ namespace HKCBusbarInspection.Schemas
         {
             if (MainModel == null) return new Point3D(0, 0, 0);
             Rect3D rect = MainModel.Bounds;
-            Debug.WriteLine($"{rect.X + rect.SizeX / 2},{rect.Y + rect.SizeY / 2}, {rect.Z + rect.SizeZ / 2}");
+            //Debug.WriteLine($"{rect.X + rect.SizeX / 2},{rect.Y + rect.SizeY / 2}, {rect.Z + rect.SizeZ / 2}");
             return new Point3D(rect.X + rect.SizeX / 2, rect.Y + rect.SizeY / 2, rect.Z + rect.SizeZ / 2);
         }
 

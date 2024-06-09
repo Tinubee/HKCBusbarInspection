@@ -55,6 +55,11 @@
             DevExpress.XtraBars.Docking.CustomHeaderButtonImageOptions customHeaderButtonImageOptions3 = new DevExpress.XtraBars.Docking.CustomHeaderButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
+            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.d상부캠 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel2_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.e상부캠 = new VMControls.Winform.Release.VmRenderControl();
@@ -68,12 +73,8 @@
             this.d하부캠 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.e하부캠 = new VMControls.Winform.Release.VmRenderControl();
-            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
-            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.d상부캠.SuspendLayout();
             this.dockPanel2_Container.SuspendLayout();
             this.panelContainer1.SuspendLayout();
@@ -83,7 +84,6 @@
             this.dockPanel4_Container.SuspendLayout();
             this.d하부캠.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // dockManager1
@@ -107,6 +107,47 @@
             "DevExpress.XtraBars.TabFormControl",
             "DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl",
             "DevExpress.XtraBars.ToolbarForm.ToolbarFormControl"});
+            // 
+            // barManager1
+            // 
+            this.barManager1.DockControls.Add(this.barDockControlTop);
+            this.barManager1.DockControls.Add(this.barDockControlBottom);
+            this.barManager1.DockControls.Add(this.barDockControlLeft);
+            this.barManager1.DockControls.Add(this.barDockControlRight);
+            this.barManager1.DockManager = this.dockManager1;
+            this.barManager1.Form = this;
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Manager = this.barManager1;
+            this.barDockControlTop.Size = new System.Drawing.Size(1920, 0);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1080);
+            this.barDockControlBottom.Manager = this.barManager1;
+            this.barDockControlBottom.Size = new System.Drawing.Size(1920, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlLeft.Manager = this.barManager1;
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1080);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(1920, 0);
+            this.barDockControlRight.Manager = this.barManager1;
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 1080);
             // 
             // d상부캠
             // 
@@ -134,7 +175,7 @@
             this.d상부캠.Size = new System.Drawing.Size(960, 1080);
             this.d상부캠.TabStop = false;
             this.d상부캠.Tag = "1";
-            this.d상부캠.Text = "Top";
+            this.d상부캠.Text = "Top Camera";
             // 
             // dockPanel2_Container
             // 
@@ -196,7 +237,7 @@
             this.d측면캠.Size = new System.Drawing.Size(480, 540);
             this.d측면캠.TabStop = false;
             this.d측면캠.Tag = "2";
-            this.d측면캠.Text = "Side";
+            this.d측면캠.Text = "Side Camera";
             // 
             // dockPanel3_Container
             // 
@@ -244,7 +285,7 @@
             this.dLPoint캠.Size = new System.Drawing.Size(480, 540);
             this.dLPoint캠.TabStop = false;
             this.dLPoint캠.Tag = "3";
-            this.dLPoint캠.Text = "LPoint";
+            this.dLPoint캠.Text = "LPoint Camera";
             // 
             // dockPanel4_Container
             // 
@@ -293,7 +334,7 @@
             this.d하부캠.Size = new System.Drawing.Size(960, 540);
             this.d하부캠.TabStop = false;
             this.d하부캠.Tag = "4";
-            this.d하부캠.Text = "Bottom";
+            this.d하부캠.Text = "Bottom Camera";
             // 
             // dockPanel1_Container
             // 
@@ -317,47 +358,6 @@
             this.e하부캠.Size = new System.Drawing.Size(954, 492);
             this.e하부캠.TabIndex = 0;
             // 
-            // barManager1
-            // 
-            this.barManager1.DockControls.Add(this.barDockControlTop);
-            this.barManager1.DockControls.Add(this.barDockControlBottom);
-            this.barManager1.DockControls.Add(this.barDockControlLeft);
-            this.barManager1.DockControls.Add(this.barDockControlRight);
-            this.barManager1.DockManager = this.dockManager1;
-            this.barManager1.Form = this;
-            // 
-            // barDockControlTop
-            // 
-            this.barDockControlTop.CausesValidation = false;
-            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1920, 0);
-            // 
-            // barDockControlBottom
-            // 
-            this.barDockControlBottom.CausesValidation = false;
-            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1080);
-            this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1920, 0);
-            // 
-            // barDockControlLeft
-            // 
-            this.barDockControlLeft.CausesValidation = false;
-            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1080);
-            // 
-            // barDockControlRight
-            // 
-            this.barDockControlRight.CausesValidation = false;
-            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1920, 0);
-            this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 1080);
-            // 
             // CamViewers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -372,6 +372,7 @@
             this.Name = "CamViewers";
             this.Size = new System.Drawing.Size(1920, 1080);
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.d상부캠.ResumeLayout(false);
             this.dockPanel2_Container.ResumeLayout(false);
             this.panelContainer1.ResumeLayout(false);
@@ -381,7 +382,6 @@
             this.dockPanel4_Container.ResumeLayout(false);
             this.d하부캠.ResumeLayout(false);
             this.dockPanel1_Container.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

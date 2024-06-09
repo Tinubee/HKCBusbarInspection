@@ -8,11 +8,13 @@ namespace HKCBusbarInspection.UI.Control
 {
     public partial class IOControl : XtraUserControl
     {
+        private LocalizationIOControl 번역 = new LocalizationIOControl();
         public IOControl() => InitializeComponent();
 
         public void Init()
         {
             this.GridControl1.DataSource = new 입력신호자료();
+            this.g입출목록.Text = this.번역.입출목록;
              this.입출변경알림();
             Global.신호제어.입출변경알림 += 입출변경알림;
         }
@@ -37,6 +39,17 @@ namespace HKCBusbarInspection.UI.Control
             public Int32 번호 { get { return (Int32)구분; } }
             public String 주소 { get { return MvUtils.Utils.GetAttribute<AddressAttribute>(구분).Address; } }
             public String 정보 { get { return Global.신호제어.정보읽기(구분).ToString(); } }
+        }
+
+        private class LocalizationIOControl
+        {
+            private enum Items
+            {
+                [Translation("IO List", "입축신호목록")]
+                입출목록,
+           
+            }
+            public String 입출목록 => Localization.GetString(Items.입출목록);
         }
     }
 }

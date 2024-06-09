@@ -133,8 +133,8 @@ namespace HKCBusbarInspection.UI.Control
         private void 동작상태알림()
         {
             if (this.InvokeRequired) { this.BeginInvoke(new Action(동작상태알림)); return; }
-            this.b동작구분.Text = Global.장치상태.자동수동 ? 번역.자동 : 번역.수동;
-            this.b동작구분.Appearance.ForeColor = Global.장치상태.시작정지 ? DXSkinColors.ForeColors.Information : DXSkinColors.ForeColors.DisabledText;
+            this.b동작구분.Text = Global.장치상태.자동수동 ? Global.장치상태.시작정지 ? 번역.자동시작 : 번역.자동대기 : 번역.수동;
+            this.b동작구분.Appearance.ForeColor = Global.장치상태.자동수동 ? Global.장치상태.시작정지 ? DXSkinColors.ForeColors.Information : DXSkinColors.ForeColors.Warning : DXSkinColors.ForeColors.DisabledText;
         }
 
         private void 수량리셋_Click(object sender, EventArgs e)
@@ -158,8 +158,10 @@ namespace HKCBusbarInspection.UI.Control
         {
             private enum Items
             {
-                [Translation("Auto", "자동")]
-                자동,
+                [Translation("Auto Stop", "자동대기")]
+                자동대기,
+                [Translation("Auto Start", "자동시작")]
+                자동시작,
                 [Translation("Manual", "수동")]
                 수동,
                 [Translation("Count\r\nReset", "수량\r\n초기화")]
@@ -173,7 +175,8 @@ namespace HKCBusbarInspection.UI.Control
             }
 
             private String GetString(Items item) { return Localization.GetString(item); }
-            public String 자동 { get => GetString(Items.자동); }
+            public String 자동대기 { get => GetString(Items.자동대기); }
+            public String 자동시작 { get => GetString(Items.자동시작); }
             public String 수동 { get => GetString(Items.수동); }
             public String 수량리셋 { get => GetString(Items.수량리셋); }
             public String 리셋확인 { get => GetString(Items.리셋확인); }

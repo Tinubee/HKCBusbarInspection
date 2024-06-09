@@ -16,14 +16,30 @@ namespace HKCBusbarInspection.UI.Control
             this.환경설정Bind.DataSource = Global.환경설정;
 
             this.b설정저장.Click += 환경설정저장;
+            this.b인덱스리셋.Click += 인덱스리셋;
+        }
+
+        private void 인덱스리셋(object sender, EventArgs e)
+        {
+            //if (!Utils.Confirm(this.FindForm(), "인덱스", Localization.확인.GetString())) return;
+
+            Global.신호제어.인덱스전체초기화 = true;
         }
 
         public void Init()
         {
+            this.e강제배출.IsOn = Global.환경설정.강제배출;
+            this.e배출구분.IsOn = Global.환경설정.양품불량;
+
+            this.e강제배출.EditValueChanged += 강제배출Changed;
+            this.e배출구분.EditValueChanged += 배출구분Changed;
+
             this.e카메라.Init();
             this.e기본설정.Init();
             this.e입출신호.Init();
         }
+        private void 강제배출Changed(object sender, EventArgs e) => Global.환경설정.강제배출 = this.e강제배출.IsOn;
+        private void 배출구분Changed(object sender, EventArgs e) => Global.환경설정.양품불량 = this.e배출구분.IsOn;
 
         private void 환경설정저장(object sender, EventArgs e)
         {
@@ -42,10 +58,19 @@ namespace HKCBusbarInspection.UI.Control
             this.b설정저장.Text = this.번역.설정저장;
             this.g강제배출.Text = this.번역.강제배출;
             this.g트리거보드.Text = this.번역.트리거보드초기화;
+            this.g인덱스초기화.Text = this.번역.인덱스초기화;
             this.b캠트리거리셋.Text = this.번역.초기화;
+            this.b인덱스리셋.Text = this.번역.초기화;
             this.b표면검사이미지저장.Text = this.번역.표면검사이미지저장사용;
             this.t기타설정.Text = this.번역.기타설정;
             this.t환경설정.Text = this.번역.기본설정;
+            this.g기타.Text = this.번역.기타장치;
+            this.c강제배출사용유무.Text = this.번역.강제배출온오프;
+            this.c양품불량.Text = this.번역.양품불량설정;
+            this.e강제배출.Properties.OnText = this.번역.강제배출온;
+            this.e강제배출.Properties.OffText = this.번역.강제배출오프;
+            this.e배출구분.Properties.OnText = this.번역.양품설정;
+            this.e배출구분.Properties.OffText = this.번역.불량설정;
         }
 
         private class LocalizationDeviceSetting
@@ -56,6 +81,10 @@ namespace HKCBusbarInspection.UI.Control
                 강제배출,
                 [Translation("TriggerBoard Position Reset ", "트리거보드 초기화")]
                 트리거보드초기화,
+                [Translation("Index Reset ", "인덱스 초기화")]
+                인덱스초기화,
+                [Translation("Etc Device ", "기타장치")]
+                기타장치,
                 [Translation("Reset", "초기화")]
                 초기화,
                 [Translation("Surface Image Save Used", "표면검사이미지 저장사용")]
@@ -72,10 +101,32 @@ namespace HKCBusbarInspection.UI.Control
                 저장완료,
                 [Translation("Save your preferences?", "환경설정을 저장하시겠습니까?")]
                 저장확인,
+
+                [Translation("On/Off", "사용/미사용")]
+                강제배출온오프,
+                [Translation("On", "사용")]
+                강제배출온,
+                [Translation("Off", "미사용")]
+                강제배출오프,
+                [Translation("NG/OK", "불량/양품")]
+                양품불량설정,
+                [Translation("OK", "양품")]
+                양품설정,
+                [Translation("NG", "불량")]
+                불량설정,
             }
+            public String 강제배출온오프 => Localization.GetString(Items.강제배출온오프);
+            public String 강제배출온 => Localization.GetString(Items.강제배출온);
+            public String 강제배출오프 => Localization.GetString(Items.강제배출오프);
+            public String 양품불량설정 => Localization.GetString(Items.양품불량설정);
+            public String 양품설정 => Localization.GetString(Items.양품설정);
+            public String 불량설정 => Localization.GetString(Items.불량설정);
+
             public String 강제배출 => Localization.GetString(Items.강제배출);
             public String 초기화 => Localization.GetString(Items.초기화);
             public String 트리거보드초기화 => Localization.GetString(Items.트리거보드초기화);
+            public String 인덱스초기화 => Localization.GetString(Items.인덱스초기화);
+            public String 기타장치 => Localization.GetString(Items.기타장치);
             public String 표면검사이미지저장사용 => Localization.GetString(Items.표면검사이미지저장사용);
             public String 설정저장 => Localization.GetString(Items.설정저장);
             public String 저장완료 => Localization.GetString(Items.저장완료);

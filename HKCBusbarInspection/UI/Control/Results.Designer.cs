@@ -41,6 +41,7 @@
             this.col최소값 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col최대값 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col측정값 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col보정값 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col결과값 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col측정결과1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.GridControl1 = new MvUtils.CustomGrid();
@@ -118,6 +119,7 @@
             this.col최소값,
             this.col최대값,
             this.col측정값,
+            this.col보정값,
             this.col결과값,
             this.col측정결과1});
             this.GridView2.DetailHeight = 375;
@@ -226,6 +228,15 @@
             this.col측정값.Visible = true;
             this.col측정값.VisibleIndex = 8;
             // 
+            // col보정값
+            // 
+            this.col보정값.AppearanceHeader.Options.UseTextOptions = true;
+            this.col보정값.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col보정값.FieldName = "보정값";
+            this.col보정값.Name = "col보정값";
+            this.col보정값.Visible = true;
+            this.col보정값.VisibleIndex = 9;
+            // 
             // col결과값
             // 
             this.col결과값.AppearanceHeader.Options.UseTextOptions = true;
@@ -233,7 +244,7 @@
             this.col결과값.FieldName = "결과값";
             this.col결과값.Name = "col결과값";
             this.col결과값.Visible = true;
-            this.col결과값.VisibleIndex = 9;
+            this.col결과값.VisibleIndex = 10;
             // 
             // col측정결과1
             // 
@@ -242,7 +253,7 @@
             this.col측정결과1.FieldName = "측정결과";
             this.col측정결과1.Name = "col측정결과1";
             this.col측정결과1.Visible = true;
-            this.col측정결과1.VisibleIndex = 10;
+            this.col측정결과1.VisibleIndex = 11;
             // 
             // GridControl1
             // 
@@ -415,7 +426,7 @@
             // e종료일자
             // 
             this.e종료일자.EditValue = null;
-            this.e종료일자.Location = new System.Drawing.Point(210, 9);
+            this.e종료일자.Location = new System.Drawing.Point(235, 9);
             this.e종료일자.Name = "e종료일자";
             this.e종료일자.Properties.Appearance.Options.UseTextOptions = true;
             this.e종료일자.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -424,7 +435,7 @@
             this.e종료일자.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.e종료일자.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.e종료일자.Size = new System.Drawing.Size(119, 22);
+            this.e종료일자.Size = new System.Drawing.Size(94, 22);
             this.e종료일자.StyleController = this.layoutControl1;
             this.e종료일자.TabIndex = 2;
             // 
@@ -453,7 +464,7 @@
             // e시작일자
             // 
             this.e시작일자.EditValue = null;
-            this.e시작일자.Location = new System.Drawing.Point(46, 9);
+            this.e시작일자.Location = new System.Drawing.Point(71, 9);
             this.e시작일자.Name = "e시작일자";
             this.e시작일자.Properties.Appearance.Options.UseTextOptions = true;
             this.e시작일자.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -462,7 +473,7 @@
             this.e시작일자.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.e시작일자.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.e시작일자.Size = new System.Drawing.Size(119, 22);
+            this.e시작일자.Size = new System.Drawing.Size(94, 22);
             this.e시작일자.StyleController = this.layoutControl1;
             this.e시작일자.TabIndex = 0;
             // 
@@ -494,8 +505,8 @@
             this.c시작일자.Padding = new DevExpress.XtraLayout.Utils.Padding(4, 4, 4, 4);
             this.c시작일자.Size = new System.Drawing.Size(164, 32);
             this.c시작일자.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.c시작일자.Text = "Start";
-            this.c시작일자.TextSize = new System.Drawing.Size(25, 15);
+            this.c시작일자.Text = "Start Day";
+            this.c시작일자.TextSize = new System.Drawing.Size(50, 15);
             // 
             // layoutControlItem3
             // 
@@ -544,8 +555,8 @@
             this.c종료일자.Padding = new DevExpress.XtraLayout.Utils.Padding(4, 4, 4, 4);
             this.c종료일자.Size = new System.Drawing.Size(164, 32);
             this.c종료일자.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.c종료일자.Text = "End";
-            this.c종료일자.TextSize = new System.Drawing.Size(25, 15);
+            this.c종료일자.Text = "End Day";
+            this.c종료일자.TextSize = new System.Drawing.Size(50, 15);
             // 
             // layoutControlItem4
             // 
@@ -700,5 +711,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn col결과값;
         private DevExpress.XtraGrid.Columns.GridColumn col측정결과1;
         private DevExpress.XtraGrid.Columns.GridColumn col셔틀위치;
+        private DevExpress.XtraGrid.Columns.GridColumn col보정값;
     }
 }

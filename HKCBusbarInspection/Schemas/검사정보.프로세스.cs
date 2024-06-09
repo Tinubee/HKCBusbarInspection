@@ -306,7 +306,7 @@ namespace HKCBusbarInspection.Schemas
                 this.불량정보 = String.Join(",", this.불량내역.ToArray());
                 this.불량내역.Clear();
             }
-            Debug.WriteLine($"{this.검사코드} = {this.측정결과}", "검사완료");
+            Common.DebugWriteLine("결과계산", 로그구분.정보, $"{this.검사코드} => {this.측정결과}");
             return this.측정결과;
         }
         public Boolean 카메라검사보기(검사정보 정보)

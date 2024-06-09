@@ -29,34 +29,34 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.g입출목록 = new DevExpress.XtraEditors.GroupControl();
             this.GridControl1 = new MvUtils.CustomGrid();
-            this.GridView1 = new MvUtils.CustomView();
-            this.repositoryItemToggleSwitch1 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
-            this.repositoryItemToggleSwitch2 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
             this.입력신호Bind = new System.Windows.Forms.BindingSource(this.components);
+            this.GridView1 = new MvUtils.CustomView();
             this.col구분 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col번호 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col주소 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col정보 = new DevExpress.XtraGrid.Columns.GridColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            this.groupControl1.SuspendLayout();
+            this.repositoryItemToggleSwitch1 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
+            this.repositoryItemToggleSwitch2 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
+            ((System.ComponentModel.ISupportInitialize)(this.g입출목록)).BeginInit();
+            this.g입출목록.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.입력신호Bind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.입력신호Bind)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupControl1
+            // g입출목록
             // 
-            this.groupControl1.Controls.Add(this.GridControl1);
-            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupControl1.Location = new System.Drawing.Point(0, 0);
-            this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(819, 652);
-            this.groupControl1.TabIndex = 3;
-            this.groupControl1.Text = "Input";
+            this.g입출목록.Controls.Add(this.GridControl1);
+            this.g입출목록.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.g입출목록.Location = new System.Drawing.Point(0, 0);
+            this.g입출목록.Name = "g입출목록";
+            this.g입출목록.Size = new System.Drawing.Size(819, 652);
+            this.g입출목록.TabIndex = 3;
+            this.g입출목록.Text = "Input";
             // 
             // GridControl1
             // 
@@ -72,6 +72,10 @@
             this.GridControl1.TabIndex = 0;
             this.GridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridView1});
+            // 
+            // 입력신호Bind
+            // 
+            this.입력신호Bind.DataSource = typeof(HKCBusbarInspection.UI.Control.IOControl.입력신호자료);
             // 
             // GridView1
             // 
@@ -108,24 +112,6 @@
             this.GridView1.OptionsView.ShowGroupPanel = false;
             this.GridView1.OptionsView.ShowIndicator = false;
             this.GridView1.RowHeight = 22;
-            // 
-            // repositoryItemToggleSwitch1
-            // 
-            this.repositoryItemToggleSwitch1.AutoHeight = false;
-            this.repositoryItemToggleSwitch1.Name = "repositoryItemToggleSwitch1";
-            this.repositoryItemToggleSwitch1.OffText = "Off";
-            this.repositoryItemToggleSwitch1.OnText = "On";
-            // 
-            // repositoryItemToggleSwitch2
-            // 
-            this.repositoryItemToggleSwitch2.AutoHeight = false;
-            this.repositoryItemToggleSwitch2.Name = "repositoryItemToggleSwitch2";
-            this.repositoryItemToggleSwitch2.OffText = "Off";
-            this.repositoryItemToggleSwitch2.OnText = "On";
-            // 
-            // 입력신호Bind
-            // 
-            this.입력신호Bind.DataSource = typeof(HKCBusbarInspection.UI.Control.IOControl.입력신호자료);
             // 
             // col구분
             // 
@@ -166,27 +152,41 @@
             this.col정보.Visible = true;
             this.col정보.VisibleIndex = 3;
             // 
+            // repositoryItemToggleSwitch1
+            // 
+            this.repositoryItemToggleSwitch1.AutoHeight = false;
+            this.repositoryItemToggleSwitch1.Name = "repositoryItemToggleSwitch1";
+            this.repositoryItemToggleSwitch1.OffText = "Off";
+            this.repositoryItemToggleSwitch1.OnText = "On";
+            // 
+            // repositoryItemToggleSwitch2
+            // 
+            this.repositoryItemToggleSwitch2.AutoHeight = false;
+            this.repositoryItemToggleSwitch2.Name = "repositoryItemToggleSwitch2";
+            this.repositoryItemToggleSwitch2.OffText = "Off";
+            this.repositoryItemToggleSwitch2.OnText = "On";
+            // 
             // IOControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupControl1);
+            this.Controls.Add(this.g입출목록);
             this.Name = "IOControl";
             this.Size = new System.Drawing.Size(819, 652);
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            this.groupControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.g입출목록)).EndInit();
+            this.g입출목록.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.입력신호Bind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.입력신호Bind)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DevExpress.XtraEditors.GroupControl groupControl1;
+        private DevExpress.XtraEditors.GroupControl g입출목록;
         private MvUtils.CustomGrid GridControl1;
         private MvUtils.CustomView GridView1;
         private DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch repositoryItemToggleSwitch1;

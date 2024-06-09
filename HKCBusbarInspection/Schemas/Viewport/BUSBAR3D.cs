@@ -52,7 +52,7 @@ namespace HKCBusbarInspection.Schemas
         {
             if (MainModel == null) return;
             Rect3D r = MainModel.Bounds;
-            Debug.WriteLine($"{r.SizeY}, {r.SizeX}, {r.SizeZ}", "Rectangle3D");
+            Common.DebugWriteLine("Rectangle3D", 로그구분.정보, $"{r.SizeY}, {r.SizeX}, {r.SizeZ}");
             Double hx = r.SizeX / 2;
             Double hy = r.SizeY / 2;
             Double tz = 100;
@@ -131,7 +131,7 @@ namespace HKCBusbarInspection.Schemas
         {
             if (MainModel == null) return;
             Rect3D r = MainModel.Bounds;
-            Debug.WriteLine($"{r.SizeY}, {r.SizeX}, {r.SizeZ}", "Rectangle3D");
+            Common.DebugWriteLine("Rectangle3D", 로그구분.정보, $"{r.SizeY}, {r.SizeX}, {r.SizeZ}");
             Double hx = r.SizeX / 2;
             Double hy = r.SizeY / 2;
             Double tz = 100;

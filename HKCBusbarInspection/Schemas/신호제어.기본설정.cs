@@ -19,11 +19,12 @@ namespace HKCBusbarInspection.Schemas
         public event Global.BaseEvent 통신상태알림;
         public event Global.BaseEvent 검사위치알림;
         public event Global.BaseEvent 입출변경알림;
+        public event Global.BaseEvent 원점복귀알림;
 
         #region 기본상수 및 멤버
         private static String 로그영역 = "PLC";
         private const Int32 스테이션번호 = 2;
-        private const Int32 입출체크간격 = 20;
+        private const Int32 입출체크간격 = 70;
         private DateTime 시작일시 = DateTime.Now;
         private Boolean 작업여부 = false;  // 동작 FLAG 
         private ActUtlType64 PLC = null;
@@ -59,6 +60,12 @@ namespace HKCBusbarInspection.Schemas
             [Address("W0001")]
             원점복귀완료,
 
+            [Address("W005C")]
+            하부01촬영완료,
+            [Address("W005D")]
+            하부02촬영완료,
+            [Address("W005E")]
+            하부03촬영완료,
             [Address("W0070")]
             셔틀01촬영완료,
             [Address("W0071")]
@@ -78,6 +85,9 @@ namespace HKCBusbarInspection.Schemas
             셔틀02인덱스,
             [Address("W0114")]
             셔틀03인덱스,
+
+            [Address("W0008")]
+            인덱스전체초기화,
 
             [Address("W0021")]
             트레이결과,
@@ -144,6 +154,9 @@ namespace HKCBusbarInspection.Schemas
         public Boolean 하부02결과신호 { get => 신호읽기(정보주소.하부02결과); set => 결과쓰기(정보주소.하부02결과, value); }
         public Boolean 하부03결과신호 { get => 신호읽기(정보주소.하부03결과); set => 결과쓰기(정보주소.하부03결과, value); }
 
+        public Boolean 하부01촬영완료신호 { get => 신호읽기(정보주소.하부01촬영완료); set => 정보쓰기(정보주소.하부01촬영완료, value); }
+        public Boolean 하부02촬영완료신호 { get => 신호읽기(정보주소.하부02촬영완료); set => 정보쓰기(정보주소.하부02촬영완료, value); }
+        public Boolean 하부03촬영완료신호 { get => 신호읽기(정보주소.하부03촬영완료); set => 정보쓰기(정보주소.하부03촬영완료, value); }
         public Boolean 셔틀01촬영완료신호 { get => 신호읽기(정보주소.셔틀01촬영완료); set => 정보쓰기(정보주소.셔틀01촬영완료, value); }
         public Boolean 셔틀02촬영완료신호 { get => 신호읽기(정보주소.셔틀02촬영완료); set => 정보쓰기(정보주소.셔틀02촬영완료, value); }
         public Boolean 셔틀03촬영완료신호 { get => 신호읽기(정보주소.셔틀03촬영완료); set => 정보쓰기(정보주소.셔틀03촬영완료, value); }
@@ -151,6 +164,12 @@ namespace HKCBusbarInspection.Schemas
         public Boolean 셔틀01결과신호 { get => 신호읽기(정보주소.셔틀01결과); set => 결과쓰기(정보주소.셔틀01결과, value); }
         public Boolean 셔틀02결과신호 { get => 신호읽기(정보주소.셔틀02결과); set => 결과쓰기(정보주소.셔틀02결과, value); }
         public Boolean 셔틀03결과신호 { get => 신호읽기(정보주소.셔틀03결과); set => 결과쓰기(정보주소.셔틀03결과, value); }
+
+        public Boolean 셔틀01결과값요청신호 { get => 신호읽기(정보주소.셔틀01결과값요청); set => 정보쓰기(정보주소.셔틀01결과값요청, value); }
+        public Boolean 셔틀02결과값요청신호 { get => 신호읽기(정보주소.셔틀02결과값요청); set => 정보쓰기(정보주소.셔틀02결과값요청, value); }
+        public Boolean 셔틀03결과값요청신호 { get => 신호읽기(정보주소.셔틀03결과값요청); set => 정보쓰기(정보주소.셔틀03결과값요청, value); }
+
+        public Boolean 인덱스전체초기화 { get => 신호읽기(정보주소.인덱스전체초기화); set => 결과쓰기(정보주소.인덱스전체초기화, value); }
 
         public Boolean 자동수동여부 { get => !신호읽기(정보주소.수동모드); }
         public Boolean 자동대기여부 { get => 신호읽기(정보주소.자동대기); }
@@ -163,6 +182,7 @@ namespace HKCBusbarInspection.Schemas
         public Int32 셔틀02인덱스 => this.입출자료.Get(정보주소.셔틀02인덱스);
         public Int32 셔틀03인덱스 => this.입출자료.Get(정보주소.셔틀03인덱스);
 
+        public Boolean 원점복귀완료 { get => 신호읽기(정보주소.원점복귀완료); }
         public Boolean 통신확인핑퐁 { get => 신호읽기(정보주소.통신확인수신); set => 정보쓰기(정보주소.통신확인전송, value); }
         #endregion
 
@@ -230,7 +250,7 @@ namespace HKCBusbarInspection.Schemas
             while (this.작업여부)
             {
                 try { 입출자료분석(); }
-                catch (Exception ex) { Debug.WriteLine(ex.Message, 로그영역); }
+                catch (Exception ex) { Common.DebugWriteLine(로그영역, 로그구분.오류, $"{ex.Message}"); }
                 Thread.Sleep(입출체크간격);
             }
             Global.정보로그(로그영역, "PLC 통신", $"통신이 종료되었습니다.", false);
@@ -245,9 +265,15 @@ namespace HKCBusbarInspection.Schemas
             this.셔틀01검사트리거 = false;
             this.셔틀02검사트리거 = false;
             this.셔틀03검사트리거 = false;
+            this.하부01촬영완료신호 = false;
+            this.하부02촬영완료신호 = false;
+            this.하부03촬영완료신호 = false;
             this.셔틀01촬영완료신호 = false;
             this.셔틀02촬영완료신호 = false;
             this.셔틀03촬영완료신호 = false;
+            this.셔틀01결과값요청신호 = false;
+            this.셔틀02결과값요청신호 = false;
+            this.셔틀03결과값요청신호 = false;
             this.하부01결과신호초기화 = false;
             this.하부02결과신호초기화 = false;
             this.하부03결과신호초기화 = false;

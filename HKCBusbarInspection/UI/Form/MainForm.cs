@@ -42,37 +42,37 @@ namespace HKCBusbarInspection
             //Test용
             if (e.KeyCode == Keys.T)
             {
-                Debug.WriteLine("T 눌림");
-                //검사항목 생성.
-                for (int lop = 0; lop < 3; lop++)
-                {
-                    Global.환경설정.인덱스테스트++;
-                    Global.모델자료.선택모델.검사시작(Global.환경설정.인덱스테스트);
-                    Global.검사자료.검사시작(Global.환경설정.인덱스테스트);
-                    Task.Delay(100);
-                }
+                //Debug.WriteLine("T 눌림");
+                ////검사항목 생성.
+                //for (int lop = 0; lop < 3; lop++)
+                //{
+                //    Global.환경설정.인덱스테스트++;
+                //    Global.모델자료.선택모델.검사시작(Global.환경설정.인덱스테스트);
+                //    Global.검사자료.검사시작(Global.환경설정.인덱스테스트, true);
+                //    Task.Delay(100);
+                //}
             }
             if (e.KeyCode == Keys.Y)
             {
-                Debug.WriteLine("Y 눌림");
-                for (int lop = Global.환경설정.인덱스테스트 - 2; lop <= Global.환경설정.인덱스테스트; lop++)
-                {
-                    foreach (카메라구분 구분 in typeof(카메라구분).GetValues())
-                    {
-                        if (구분 == 카메라구분.None || 구분 == 카메라구분.Cam05) continue;
+                //Debug.WriteLine("Y 눌림");
+                //for (int lop = Global.환경설정.인덱스테스트 - 2; lop <= Global.환경설정.인덱스테스트; lop++)
+                //{
+                //    foreach (카메라구분 구분 in typeof(카메라구분).GetValues())
+                //    {
+                //        if (구분 == 카메라구분.None || 구분 == 카메라구분.Cam05) continue;
 
-                        Global.모델자료.GetItem(Global.환경설정.선택모델).카메라구분 = 구분;
-                        String filePath = Global.모델자료.GetItem(Global.환경설정.선택모델).모델사진;
+                //        Global.모델자료.GetItem(Global.환경설정.선택모델).카메라구분 = 구분;
+                //        String filePath = Global.모델자료.GetItem(Global.환경설정.선택모델).모델사진;
 
-                        비전마스터플로우 플로우 = Global.VM제어.GetItem(구분);
-                        검사결과 검사 = Global.검사자료.검사항목찾기(lop);
+                //        비전마스터플로우 플로우 = Global.VM제어.GetItem(구분);
+                //        검사결과 검사 = Global.검사자료.검사항목찾기(lop, true);
 
-                        플로우.Run(null, null, filePath, 검사);
-                        //검사 = Global.검사자료.검사결과계산(Global.환경설정.인덱스테스트);
-                        //Global.검사자료.수동검사결과(구분, 검사);
-                    }
-                    Global.신호제어.검사결과(lop);
-                }
+                //        플로우.Run(null, null, filePath, 검사);
+                //        //검사 = Global.검사자료.검사결과계산(Global.환경설정.인덱스테스트);
+                //        //Global.검사자료.수동검사결과(구분, 검사);
+                //    }
+                //    Global.신호제어.검사결과(lop);
+                //}
             }
         }
 

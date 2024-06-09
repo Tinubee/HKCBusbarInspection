@@ -43,14 +43,14 @@ namespace HKCBusbarInspection.Schemas
 
     public enum 셔틀위치
     {
-        [Translation("None"), Camera(false)]
-        None = -1,
-        [Translation("셔틀01","Shuttle01"), Camera(true)]
-        Shuttle01 = 카메라구분.Cam01,
-        [Translation("셔틀02", "Shuttle02"), Camera(true)]
-        Shuttle02 = 카메라구분.Cam02,
-        [Translation("셔틀03", "Shuttle03"), Camera(true)]
-        Shuttle03 = 카메라구분.Cam03,
+        [Translation("None")]
+        None = 0,
+        [Translation("셔틀01","Shuttle01")]
+        Shuttle01 = 1,
+        [Translation("셔틀02", "Shuttle02")]
+        Shuttle02 = 2,
+        [Translation("셔틀03", "Shuttle03")]
+        Shuttle03 = 3,
     }
 
     public enum 결과분류
@@ -221,6 +221,8 @@ namespace HKCBusbarInspection.Schemas
         측면세로 = 1102,
         [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam02, None, "측면홀경")]
         측면홀경 = 1103,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam02, None, "측면홀챔버")]
+        측면홀챔버 = 1104,
 
         //버검사
         [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam03, None, "L자부버")]
@@ -245,6 +247,8 @@ namespace HKCBusbarInspection.Schemas
         EA = 2,
         [Description("Grade")]
         GA = 3,
+        [Description("Pixel")]
+        px = 4,
     }
 
     public enum 결과구분

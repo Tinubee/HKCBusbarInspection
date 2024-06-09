@@ -21,6 +21,7 @@ namespace HKCBusbarInspection.UI.Control
 {
     public partial class CamViewers : XtraUserControl
     {
+        private LocalizationCamViewer 번역 = new LocalizationCamViewer();
         private Boolean 촬영모드 { get; set; }
         private PopupMenu popupMenu;
         private 카메라구분 구분 { get; set; }
@@ -30,6 +31,7 @@ namespace HKCBusbarInspection.UI.Control
         {
             try
             {
+                this.SetLocalization();
                 if (Global.VM제어?.Count == 0) return;
 
                 this.e상부캠.ModuleSource = Global.VM제어.GetItem(Flow구분.상부카메라).graphicsSetModuleTool;
@@ -73,17 +75,18 @@ namespace HKCBusbarInspection.UI.Control
         {
             String filePath = Global.모델자료.GetItem(Global.환경설정.선택모델).모델사진;
             비전마스터플로우 플로우 = Global.VM제어.GetItem(this.구분);
-
             //Mat image = Cv2.ImRead(filePath, ImreadModes.Color);
 
             플로우.Run(null, null, filePath, Global.검사자료.수동검사);
-            검사결과 검사 = Global.검사자료.검사결과계산(Global.검사자료.수동검사.검사코드);
+            검사결과 검사 = Global.검사자료.검사결과계산(Global.검사자료.수동검사.검사코드, false);
             Global.검사자료.수동검사결과(this.구분, 검사);
         }
 
         private void 이미지그랩후검사(object sender, ItemClickEventArgs e)
         {
-            if (Global.장치상태.자동수동) { Utils.WarningMsg("자동모드 일때는 사용할 수 없습니다."); return; }
+            if (Global.장치상태.자동수동) { Utils.WarningMsg($"{this.번역.자동모드사용불가}"); return; }
+
+            if (!Global.그랩제어.GetItem(this.구분).Active()) { Utils.WarningMsg($"{this.구분} {this.번역.카메라활성화실패}"); return; }
 
             Global.그랩제어.GetItem(this.구분).SoftwareTrigger();
         }
@@ -116,6 +119,39 @@ namespace HKCBusbarInspection.UI.Control
             {
                 Debug.WriteLine(ex.Message);
             }
+        }
+
+        private void SetLocalization()
+        {
+            d상부캠.Text = this.번역.상부카메라;
+            d측면캠.Text = this.번역.측면카메라;
+            d하부캠.Text = this.번역.하부카메라;
+            dLPoint캠.Text = this.번역.LPoint카메라;
+        }
+
+        public class LocalizationCamViewer
+        {
+            private enum Items
+            {
+                [Translation("Top Camera", "상부카메라")]
+                상부카메라,
+                [Translation("Side Camera", "측면카메라")]
+                측면카메라,
+                [Translation("LPoint Camera", "LPoint카메라")]
+                LPoint카메라,
+                [Translation("Bottom Camera", "하부카메라")]
+                하부카메라,
+                [Translation("It can't use when it is in Auto Mode.", "자동모드 일때는 사용할 수 없습니다.")]
+                자동모드사용불가,
+                [Translation("Active Failed !", "Active 실패 !")]
+                카메라활성화실패,
+            }
+            public String 상부카메라 => Localization.GetString(Items.상부카메라);
+            public String 측면카메라 => Localization.GetString(Items.측면카메라);
+            public String LPoint카메라 => Localization.GetString(Items.LPoint카메라);
+            public String 하부카메라 => Localization.GetString(Items.하부카메라);
+            public String 자동모드사용불가 => Localization.GetString(Items.자동모드사용불가);
+            public String 카메라활성화실패 => Localization.GetString(Items.카메라활성화실패);
         }
     }
 }

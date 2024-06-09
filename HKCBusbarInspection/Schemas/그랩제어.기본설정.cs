@@ -123,6 +123,8 @@ namespace HKCBusbarInspection.Schemas
 
         public virtual Boolean SoftwareTrigger() => false;
 
+        public virtual void ClearImageBuffer() => this.ClearImageBuffer();
+
         #region 이미지그랩
         internal void InitBuffers(Int32 width, Int32 height)
         {
@@ -201,7 +203,7 @@ namespace HKCBusbarInspection.Schemas
             if (this.Image != null) return this.Image;
             if (BufferAddress == IntPtr.Zero) return null;
 
-            if(this.구분 == 카메라구분.Cam01)
+            if (this.구분 == 카메라구분.Cam01)
             {
                 Mat Image = new Mat(ImageHeight, ImageWidth, ImageType, BufferAddress);
                 Mat rotateImage = new Mat();
@@ -253,7 +255,7 @@ namespace HKCBusbarInspection.Schemas
                 this.주소 = $"{ip1}.{ip2}.{ip3}.{ip4}";
                 this.번호 = (int)this.구분;
                 this.상태 = this.Init();
-                this.Active();
+                //this.Active();
             }
             catch (Exception ex)
             {
@@ -310,8 +312,9 @@ namespace HKCBusbarInspection.Schemas
         {
             if (this.Camera == null) return;
 
-            if (this.구분 == 카메라구분.Cam04)
-                this.TrigSource = TriggerSource.Line0;
+            //하부카메라 트리거보드 오류 수정 전으로 임시로 제거.
+            //if (this.구분 == 카메라구분.Cam04)
+            //    this.TrigSource = TriggerSource.Line0;
 
             Int32 nRet = this.Camera.SetEnumValue("TriggerSource", (uint)this.TrigSource);
             그랩제어.Validate($"[{this.구분}] 트리거소스 설정에 실패하였습니다.", nRet, true);
@@ -335,15 +338,17 @@ namespace HKCBusbarInspection.Schemas
             return 그랩제어.Validate($"{this.구분} Stop", Camera.StopGrabbing(), false);
         }
 
+        public override void ClearImageBuffer() => this.Camera.ClearImageBuffer();
+
         private void ImageCallBack(IntPtr surfaceAddr, ref MV_FRAME_OUT_INFO_EX frameInfo, IntPtr user)
         {
             if (this.Count == 3) this.Count = 0;
 
             this.Count++;
-
             this.AcquisitionFinished(surfaceAddr, frameInfo.nWidth, frameInfo.nHeight);
-            //if (!this.라이브)
-            //    this.StopLive();
+
+            if (this.Count == 3)
+                this.Stop();
         }
     }
 
@@ -379,21 +384,19 @@ namespace HKCBusbarInspection.Schemas
             {
                 this.Interface = cInterface;
                 int nRet = this.Interface.OpenDevice(Convert.ToUInt32(0), out this.Device);
+
                 if (!그랩제어.ValidateMVFG($"[{this.구분}] 카메라 연결 실패!", nRet, true)) return false;
-                //Global.정보로그(로그영역, "카메라 연결", $"[{this.구분}] 카메라 연결 성공!", false);
+
                 this.DeviceParam = new CParam(this.Device);
+
                 nRet = this.Device.OpenStream(0, out Stream);
                 if (!그랩제어.ValidateMVFG($"[{this.구분}] OpenStream Fail!", nRet, true)) return false;
+
                 this.ImageCallBackDelegate = new CStream.ImageDelegate(ImageCallBack);
                 this.명칭 = info.chModelName;
-                //UInt32 ip1 = (info.nCurrentIp & 0xff000000) >> 24;
-                //UInt32 ip2 = (info.nCurrentIp & 0x00ff0000) >> 16;
-                //UInt32 ip3 = (info.nCurrentIp & 0x0000ff00) >> 8;
-                //UInt32 ip4 = info.nCurrentIp & 0x000000ff;
-                //this.주소 = $"{ip1}.{ip2}.{ip3}.{ip4}";
                 this.번호 = (int)this.구분;
                 this.상태 = this.Init();
-                this.Active();
+                //this.Active();
             }
             catch (Exception ex)
             {
@@ -450,6 +453,11 @@ namespace HKCBusbarInspection.Schemas
             return 그랩제어.ValidateMVFG($"{this.구분} Close", this.Stream.StopAcquisition(), false);
         }
 
+        public override void ClearImageBuffer()
+        {
+
+        }
+
         public override Boolean SoftwareTrigger()
         {
             //this.Active();
@@ -481,10 +489,10 @@ namespace HKCBusbarInspection.Schemas
                 if (this.Count == 3) this.Count = 0;
 
                 this.Count++;
-
                 this.AcquisitionFinished(stBufferInfo.pBuffer, (Int32)stBufferInfo.nWidth, (Int32)stBufferInfo.nHeight);
-                //if (!this.라이브)
-                //    this.StopLive();
+
+                if (this.Count == 3)
+                    this.Stop();
             }
         }
     }

@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CamSettings));
             this.카메라설정Bind = new System.Windows.Forms.BindingSource(this.components);
-            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.g카메라들 = new DevExpress.XtraEditors.GroupControl();
             this.GridControl1 = new MvUtils.CustomGrid();
             this.GridView1 = new MvUtils.CustomView();
             this.col구분 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -49,7 +49,7 @@
             this.e상태 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
             this.e대비 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.e밝기 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
-            this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
+            this.g조명들 = new DevExpress.XtraEditors.GroupControl();
             this.GridControl2 = new MvUtils.CustomGrid();
             this.조명설정Bind = new System.Windows.Forms.BindingSource(this.components);
             this.GridView2 = new MvUtils.CustomView();
@@ -57,32 +57,32 @@
             this.col포트 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col채널 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col밝기 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.e조명밝기 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.col설명1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col켜짐 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemToggleSwitch2 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
             this.e조명켜짐 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
-            this.e조명밝기 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.repositoryItemToggleSwitch2 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.b끄기 = new DevExpress.XtraEditors.SimpleButton();
             this.b켜기 = new DevExpress.XtraEditors.SimpleButton();
             this.b저장 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.카메라설정Bind)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
-            this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.g카메라들)).BeginInit();
+            this.g카메라들.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.e상태)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.e대비)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.e밝기)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
-            this.groupControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.g조명들)).BeginInit();
+            this.g조명들.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.조명설정Bind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.e조명켜짐)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.e조명밝기)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.e조명켜짐)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             this.SuspendLayout();
@@ -91,15 +91,15 @@
             // 
             this.카메라설정Bind.DataSource = typeof(HKCBusbarInspection.Schemas.그랩장치);
             // 
-            // groupControl2
+            // g카메라들
             // 
-            this.groupControl2.Controls.Add(this.GridControl1);
-            this.groupControl2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupControl2.Location = new System.Drawing.Point(0, 0);
-            this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(1609, 450);
-            this.groupControl2.TabIndex = 3;
-            this.groupControl2.Text = "Cameras";
+            this.g카메라들.Controls.Add(this.GridControl1);
+            this.g카메라들.Dock = System.Windows.Forms.DockStyle.Top;
+            this.g카메라들.Location = new System.Drawing.Point(0, 0);
+            this.g카메라들.Name = "g카메라들";
+            this.g카메라들.Size = new System.Drawing.Size(1609, 450);
+            this.g카메라들.TabIndex = 3;
+            this.g카메라들.Text = "Cameras";
             // 
             // GridControl1
             // 
@@ -311,15 +311,15 @@
             0});
             this.e밝기.Name = "e밝기";
             // 
-            // groupControl3
+            // g조명들
             // 
-            this.groupControl3.Controls.Add(this.GridControl2);
-            this.groupControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupControl3.Location = new System.Drawing.Point(0, 450);
-            this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(1609, 570);
-            this.groupControl3.TabIndex = 9;
-            this.groupControl3.Text = "Lights";
+            this.g조명들.Controls.Add(this.GridControl2);
+            this.g조명들.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.g조명들.Location = new System.Drawing.Point(0, 450);
+            this.g조명들.Name = "g조명들";
+            this.g조명들.Size = new System.Drawing.Size(1609, 570);
+            this.g조명들.TabIndex = 9;
+            this.g조명들.Text = "Lights";
             // 
             // GridControl2
             // 
@@ -418,6 +418,25 @@
             this.col밝기.Visible = true;
             this.col밝기.VisibleIndex = 3;
             // 
+            // e조명밝기
+            // 
+            this.e조명밝기.AutoHeight = false;
+            this.e조명밝기.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.e조명밝기.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.e조명밝기.IsFloatValue = false;
+            this.e조명밝기.MaskSettings.Set("mask", "N00");
+            this.e조명밝기.MaxValue = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.e조명밝기.Name = "e조명밝기";
+            // 
             // col설명1
             // 
             this.col설명1.AppearanceHeader.Options.UseTextOptions = true;
@@ -437,13 +456,6 @@
             this.col켜짐.Visible = true;
             this.col켜짐.VisibleIndex = 5;
             // 
-            // repositoryItemToggleSwitch2
-            // 
-            this.repositoryItemToggleSwitch2.AutoHeight = false;
-            this.repositoryItemToggleSwitch2.Name = "repositoryItemToggleSwitch2";
-            this.repositoryItemToggleSwitch2.OffText = "Off";
-            this.repositoryItemToggleSwitch2.OnText = "On";
-            // 
             // e조명켜짐
             // 
             this.e조명켜짐.AutoHeight = false;
@@ -451,24 +463,12 @@
             this.e조명켜짐.OffText = "Off";
             this.e조명켜짐.OnText = "On";
             // 
-            // e조명밝기
+            // repositoryItemToggleSwitch2
             // 
-            this.e조명밝기.AutoHeight = false;
-            this.e조명밝기.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.e조명밝기.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.e조명밝기.IsFloatValue = false;
-            this.e조명밝기.MaskSettings.Set("mask", "N00");
-            this.e조명밝기.MaxValue = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.e조명밝기.Name = "e조명밝기";
+            this.repositoryItemToggleSwitch2.AutoHeight = false;
+            this.repositoryItemToggleSwitch2.Name = "repositoryItemToggleSwitch2";
+            this.repositoryItemToggleSwitch2.OffText = "Off";
+            this.repositoryItemToggleSwitch2.OnText = "On";
             // 
             // panelControl1
             // 
@@ -524,28 +524,28 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupControl3);
+            this.Controls.Add(this.g조명들);
             this.Controls.Add(this.panelControl1);
-            this.Controls.Add(this.groupControl2);
+            this.Controls.Add(this.g카메라들);
             this.Name = "CamSettings";
             this.Size = new System.Drawing.Size(1609, 1056);
             ((System.ComponentModel.ISupportInitialize)(this.카메라설정Bind)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
-            this.groupControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.g카메라들)).EndInit();
+            this.g카메라들.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.e상태)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.e대비)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.e밝기)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
-            this.groupControl3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.g조명들)).EndInit();
+            this.g조명들.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.조명설정Bind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.e조명켜짐)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.e조명밝기)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.e조명켜짐)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -555,13 +555,13 @@
         #endregion
 
         private System.Windows.Forms.BindingSource 카메라설정Bind;
-        private DevExpress.XtraEditors.GroupControl groupControl2;
+        private DevExpress.XtraEditors.GroupControl g카메라들;
         private MvUtils.CustomGrid GridControl1;
         private MvUtils.CustomView GridView1;
         private DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch e상태;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit e대비;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit e밝기;
-        private DevExpress.XtraEditors.GroupControl groupControl3;
+        private DevExpress.XtraEditors.GroupControl g조명들;
         private MvUtils.CustomGrid GridControl2;
         private MvUtils.CustomView GridView2;
         private DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch e조명켜짐;

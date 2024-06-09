@@ -103,13 +103,13 @@ namespace HKCBusbarInspection
                     그랩제어?.Close();
                 }
 
+                VM제어?.Close();
                 유저자료.Close();
                 신호제어?.Close();
                 환경설정?.Close();
                 사진자료?.Close();
                 모델자료?.Close();
-                로그자료.Close();
-                VM제어?.Close();
+                검사자료?.Close();
                 로그자료?.Close();
 
                 Properties.Settings.Default.Save();

@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
-            this.dockPanel1 = new DevExpress.XtraBars.Docking.DockPanel();
+            this.d검사결과 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.e결과목록 = new HKCBusbarInspection.UI.Control.ResultGrid();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
@@ -50,7 +50,7 @@
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
-            this.dockPanel1.SuspendLayout();
+            this.d검사결과.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -74,7 +74,7 @@
             this.dockManager1.DockingOptions.ShowCloseButton = false;
             this.dockManager1.Form = this;
             this.dockManager1.RootPanels.AddRange(new DevExpress.XtraBars.Docking.DockPanel[] {
-            this.dockPanel1});
+            this.d검사결과});
             this.dockManager1.TopZIndexControls.AddRange(new string[] {
             "DevExpress.XtraBars.BarDockControl",
             "DevExpress.XtraBars.StandaloneBarDockControl",
@@ -89,16 +89,16 @@
             "DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl",
             "DevExpress.XtraBars.ToolbarForm.ToolbarFormControl"});
             // 
-            // dockPanel1
+            // d검사결과
             // 
-            this.dockPanel1.Controls.Add(this.dockPanel1_Container);
-            this.dockPanel1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Right;
-            this.dockPanel1.ID = new System.Guid("6883b6c3-9de6-41a2-8e51-aea01744beca");
-            this.dockPanel1.Location = new System.Drawing.Point(976, 0);
-            this.dockPanel1.Name = "dockPanel1";
-            this.dockPanel1.OriginalSize = new System.Drawing.Size(944, 200);
-            this.dockPanel1.Size = new System.Drawing.Size(944, 900);
-            this.dockPanel1.Text = "Inspection Results";
+            this.d검사결과.Controls.Add(this.dockPanel1_Container);
+            this.d검사결과.Dock = DevExpress.XtraBars.Docking.DockingStyle.Right;
+            this.d검사결과.ID = new System.Guid("6883b6c3-9de6-41a2-8e51-aea01744beca");
+            this.d검사결과.Location = new System.Drawing.Point(976, 0);
+            this.d검사결과.Name = "d검사결과";
+            this.d검사결과.OriginalSize = new System.Drawing.Size(944, 200);
+            this.d검사결과.Size = new System.Drawing.Size(944, 900);
+            this.d검사결과.Text = "Inspection Results";
             // 
             // dockPanel1_Container
             // 
@@ -326,11 +326,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.layoutControl1);
-            this.Controls.Add(this.dockPanel1);
+            this.Controls.Add(this.d검사결과);
             this.Name = "ResultInspection";
             this.Size = new System.Drawing.Size(1920, 900);
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
-            this.dockPanel1.ResumeLayout(false);
+            this.d검사결과.ResumeLayout(false);
             this.dockPanel1_Container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
@@ -370,7 +370,7 @@
         private Viewport3D e결과뷰어;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private System.Windows.Forms.BindingSource 검사결과Bind;
-        private DevExpress.XtraBars.Docking.DockPanel dockPanel1;
+        private DevExpress.XtraBars.Docking.DockPanel d검사결과;
         public ResultGrid e결과목록;
     }
 }

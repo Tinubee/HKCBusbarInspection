@@ -122,9 +122,9 @@ namespace HKCBusbarInspection.UI.Control
         {
             private enum Items
             {
-                [Translation("Start", "시작")]
+                [Translation("Start Day", "시작일자")]
                 시작일자,
-                [Translation("End", "종료")]
+                [Translation("End Day", "종료일자")]
                 종료일자,
                 [Translation("Search", "조  회")]
                 조회버튼,
