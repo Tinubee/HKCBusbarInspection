@@ -204,6 +204,7 @@
             this.e측정결과.Appearance.Options.UseTextOptions = true;
             this.e측정결과.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.e측정결과.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.e측정결과.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.검사결과Bind, "결과문구", true));
             this.e측정결과.Location = new System.Drawing.Point(6, 6);
             this.e측정결과.MinimumSize = new System.Drawing.Size(0, 50);
             this.e측정결과.Name = "e측정결과";

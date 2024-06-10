@@ -124,6 +124,7 @@ namespace HKCBusbarInspection.Schemas
             InspItems.Add(new Label3D(검사항목.측면가로) { Point = new Point3D(standardX + 13 * Scale, standardY + 67.5 * Scale, sz - 260), Origin = new Point3D(standardX + 13 * Scale, standardY + 67.5 * Scale, sz - 260), Name = "측면가로", LabelStyle = NamePrintType.Side, FontHeight = 10 });
             InspItems.Add(new Label3D(검사항목.측면세로) { Point = new Point3D(standardX + 25 * Scale, standardY + 78 * Scale, sz - 260), Origin = new Point3D(standardX + 25 * Scale, standardY + 78 * Scale, sz - 260), Name = "측면세로", LabelStyle = NamePrintType.Side, FontHeight = 10 });
             InspItems.Add(new Circle3D(검사항목.측면홀경) { Point = new Point3D(standardX + 37 * Scale, standardY + 72.5 * Scale, sz - 260), Name = "측면홀경", LabelStyle = NamePrintType.Side, FontHeight = 10 });
+            InspItems.Add(new Circle3D(검사항목.측면홀챔버) { Point = new Point3D(standardX + 37 * Scale, standardY + 62.5 * Scale, sz - 260), Name = "측면홀챔버", LabelStyle = NamePrintType.Side, FontHeight = 10 });
             InspItems.ForEach(e => e.Create(Children));
         }
 

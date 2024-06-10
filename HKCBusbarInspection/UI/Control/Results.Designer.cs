@@ -56,7 +56,6 @@
             this.col외관결과 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col불량정보 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.b그래프보기 = new DevExpress.XtraEditors.SimpleButton();
             this.e종료일자 = new DevExpress.XtraEditors.DateEdit();
             this.b엑셀파일 = new DevExpress.XtraEditors.SimpleButton();
             this.b자료조회 = new DevExpress.XtraEditors.SimpleButton();
@@ -67,7 +66,6 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.c종료일자 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
@@ -92,7 +90,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.c종료일자)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -398,7 +395,6 @@
             // layoutControl1
             // 
             this.layoutControl1.AutoScroll = false;
-            this.layoutControl1.Controls.Add(this.b그래프보기);
             this.layoutControl1.Controls.Add(this.e종료일자);
             this.layoutControl1.Controls.Add(this.b엑셀파일);
             this.layoutControl1.Controls.Add(this.b자료조회);
@@ -410,18 +406,6 @@
             this.layoutControl1.Size = new System.Drawing.Size(1591, 41);
             this.layoutControl1.TabIndex = 17;
             this.layoutControl1.Text = "layoutControl1";
-            // 
-            // b그래프보기
-            // 
-            this.b그래프보기.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.b그래프보기.Appearance.Options.UseFont = true;
-            this.b그래프보기.ImageOptions.SvgImageSize = new System.Drawing.Size(18, 18);
-            this.b그래프보기.Location = new System.Drawing.Point(793, 10);
-            this.b그래프보기.Name = "b그래프보기";
-            this.b그래프보기.Size = new System.Drawing.Size(174, 22);
-            this.b그래프보기.StyleController = this.layoutControl1;
-            this.b그래프보기.TabIndex = 5;
-            this.b그래프보기.Text = "그래프 보기";
             // 
             // e종료일자
             // 
@@ -487,7 +471,6 @@
             this.layoutControlItem2,
             this.emptySpaceItem2,
             this.c종료일자,
-            this.layoutControlItem4,
             this.emptySpaceItem1,
             this.emptySpaceItem3});
             this.Root.Name = "Root";
@@ -558,25 +541,12 @@
             this.c종료일자.Text = "End Day";
             this.c종료일자.TextSize = new System.Drawing.Size(50, 15);
             // 
-            // layoutControlItem4
-            // 
-            this.layoutControlItem4.ContentVertAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.layoutControlItem4.Control = this.b그래프보기;
-            this.layoutControlItem4.Location = new System.Drawing.Point(786, 0);
-            this.layoutControlItem4.MaxSize = new System.Drawing.Size(0, 26);
-            this.layoutControlItem4.MinSize = new System.Drawing.Size(26, 26);
-            this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(178, 32);
-            this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem4.TextVisible = false;
-            // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(964, 0);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(786, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(617, 32);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(795, 32);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem3
@@ -655,7 +625,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.c종료일자)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
@@ -671,7 +640,6 @@
         private MvUtils.CustomView GridView2;
         private MvUtils.CustomView GridView1;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
-        private DevExpress.XtraEditors.SimpleButton b그래프보기;
         private DevExpress.XtraEditors.DateEdit e종료일자;
         private DevExpress.XtraEditors.SimpleButton b엑셀파일;
         private DevExpress.XtraEditors.SimpleButton b자료조회;
@@ -682,7 +650,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraLayout.LayoutControlItem c종료일자;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         private System.Windows.Forms.BindingSource 검사자료Bind;

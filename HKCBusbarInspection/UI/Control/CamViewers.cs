@@ -84,9 +84,11 @@ namespace HKCBusbarInspection.UI.Control
 
         private void 이미지그랩후검사(object sender, ItemClickEventArgs e)
         {
+            //Global.그랩제어.GetItem(this.구분).Stop();
+
             if (Global.장치상태.자동수동) { Utils.WarningMsg($"{this.번역.자동모드사용불가}"); return; }
 
-            if (!Global.그랩제어.GetItem(this.구분).Active()) { Utils.WarningMsg($"{this.구분} {this.번역.카메라활성화실패}"); return; }
+            //if (!Global.그랩제어.GetItem(this.구분).Active()) { Utils.WarningMsg($"{this.구분} {this.번역.카메라활성화실패}"); return; }
 
             Global.그랩제어.GetItem(this.구분).SoftwareTrigger();
         }

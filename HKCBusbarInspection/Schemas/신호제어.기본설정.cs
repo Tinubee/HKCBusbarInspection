@@ -24,7 +24,7 @@ namespace HKCBusbarInspection.Schemas
         #region 기본상수 및 멤버
         private static String 로그영역 = "PLC";
         private const Int32 스테이션번호 = 2;
-        private const Int32 입출체크간격 = 70;
+        private const Int32 입출체크간격 = 200;
         private DateTime 시작일시 = DateTime.Now;
         private Boolean 작업여부 = false;  // 동작 FLAG 
         private ActUtlType64 PLC = null;
@@ -182,7 +182,7 @@ namespace HKCBusbarInspection.Schemas
         public Int32 셔틀02인덱스 => this.입출자료.Get(정보주소.셔틀02인덱스);
         public Int32 셔틀03인덱스 => this.입출자료.Get(정보주소.셔틀03인덱스);
 
-        public Boolean 원점복귀완료 { get => 신호읽기(정보주소.원점복귀완료); }
+        public Boolean 원점복귀완료 { get => 신호읽기(정보주소.원점복귀완료); set => 정보쓰기(정보주소.원점복귀완료, value); }
         public Boolean 통신확인핑퐁 { get => 신호읽기(정보주소.통신확인수신); set => 정보쓰기(정보주소.통신확인전송, value); }
         #endregion
 
@@ -285,6 +285,7 @@ namespace HKCBusbarInspection.Schemas
         private void 인덱스버퍼리셋()
         {
             this.인덱스버퍼.Clear();
+            this.인덱스버퍼.Add(정보주소.트레이검사트리거, 0);
             this.인덱스버퍼.Add(정보주소.하부01검사트리거, 0);
             this.인덱스버퍼.Add(정보주소.하부02검사트리거, 0);
             this.인덱스버퍼.Add(정보주소.하부03검사트리거, 0);

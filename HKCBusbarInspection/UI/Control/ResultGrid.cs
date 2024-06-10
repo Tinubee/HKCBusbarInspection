@@ -27,7 +27,7 @@ namespace HKCBusbarInspection.UI.Control
         {
             if (this.InvokeRequired) { this.BeginInvoke(new Action(() => { SetResults(결과); })); return; }
             this.결과 = 결과;
-            this.GridControl1.DataSource = 결과.검사내역;
+            this.GridControl1.DataSource = 결과?.검사내역;
             this.GridView1.RefreshData();
         }
 

@@ -128,7 +128,7 @@ namespace HKCBusbarInspection.Schemas
             }
         }
     }
-   
+
     public class LCP24_150U : 조명컨트롤러
     {
         public override String 로그영역 { get; set; } = nameof(LCP24_150U);
@@ -142,7 +142,7 @@ namespace HKCBusbarInspection.Schemas
         public override Boolean TurnOn(조명정보 정보) => SendCommand($"{정보.카메라} Set", $"{(Int32)정보.채널 - 1}w{this.밝기변환(정보.밝기):d4}");
         public override Boolean TurnOff(조명정보 정보) => SendCommand($"{정보.카메라} Set", $"{(Int32)정보.채널 - 1}w0000");
     }
-   
+
     public class 조명정보
     {
         [JsonProperty("Camera"), Translation("Camera", "카메라")]
@@ -266,14 +266,32 @@ namespace HKCBusbarInspection.Schemas
 
         public void Set()
         {
+            List<조명정보> 조명들 = new List<조명정보>();
             Task.Run(() =>
             {
                 foreach (조명정보 조명 in this)
                 {
-                    if (!조명.Set()) 조명.TurnOn();
-                    Task.Delay(200).Wait();
-                    조명.TurnOff();
-                    Task.Delay(200).Wait();
+                    if (조명.카메라 == 카메라구분.Cam02)
+                    {
+                        조명들.Add(조명);
+                        if (!조명.Set()) 조명.TurnOn();
+                        Task.Delay(100).Wait();
+                        if(조명들.Count == 4)
+                        {
+                            for (int lop = 0; lop < 조명들.Count; lop++)
+                            {
+                                조명들[lop].TurnOff();
+                                Task.Delay(100).Wait();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (!조명.Set()) 조명.TurnOn();
+                        Task.Delay(200).Wait();
+                        조명.TurnOff();
+                        Task.Delay(200).Wait();
+                    }
                 }
             });
         }

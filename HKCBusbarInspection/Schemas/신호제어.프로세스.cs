@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace HKCBusbarInspection.Schemas
 {
@@ -60,15 +61,15 @@ namespace HKCBusbarInspection.Schemas
             검사위치확인();
             제품검사수행();
             장치상태확인();
-            //원점복귀확인();
+            원점복귀확인();
             통신핑퐁수행();
             return true;
         }
         private void 원점복귀확인()
         {
-            Dictionary<정보주소, Int32> 변경 = this.입출자료.Changes(정보주소.원점복귀완료, 정보주소.원점복귀완료);
-            if (변경.Count < 1) return;
-            this.원점복귀알림?.Invoke();
+            if (this.입출자료.Changed(정보주소.원점복귀완료) || this.입출자료.Get(정보주소.원점복귀완료) > 0)
+                this.원점복귀알림?.Invoke();
+
         }
 
         private void 입출변경확인()
@@ -143,7 +144,7 @@ namespace HKCBusbarInspection.Schemas
             this.인덱스버퍼[구분] = index;
 
             if (index == 0) Global.경고로그(로그영역, 구분.ToString(), $"해당 위치에 검사할 제품의 Index가 없습니다.", false);
-            else Debug.WriteLine($"{Utils.FormatDate(DateTime.Now, "{0:HH:mm:ss.fff}")}  {구분} => {index}", "Trigger");
+            else Common.DebugWriteLine("검사위치번호", 로그구분.정보, $"{구분} => 인덱스[ {index} ]");
 
             return index;
         }
@@ -162,6 +163,45 @@ namespace HKCBusbarInspection.Schemas
             return 대상;
         }
 
+        private void 카메라이미지초기화()
+        {
+            Global.그랩제어.GetItem(카메라구분.Cam01).MatImageList.Clear();
+            Global.그랩제어.GetItem(카메라구분.Cam02).MatImageList.Clear();
+            Global.그랩제어.GetItem(카메라구분.Cam03).MatImageList.Clear();
+
+            //Global.그랩제어.GetItem(카메라구분.Cam01).Stop();
+            //Global.그랩제어.GetItem(카메라구분.Cam02).Stop();
+            //Global.그랩제어.GetItem(카메라구분.Cam03).Stop();
+        }
+
+        private void 셔틀검사중설정()
+        {
+            Global.그랩제어.GetItem(카메라구분.Cam01).검사중 = true;
+            Global.그랩제어.GetItem(카메라구분.Cam02).검사중 = true;
+            Global.그랩제어.GetItem(카메라구분.Cam03).검사중 = true;
+        }
+
+        private void 셔틀카메라활성화()
+        {
+            Global.그랩제어.GetItem(카메라구분.Cam01).Active();
+            Global.그랩제어.GetItem(카메라구분.Cam02).Active();
+            Global.그랩제어.GetItem(카메라구분.Cam03).Active();
+        }
+
+        private void 셔틀조명전체On()
+        {
+            Global.조명제어.TurnOn(카메라구분.Cam01);
+            Global.조명제어.TurnOn(카메라구분.Cam02);
+            Global.조명제어.TurnOn(카메라구분.Cam03);
+        }
+
+        private void 셔틀전체카메라촬영()
+        {
+            Global.그랩제어.GetItem(카메라구분.Cam01).SoftwareTrigger();
+            Global.그랩제어.GetItem(카메라구분.Cam02).SoftwareTrigger();
+            Global.그랩제어.GetItem(카메라구분.Cam03).SoftwareTrigger();
+        }
+
         private void 영상촬영수행()
         {
             Int32 하부01검사번호 = this.검사위치번호(정보주소.하부01검사트리거);
@@ -177,24 +217,11 @@ namespace HKCBusbarInspection.Schemas
                 Global.VM제어.글로벌변수제어.SetValue(셔틀번호변수이름, Utils.GetDescription(셔틀위치번호.Shuttle01));
                 new Thread(() =>
                 {
-                    Global.그랩제어.GetItem(카메라구분.Cam01).Count = 0;
-                    Global.그랩제어.GetItem(카메라구분.Cam02).Count = 0;
-                    Global.그랩제어.GetItem(카메라구분.Cam03).Count = 0;
-
-                    Global.그랩제어.GetItem(카메라구분.Cam01).Active();
-                    Global.그랩제어.GetItem(카메라구분.Cam02).Active();
-                    Global.그랩제어.GetItem(카메라구분.Cam03).Active();
-
-                    Global.조명제어.TurnOn(카메라구분.Cam01);
-                    Global.그랩제어.GetItem(카메라구분.Cam01).SoftwareTrigger();
-
-                    Global.조명제어.TurnOn(카메라구분.Cam02);
-                    Global.그랩제어.GetItem(카메라구분.Cam02).SoftwareTrigger();
-
-                    Global.조명제어.TurnOn(카메라구분.Cam03);
-                    Global.그랩제어.GetItem(카메라구분.Cam03).SoftwareTrigger();
-
-                    this.셔틀01촬영완료신호 = true;
+                    카메라이미지초기화();
+                    셔틀조명전체On();
+                    셔틀검사중설정();
+                    //셔틀카메라활성화();
+                    셔틀전체카메라촬영();
                 })
                 { Priority = ThreadPriority.Highest }.Start();
             }
@@ -203,11 +230,8 @@ namespace HKCBusbarInspection.Schemas
                 Global.VM제어.글로벌변수제어.SetValue(셔틀번호변수이름, Utils.GetDescription(셔틀위치번호.Shuttle02));
                 new Thread(() =>
                 {
-                    Global.그랩제어.GetItem(카메라구분.Cam01).SoftwareTrigger();
-                    Global.그랩제어.GetItem(카메라구분.Cam02).SoftwareTrigger();
-                    Global.그랩제어.GetItem(카메라구분.Cam03).SoftwareTrigger();
-
-                    this.셔틀02촬영완료신호 = true;
+                    셔틀검사중설정();
+                    셔틀전체카메라촬영();
                 })
                 { Priority = ThreadPriority.Highest }.Start();
             }
@@ -216,11 +240,8 @@ namespace HKCBusbarInspection.Schemas
                 Global.VM제어.글로벌변수제어.SetValue(셔틀번호변수이름, Utils.GetDescription(셔틀위치번호.Shuttle03));
                 new Thread(() =>
                 {
-                    Global.그랩제어.GetItem(카메라구분.Cam01).SoftwareTrigger();
-                    Global.그랩제어.GetItem(카메라구분.Cam02).SoftwareTrigger();
-                    Global.그랩제어.GetItem(카메라구분.Cam03).SoftwareTrigger();
-
-                    this.셔틀03촬영완료신호 = true;
+                    셔틀검사중설정();
+                    셔틀전체카메라촬영();
                 })
                 { Priority = ThreadPriority.Highest }.Start();
             }
@@ -228,17 +249,18 @@ namespace HKCBusbarInspection.Schemas
             {
                 new Thread(() =>
                 {
-                    Global.그랩제어.GetItem(카메라구분.Cam04).Count = 0;
-                    Global.그랩제어.GetItem(카메라구분.Cam04).Active();
-
+                    this.하부01검사트리거 = false;
+                    Common.DebugWriteLine("하부01트리거", 로그구분.정보, $"하부01트리거 들어옴");
+                    Global.그랩제어.GetItem(카메라구분.Cam04).MatImageList.Clear();
+                    //Global.그랩제어.GetItem(카메라구분.Cam04).Stop();
+                    //Task.Delay(100);
+                    //Global.그랩제어.GetItem(카메라구분.Cam04).Active();
+                    //Task.Delay(100);
                     Global.모델자료.선택모델.검사시작(하부01검사번호);
                     Global.검사자료.검사시작(하부01검사번호, true);
                     Global.조명제어.TurnOn(카메라구분.Cam04);
                     //임시 (트리거보드 수정후 Active만 시켜주면됨(Sofware Trigger 안씀)
                     Global.그랩제어.GetItem(카메라구분.Cam04).SoftwareTrigger();
-
-                    this.하부01촬영완료신호 = true;
-                    this.하부01검사트리거 = false;
                 })
                 { Priority = ThreadPriority.Highest }.Start();
             }
@@ -246,13 +268,11 @@ namespace HKCBusbarInspection.Schemas
             {
                 new Thread(() =>
                 {
+                    this.하부02검사트리거 = false;
+                    Common.DebugWriteLine("하부02트리거", 로그구분.정보, $"하부02트리거 들어옴");
                     Global.모델자료.선택모델.검사시작(하부02검사번호);
                     Global.검사자료.검사시작(하부02검사번호, true);
-
                     Global.그랩제어.GetItem(카메라구분.Cam04).SoftwareTrigger();
-
-                    this.하부02촬영완료신호 = true;
-                    this.하부02검사트리거 = false;
                 })
                 { Priority = ThreadPriority.Highest }.Start();
             }
@@ -260,13 +280,11 @@ namespace HKCBusbarInspection.Schemas
             {
                 new Thread(() =>
                 {
+                    this.하부03검사트리거 = false;
+                    Common.DebugWriteLine("하부03트리거", 로그구분.정보, $"하부03트리거 들어옴");
                     Global.모델자료.선택모델.검사시작(하부03검사번호);
                     Global.검사자료.검사시작(하부03검사번호, true);
-
                     Global.그랩제어.GetItem(카메라구분.Cam04).SoftwareTrigger();
-
-                    this.하부03촬영완료신호 = true;
-                    this.하부03검사트리거 = false;
                 }).Start();
             }
         }
@@ -343,9 +361,7 @@ namespace HKCBusbarInspection.Schemas
         private void 통신핑퐁수행()
         {
             //Boolean 연결신호확인 = 신호읽기(정보주소.통신확인전송);
-
             //정보쓰기(정보주소.통신확인전송, !연결신호확인);
-
             if (this.입출자료.Changed(정보주소.통신확인수신))
             {
                 this.통신확인핑퐁 = !this.통신확인핑퐁;

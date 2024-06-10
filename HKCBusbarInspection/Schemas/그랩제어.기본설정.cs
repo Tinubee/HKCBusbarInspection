@@ -80,9 +80,11 @@ namespace HKCBusbarInspection.Schemas
         [JsonIgnore]
         internal Mat Image => Images.LastOrDefault<Mat>();
         [JsonIgnore]
+        public List<Mat> MatImageList = new List<Mat>();
+        [JsonIgnore]
         public Boolean 라이브 { get; set; } = false;
         [JsonIgnore]
-        internal Int32 Count { get; set; } = 0;
+        public Boolean 검사중 { get; set; } = false;
         [JsonIgnore]
         public const String 로그영역 = "Camera";
 
@@ -255,7 +257,7 @@ namespace HKCBusbarInspection.Schemas
                 this.주소 = $"{ip1}.{ip2}.{ip3}.{ip4}";
                 this.번호 = (int)this.구분;
                 this.상태 = this.Init();
-                //this.Active();
+                this.Active();
             }
             catch (Exception ex)
             {
@@ -292,7 +294,6 @@ namespace HKCBusbarInspection.Schemas
             그랩제어.Validate("RegisterImageCallBackEx", this.Camera.RegisterImageCallBackEx(this.ImageCallBackDelegate, IntPtr.Zero), false);
             this.Camera.SetImageNodeNum(ImageCount);
             this.옵션적용();
-
             Global.정보로그(로그영역, "카메라 연결", $"[{this.구분}] 카메라 연결 성공!", false);
             return true;
         }
@@ -342,13 +343,9 @@ namespace HKCBusbarInspection.Schemas
 
         private void ImageCallBack(IntPtr surfaceAddr, ref MV_FRAME_OUT_INFO_EX frameInfo, IntPtr user)
         {
-            if (this.Count == 3) this.Count = 0;
-
-            this.Count++;
+            Common.DebugWriteLine("ImageCallBack", 로그구분.정보, $"{this.구분} ImageCallBack 완료.");
             this.AcquisitionFinished(surfaceAddr, frameInfo.nWidth, frameInfo.nHeight);
-
-            if (this.Count == 3)
-                this.Stop();
+            //this.Stop();
         }
     }
 
@@ -372,7 +369,7 @@ namespace HKCBusbarInspection.Schemas
         [JsonIgnore]
         public Int32 number { get; set; } = 0;
         [JsonIgnore]
-        public const Int32 BufNum = 3;
+        public const Int32 BufNum = 10;
         [JsonIgnore, Description("Trig Mode")]
         public TriggerMode TrigMode { get; set; } = TriggerMode.TRIGGER_MODE_ON;
         [JsonIgnore, Description("Trig Source")]
@@ -382,6 +379,7 @@ namespace HKCBusbarInspection.Schemas
         {
             try
             {
+
                 this.Interface = cInterface;
                 int nRet = this.Interface.OpenDevice(Convert.ToUInt32(0), out this.Device);
 
@@ -396,7 +394,7 @@ namespace HKCBusbarInspection.Schemas
                 this.명칭 = info.chModelName;
                 this.번호 = (int)this.구분;
                 this.상태 = this.Init();
-                //this.Active();
+                this.Active();
             }
             catch (Exception ex)
             {
@@ -486,13 +484,9 @@ namespace HKCBusbarInspection.Schemas
         {
             if (null != stBufferInfo.pBuffer)
             {
-                if (this.Count == 3) this.Count = 0;
-
-                this.Count++;
+                Common.DebugWriteLine("ImageCallBack", 로그구분.정보, $"{this.구분} ImageCallBack 완료.");
                 this.AcquisitionFinished(stBufferInfo.pBuffer, (Int32)stBufferInfo.nWidth, (Int32)stBufferInfo.nHeight);
-
-                if (this.Count == 3)
-                    this.Stop();
+                //this.Stop();
             }
         }
     }

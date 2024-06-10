@@ -31,7 +31,7 @@ namespace HKCBusbarInspection.Schemas
             this.Add(new 조명정보(카메라구분.Cam02, 조명컨트롤러) { 채널 = 조명채널.CH06, 밝기 = 100 }); //BackLight
 
             //LPoint카메라 조명
-            this.Add(new 조명정보(카메라구분.Cam03, 조명컨트롤러) { 채널 = 조명채널.CH08, 밝기 = 100 });
+            this.Add(new 조명정보(카메라구분.Cam03, 조명컨트롤러) { 채널 = 조명채널.CH07, 밝기 = 100 });
 
             //하부카메라조명
             this.Add(new 조명정보(카메라구분.Cam04, 조명컨트롤러) { 채널 = 조명채널.CH01, 밝기 = 100 }); 

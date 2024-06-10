@@ -42,7 +42,8 @@ namespace HKCBusbarInspection
             //Test용
             if (e.KeyCode == Keys.T)
             {
-                //Debug.WriteLine("T 눌림");
+                Debug.WriteLine("T 눌림");
+                Global.신호제어.원점복귀완료 = false;
                 ////검사항목 생성.
                 //for (int lop = 0; lop < 3; lop++)
                 //{

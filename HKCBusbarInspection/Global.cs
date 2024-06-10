@@ -172,7 +172,7 @@ namespace HKCBusbarInspection
             try
             {
                 로그정보 로그 = 로그자료.Add(영역, 구분, 제목, 내용);
-                Debug.WriteLine($"{MvUtils.Utils.FormatDate(DateTime.Now, "{0:HH:mm:ss}")}\t{구분}\t{영역}\t{제목}\t{내용}");
+                //Debug.WriteLine($"{MvUtils.Utils.FormatDate(DateTime.Now, "{0:HH:mm:ss}")}\t{구분}\t{영역}\t{제목}\t{내용}");
                 return 로그;
             }
             catch (Exception ex)

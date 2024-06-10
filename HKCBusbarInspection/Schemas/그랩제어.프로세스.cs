@@ -154,20 +154,32 @@ namespace HKCBusbarInspection.Schemas
 
         public void 그랩완료(그랩장치 장치)
         {
-            if (장치.Count == 3)
-            {
-                Common.DebugWriteLine(로그영역, 로그구분.정보, $"{장치.구분} {장치.Count} 개 이미지 획득 완료 및 조명 Off");
-                Global.조명제어.TurnOnOff(장치.구분, false);
-                //장치.TurnOff();
-            }
-
             if (Global.장치상태.자동수동)
             {
-                Int32 검사번호 = Global.신호제어.촬영위치번호(장치.구분, 장치.Count);
+                Mat 검사이미지 = 장치.MatImage();
+                장치.MatImageList.Add(검사이미지);
+
+                Int32 이미지개수 = 장치.MatImageList.Count;
+
+                Int32 검사번호 = Global.신호제어.촬영위치번호(장치.구분, 이미지개수);
                 검사결과 검사 = Global.검사자료.검사항목찾기(검사번호, true);
-                if (검사 == null) return;
-                Global.VM제어.GetItem(장치.구분).Run(장치.MatImage(), null, null, 검사);
+                if (검사 == null)
+                {
+                    Global.오류로그("그랩완료", "검사번호없음", $"Index[{검사번호}] 해당 검사가 없습니다.", false);
+                    return;
+                }
+
+                Global.VM제어.GetItem(장치.구분).Run(검사이미지, null, null, 검사);
                 Global.사진자료.SaveImage(장치, 검사);
+                장치.검사중 = false;
+                완료신호전송(장치, 이미지개수);
+
+                if (장치.MatImageList.Count == 3)
+                {
+                    Common.DebugWriteLine(로그영역, 로그구분.정보, $"[{장치.구분}] => {장치.MatImageList.Count} 개 이미지 획득 완료 및 조명 Off");
+                    장치.TurnOff();
+                    장치.MatImageList.Clear();
+                }
             }
             else
             {
@@ -175,9 +187,29 @@ namespace HKCBusbarInspection.Schemas
 
                 검사결과 검사 = Global.검사자료.검사결과계산(Global.검사자료.수동검사.검사코드, false);
                 Global.검사자료.수동검사결과(장치.구분, 검사);
-                //this.그랩완료보고?.Invoke(장치);
+            }
+            this.그랩완료보고?.Invoke(장치);
+        }
+
+        private void 완료신호전송(그랩장치 장치,Int32 순서)
+        {
+            if (장치.구분 == 카메라구분.Cam04)
+            {
+                if (순서 == 1) Global.신호제어.하부01촬영완료신호 = true;
+                else if (순서 == 2) Global.신호제어.하부02촬영완료신호 = true;
+                else if (순서 == 3) Global.신호제어.하부03촬영완료신호 = true;
+            }
+            else
+            {
+                if (!Global.그랩제어.GetItem(카메라구분.Cam01).검사중 && !Global.그랩제어.GetItem(카메라구분.Cam02).검사중 && !Global.그랩제어.GetItem(카메라구분.Cam03).검사중)
+                {
+                    if (순서 == 1) Global.신호제어.셔틀01촬영완료신호 = true;
+                    else if (순서 == 2) Global.신호제어.셔틀02촬영완료신호 = true;
+                    else if (순서 == 3) Global.신호제어.셔틀03촬영완료신호 = true;
+                }
             }
         }
+
 
         #region 오류메세지
         public static Boolean Validate(String message, Int32 errorNum, Boolean show)
@@ -206,6 +238,7 @@ namespace HKCBusbarInspection.Schemas
                 default: errorMsg = "Unknown error"; break;
             }
 
+            Common.DebugWriteLine("Camera", 로그구분.오류, $"[{errorNum}] {message} {errorMsg}");
             Global.오류로그("Camera", "Error", $"[{errorNum}] {message} {errorMsg}", show);
             return false;
         }
@@ -267,6 +300,7 @@ namespace HKCBusbarInspection.Schemas
                 default: errorMsg = "Unknown error"; break;
             }
 
+            Common.DebugWriteLine("Camera", 로그구분.오류, $"[{errorNum}] {message} {errorMsg}");
             Global.오류로그("Camera", "Error", $"[{errorNum}] {message} {errorMsg}", show);
             return false;
         }

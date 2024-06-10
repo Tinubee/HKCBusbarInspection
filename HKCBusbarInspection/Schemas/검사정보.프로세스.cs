@@ -210,7 +210,7 @@ namespace HKCBusbarInspection.Schemas
         public 검사정보 SetResult(검사항목 항목, Double value) => SetResult(검사내역.Where(e => e.검사항목 == 항목).FirstOrDefault(), value);
         public void SetResults(카메라구분 카메라, Dictionary<String, Double> results)
         {
-            foreach (var result in results)
+            foreach (KeyValuePair<String, Double> result in results)
             {
                 검사정보 정보 = GetItem((장치구분)카메라, result.Key);
                 if (정보 == null) continue;

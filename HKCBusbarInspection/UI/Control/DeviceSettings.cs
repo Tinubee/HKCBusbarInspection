@@ -17,6 +17,32 @@ namespace HKCBusbarInspection.UI.Control
 
             this.b설정저장.Click += 환경설정저장;
             this.b인덱스리셋.Click += 인덱스리셋;
+
+            if (Global.신호제어 != null)
+                Global.신호제어.원점복귀알림 += 원점복귀알림;
+        }
+
+        private void 원점복귀알림()
+        {
+            if (this.InvokeRequired) { this.BeginInvoke(new Action(원점복귀알림)); return; }
+
+            Global.그랩제어.GetItem(카메라구분.Cam01).MatImageList.Clear();
+            Global.그랩제어.GetItem(카메라구분.Cam02).MatImageList.Clear();
+            Global.그랩제어.GetItem(카메라구분.Cam03).MatImageList.Clear();
+            Global.그랩제어.GetItem(카메라구분.Cam04).MatImageList.Clear();
+            Global.그랩제어.GetItem(카메라구분.Cam05).MatImageList.Clear();
+
+            //Global.그랩제어.GetItem(카메라구분.Cam01).Stop();
+            //Global.그랩제어.GetItem(카메라구분.Cam02).Stop();
+            //Global.그랩제어.GetItem(카메라구분.Cam03).Stop();
+            //Global.그랩제어.GetItem(카메라구분.Cam04).Stop();
+            //Global.그랩제어.GetItem(카메라구분.Cam05).Stop();
+
+            Global.조명제어.TurnOff();
+
+            Global.신호제어.원점복귀완료 = false;
+            Common.DebugWriteLine("원점복귀", 로그구분.정보, "원점복귀완료");
+            Global.정보로그("원점복귀", "원점복귀완료", "원점복귀완료", true);
         }
 
         private void 인덱스리셋(object sender, EventArgs e)
@@ -51,7 +77,7 @@ namespace HKCBusbarInspection.UI.Control
 
         public void Close()
         {
-          
+
         }
         private void SetLocalization()
         {

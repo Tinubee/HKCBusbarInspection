@@ -41,6 +41,11 @@ namespace HKCBusbarInspection.UI.Control
         {
             if (this.InvokeRequired) { this.BeginInvoke(new Action(() => { 검사완료알림(결과); })); return; }
             if (Global.장치상태.자동수동) Global.검사자료.Save();
+            if (결과 == null)
+            {
+                Common.DebugWriteLine("검사완료알림", 로그구분.오류, $"검사결과가 없습니다.");
+                return;
+            }
             this.e결과뷰어.SetResults(결과);
             this.e결과목록.SetResults(결과);
             this.e측정결과.Appearance.ForeColor = 환경설정.결과표현색상(결과.측정결과);

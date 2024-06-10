@@ -123,6 +123,12 @@ namespace HKCBusbarInspection.Schemas
 
         private void ShellModuleTool_ModuleResultCallBackArrived(object sender, EventArgs e) { }
 
+        public void Shell입력값적용(InputStringData[] inputStringData, String setName)
+        {
+            //this.indexShellModuleTool.ModuParams.SetInputString(setName, inputStringData);
+        }
+
+
         public void Init()
         {
             this.Procedure = VmSolution.Instance[this.구분.ToString()] as VmProcedure;
@@ -175,9 +181,9 @@ namespace HKCBusbarInspection.Schemas
         {
             Dictionary<String, Double> results = new Dictionary<String, Double>();
             //ShellModuleTool shell = Global.VM제어.GetItem(구분).shellModuleTool;
-            foreach (var item in this.shellModuleTool.Outputs)
+            foreach (VmIO vmIO in this.shellModuleTool.Outputs)
             {
-                List<VmIO> t = item.GetAllIO();
+                List<VmIO> t = vmIO.GetAllIO();
                 if (t[0].Value != null && t[0].UniqueName != "ModuStatus" && t[0].UniqueName != "ResultShow")
                 {
                     String name = t[0].UniqueName.Split('%')[1];
@@ -267,21 +273,15 @@ namespace HKCBusbarInspection.Schemas
                     return false;
                 }
 
-                if (mat == null && imageBaseData == null)
-                {
-                    this.imageSourceModuleTool.SetImagePath(imagePath);
-                }
+                if (mat == null && imageBaseData == null) this.imageSourceModuleTool.SetImagePath(imagePath);
                 else
                 {
                     imageBaseData = mat == null ? imageBaseData : MatToImageBaseData(mat);
                     if (imageBaseData != null)
                         this.imageSourceModuleTool.SetImageData(imageBaseData);
                 }
-
                 this.Procedure.Run();
-
                 검사?.SetResults(this.카메라, this.GetResults());
-
                 return true;
             }
             catch (Exception ex)
