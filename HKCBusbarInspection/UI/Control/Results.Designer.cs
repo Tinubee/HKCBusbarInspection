@@ -320,6 +320,8 @@
             // 
             // col검사일시
             // 
+            this.col검사일시.AppearanceCell.Options.UseTextOptions = true;
+            this.col검사일시.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.col검사일시.AppearanceHeader.Options.UseTextOptions = true;
             this.col검사일시.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.col검사일시.DisplayFormat.FormatString = "{0:yy-MM-dd HH:mm:ss.fff}";
@@ -331,6 +333,8 @@
             // 
             // col모델구분
             // 
+            this.col모델구분.AppearanceCell.Options.UseTextOptions = true;
+            this.col모델구분.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.col모델구분.AppearanceHeader.Options.UseTextOptions = true;
             this.col모델구분.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.col모델구분.FieldName = "모델구분";
@@ -340,6 +344,8 @@
             // 
             // col검사코드
             // 
+            this.col검사코드.AppearanceCell.Options.UseTextOptions = true;
+            this.col검사코드.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.col검사코드.AppearanceHeader.Options.UseTextOptions = true;
             this.col검사코드.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.col검사코드.FieldName = "검사코드";
@@ -349,6 +355,8 @@
             // 
             // col셔틀위치
             // 
+            this.col셔틀위치.AppearanceCell.Options.UseTextOptions = true;
+            this.col셔틀위치.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.col셔틀위치.AppearanceHeader.Options.UseTextOptions = true;
             this.col셔틀위치.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.col셔틀위치.FieldName = "셔틀위치";
@@ -358,6 +366,8 @@
             // 
             // col측정결과
             // 
+            this.col측정결과.AppearanceCell.Options.UseTextOptions = true;
+            this.col측정결과.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.col측정결과.AppearanceHeader.Options.UseTextOptions = true;
             this.col측정결과.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.col측정결과.FieldName = "측정결과";
@@ -367,6 +377,8 @@
             // 
             // colCTQ결과
             // 
+            this.colCTQ결과.AppearanceCell.Options.UseTextOptions = true;
+            this.colCTQ결과.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colCTQ결과.AppearanceHeader.Options.UseTextOptions = true;
             this.colCTQ결과.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colCTQ결과.FieldName = "CTQ결과";
@@ -376,6 +388,8 @@
             // 
             // col외관결과
             // 
+            this.col외관결과.AppearanceCell.Options.UseTextOptions = true;
+            this.col외관결과.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.col외관결과.AppearanceHeader.Options.UseTextOptions = true;
             this.col외관결과.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.col외관결과.FieldName = "외관결과";

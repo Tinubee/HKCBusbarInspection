@@ -8,35 +8,15 @@ namespace HKCBusbarInspection.UI.Control
     public partial class DeviceSettings : XtraUserControl
     {
         private LocalizationDeviceSetting 번역 = new LocalizationDeviceSetting();
-        public DeviceSettings()
-        {
-            InitializeComponent();
-            this.SetLocalization();
-            this.BindLocalization.DataSource = this.번역;
-            this.환경설정Bind.DataSource = Global.환경설정;
-
-            this.b설정저장.Click += 환경설정저장;
-            this.b인덱스리셋.Click += 인덱스리셋;
-
-            if (Global.신호제어 != null)
-                Global.신호제어.원점복귀알림 += 원점복귀알림;
-        }
+        public DeviceSettings() => InitializeComponent();
 
         private void 원점복귀알림()
         {
-            if (this.InvokeRequired) { this.BeginInvoke(new Action(원점복귀알림)); return; }
-
             Global.그랩제어.GetItem(카메라구분.Cam01).MatImageList.Clear();
             Global.그랩제어.GetItem(카메라구분.Cam02).MatImageList.Clear();
             Global.그랩제어.GetItem(카메라구분.Cam03).MatImageList.Clear();
             Global.그랩제어.GetItem(카메라구분.Cam04).MatImageList.Clear();
             Global.그랩제어.GetItem(카메라구분.Cam05).MatImageList.Clear();
-
-            //Global.그랩제어.GetItem(카메라구분.Cam01).Stop();
-            //Global.그랩제어.GetItem(카메라구분.Cam02).Stop();
-            //Global.그랩제어.GetItem(카메라구분.Cam03).Stop();
-            //Global.그랩제어.GetItem(카메라구분.Cam04).Stop();
-            //Global.그랩제어.GetItem(카메라구분.Cam05).Stop();
 
             Global.조명제어.TurnOff();
 
@@ -44,7 +24,6 @@ namespace HKCBusbarInspection.UI.Control
             Common.DebugWriteLine("원점복귀", 로그구분.정보, "원점복귀완료");
             Global.정보로그("원점복귀", "원점복귀완료", "원점복귀완료", true);
         }
-
         private void 인덱스리셋(object sender, EventArgs e)
         {
             //if (!Utils.Confirm(this.FindForm(), "인덱스", Localization.확인.GetString())) return;
@@ -59,6 +38,15 @@ namespace HKCBusbarInspection.UI.Control
 
             this.e강제배출.EditValueChanged += 강제배출Changed;
             this.e배출구분.EditValueChanged += 배출구분Changed;
+
+            this.SetLocalization();
+            this.BindLocalization.DataSource = this.번역;
+            this.환경설정Bind.DataSource = Global.환경설정;
+
+            this.b설정저장.Click += 환경설정저장;
+            this.b인덱스리셋.Click += 인덱스리셋;
+
+            Global.신호제어.원점복귀알림 += 원점복귀알림;
 
             this.e카메라.Init();
             this.e기본설정.Init();

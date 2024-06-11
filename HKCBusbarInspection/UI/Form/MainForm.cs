@@ -43,15 +43,17 @@ namespace HKCBusbarInspection
             if (e.KeyCode == Keys.T)
             {
                 Debug.WriteLine("T 눌림");
+                Global.그랩제어.GetItem(카메라구분.Cam01).MatImageList.Clear();
+                Global.그랩제어.GetItem(카메라구분.Cam02).MatImageList.Clear();
+                Global.그랩제어.GetItem(카메라구분.Cam03).MatImageList.Clear();
+                Global.그랩제어.GetItem(카메라구분.Cam04).MatImageList.Clear();
+                Global.그랩제어.GetItem(카메라구분.Cam05).MatImageList.Clear();
+
+                Global.조명제어.TurnOff();
+
                 Global.신호제어.원점복귀완료 = false;
-                ////검사항목 생성.
-                //for (int lop = 0; lop < 3; lop++)
-                //{
-                //    Global.환경설정.인덱스테스트++;
-                //    Global.모델자료.선택모델.검사시작(Global.환경설정.인덱스테스트);
-                //    Global.검사자료.검사시작(Global.환경설정.인덱스테스트, true);
-                //    Task.Delay(100);
-                //}
+                Common.DebugWriteLine("원점복귀", 로그구분.정보, "원점복귀완료");
+                Global.정보로그("원점복귀", "원점복귀완료", "원점복귀완료", true);
             }
             if (e.KeyCode == Keys.Y)
             {

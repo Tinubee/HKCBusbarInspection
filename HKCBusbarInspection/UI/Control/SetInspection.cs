@@ -66,6 +66,7 @@ namespace HKCBusbarInspection.UI.Control
             this.b설정저장.Click += 설정저장;
             this.b수동검사.Click += 수동검사;
             this.b셔틀위치.ButtonClick += 보정값계산;
+            this.b캘리브레이션.Click += 캘리브레이션;
 
             EnumToList 셔틀위치 = new EnumToList(그랩제어.대상셔틀.ToArray());
             셔틀위치.SetLookUpEdit(this.b셔틀위치);
@@ -77,6 +78,12 @@ namespace HKCBusbarInspection.UI.Control
             Localization.SetColumnCaption(this.e모델선택, typeof(모델정보));
             Localization.SetColumnCaption(this.GridView1, typeof(검사정보));
             this.모델선택(this.e모델선택, EventArgs.Empty);
+        }
+
+        private void 캘리브레이션(object sender, EventArgs e)
+        {
+            CalibrationForm f = new CalibrationForm();
+            f.Show(Global.MainForm);
         }
 
         private void GridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
@@ -301,6 +308,7 @@ namespace HKCBusbarInspection.UI.Control
             this.b수동검사.Text = this.번역.수동검사;
             this.b셔틀위치.Properties.Buttons[1].ToolTip = this.번역.교정값계산;
             this.b셔틀위치.Properties.Buttons[3].ToolTip = this.번역.교정값초기화;
+            this.b캘리브레이션.Text = this.번역.캘리브레이션;
         }
 
         private class LocalizationInspection
@@ -316,6 +324,8 @@ namespace HKCBusbarInspection.UI.Control
                 교정값계산,
                 [Translation("Calibration Initialize", "교정값 초기화")]
                 교정값초기화,
+                [Translation("Calibration", "캘리브레이션")]
+                캘리브레이션,
 
                 [Translation("Save", "설정저장")]
                 설정저장,
@@ -370,6 +380,7 @@ namespace HKCBusbarInspection.UI.Control
             public String 전체캘작업실행 { get => Localization.GetString(Items.전체캘작업실행); }
             public String 전체캘초기화 { get => Localization.GetString(Items.전체캘초기화); }
             public String 자동모드사용불가 { get => Localization.GetString(Items.자동모드사용불가); }
+            public String 캘리브레이션 { get => Localization.GetString(Items.캘리브레이션); }
         }
     }
 }

@@ -67,9 +67,8 @@ namespace HKCBusbarInspection.Schemas
         }
         private void 원점복귀확인()
         {
-            if (this.입출자료.Changed(정보주소.원점복귀완료) || this.입출자료.Get(정보주소.원점복귀완료) > 0)
+            if (this.입출자료.Changed(정보주소.원점복귀완료) && this.원점복귀완료)
                 this.원점복귀알림?.Invoke();
-
         }
 
         private void 입출변경확인()

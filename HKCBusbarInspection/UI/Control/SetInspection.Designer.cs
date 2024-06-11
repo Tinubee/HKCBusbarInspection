@@ -41,6 +41,7 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SetInspection));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.b캘리브레이션 = new DevExpress.XtraEditors.SimpleButton();
             this.b셔틀위치 = new DevExpress.XtraEditors.LookUpEdit();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -90,6 +91,7 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.b캘리브레이션);
             this.panelControl1.Controls.Add(this.b셔틀위치);
             this.panelControl1.Controls.Add(this.b수동검사);
             this.panelControl1.Controls.Add(this.b도구설정);
@@ -99,13 +101,27 @@
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Padding = new System.Windows.Forms.Padding(3);
-            this.panelControl1.Size = new System.Drawing.Size(1399, 52);
+            this.panelControl1.Size = new System.Drawing.Size(1756, 52);
             this.panelControl1.TabIndex = 6;
+            // 
+            // b캘리브레이션
+            // 
+            this.b캘리브레이션.Appearance.Font = new System.Drawing.Font("맑은 고딕", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.b캘리브레이션.Appearance.Options.UseFont = true;
+            this.b캘리브레이션.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b캘리브레이션.Dock = System.Windows.Forms.DockStyle.Right;
+            this.b캘리브레이션.ImageOptions.SvgImage = global::HKCBusbarInspection.Properties.Resources.inserttableofcaptions;
+            this.b캘리브레이션.Location = new System.Drawing.Point(1031, 5);
+            this.b캘리브레이션.Name = "b캘리브레이션";
+            this.b캘리브레이션.Size = new System.Drawing.Size(240, 42);
+            this.b캘리브레이션.TabIndex = 24;
+            this.b캘리브레이션.Text = "캘리브레이션";
+            this.b캘리브레이션.Visible = false;
             // 
             // b셔틀위치
             // 
             this.b셔틀위치.Dock = System.Windows.Forms.DockStyle.Right;
-            this.b셔틀위치.Location = new System.Drawing.Point(914, 5);
+            this.b셔틀위치.Location = new System.Drawing.Point(1271, 5);
             this.b셔틀위치.MenuManager = this.barManager1;
             this.b셔틀위치.Name = "b셔틀위치";
             this.b셔틀위치.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -136,15 +152,15 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1399, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(1756, 0);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 901);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1019);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1399, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1756, 0);
             // 
             // barDockControlLeft
             // 
@@ -152,15 +168,15 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 901);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1019);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1399, 0);
+            this.barDockControlRight.Location = new System.Drawing.Point(1756, 0);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 901);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 1019);
             // 
             // b수동검사
             // 
@@ -218,7 +234,7 @@
             this.b설정저장.Appearance.Options.UseFont = true;
             this.b설정저장.Dock = System.Windows.Forms.DockStyle.Right;
             this.b설정저장.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("b설정저장.ImageOptions.SvgImage")));
-            this.b설정저장.Location = new System.Drawing.Point(1214, 5);
+            this.b설정저장.Location = new System.Drawing.Point(1571, 5);
             this.b설정저장.Name = "b설정저장";
             this.b설정저장.Size = new System.Drawing.Size(180, 42);
             this.b설정저장.TabIndex = 0;
@@ -234,7 +250,7 @@
             this.GridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.ｅ교정계산,
             this.repositoryItemToggleSwitch1});
-            this.GridControl1.Size = new System.Drawing.Size(1399, 849);
+            this.GridControl1.Size = new System.Drawing.Size(1756, 967);
             this.GridControl1.TabIndex = 7;
             this.GridControl1.UseDirectXPaint = DevExpress.Utils.DefaultBoolean.True;
             this.GridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -474,7 +490,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "SetInspection";
-            this.Size = new System.Drawing.Size(1399, 901);
+            this.Size = new System.Drawing.Size(1756, 1019);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.b셔틀위치.Properties)).EndInit();
@@ -528,5 +544,6 @@
         private DevExpress.XtraEditors.SimpleButton b수동검사;
         private DevExpress.XtraEditors.LookUpEdit b셔틀위치;
         private DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch repositoryItemToggleSwitch1;
+        private DevExpress.XtraEditors.SimpleButton b캘리브레이션;
     }
 }
