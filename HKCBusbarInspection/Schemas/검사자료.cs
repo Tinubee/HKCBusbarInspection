@@ -116,7 +116,7 @@ namespace HKCBusbarInspection.Schemas
             검사결과 검사 = 검사항목찾기(검사코드, true, true);
             if (검사 == null)
             {
-                Int32 셔틀위치확인 = 검사코드 % 3;
+                Int32 셔틀위치확인 = 검사코드 % 3; 
                 셔틀위치확인 = 셔틀위치확인 == 0 ? 3 : 셔틀위치확인;
 
                 검사 = new 검사결과() { 검사코드 = 검사코드, 셔틀위치 = (셔틀위치)셔틀위치확인 };
@@ -169,6 +169,7 @@ namespace HKCBusbarInspection.Schemas
         {
             //if (!Global.장치상태.자동수동) return this.수동검사;
             if (!자동모드) return this.수동검사;
+            
             검사결과 검사 = null;
             if (검사코드 > 0 && this.검사스플.ContainsKey(검사코드))
                 검사 = this.검사스플[검사코드];

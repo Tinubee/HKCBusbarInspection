@@ -34,6 +34,7 @@ namespace HKCBusbarInspection.Schemas
             if ((DateTime.Now - this.오류알림시간).TotalSeconds < this.오류알림간격) return;
             this.오류알림시간 = DateTime.Now;
             this.정상여부 = false;
+            this.통신상태알림?.Invoke();
             Global.오류로그(로그영역, "Communication", $"[{오류코드.ToString("X8")}] Communication error.", false);
         }
 
@@ -45,7 +46,7 @@ namespace HKCBusbarInspection.Schemas
             if (오류 != 0)
             {
                 통신오류알림(오류);
-                Common.DebugWriteLine("입출자료갱신", 로그구분.정보, $"결과계산완료.");
+                Common.DebugWriteLine("입출자료갱신", 로그구분.오류, $"PLC Error.");
                 return false;
             }
             this.입출자료.Set(자료);
@@ -75,6 +76,7 @@ namespace HKCBusbarInspection.Schemas
         {
             Dictionary<정보주소, Int32> 변경 = this.입출자료.Changes(정보주소.트레이검사트리거, 정보주소.마스터모드);
             if (변경.Count < 1) return;
+
             this.입출변경알림?.Invoke();
         }
 
@@ -128,7 +130,7 @@ namespace HKCBusbarInspection.Schemas
 
             Int32 index = 0;
 
-            if (구분 == 정보주소.하부01검사트리거) index = this.하부01인덱스;
+            if (구분 == 정보주소.하부01검사트리거) index = this.하부01인덱스; 
             if (구분 == 정보주소.하부02검사트리거) index = this.하부02인덱스;
             if (구분 == 정보주소.하부03검사트리거) index = this.하부03인덱스;
 
@@ -219,7 +221,6 @@ namespace HKCBusbarInspection.Schemas
                     카메라이미지초기화();
                     셔틀조명전체On();
                     셔틀검사중설정();
-                    //셔틀카메라활성화();
                     셔틀전체카메라촬영();
                 })
                 { Priority = ThreadPriority.Highest }.Start();
@@ -259,7 +260,7 @@ namespace HKCBusbarInspection.Schemas
                     Global.검사자료.검사시작(하부01검사번호, true);
                     Global.조명제어.TurnOn(카메라구분.Cam04);
                     //임시 (트리거보드 수정후 Active만 시켜주면됨(Sofware Trigger 안씀)
-                    Global.그랩제어.GetItem(카메라구분.Cam04).SoftwareTrigger();
+                    //Global.그랩제어.GetItem(카메라구분.Cam04).SoftwareTrigger();
                 })
                 { Priority = ThreadPriority.Highest }.Start();
             }
@@ -271,7 +272,7 @@ namespace HKCBusbarInspection.Schemas
                     Common.DebugWriteLine("하부02트리거", 로그구분.정보, $"하부02트리거 들어옴");
                     Global.모델자료.선택모델.검사시작(하부02검사번호);
                     Global.검사자료.검사시작(하부02검사번호, true);
-                    Global.그랩제어.GetItem(카메라구분.Cam04).SoftwareTrigger();
+                    //Global.그랩제어.GetItem(카메라구분.Cam04).SoftwareTrigger();
                 })
                 { Priority = ThreadPriority.Highest }.Start();
             }
@@ -283,7 +284,7 @@ namespace HKCBusbarInspection.Schemas
                     Common.DebugWriteLine("하부03트리거", 로그구분.정보, $"하부03트리거 들어옴");
                     Global.모델자료.선택모델.검사시작(하부03검사번호);
                     Global.검사자료.검사시작(하부03검사번호, true);
-                    Global.그랩제어.GetItem(카메라구분.Cam04).SoftwareTrigger();
+                    //Global.그랩제어.GetItem(카메라구분.Cam04).SoftwareTrigger();
                 }).Start();
             }
         }
@@ -359,13 +360,25 @@ namespace HKCBusbarInspection.Schemas
         // 핑퐁
         private void 통신핑퐁수행()
         {
+            if (!this.입출자료[정보주소.통신확인전송].Passed()) return;
+            if (this.시작일시.Day != DateTime.Today.Day)
+            {
+                this.시작일시 = DateTime.Now;
+                //this.검사번호리셋 = true;
+                Global.모델자료.선택모델.날짜변경();
+            }
+
+            this.통신확인핑퐁 = !this.통신확인핑퐁;
+            //Debug.WriteLine($"통신확인핑퐁 : {this.통신확인핑퐁}");
+            this.통신상태알림?.Invoke();
+            this.입출변경알림?.Invoke();
             //Boolean 연결신호확인 = 신호읽기(정보주소.통신확인전송);
             //정보쓰기(정보주소.통신확인전송, !연결신호확인);
-            if (this.입출자료.Changed(정보주소.통신확인수신))
-            {
-                this.통신확인핑퐁 = !this.통신확인핑퐁;
-                this.통신상태알림?.Invoke();
-            }
+            //if (this.입출자료.Changed(정보주소.통신확인수신))
+            //{
+            //    this.통신확인핑퐁 = !this.통신확인핑퐁;
+            //    this.통신상태알림?.Invoke();
+            //}
         }
         private Boolean 테스트수행()
         {

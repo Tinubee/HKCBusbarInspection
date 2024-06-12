@@ -103,7 +103,7 @@ namespace HKCBusbarInspection.Schemas
             셔틀02결과,
             [Address("W0115")]
             셔틀03결과,
-            [Address("B1000")]
+            [Address("B1000", 1000)]
             통신확인전송,
             [Address("B1010")]
             통신확인수신,
@@ -183,7 +183,7 @@ namespace HKCBusbarInspection.Schemas
         public Int32 셔틀03인덱스 => this.입출자료.Get(정보주소.셔틀03인덱스);
 
         public Boolean 원점복귀완료 { get => 신호읽기(정보주소.원점복귀완료); set => 정보쓰기(정보주소.원점복귀완료, value); }
-        public Boolean 통신확인핑퐁 { get => 신호읽기(정보주소.통신확인수신); set => 정보쓰기(정보주소.통신확인전송, value); }
+        public Boolean 통신확인핑퐁 { get => 신호읽기(정보주소.통신확인전송); set => 정보쓰기(정보주소.통신확인전송, value); }
         #endregion
 
         private Dictionary<정보주소, Int32> 인덱스버퍼 = new Dictionary<정보주소, Int32>();
@@ -280,6 +280,7 @@ namespace HKCBusbarInspection.Schemas
             this.셔틀01결과신호초기화 = false;
             this.셔틀02결과신호초기화 = false;
             this.셔틀03결과신호초기화 = false;
+            this.원점복귀완료 = false;
         }
 
         private void 인덱스버퍼리셋()

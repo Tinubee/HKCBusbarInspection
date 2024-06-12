@@ -314,8 +314,8 @@ namespace HKCBusbarInspection.Schemas
             if (this.Camera == null) return;
 
             //하부카메라 트리거보드 오류 수정 전으로 임시로 제거.
-            //if (this.구분 == 카메라구분.Cam04)
-            //    this.TrigSource = TriggerSource.Line0;
+            if (this.구분 == 카메라구분.Cam04)
+                this.TrigSource = TriggerSource.Line0;
 
             Int32 nRet = this.Camera.SetEnumValue("TriggerSource", (uint)this.TrigSource);
             그랩제어.Validate($"[{this.구분}] 트리거소스 설정에 실패하였습니다.", nRet, true);

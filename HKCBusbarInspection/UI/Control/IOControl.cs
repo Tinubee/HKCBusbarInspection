@@ -15,7 +15,7 @@ namespace HKCBusbarInspection.UI.Control
         {
             this.GridControl1.DataSource = new 입력신호자료();
             this.g입출목록.Text = this.번역.입출목록;
-             this.입출변경알림();
+            this.입출변경알림();
             Global.신호제어.입출변경알림 += 입출변경알림;
         }
         private void 입출변경알림()
