@@ -21,6 +21,7 @@ namespace HKCBusbarInspection.Schemas
         LPoint카메라 = 3,
         하부카메라 = 4,
         트레이검사카메라 = 5,
+        상부표면 = 6,
     }
 
     public class VM제어 : List<비전마스터플로우>

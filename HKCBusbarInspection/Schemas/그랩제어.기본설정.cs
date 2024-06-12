@@ -82,9 +82,15 @@ namespace HKCBusbarInspection.Schemas
         [JsonIgnore]
         public List<Mat> MatImageList = new List<Mat>();
         [JsonIgnore]
+        public List<Mat> SurFaceMatImageList = new List<Mat>();
+        [JsonIgnore]
+        public Int32 AllImageCount = 0;
+        [JsonIgnore]
         public Boolean 라이브 { get; set; } = false;
         [JsonIgnore]
         public Boolean 검사중 { get; set; } = false;
+        [JsonIgnore]
+        public Boolean 표면검사중 { get; set; } = false;
         [JsonIgnore]
         public const String 로그영역 = "Camera";
 
@@ -126,6 +132,7 @@ namespace HKCBusbarInspection.Schemas
         public virtual Boolean SoftwareTrigger() => false;
 
         public virtual void ClearImageBuffer() => this.ClearImageBuffer();
+        public virtual void 대비적용(Single value) => this.대비적용(value);
 
         #region 이미지그랩
         internal void InitBuffers(Int32 width, Int32 height)
@@ -236,11 +243,12 @@ namespace HKCBusbarInspection.Schemas
         [JsonIgnore]
         public Int32 number { get; set; } = 0;
         [JsonIgnore]
-        public uint ImageCount = 3;
+        public uint ImageCount = 9;
         [JsonIgnore, Description("Trig Mode")]
         public TriggerMode TrigMode { get; set; } = TriggerMode.TRIGGER_MODE_ON;
         [JsonIgnore, Description("Trig Source")]
         public TriggerSource TrigSource { get; set; } = TriggerSource.Software;
+
         public Boolean Init(CGigECameraInfo info)
         {
             try
@@ -374,12 +382,13 @@ namespace HKCBusbarInspection.Schemas
         public TriggerMode TrigMode { get; set; } = TriggerMode.TRIGGER_MODE_ON;
         [JsonIgnore, Description("Trig Source")]
         public TriggerSource TrigSource { get; set; } = TriggerSource.Software;
+        [JsonIgnore]
+        public MV_FG_FLOATVALUE gainValue = new MV_FG_FLOATVALUE();
 
         public Boolean Init(CInterface cInterface, MV_CXP_DEVICE_INFO info)
         {
             try
             {
-
                 this.Interface = cInterface;
                 int nRet = this.Interface.OpenDevice(Convert.ToUInt32(0), out this.Device);
 
@@ -409,6 +418,7 @@ namespace HKCBusbarInspection.Schemas
         public override Boolean Init()
         {
             this.Stream.SetBufferNum(BufNum);
+            this.DeviceParam.GetFloatValue("Gain", ref this.gainValue);
             그랩제어.ValidateMVFG("RegisterImageCallBack", this.Stream.RegisterImageCallBack(this.ImageCallBackDelegate, IntPtr.Zero), false);
             옵션적용();
             Global.정보로그(로그영역, "카메라 연결", $"[{this.구분}] 카메라 연결 성공!", false);
@@ -436,19 +446,18 @@ namespace HKCBusbarInspection.Schemas
         }
         public override Boolean StartLive()
         {
-            //this.DeviceParam.SetEnumValue("AcquisitionMode", (UInt32)AcquisitionMode.Continuous);
-            //this.DeviceParam.SetEnumValue("TriggerMode", (UInt32)TriggerMode.TRIGGER_MODE_OFF);
-            //this.라이브 = true;
             return 그랩제어.ValidateMVFG($"{this.구분} Active", this.Stream.StartAcquisition(), false);
         }
 
         public override Boolean StopLive()
         {
-            //this.DeviceParam.SetEnumValue("AcquisitionMode", (UInt32)AcquisitionMode.SingleFrame);
-            //this.DeviceParam.SetEnumValue("TriggerMode", (UInt32)TriggerMode.TRIGGER_MODE_ON);
-            //this.DeviceParam.SetEnumValue("TriggerSource", (UInt32)TriggerSource.Software);
             this.라이브 = false;
             return 그랩제어.ValidateMVFG($"{this.구분} Close", this.Stream.StopAcquisition(), false);
+        }
+
+        public override void 대비적용(Single value) // Gain
+        {
+            this.DeviceParam.SetFloatValue("Gain", value);
         }
 
         public override void ClearImageBuffer()

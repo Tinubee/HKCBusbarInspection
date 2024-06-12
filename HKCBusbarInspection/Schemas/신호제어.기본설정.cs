@@ -43,11 +43,17 @@ namespace HKCBusbarInspection.Schemas
             [Address("W0052")]
             하부03검사트리거,
             [Address("W0060")]
-            셔틀01검사트리거,
+            셔틀01치수검사트리거,
             [Address("W0061")]
-            셔틀02검사트리거,
+            셔틀02치수검사트리거,
             [Address("W0062")]
-            셔틀03검사트리거,
+            셔틀03치수검사트리거,
+            [Address("W0075")]
+            셔틀01표면검사트리거,
+            [Address("W0076")]
+            셔틀02표면검사트리거,
+            [Address("W0077")]
+            셔틀03표면검사트리거,
             [Address("W0090")]
             셔틀01결과값요청,
             [Address("W0091")]
@@ -67,11 +73,17 @@ namespace HKCBusbarInspection.Schemas
             [Address("W005E")]
             하부03촬영완료,
             [Address("W0070")]
-            셔틀01촬영완료,
+            셔틀01치수촬영완료,
             [Address("W0071")]
-            셔틀02촬영완료,
+            셔틀02치수촬영완료,
             [Address("W0072")]
-            셔틀03촬영완료,
+            셔틀03치수촬영완료,
+            [Address("W0085")]
+            셔틀01표면촬영완료,
+            [Address("W0086")]
+            셔틀02표면촬영완료,
+            [Address("W0087")]
+            셔틀03표면촬영완료,
 
             [Address("W0100")]
             하부01인덱스,
@@ -138,9 +150,12 @@ namespace HKCBusbarInspection.Schemas
         public Boolean 하부01검사트리거 { get => 신호읽기(정보주소.하부01검사트리거); set => 정보쓰기(정보주소.하부01검사트리거, value); }
         public Boolean 하부02검사트리거 { get => 신호읽기(정보주소.하부02검사트리거); set => 정보쓰기(정보주소.하부02검사트리거, value); }
         public Boolean 하부03검사트리거 { get => 신호읽기(정보주소.하부03검사트리거); set => 정보쓰기(정보주소.하부03검사트리거, value); }
-        public Boolean 셔틀01검사트리거 { get => 신호읽기(정보주소.셔틀01검사트리거); set => 정보쓰기(정보주소.셔틀01검사트리거, value); }
-        public Boolean 셔틀02검사트리거 { get => 신호읽기(정보주소.셔틀02검사트리거); set => 정보쓰기(정보주소.셔틀02검사트리거, value); }
-        public Boolean 셔틀03검사트리거 { get => 신호읽기(정보주소.셔틀03검사트리거); set => 정보쓰기(정보주소.셔틀03검사트리거, value); }
+        public Boolean 셔틀01치수검사트리거 { get => 신호읽기(정보주소.셔틀01치수검사트리거); set => 정보쓰기(정보주소.셔틀01치수검사트리거, value); }
+        public Boolean 셔틀02치수검사트리거 { get => 신호읽기(정보주소.셔틀02치수검사트리거); set => 정보쓰기(정보주소.셔틀02치수검사트리거, value); }
+        public Boolean 셔틀03치수검사트리거 { get => 신호읽기(정보주소.셔틀03치수검사트리거); set => 정보쓰기(정보주소.셔틀03치수검사트리거, value); }
+        public Boolean 셔틀01표면검사트리거 { get => 신호읽기(정보주소.셔틀01표면검사트리거); set => 정보쓰기(정보주소.셔틀01표면검사트리거, value); }
+        public Boolean 셔틀02표면검사트리거 { get => 신호읽기(정보주소.셔틀02표면검사트리거); set => 정보쓰기(정보주소.셔틀02표면검사트리거, value); }
+        public Boolean 셔틀03표면검사트리거 { get => 신호읽기(정보주소.셔틀03표면검사트리거); set => 정보쓰기(정보주소.셔틀03표면검사트리거, value); }
 
         public Boolean 하부01결과신호초기화 { get => 신호읽기(정보주소.하부01결과); set => 정보쓰기(정보주소.하부01결과, value); }
         public Boolean 하부02결과신호초기화 { get => 신호읽기(정보주소.하부02결과); set => 정보쓰기(정보주소.하부02결과, value); }
@@ -157,9 +172,12 @@ namespace HKCBusbarInspection.Schemas
         public Boolean 하부01촬영완료신호 { get => 신호읽기(정보주소.하부01촬영완료); set => 정보쓰기(정보주소.하부01촬영완료, value); }
         public Boolean 하부02촬영완료신호 { get => 신호읽기(정보주소.하부02촬영완료); set => 정보쓰기(정보주소.하부02촬영완료, value); }
         public Boolean 하부03촬영완료신호 { get => 신호읽기(정보주소.하부03촬영완료); set => 정보쓰기(정보주소.하부03촬영완료, value); }
-        public Boolean 셔틀01촬영완료신호 { get => 신호읽기(정보주소.셔틀01촬영완료); set => 정보쓰기(정보주소.셔틀01촬영완료, value); }
-        public Boolean 셔틀02촬영완료신호 { get => 신호읽기(정보주소.셔틀02촬영완료); set => 정보쓰기(정보주소.셔틀02촬영완료, value); }
-        public Boolean 셔틀03촬영완료신호 { get => 신호읽기(정보주소.셔틀03촬영완료); set => 정보쓰기(정보주소.셔틀03촬영완료, value); }
+        public Boolean 셔틀01치수촬영완료신호 { get => 신호읽기(정보주소.셔틀01치수촬영완료); set => 정보쓰기(정보주소.셔틀01치수촬영완료, value); }
+        public Boolean 셔틀02치수촬영완료신호 { get => 신호읽기(정보주소.셔틀02치수촬영완료); set => 정보쓰기(정보주소.셔틀02치수촬영완료, value); }
+        public Boolean 셔틀03치수촬영완료신호 { get => 신호읽기(정보주소.셔틀03치수촬영완료); set => 정보쓰기(정보주소.셔틀03치수촬영완료, value); }
+        public Boolean 셔틀01표면촬영완료신호 { get => 신호읽기(정보주소.셔틀01표면촬영완료); set => 정보쓰기(정보주소.셔틀01표면촬영완료, value); }
+        public Boolean 셔틀02표면촬영완료신호 { get => 신호읽기(정보주소.셔틀02표면촬영완료); set => 정보쓰기(정보주소.셔틀02표면촬영완료, value); }
+        public Boolean 셔틀03표면촬영완료신호 { get => 신호읽기(정보주소.셔틀03표면촬영완료); set => 정보쓰기(정보주소.셔틀03표면촬영완료, value); }
 
         public Boolean 셔틀01결과신호 { get => 신호읽기(정보주소.셔틀01결과); set => 결과쓰기(정보주소.셔틀01결과, value); }
         public Boolean 셔틀02결과신호 { get => 신호읽기(정보주소.셔틀02결과); set => 결과쓰기(정보주소.셔틀02결과, value); }
@@ -257,20 +275,26 @@ namespace HKCBusbarInspection.Schemas
             this.연결종료();
         }
 
-        private void 출력자료리셋()
+        public void 출력자료리셋()
         {
             this.하부01검사트리거 = false;
             this.하부02검사트리거 = false;
             this.하부03검사트리거 = false;
-            this.셔틀01검사트리거 = false;
-            this.셔틀02검사트리거 = false;
-            this.셔틀03검사트리거 = false;
+            this.셔틀01치수검사트리거 = false;
+            this.셔틀02치수검사트리거 = false;
+            this.셔틀03치수검사트리거 = false;
+            this.셔틀01표면검사트리거 = false;
+            this.셔틀02표면검사트리거 = false;
+            this.셔틀03표면검사트리거 = false;
             this.하부01촬영완료신호 = false;
             this.하부02촬영완료신호 = false;
             this.하부03촬영완료신호 = false;
-            this.셔틀01촬영완료신호 = false;
-            this.셔틀02촬영완료신호 = false;
-            this.셔틀03촬영완료신호 = false;
+            this.셔틀01치수촬영완료신호 = false;
+            this.셔틀02치수촬영완료신호 = false;
+            this.셔틀03치수촬영완료신호 = false;
+            this.셔틀01표면촬영완료신호 = false;
+            this.셔틀02표면촬영완료신호 = false;
+            this.셔틀03표면촬영완료신호 = false;
             this.셔틀01결과값요청신호 = false;
             this.셔틀02결과값요청신호 = false;
             this.셔틀03결과값요청신호 = false;
@@ -290,9 +314,12 @@ namespace HKCBusbarInspection.Schemas
             this.인덱스버퍼.Add(정보주소.하부01검사트리거, 0);
             this.인덱스버퍼.Add(정보주소.하부02검사트리거, 0);
             this.인덱스버퍼.Add(정보주소.하부03검사트리거, 0);
-            this.인덱스버퍼.Add(정보주소.셔틀01검사트리거, 0);
-            this.인덱스버퍼.Add(정보주소.셔틀02검사트리거, 0);
-            this.인덱스버퍼.Add(정보주소.셔틀03검사트리거, 0);
+            this.인덱스버퍼.Add(정보주소.셔틀01치수검사트리거, 0);
+            this.인덱스버퍼.Add(정보주소.셔틀02치수검사트리거, 0);
+            this.인덱스버퍼.Add(정보주소.셔틀03치수검사트리거, 0);
+            this.인덱스버퍼.Add(정보주소.셔틀01표면검사트리거, 0);
+            this.인덱스버퍼.Add(정보주소.셔틀02표면검사트리거, 0);
+            this.인덱스버퍼.Add(정보주소.셔틀03표면검사트리거, 0);
         }
 
         // 검사자료 로드 후 수행해야 함

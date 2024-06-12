@@ -18,6 +18,12 @@ namespace HKCBusbarInspection.UI.Control
             Global.그랩제어.GetItem(카메라구분.Cam04).MatImageList.Clear();
             Global.그랩제어.GetItem(카메라구분.Cam05).MatImageList.Clear();
 
+            Global.그랩제어.GetItem(카메라구분.Cam01).SurFaceMatImageList.Clear();
+            Global.그랩제어.GetItem(카메라구분.Cam02).SurFaceMatImageList.Clear();
+            Global.그랩제어.GetItem(카메라구분.Cam03).SurFaceMatImageList.Clear();
+            Global.그랩제어.GetItem(카메라구분.Cam04).SurFaceMatImageList.Clear();
+            Global.그랩제어.GetItem(카메라구분.Cam05).SurFaceMatImageList.Clear();
+
             Global.조명제어.TurnOff();
 
             Global.신호제어.원점복귀완료 = false;

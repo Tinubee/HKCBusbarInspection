@@ -24,7 +24,17 @@ namespace HKCBusbarInspection.Schemas
         [Description("Cam5(Tray Check)")]
         Cam05 = 5,
     }
-
+    public enum 사용구분
+    {
+        [Translation("None")]
+        None = 0,
+        [Translation("셔틀01", "Shuttle01")]
+        상부치수검사 = 1,
+        [Translation("셔틀02", "Shuttle02")]
+        상부표면검사 = 2,
+        [Translation("셔틀03", "Shuttle03")]
+        하부표면검사 = 3,
+    }
     public enum 장치구분
     {
         [Description("None"), Camera(false)]

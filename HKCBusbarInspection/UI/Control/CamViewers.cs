@@ -35,6 +35,7 @@ namespace HKCBusbarInspection.UI.Control
                 if (Global.VM제어?.Count == 0) return;
 
                 this.e상부캠.ModuleSource = Global.VM제어.GetItem(Flow구분.상부카메라).graphicsSetModuleTool;
+                this.e상부표면.ModuleSource = Global.VM제어.GetItem(Flow구분.상부표면).graphicsSetModuleTool;
                 this.e측면캠.ModuleSource = Global.VM제어.GetItem(Flow구분.측면카메라).graphicsSetModuleTool;
                 this.eLPoint캠.ModuleSource = Global.VM제어.GetItem(Flow구분.LPoint카메라).graphicsSetModuleTool;
                 this.e하부캠.ModuleSource = Global.VM제어.GetItem(Flow구분.하부카메라).graphicsSetModuleTool;

@@ -155,6 +155,8 @@ namespace HKCBusbarInspection.Schemas
         public Int32 밝기 { get; set; } = 100;
         [JsonProperty("Description"), Translation("Description", "설명")]
         public String 설명 { get; set; } = String.Empty;
+        [JsonProperty("Where"), Translation("Where", "사용구분")]
+        public 사용구분 사용구분 { get; set; } = 사용구분.None;
         [JsonIgnore, Translation("TurnOn", "켜짐")]
         public Boolean 켜짐 { get; set; } = false;
         [JsonIgnore]
@@ -335,11 +337,28 @@ namespace HKCBusbarInspection.Schemas
             }
         }
 
+        public void TurnOn(사용구분 사용구분)
+        {
+            foreach (조명정보 정보 in this)
+            {
+                if (정보.사용구분 != 사용구분) continue;
+                정보.TurnOn();
+            }
+        }
+
         public void TurnOff(카메라구분 카메라)
         {
             foreach (조명정보 정보 in this)
             {
                 if (정보.카메라 != 카메라) continue;
+                정보.TurnOff();
+            }
+        }
+        public void TurnOff(사용구분 사용구분)
+        {
+            foreach (조명정보 정보 in this)
+            {
+                if (정보.사용구분 != 사용구분) continue;
                 정보.TurnOff();
             }
         }
