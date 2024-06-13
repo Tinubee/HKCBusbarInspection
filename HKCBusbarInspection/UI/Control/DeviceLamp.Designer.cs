@@ -30,22 +30,24 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeviceLamp));
             this.tablePanel1 = new DevExpress.Utils.Layout.TablePanel();
+            this.e카메라4 = new DevExpress.XtraEditors.SvgImageBox();
+            this.e카메라3 = new DevExpress.XtraEditors.SvgImageBox();
+            this.e카메라2 = new DevExpress.XtraEditors.SvgImageBox();
             this.e조명장치 = new DevExpress.XtraEditors.SvgImageBox();
             this.e카메라1 = new DevExpress.XtraEditors.SvgImageBox();
             this.e장치통신 = new DevExpress.XtraEditors.SvgImageBox();
             this.e통신체크 = new DevExpress.XtraEditors.SvgImageBox();
-            this.e카메라2 = new DevExpress.XtraEditors.SvgImageBox();
-            this.e카메라3 = new DevExpress.XtraEditors.SvgImageBox();
-            this.e카메라4 = new DevExpress.XtraEditors.SvgImageBox();
+            this.e잉크젯 = new DevExpress.XtraEditors.SvgImageBox();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel1)).BeginInit();
             this.tablePanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.e카메라4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.e카메라3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.e카메라2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.e조명장치)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.e카메라1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.e장치통신)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.e통신체크)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.e카메라2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.e카메라3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.e카메라4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.e잉크젯)).BeginInit();
             this.SuspendLayout();
             // 
             // tablePanel1
@@ -56,6 +58,7 @@
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 50F),
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 50F),
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 50F)});
+            this.tablePanel1.Controls.Add(this.e잉크젯);
             this.tablePanel1.Controls.Add(this.e카메라4);
             this.tablePanel1.Controls.Add(this.e카메라3);
             this.tablePanel1.Controls.Add(this.e카메라2);
@@ -73,6 +76,48 @@
             this.tablePanel1.Size = new System.Drawing.Size(200, 100);
             this.tablePanel1.TabIndex = 1;
             this.tablePanel1.UseSkinIndents = true;
+            // 
+            // e카메라4
+            // 
+            this.tablePanel1.SetColumn(this.e카메라4, 3);
+            this.e카메라4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.e카메라4.Location = new System.Drawing.Point(151, 52);
+            this.e카메라4.Name = "e카메라4";
+            this.tablePanel1.SetRow(this.e카메라4, 1);
+            this.e카메라4.Size = new System.Drawing.Size(45, 44);
+            this.e카메라4.SizeMode = DevExpress.XtraEditors.SvgImageSizeMode.Squeeze;
+            this.e카메라4.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("e카메라4.SvgImage")));
+            this.e카메라4.TabIndex = 19;
+            this.e카메라4.Text = "Camera 4";
+            this.e카메라4.ToolTip = "Camera 4";
+            // 
+            // e카메라3
+            // 
+            this.tablePanel1.SetColumn(this.e카메라3, 2);
+            this.e카메라3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.e카메라3.Location = new System.Drawing.Point(102, 52);
+            this.e카메라3.Name = "e카메라3";
+            this.tablePanel1.SetRow(this.e카메라3, 1);
+            this.e카메라3.Size = new System.Drawing.Size(45, 44);
+            this.e카메라3.SizeMode = DevExpress.XtraEditors.SvgImageSizeMode.Squeeze;
+            this.e카메라3.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("e카메라3.SvgImage")));
+            this.e카메라3.TabIndex = 18;
+            this.e카메라3.Text = "Camera 3";
+            this.e카메라3.ToolTip = "Camera 3";
+            // 
+            // e카메라2
+            // 
+            this.tablePanel1.SetColumn(this.e카메라2, 1);
+            this.e카메라2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.e카메라2.Location = new System.Drawing.Point(53, 52);
+            this.e카메라2.Name = "e카메라2";
+            this.tablePanel1.SetRow(this.e카메라2, 1);
+            this.e카메라2.Size = new System.Drawing.Size(45, 44);
+            this.e카메라2.SizeMode = DevExpress.XtraEditors.SvgImageSizeMode.Squeeze;
+            this.e카메라2.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("e카메라2.SvgImage")));
+            this.e카메라2.TabIndex = 17;
+            this.e카메라2.Text = "Camera 2";
+            this.e카메라2.ToolTip = "Camera 2";
             // 
             // e조명장치
             // 
@@ -128,47 +173,19 @@
             this.e통신체크.Text = "svgImageBox1";
             this.e통신체크.ToolTip = "PLC State";
             // 
-            // e카메라2
+            // e잉크젯
             // 
-            this.tablePanel1.SetColumn(this.e카메라2, 1);
-            this.e카메라2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.e카메라2.Location = new System.Drawing.Point(53, 52);
-            this.e카메라2.Name = "e카메라2";
-            this.tablePanel1.SetRow(this.e카메라2, 1);
-            this.e카메라2.Size = new System.Drawing.Size(45, 44);
-            this.e카메라2.SizeMode = DevExpress.XtraEditors.SvgImageSizeMode.Squeeze;
-            this.e카메라2.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("e카메라2.SvgImage")));
-            this.e카메라2.TabIndex = 17;
-            this.e카메라2.Text = "Camera 2";
-            this.e카메라2.ToolTip = "Camera 2";
-            // 
-            // e카메라3
-            // 
-            this.tablePanel1.SetColumn(this.e카메라3, 2);
-            this.e카메라3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.e카메라3.Location = new System.Drawing.Point(102, 52);
-            this.e카메라3.Name = "e카메라3";
-            this.tablePanel1.SetRow(this.e카메라3, 1);
-            this.e카메라3.Size = new System.Drawing.Size(45, 44);
-            this.e카메라3.SizeMode = DevExpress.XtraEditors.SvgImageSizeMode.Squeeze;
-            this.e카메라3.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("e카메라3.SvgImage")));
-            this.e카메라3.TabIndex = 18;
-            this.e카메라3.Text = "Camera 3";
-            this.e카메라3.ToolTip = "Camera 3";
-            // 
-            // e카메라4
-            // 
-            this.tablePanel1.SetColumn(this.e카메라4, 3);
-            this.e카메라4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.e카메라4.Location = new System.Drawing.Point(151, 52);
-            this.e카메라4.Name = "e카메라4";
-            this.tablePanel1.SetRow(this.e카메라4, 1);
-            this.e카메라4.Size = new System.Drawing.Size(45, 44);
-            this.e카메라4.SizeMode = DevExpress.XtraEditors.SvgImageSizeMode.Squeeze;
-            this.e카메라4.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("e카메라4.SvgImage")));
-            this.e카메라4.TabIndex = 19;
-            this.e카메라4.Text = "Camera 4";
-            this.e카메라4.ToolTip = "Camera 4";
+            this.tablePanel1.SetColumn(this.e잉크젯, 1);
+            this.e잉크젯.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.e잉크젯.Location = new System.Drawing.Point(53, 4);
+            this.e잉크젯.Name = "e잉크젯";
+            this.tablePanel1.SetRow(this.e잉크젯, 0);
+            this.e잉크젯.Size = new System.Drawing.Size(45, 44);
+            this.e잉크젯.SizeMode = DevExpress.XtraEditors.SvgImageSizeMode.Squeeze;
+            this.e잉크젯.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("e잉크젯.SvgImage")));
+            this.e잉크젯.TabIndex = 20;
+            this.e잉크젯.Text = "잉크젯";
+            this.e잉크젯.ToolTip = "잉크젯";
             // 
             // DeviceLamp
             // 
@@ -179,13 +196,14 @@
             this.Size = new System.Drawing.Size(200, 100);
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel1)).EndInit();
             this.tablePanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.e카메라4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.e카메라3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.e카메라2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.e조명장치)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.e카메라1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.e장치통신)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.e통신체크)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.e카메라2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.e카메라3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.e카메라4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.e잉크젯)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -200,5 +218,6 @@
         private DevExpress.XtraEditors.SvgImageBox e카메라4;
         private DevExpress.XtraEditors.SvgImageBox e카메라3;
         private DevExpress.XtraEditors.SvgImageBox e카메라2;
+        private DevExpress.XtraEditors.SvgImageBox e잉크젯;
     }
 }

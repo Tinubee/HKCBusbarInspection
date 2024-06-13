@@ -16,6 +16,7 @@ namespace HKCBusbarInspection.UI.Control
         private 장치상태 카메라2;
         private 장치상태 카메라3;
         private 장치상태 카메라4;
+        private 장치상태 잉크젯;
 
         public void Init()
         {
@@ -25,6 +26,7 @@ namespace HKCBusbarInspection.UI.Control
             this.카메라2 = new 장치상태(this.e카메라2);
             this.카메라3 = new 장치상태(this.e카메라3);
             this.카메라4 = new 장치상태(this.e카메라4);
+            this.잉크젯 = new 장치상태(this.e잉크젯);
 
             Global.신호제어.통신상태알림 += 통신상태알림;
             this.통신상태알림();
@@ -44,6 +46,7 @@ namespace HKCBusbarInspection.UI.Control
             this.카메라3.Set(Global.환경설정.동작구분 == 동작구분.LocalTest || Global.장치상태.카메라3);
             this.카메라4.Set(Global.환경설정.동작구분 == 동작구분.LocalTest || Global.장치상태.카메라4);
             this.조명장치.Set(Global.환경설정.동작구분 == 동작구분.LocalTest || Global.장치상태.조명장치);
+            this.잉크젯.Set(Global.환경설정.동작구분 == 동작구분.LocalTest || Global.장치상태.잉크젯);
         }
 
         private enum 상태구분

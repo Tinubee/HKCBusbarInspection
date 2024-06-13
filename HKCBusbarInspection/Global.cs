@@ -44,6 +44,7 @@ namespace HKCBusbarInspection
             public static Boolean 카메라2 => Global.그랩제어.측면검사카메라.상태;
             public static Boolean 카메라3 => Global.그랩제어.L부검사카메라.상태;
             public static Boolean 카메라4 => Global.그랩제어.하부검사카메라.상태;
+            public static Boolean 잉크젯 => false;
             public static Boolean 자동수동 => Global.신호제어.자동수동여부;
             public static Boolean 시작정지 => Global.신호제어.시작정지여부;
         }
@@ -67,9 +68,9 @@ namespace HKCBusbarInspection
                 환경설정.Init();
                 유저자료.Init();
                 모델자료.Init();
-                검사자료.Init();
-                VM제어.Init();
                 사진자료.Init();
+                VM제어.Init();
+                검사자료.Init();
 
                 if (Global.환경설정.동작구분 == 동작구분.Live)
                 {
@@ -78,7 +79,7 @@ namespace HKCBusbarInspection
                     if (!신호제어.Open()) new Exception("PLC 서버에 연결할 수 없습니다.");
                     조명제어.Init();
                 }
-              
+               
                 Global.정보로그(로그영역, "초기화", "시스템을 초기화 합니다.", false);
                 Initialized?.Invoke(null, true);
                 return true;
@@ -172,7 +173,7 @@ namespace HKCBusbarInspection
             try
             {
                 로그정보 로그 = 로그자료.Add(영역, 구분, 제목, 내용);
-                //Debug.WriteLine($"{MvUtils.Utils.FormatDate(DateTime.Now, "{0:HH:mm:ss}")}\t{구분}\t{영역}\t{제목}\t{내용}");
+                Debug.WriteLine($"{MvUtils.Utils.FormatDate(DateTime.Now, "{0:HH:mm:ss}")}\t{구분}\t{영역}\t{제목}\t{내용}");
                 return 로그;
             }
             catch (Exception ex)

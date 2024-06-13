@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 
 namespace HKCBusbarInspection.Schemas
 {
@@ -54,10 +55,15 @@ namespace HKCBusbarInspection.Schemas
         {
             this.수동검사 = new 검사결과();
             this.수동검사.검사코드 = 9999;
-            this.수동검사.Reset();
+            this.수동검사.Reset(DateTime.Now);
         }
 
         public void Save() => this.테이블.Save();
+        public void Save(검사결과 결과)
+        {
+            this.테이블.Add(결과);
+            this.Save();
+        }
         public void Load() => this.Load(DateTime.Today, DateTime.Today);
         public void Load(DateTime 시작, DateTime 종료)
         {
@@ -86,8 +92,8 @@ namespace HKCBusbarInspection.Schemas
         private void 자료추가(검사결과 결과)
         {
             this.Insert(0, 결과);
-            if (Global.장치상태.자동수동)
-                this.테이블.Add(결과);
+            //if (Global.장치상태.자동수동)
+            //    this.테이블.Add(결과);
             // 저장은 State 에서
         }
 
@@ -106,27 +112,40 @@ namespace HKCBusbarInspection.Schemas
 
         #region 검사로직
         // PLC에서 검사번호 요청 시 새 검사 자료를 생성하여 스플에 넣음
+        private DateTime LastTime = DateTime.MinValue;
         public 검사결과 검사시작(Int32 검사코드, Boolean 자동모드)
         {
-            if (!자동모드)
+            try
             {
-                this.수동검사.Reset();
-                return this.수동검사;
+                if (!자동모드)
+                {
+                    this.수동검사.Reset(DateTime.Now);
+                    return this.수동검사;
+                }
+                검사결과 검사 = 검사항목찾기(검사코드, true, true);
+                if (검사 == null)
+                {
+                    Int32 셔틀위치확인 = 검사코드 % 3;
+                    셔틀위치확인 = 셔틀위치확인 == 0 ? 3 : 셔틀위치확인;
+
+                    검사 = new 검사결과() { 검사코드 = 검사코드, 셔틀위치 = (셔틀위치)셔틀위치확인 };
+                    if (LastTime >= 검사.검사일시)
+                        검사.검사일시 = 검사.검사일시.AddMilliseconds(1);
+                    LastTime = 검사.검사일시;
+                    검사.Reset(검사.검사일시);
+                    this.자료추가(검사);
+                    this.검사스플.Add(검사.검사코드, 검사);
+                    Common.DebugWriteLine($"검사시작", 로그구분.정보, $"[{(Int32)Global.환경설정.선택모델} - {검사.검사코드}] 신규검사 시작.");
+                }
+
+                return 검사;
             }
-            검사결과 검사 = 검사항목찾기(검사코드, true, true);
-            if (검사 == null)
+            catch (Exception ex)
             {
-                Int32 셔틀위치확인 = 검사코드 % 3;
-                셔틀위치확인 = 셔틀위치확인 == 0 ? 3 : 셔틀위치확인;
-
-                검사 = new 검사결과() { 검사코드 = 검사코드, 셔틀위치 = (셔틀위치)셔틀위치확인 };
-                검사.Reset();
-                this.자료추가(검사);
-                this.검사스플.Add(검사.검사코드, 검사);
-                Common.DebugWriteLine($"검사시작", 로그구분.정보 , $"[{(Int32)Global.환경설정.선택모델} - {검사.검사코드}] 신규검사 시작.");
+                Global.오류로그(로그영역.GetString(), "검사시작오류", $"{ex.Message}", true);
+                return null;
             }
 
-            return 검사;
         }
 
         public 검사결과 검사결과계산(Int32 검사코드, Boolean 자동모드)
@@ -173,10 +192,15 @@ namespace HKCBusbarInspection.Schemas
             검사결과 검사 = null;
             if (검사코드 > 0 && this.검사스플.ContainsKey(검사코드))
                 검사 = this.검사스플[검사코드];
-            if (검사 == null && !신규여부)  //Home잡고 다시 검사 진행했을대, 검사결과를 이미전송한 인덱스이면은 검사자료에서 찾아서 검사데이터 전송.
+            if (검사 == null && !신규여부)//Home잡고 다시 검사 진행했을대, 검사결과를 이미전송한 인덱스이면은 검사자료에서 찾아서 검사데이터 전송.
+            {
                 검사 = Global.검사자료.Where(x => x.검사코드 == 검사코드).FirstOrDefault();
-            //if (검사 == null)
-            //    Global.오류로그(로그영역.GetString(), "검사항목찾기", $"[{검사코드}] 검사항목이 없습니다.", true);
+                if (검사 == null)
+                {
+                    Global.오류로그(로그영역.GetString(), "검사항목찾기", $"[{검사코드}] 검사항목이 없습니다.", true);
+                    return null;
+                }
+            }
 
             return 검사;
         }
@@ -225,6 +249,11 @@ namespace HKCBusbarInspection.Schemas
         public void Save()
         {
             try { this.SaveChanges(); }
+            catch (DbUpdateException ex)
+            {
+                // 내부 예외 메시지 출력
+                Common.DebugWriteLine("자료저장", 로그구분.오류, $"DbUpdateException: {ex.Message} Inner Exception: {ex.InnerException?.Message}");
+            }
             catch (Exception ex) { Common.DebugWriteLine("자료저장", 로그구분.오류, $"{ex.Message}"); }
         }
 
@@ -236,8 +265,12 @@ namespace HKCBusbarInspection.Schemas
 
         public void Add(검사결과 정보)
         {
+            //using (검사결과테이블 테이블 = new 검사결과테이블())
+            //{
             this.검사결과.Add(정보);
             this.검사정보.AddRange(정보.검사내역);
+            //테이블.SaveChanges();
+            //}
         }
 
         public void Remove(List<검사정보> 자료) => this.검사정보.RemoveRange(자료);

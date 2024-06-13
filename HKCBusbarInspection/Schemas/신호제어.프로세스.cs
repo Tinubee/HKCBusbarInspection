@@ -105,6 +105,7 @@ namespace HKCBusbarInspection.Schemas
         private void 제품검사수행()
         {
             영상촬영수행();
+            잉크마킹수행();
             검사결과전송();
         }
 
@@ -281,10 +282,10 @@ namespace HKCBusbarInspection.Schemas
             if (셔틀01검사번호 > 0)
             {
                 Common.DebugWriteLine("상부01표면트리거", 로그구분.정보, $"상부01표면트리거 들어옴");
+                Global.그랩제어.GetItem(카메라구분.Cam01).표면검사중 = true;
                 Global.그랩제어.GetItem(카메라구분.Cam01).대비적용(this.표면검사Gain);
                 Global.조명제어.TurnOff(사용구분.상부치수검사);
                 Global.조명제어.TurnOn(사용구분.상부표면검사);
-                Global.그랩제어.GetItem(카메라구분.Cam01).표면검사중 = true;
                 new Thread(() =>
                 {
                     Global.그랩제어.GetItem(카메라구분.Cam01).SoftwareTrigger();
@@ -294,10 +295,10 @@ namespace HKCBusbarInspection.Schemas
             if (셔틀02검사번호 > 0)
             {
                 Common.DebugWriteLine("상부02표면트리거", 로그구분.정보, $"상부02표면트리거 들어옴");
+                Global.그랩제어.GetItem(카메라구분.Cam01).표면검사중 = true;
                 Global.그랩제어.GetItem(카메라구분.Cam01).대비적용(this.표면검사Gain);
                 Global.조명제어.TurnOff(사용구분.상부치수검사);
                 Global.조명제어.TurnOn(사용구분.상부표면검사);
-                Global.그랩제어.GetItem(카메라구분.Cam01).표면검사중 = true;
                 new Thread(() =>
                 {
                     Global.그랩제어.GetItem(카메라구분.Cam01).SoftwareTrigger();
@@ -318,7 +319,7 @@ namespace HKCBusbarInspection.Schemas
                 { Priority = ThreadPriority.Highest }.Start();
             }
         }
-        private void 하부검사수행()
+        private void 하부표면검사수행()
         {
             Int32 하부01검사번호 = this.검사위치번호(정보주소.하부01검사트리거);
             Int32 하부02검사번호 = this.검사위치번호(정보주소.하부02검사트리거);
@@ -360,9 +361,17 @@ namespace HKCBusbarInspection.Schemas
             }
         }
 
+        private void 잉크마킹수행()
+        {
+            if (this.입출자료.Changed(정보주소.잉크젯마킹신호트리거) && this.잉크젯마킹신호트리거)
+            {
+                
+            }
+        }
+        
         private void 영상촬영수행()
         {
-            하부검사수행();
+            하부표면검사수행();
             상부치수검사수행();
             상부표면검사수행();
         }
@@ -377,9 +386,23 @@ namespace HKCBusbarInspection.Schemas
             // 강제배출
             if (Global.환경설정.강제배출)
             {
-                Global.검사자료.검사완료알림함수(검사);
-                Common.DebugWriteLine("검사결과[강제배출]", 로그구분.정보, $"Index [{검사번호}] => {Global.환경설정.양품불량}");
-                return Global.환경설정.양품불량;
+                if (Global.환경설정.랜덤배출)
+                {
+                    String[] 조건 = { "NG", "OK" };
+                    Random 랜덤 = new Random();
+
+                    String 선택결과 = 조건[랜덤.Next(조건.Length)];
+                    Common.DebugWriteLine("랜덤결과", 로그구분.정보, $"랜덤결과 : {선택결과}");
+
+                    if (선택결과 == "OK") return true;
+                    else return false;
+                }
+                else
+                {
+                    Global.검사자료.검사완료알림함수(검사);
+                    Common.DebugWriteLine("검사결과[강제배출]", 로그구분.정보, $"Index [{검사번호}] => {Global.환경설정.양품불량}");
+                    return Global.환경설정.양품불량;
+                }
             }
             if (검사 == null)
             {

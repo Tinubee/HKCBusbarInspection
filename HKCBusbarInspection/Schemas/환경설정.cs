@@ -37,6 +37,8 @@ namespace HKCBusbarInspection.Schemas
         public Boolean 강제OK배출 { get; set; } = false;
         [Translation("Force NG", "강제NG"), JsonProperty("ForceNG")]
         public Boolean 강제NG배출 { get; set; } = false;
+        [Translation("Random Result", "결과랜덤"), JsonProperty("RandomResult")]
+        public Boolean 랜덤배출 { get; set; } = false;
         [Translation("Results Storage Days", "검사 결과 보관일"), JsonProperty("DaysToKeepResults")]
         public Int32 결과보관 { get; set; } = 900;
         [Translation("Logs Storage Days", "로그 보관일"), JsonProperty("DaysToKeepLogs")]

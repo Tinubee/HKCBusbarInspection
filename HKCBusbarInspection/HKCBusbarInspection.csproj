@@ -234,6 +234,7 @@
     <Compile Include="Schemas\그랩제어.기본설정.cs" />
     <Compile Include="Schemas\그랩제어.프로세스.cs" />
     <Compile Include="Schemas\로그정보.cs" />
+    <Compile Include="Schemas\마킹기제어.cs" />
     <Compile Include="Schemas\모델정보.검사설정.cs" />
     <Compile Include="Schemas\모델정보.기본설정.cs" />
     <Compile Include="Schemas\사진저장.cs" />

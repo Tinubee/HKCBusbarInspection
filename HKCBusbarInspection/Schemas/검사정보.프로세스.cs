@@ -50,11 +50,11 @@ namespace HKCBusbarInspection.Schemas
             this.모델구분 = Global.환경설정.선택모델;
         }
 
-        public 검사결과 Reset()
+        public 검사결과 Reset(DateTime time)
         {
-            this.검사일시 = DateTime.Now;
+            this.검사일시 = time;
+            Common.DebugWriteLine("검사결과 Reset", 로그구분.정보, $"{this.검사일시}");
             this.모델구분 = Global.환경설정.선택모델;
-            //this.셔틀위치 = 셔틀위치.None;
             this.측정결과 = 결과구분.WA;
             this.CTQ결과 = 결과구분.WA;
             this.외관결과 = 결과구분.WA;

@@ -54,6 +54,8 @@ namespace HKCBusbarInspection.Schemas
             셔틀02표면검사트리거,
             [Address("W0077")]
             셔틀03표면검사트리거,
+            [Address("W00B0")]
+            잉크젯마킹신호트리거,
             [Address("W0090")]
             셔틀01결과값요청,
             [Address("W0091")]
@@ -84,6 +86,8 @@ namespace HKCBusbarInspection.Schemas
             셔틀02표면촬영완료,
             [Address("W0087")]
             셔틀03표면촬영완료,
+            [Address("W00B5")]
+            잉크젯마킹전송완료,
 
             [Address("W0100")]
             하부01인덱스,
@@ -156,6 +160,7 @@ namespace HKCBusbarInspection.Schemas
         public Boolean 셔틀01표면검사트리거 { get => 신호읽기(정보주소.셔틀01표면검사트리거); set => 정보쓰기(정보주소.셔틀01표면검사트리거, value); }
         public Boolean 셔틀02표면검사트리거 { get => 신호읽기(정보주소.셔틀02표면검사트리거); set => 정보쓰기(정보주소.셔틀02표면검사트리거, value); }
         public Boolean 셔틀03표면검사트리거 { get => 신호읽기(정보주소.셔틀03표면검사트리거); set => 정보쓰기(정보주소.셔틀03표면검사트리거, value); }
+        public Boolean 잉크젯마킹신호트리거 { get => 신호읽기(정보주소.잉크젯마킹신호트리거); set => 정보쓰기(정보주소.잉크젯마킹신호트리거, value); }
 
         public Boolean 하부01결과신호초기화 { get => 신호읽기(정보주소.하부01결과); set => 정보쓰기(정보주소.하부01결과, value); }
         public Boolean 하부02결과신호초기화 { get => 신호읽기(정보주소.하부02결과); set => 정보쓰기(정보주소.하부02결과, value); }
@@ -178,6 +183,7 @@ namespace HKCBusbarInspection.Schemas
         public Boolean 셔틀01표면촬영완료신호 { get => 신호읽기(정보주소.셔틀01표면촬영완료); set => 정보쓰기(정보주소.셔틀01표면촬영완료, value); }
         public Boolean 셔틀02표면촬영완료신호 { get => 신호읽기(정보주소.셔틀02표면촬영완료); set => 정보쓰기(정보주소.셔틀02표면촬영완료, value); }
         public Boolean 셔틀03표면촬영완료신호 { get => 신호읽기(정보주소.셔틀03표면촬영완료); set => 정보쓰기(정보주소.셔틀03표면촬영완료, value); }
+        public Boolean 잉크젯마킹전송완료 { get => 신호읽기(정보주소.잉크젯마킹전송완료); set => 정보쓰기(정보주소.잉크젯마킹전송완료, value); }
 
         public Boolean 셔틀01결과신호 { get => 신호읽기(정보주소.셔틀01결과); set => 결과쓰기(정보주소.셔틀01결과, value); }
         public Boolean 셔틀02결과신호 { get => 신호읽기(정보주소.셔틀02결과); set => 결과쓰기(정보주소.셔틀02결과, value); }
@@ -199,6 +205,8 @@ namespace HKCBusbarInspection.Schemas
         public Int32 셔틀01인덱스 => this.입출자료.Get(정보주소.셔틀01인덱스);
         public Int32 셔틀02인덱스 => this.입출자료.Get(정보주소.셔틀02인덱스);
         public Int32 셔틀03인덱스 => this.입출자료.Get(정보주소.셔틀03인덱스);
+
+        public Int32 모델번호 => this.입출자료.Get(정보주소.모델번호);
 
         public Boolean 원점복귀완료 { get => 신호읽기(정보주소.원점복귀완료); set => 정보쓰기(정보주소.원점복귀완료, value); }
         public Boolean 통신확인핑퐁 { get => 신호읽기(정보주소.통신확인전송); set => 정보쓰기(정보주소.통신확인전송, value); }

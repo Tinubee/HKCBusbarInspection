@@ -189,7 +189,7 @@ namespace HKCBusbarInspection.Schemas
             }
             else
             {
-                List<String> paths = new List<String> { Global.환경설정.사진저장경로, Utils.FormatDate(시간, "{0:yyyy-MM-dd}"), $"{카메라}_Surface", };
+                List<String> paths = new List<String> { Global.환경설정.사진저장경로, Utils.FormatDate(시간, "{0:yyyy-MM-dd}"), $"{카메라}", };
                 return Common.CreateDirectory(paths);
             }
            
@@ -207,7 +207,7 @@ namespace HKCBusbarInspection.Schemas
             return Path.Combine(path, file);
         }
         public static String SaveImageFileName(DateTime 시간, Int32 번호, 사진형식 형식) =>
-            $"{번호.ToString("d4")}_{Utils.FormatDate(시간, "{0:HHmmss}")}.{형식.ToString()}";
+            $"{Utils.FormatDate(시간, "{0:HHmmss.fff}")}_{번호.ToString("d4")}.{형식.ToString()}";
         #endregion
     }
 }

@@ -244,7 +244,7 @@ namespace HKCBusbarInspection.UI.Control
             if (!Utils.Confirm(this.FindForm(), 번역.저장확인)) return;
 
             Global.VM제어.Save();
-            Global.검사자료.수동검사.Reset();
+            Global.검사자료.수동검사.Reset(DateTime.Now);
 
             if (설정.Save()) Global.정보로그(검사설정.로그영역.GetString(), 번역.설정저장, 번역.저장완료, true);
 

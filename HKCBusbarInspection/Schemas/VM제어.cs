@@ -107,7 +107,7 @@ namespace HKCBusbarInspection.Schemas
         public 비전마스터플로우(Flow구분 구분)
         {
             this.구분 = 구분;
-            this.카메라 = (카메라구분)구분;
+            this.카메라 = 구분 == Flow구분.상부표면 ? 카메라구분.Cam01 : (카메라구분)구분;
             this.결과 = false;
             this.검사시간 = DateTime.Now;
             this.Init();

@@ -18,7 +18,7 @@ namespace HKCBusbarInspection.UI.Control
             this.Model3D = model;
             if (!Model3D.Init(out String err2)) { Debug.WriteLine(err2, "Model3D Error"); }
             this.Controls.Add(Model3D.CreateHost());
-            this.SetResults(new 검사결과().Reset());
+            this.SetResults(new 검사결과().Reset(DateTime.Now));
         }
 
         public void SetResults(검사결과 결과)

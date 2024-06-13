@@ -121,13 +121,21 @@ namespace HKCBusbarInspection.UI.Control
 
         private void 검사완료알림(검사결과 결과)
         {
-            if (결과 == null) return;
-            if (this.InvokeRequired) { this.BeginInvoke((Action)(() => 검사완료알림(결과))); return; }
-            // DB 저장
-            Global.검사자료.Save();
-            this.검사상태표현(결과.측정결과);
-            this.e저장용량.EditValue = Global.환경설정.저장비율;
-            GC.Collect();
+            try
+            {
+                if (결과 == null) return;
+                if (this.InvokeRequired) { this.BeginInvoke((Action)(() => 검사완료알림(결과))); return; }
+                // DB 저장
+                //Global.검사자료
+                Global.검사자료.Save(결과);
+                this.검사상태표현(결과.측정결과);
+                this.e저장용량.EditValue = Global.환경설정.저장비율;
+                GC.Collect();
+            }
+            catch (Exception ex)
+            {
+                Global.오류로그("검사완료알림", "오류", $"{ex.Message}", true);
+            }
         }
 
         private void 동작상태알림()
