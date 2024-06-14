@@ -106,7 +106,7 @@ namespace HKCBusbarInspection.Schemas
             e.Appearance.ForeColor = 환경설정.결과표현색상((결과구분)v);
         }
 
-        public 검사정보 GetItem(장치구분 장치, String name) => 검사내역.Where(e => e.검사장치 == 장치 && e.검사명칭 == name).FirstOrDefault();
+        public 검사정보 GetItem(장치구분 장치, String name) => 검사내역.Where(e => e.검사장치 == 장치 && e.검사항목.ToString() == name).FirstOrDefault();
         public 검사정보 GetItem(검사항목 항목) => 검사내역.Where(e => e.검사항목 == 항목).FirstOrDefault();
 
         private Decimal PixelToMeter(검사정보 검사, Double value)

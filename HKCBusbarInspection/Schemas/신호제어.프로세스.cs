@@ -18,7 +18,7 @@ namespace HKCBusbarInspection.Schemas
         private Single 치수검사Gain = 15;
         private Single 표면검사Gain = (Single)29.5;
 
-        private enum 셔틀위치번호
+        public enum 셔틀위치번호
         {
             [Description("0")]
             Shuttle01 = 0,
@@ -50,7 +50,7 @@ namespace HKCBusbarInspection.Schemas
             if (오류 != 0)
             {
                 통신오류알림(오류);
-                Common.DebugWriteLine("입출자료갱신", 로그구분.오류, $"PLC Error.");
+                //Common.DebugWriteLine("입출자료갱신", 로그구분.오류, $"PLC Error.");
                 return false;
             }
             this.입출자료.Set(자료);
@@ -205,13 +205,6 @@ namespace HKCBusbarInspection.Schemas
             Global.그랩제어.GetItem(카메라구분.Cam02).Active();
             Global.그랩제어.GetItem(카메라구분.Cam03).Active();
         }
-
-        //private void 셔틀조명전체On()
-        //{
-        //    Global.조명제어.TurnOn(카메라구분.Cam01);
-        //    Global.조명제어.TurnOn(카메라구분.Cam02);
-        //    Global.조명제어.TurnOn(카메라구분.Cam03);
-        //}
 
         private void 셔틀전체카메라촬영()
         {

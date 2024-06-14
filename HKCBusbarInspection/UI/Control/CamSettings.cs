@@ -39,6 +39,8 @@ namespace HKCBusbarInspection.UI.Control
             this.g조명들.Text = this.번역.조명목록;
         }
 
+        public void UpdateLight() => GridView2.RefreshData();
+
         public void Close() { }
 
         private void 모두켜기(object sender, EventArgs e) => Global.조명제어.TurnOn();
@@ -69,6 +71,7 @@ namespace HKCBusbarInspection.UI.Control
             조명정보 정보 = this.GridView2.GetRow(this.GridView2.FocusedRowHandle) as 조명정보;
             if (정보 == null) return;
             정보.OnOff();
+            //UpdateLight();
         }
 
         private class LocalizationCamSetting

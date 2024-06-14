@@ -42,43 +42,12 @@ namespace HKCBusbarInspection
             //Test용
             if (e.KeyCode == Keys.T)
             {
-                Debug.WriteLine("T 눌림");
-
-                Global.그랩제어.GetItem(카메라구분.Cam01).대비적용(15);
-
-                //Global.그랩제어.GetItem(카메라구분.Cam01).MatImageList.Clear();
-                //Global.그랩제어.GetItem(카메라구분.Cam02).MatImageList.Clear();
-                //Global.그랩제어.GetItem(카메라구분.Cam03).MatImageList.Clear();
-                //Global.그랩제어.GetItem(카메라구분.Cam04).MatImageList.Clear();
-                //Global.그랩제어.GetItem(카메라구분.Cam05).MatImageList.Clear();
-
-                //Global.조명제어.TurnOff();
-
-                //Global.신호제어.원점복귀완료 = false;
-                //Common.DebugWriteLine("원점복귀", 로그구분.정보, "원점복귀완료");
-                //Global.정보로그("원점복귀", "원점복귀완료", "원점복귀완료", true);
+                //Debug.WriteLine("T 눌림");
+                //Global.마킹기제어.자료송신("SETTEXT \"001\" \"SendText!!!!!\"\r\n");
             }
             if (e.KeyCode == Keys.Y)
             {
-                //Debug.WriteLine("Y 눌림");
-                //for (int lop = Global.환경설정.인덱스테스트 - 2; lop <= Global.환경설정.인덱스테스트; lop++)
-                //{
-                //    foreach (카메라구분 구분 in typeof(카메라구분).GetValues())
-                //    {
-                //        if (구분 == 카메라구분.None || 구분 == 카메라구분.Cam05) continue;
-
-                //        Global.모델자료.GetItem(Global.환경설정.선택모델).카메라구분 = 구분;
-                //        String filePath = Global.모델자료.GetItem(Global.환경설정.선택모델).모델사진;
-
-                //        비전마스터플로우 플로우 = Global.VM제어.GetItem(구분);
-                //        검사결과 검사 = Global.검사자료.검사항목찾기(lop, true);
-
-                //        플로우.Run(null, null, filePath, 검사);
-                //        //검사 = Global.검사자료.검사결과계산(Global.환경설정.인덱스테스트);
-                //        //Global.검사자료.수동검사결과(구분, 검사);
-                //    }
-                //    Global.신호제어.검사결과(lop);
-                //}
+                
             }
         }
 

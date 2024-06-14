@@ -99,7 +99,7 @@ namespace HKCBusbarInspection.Schemas
 
         //사각홀 가로세로
         [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌상홀가로")]
-        좌상홀가로 = 201,
+        좌상홀가로 = 201, 
         [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌상홀세로")]
         좌상홀세로 = 202,
         [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌상홀가로위치도")]
@@ -237,6 +237,18 @@ namespace HKCBusbarInspection.Schemas
         //버검사
         [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam03, None, "L자부버")]
         L자부버 = 1201,
+        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "최상단홀누락")]
+        최상단홀누락 = 1202,
+        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "기준치수43_32")]
+        기준치수43_32 = 1203,
+        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "기준치수25_46")]
+        기준치수25_46 = 1204,
+        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "기준치수17_545")]
+        기준치수17_545 = 1205,
+        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "기준치수19_05")]
+        기준치수19_05 = 1206,
+        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "기준치수7_915")]
+        기준치수7_915 = 1207,
 
         //표면검사
         [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "상부표면")]

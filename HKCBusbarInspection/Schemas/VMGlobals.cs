@@ -50,9 +50,9 @@ namespace HKCBusbarInspection.Schemas
             return arrStrValue[셔틀위치];
         }
 
-        public void 교정값적용하기(String 이름, Int32 셔틀위치, Decimal 교정값)
+        public void 교정값적용하기(검사항목 항목, Int32 셔틀위치, Decimal 교정값)
         {
-            이름 += "_CalValue";
+            String 이름 = $"{항목}_CalValue";
             VmVariable info = this.Where(e => e.Name == 이름).FirstOrDefault();
 
             if (info == null) return;

@@ -62,7 +62,11 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.d상부캠 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel2_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
+            this.t상부치수검사 = new DevExpress.XtraTab.XtraTabPage();
             this.e상부캠 = new VMControls.Winform.Release.VmRenderControl();
+            this.t상부표면검사 = new DevExpress.XtraTab.XtraTabPage();
+            this.e상부표면 = new VMControls.Winform.Release.VmRenderControl();
             this.panelContainer1 = new DevExpress.XtraBars.Docking.DockPanel();
             this.d측면캠 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel3_Container = new DevExpress.XtraBars.Docking.ControlContainer();
@@ -73,14 +77,14 @@
             this.d하부캠 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.e하부캠 = new VMControls.Winform.Release.VmRenderControl();
-            this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
-            this.t상부치수검사 = new DevExpress.XtraTab.XtraTabPage();
-            this.t상부표면검사 = new DevExpress.XtraTab.XtraTabPage();
-            this.e상부표면 = new VMControls.Winform.Release.VmRenderControl();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.d상부캠.SuspendLayout();
             this.dockPanel2_Container.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
+            this.xtraTabControl1.SuspendLayout();
+            this.t상부치수검사.SuspendLayout();
+            this.t상부표면검사.SuspendLayout();
             this.panelContainer1.SuspendLayout();
             this.d측면캠.SuspendLayout();
             this.dockPanel3_Container.SuspendLayout();
@@ -88,10 +92,6 @@
             this.dockPanel4_Container.SuspendLayout();
             this.d하부캠.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
-            this.xtraTabControl1.SuspendLayout();
-            this.t상부치수검사.SuspendLayout();
-            this.t상부표면검사.SuspendLayout();
             this.SuspendLayout();
             // 
             // dockManager1
@@ -193,6 +193,25 @@
             this.dockPanel2_Container.Size = new System.Drawing.Size(953, 1032);
             this.dockPanel2_Container.TabIndex = 0;
             // 
+            // xtraTabControl1
+            // 
+            this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
+            this.xtraTabControl1.Name = "xtraTabControl1";
+            this.xtraTabControl1.SelectedTabPage = this.t상부치수검사;
+            this.xtraTabControl1.Size = new System.Drawing.Size(953, 1032);
+            this.xtraTabControl1.TabIndex = 5;
+            this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.t상부치수검사,
+            this.t상부표면검사});
+            // 
+            // t상부치수검사
+            // 
+            this.t상부치수검사.Controls.Add(this.e상부캠);
+            this.t상부치수검사.Name = "t상부치수검사";
+            this.t상부치수검사.Size = new System.Drawing.Size(951, 1001);
+            this.t상부치수검사.Text = "CTQ";
+            // 
             // e상부캠
             // 
             this.e상부캠.BackColor = System.Drawing.Color.Black;
@@ -206,6 +225,27 @@
             this.e상부캠.Name = "e상부캠";
             this.e상부캠.Size = new System.Drawing.Size(951, 1001);
             this.e상부캠.TabIndex = 4;
+            // 
+            // t상부표면검사
+            // 
+            this.t상부표면검사.Controls.Add(this.e상부표면);
+            this.t상부표면검사.Name = "t상부표면검사";
+            this.t상부표면검사.Size = new System.Drawing.Size(951, 1001);
+            this.t상부표면검사.Text = "Surface";
+            // 
+            // e상부표면
+            // 
+            this.e상부표면.BackColor = System.Drawing.Color.Black;
+            this.e상부표면.CoordinateInfoVisible = true;
+            this.e상부표면.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.e상부표면.ImageSource = null;
+            this.e상부표면.IsShowCustomROIMenu = false;
+            this.e상부표면.Location = new System.Drawing.Point(0, 0);
+            this.e상부표면.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.e상부표면.ModuleSource = null;
+            this.e상부표면.Name = "e상부표면";
+            this.e상부표면.Size = new System.Drawing.Size(951, 1001);
+            this.e상부표면.TabIndex = 5;
             // 
             // panelContainer1
             // 
@@ -231,7 +271,7 @@
             customHeaderButtonImageOptions6.SvgImageSize = new System.Drawing.Size(25, 25);
             this.d측면캠.CustomHeaderButtons.AddRange(new DevExpress.XtraBars.Docking2010.IButton[] {
             new DevExpress.XtraBars.Docking.CustomHeaderButton("2", false, customHeaderButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "Light", -1, true, null, true, false, true, serializableAppearanceObject4, null, -1),
-            new DevExpress.XtraBars.Docking.CustomHeaderButton("2", false, customHeaderButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "Live", -1, true, null, true, false, true, serializableAppearanceObject5, null, -1),
+            new DevExpress.XtraBars.Docking.CustomHeaderButton("2", false, customHeaderButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "Live", -1, true, null, true, false, false, serializableAppearanceObject5, null, -1),
             new DevExpress.XtraBars.Docking.CustomHeaderButton("２", false, customHeaderButtonImageOptions6, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "SnapShot", -1, true, null, true, false, true, serializableAppearanceObject6, null, -1)});
             this.d측면캠.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
             this.d측면캠.FloatVertical = true;
@@ -280,7 +320,7 @@
             customHeaderButtonImageOptions9.SvgImageSize = new System.Drawing.Size(25, 25);
             this.dLPoint캠.CustomHeaderButtons.AddRange(new DevExpress.XtraBars.Docking2010.IButton[] {
             new DevExpress.XtraBars.Docking.CustomHeaderButton("3", false, customHeaderButtonImageOptions7, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "Light", -1, true, null, true, false, true, serializableAppearanceObject7, null, -1),
-            new DevExpress.XtraBars.Docking.CustomHeaderButton("3", false, customHeaderButtonImageOptions8, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "Live", -1, true, null, true, false, true, serializableAppearanceObject8, null, -1),
+            new DevExpress.XtraBars.Docking.CustomHeaderButton("3", false, customHeaderButtonImageOptions8, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "Live", -1, true, null, true, false, false, serializableAppearanceObject8, null, -1),
             new DevExpress.XtraBars.Docking.CustomHeaderButton("３", false, customHeaderButtonImageOptions9, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "SnapShot", -1, true, null, true, false, true, serializableAppearanceObject9, null, -1)});
             this.dLPoint캠.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
             this.dLPoint캠.ID = new System.Guid("be9aaecf-0c60-4a6f-a88c-5c8a6466b842");
@@ -328,7 +368,7 @@
             customHeaderButtonImageOptions3.SvgImageSize = new System.Drawing.Size(25, 25);
             this.d하부캠.CustomHeaderButtons.AddRange(new DevExpress.XtraBars.Docking2010.IButton[] {
             new DevExpress.XtraBars.Docking.CustomHeaderButton("4", false, customHeaderButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, " Light", -1, true, null, true, false, true, serializableAppearanceObject1, null, -1),
-            new DevExpress.XtraBars.Docking.CustomHeaderButton("4", false, customHeaderButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "Live", -1, true, null, true, false, true, serializableAppearanceObject2, null, -1),
+            new DevExpress.XtraBars.Docking.CustomHeaderButton("4", false, customHeaderButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "Live", -1, true, null, true, false, false, serializableAppearanceObject2, null, -1),
             new DevExpress.XtraBars.Docking.CustomHeaderButton("４", false, customHeaderButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "SnapShot", -1, true, null, true, false, true, serializableAppearanceObject3, null, -1)});
             this.d하부캠.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
             this.d하부캠.FloatVertical = true;
@@ -366,46 +406,6 @@
             this.e하부캠.Size = new System.Drawing.Size(954, 492);
             this.e하부캠.TabIndex = 0;
             // 
-            // xtraTabControl1
-            // 
-            this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
-            this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.SelectedTabPage = this.t상부치수검사;
-            this.xtraTabControl1.Size = new System.Drawing.Size(953, 1032);
-            this.xtraTabControl1.TabIndex = 5;
-            this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.t상부치수검사,
-            this.t상부표면검사});
-            // 
-            // t상부치수검사
-            // 
-            this.t상부치수검사.Controls.Add(this.e상부캠);
-            this.t상부치수검사.Name = "t상부치수검사";
-            this.t상부치수검사.Size = new System.Drawing.Size(951, 1001);
-            this.t상부치수검사.Text = "CTQ";
-            // 
-            // t상부표면검사
-            // 
-            this.t상부표면검사.Controls.Add(this.e상부표면);
-            this.t상부표면검사.Name = "t상부표면검사";
-            this.t상부표면검사.Size = new System.Drawing.Size(951, 1001);
-            this.t상부표면검사.Text = "Surface";
-            // 
-            // e상부표면
-            // 
-            this.e상부표면.BackColor = System.Drawing.Color.Black;
-            this.e상부표면.CoordinateInfoVisible = true;
-            this.e상부표면.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.e상부표면.ImageSource = null;
-            this.e상부표면.IsShowCustomROIMenu = false;
-            this.e상부표면.Location = new System.Drawing.Point(0, 0);
-            this.e상부표면.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.e상부표면.ModuleSource = null;
-            this.e상부표면.Name = "e상부표면";
-            this.e상부표면.Size = new System.Drawing.Size(951, 1001);
-            this.e상부표면.TabIndex = 5;
-            // 
             // CamViewers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -423,6 +423,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.d상부캠.ResumeLayout(false);
             this.dockPanel2_Container.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
+            this.xtraTabControl1.ResumeLayout(false);
+            this.t상부치수검사.ResumeLayout(false);
+            this.t상부표면검사.ResumeLayout(false);
             this.panelContainer1.ResumeLayout(false);
             this.d측면캠.ResumeLayout(false);
             this.dockPanel3_Container.ResumeLayout(false);
@@ -430,10 +434,6 @@
             this.dockPanel4_Container.ResumeLayout(false);
             this.d하부캠.ResumeLayout(false);
             this.dockPanel1_Container.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
-            this.xtraTabControl1.ResumeLayout(false);
-            this.t상부치수검사.ResumeLayout(false);
-            this.t상부표면검사.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

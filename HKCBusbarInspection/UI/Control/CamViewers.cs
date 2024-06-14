@@ -22,7 +22,6 @@ namespace HKCBusbarInspection.UI.Control
     public partial class CamViewers : XtraUserControl
     {
         private LocalizationCamViewer 번역 = new LocalizationCamViewer();
-        private Boolean 촬영모드 { get; set; }
         private PopupMenu popupMenu;
         private 카메라구분 구분 { get; set; }
         public CamViewers() => InitializeComponent();
@@ -88,7 +87,7 @@ namespace HKCBusbarInspection.UI.Control
             //Global.그랩제어.GetItem(this.구분).Stop();
 
             if (Global.장치상태.자동수동) { Utils.WarningMsg($"{this.번역.자동모드사용불가}"); return; }
-
+            if(this.구분 == 카메라구분.Cam04) { Utils.WarningMsg($"{this.번역.소프트웨어트리거사용불가}"); return; }
             //if (!Global.그랩제어.GetItem(this.구분).Active()) { Utils.WarningMsg($"{this.구분} {this.번역.카메라활성화실패}"); return; }
 
             Global.그랩제어.GetItem(this.구분).SoftwareTrigger();
@@ -105,13 +104,15 @@ namespace HKCBusbarInspection.UI.Control
                 if (e.Button == ((DockPanel)sender).CustomHeaderButtons[0]) //조명켜기
                 {
                     Boolean 상태 = Global.조명제어.GetItem(this.구분).켜짐;
-                    Global.조명제어.TurnOnOff(this.구분, !상태);
+                    if (this.구분 == 카메라구분.Cam01) Global.조명제어.TurnOn(사용구분.상부치수검사);
+                    else
+                        Global.조명제어.TurnOnOff(this.구분, !상태);
                 }
-                else if (e.Button == ((DockPanel)sender).CustomHeaderButtons[1]) //라이브보기
-                {
-                    LiveForm LiveForm = new LiveForm(e.Button.Properties.Caption);
-                    LiveForm.ShowDialog();
-                }
+                //else if (e.Button == ((DockPanel)sender).CustomHeaderButtons[1]) //라이브보기
+                //{
+                //    LiveForm LiveForm = new LiveForm(e.Button.Properties.Caption);
+                //    LiveForm.ShowDialog();
+                //}
                 else if (e.Button == ((DockPanel)sender).CustomHeaderButtons[2]) // Master Image 검사? 1회 촬영후 검사?
                 {
                     System.Drawing.Point btnLocation = new System.Drawing.Point(Cursor.Position.X, Cursor.Position.Y);
@@ -148,6 +149,8 @@ namespace HKCBusbarInspection.UI.Control
                 자동모드사용불가,
                 [Translation("Active Failed !", "Active 실패 !")]
                 카메라활성화실패,
+                [Translation("Cam04 is used Hardware Trigger.", "카메라04는 하드웨어 트리거를 사용합니다.")]
+                소프트웨어트리거사용불가,
             }
             public String 상부카메라 => Localization.GetString(Items.상부카메라);
             public String 측면카메라 => Localization.GetString(Items.측면카메라);
@@ -155,6 +158,7 @@ namespace HKCBusbarInspection.UI.Control
             public String 하부카메라 => Localization.GetString(Items.하부카메라);
             public String 자동모드사용불가 => Localization.GetString(Items.자동모드사용불가);
             public String 카메라활성화실패 => Localization.GetString(Items.카메라활성화실패);
+            public String 소프트웨어트리거사용불가 => Localization.GetString(Items.소프트웨어트리거사용불가);
         }
     }
 }

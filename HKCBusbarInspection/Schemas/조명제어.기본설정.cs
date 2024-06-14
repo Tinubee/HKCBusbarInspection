@@ -326,6 +326,8 @@ namespace HKCBusbarInspection.Schemas
         {
             if (IsOn) this.TurnOn(카메라);
             else this.TurnOff(카메라);
+
+            //this.조명변경.
         }
 
         public void TurnOn(카메라구분 카메라)

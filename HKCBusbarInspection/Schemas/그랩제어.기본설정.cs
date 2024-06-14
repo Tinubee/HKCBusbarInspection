@@ -479,6 +479,8 @@ namespace HKCBusbarInspection.Schemas
         public override Boolean Close()
         {
             base.Close();
+            if(this.Stream == null) return false;
+
             그랩제어.ValidateMVFG($"{this.구분} Close Stream", this.Stream.CloseStream(), false);
             그랩제어.ValidateMVFG($"{this.구분} Close Device", this.Device.CloseDevice(), false);
             return 그랩제어.ValidateMVFG($"{this.구분} Close Interface", this.Interface.CloseInterface(), false);

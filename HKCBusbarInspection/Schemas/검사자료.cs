@@ -72,7 +72,7 @@ namespace HKCBusbarInspection.Schemas
             List<검사결과> 자료 = this.테이블.Select(시작, 종료);
 
             List<Int32> 대상 = Global.신호제어.검사중인항목();
-            자료.ForEach(검사 =>
+            자료?.ForEach(검사 =>
             {
                 this.Add(검사);
                 // 검사스플 생성
@@ -283,13 +283,15 @@ namespace HKCBusbarInspection.Schemas
         }
         public List<검사결과> Select(DateTime 시작, DateTime 종료, 모델구분 모델 = 모델구분.None, Int32 코드 = 0, String 큐알 = null, String serial = null)
         {
+            //try
+            //{
             IQueryable<검사결과> query1 =
-                from l in 검사결과
-                where l.검사일시 >= 시작 && l.검사일시 < 종료.AddDays(1)
-                where (코드 <= 0 || l.검사코드 == 코드)
-                where (모델 == 모델구분.None || l.모델구분 == 모델)
-                orderby l.검사일시 descending
-                select l;
+          from l in 검사결과
+          where l.검사일시 >= 시작 && l.검사일시 < 종료.AddDays(1)
+          where (코드 <= 0 || l.검사코드 == 코드)
+          where (모델 == 모델구분.None || l.모델구분 == 모델)
+          orderby l.검사일시 descending
+          select l;
             List<검사결과> 자료 = query1.AsNoTracking().ToList();
 
             IQueryable<검사정보> query2 =
@@ -308,6 +310,12 @@ namespace HKCBusbarInspection.Schemas
                 l.AddRange(정보.Where(d => d.검사일시 == l.검사일시).ToList());
             });
             return 자료;
+            //}
+            //catch(Exception ex)
+            //{
+            //    Debug.WriteLine($"{ex.Message}");
+            //    return null;
+            //}
         }
         public 검사결과 Select(DateTime 일자, 모델구분 모델, Int32 코드) => this.Select(일자, 일자, 모델, 코드).FirstOrDefault();
         public 검사결과 Select(DateTime 시작, DateTime 종료, 모델구분 모델, String 큐알, String serial) => this.Select(시작, 종료, 모델, 0, 큐알, serial).FirstOrDefault();

@@ -14,6 +14,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static HKCBusbarInspection.Schemas.신호제어;
 
 namespace HKCBusbarInspection.UI.Control
 {
@@ -71,6 +72,7 @@ namespace HKCBusbarInspection.UI.Control
             EnumToList 셔틀위치 = new EnumToList(그랩제어.대상셔틀.ToArray());
             셔틀위치.SetLookUpEdit(this.b셔틀위치);
             this.b셔틀위치.EditValue = 그랩제어.대상셔틀.First();
+            this.b셔틀위치.EditValueChanged += 셔틀위치변경;
 
             Global.검사자료.수동검사알림 += 수동검사알림;
             this.ｅ교정계산.ButtonClick += 교정계산;
@@ -79,6 +81,8 @@ namespace HKCBusbarInspection.UI.Control
             Localization.SetColumnCaption(this.GridView1, typeof(검사정보));
             this.모델선택(this.e모델선택, EventArgs.Empty);
         }
+
+        private void 셔틀위치변경(object sender, EventArgs e) => Global.환경설정.수동검사셔틀위치 = (셔틀위치번호)this.b셔틀위치.EditValue;
 
         private void 캘리브레이션(object sender, EventArgs e)
         {
@@ -110,10 +114,10 @@ namespace HKCBusbarInspection.UI.Control
                 검사정보 정보 = this.검사설정[lop] as 검사정보;
 
                 정보.교정값 = 1;
-                정보.실측값 = 0;
+                //정보.실측값 = 0;
 
                 if (정보.측정단위 == 단위구분.mm)
-                    Global.VM제어.글로벌변수제어.교정값적용하기(정보.검사명칭, 셔틀위치, 정보.교정값);
+                    Global.VM제어.글로벌변수제어.교정값적용하기(정보.검사항목, 셔틀위치, 정보.교정값);
             }
 
             Global.정보로그(로그영역, "초기화", $"[{this.b셔틀위치.EditValue}] 교정값 및 실측값 전체 초기화.", true);
@@ -132,7 +136,7 @@ namespace HKCBusbarInspection.UI.Control
                 Decimal 적용할교정값 = 정보.교정계산();
 
                 if (정보.측정단위 == 단위구분.mm)
-                    Global.VM제어.글로벌변수제어.교정값적용하기(정보.검사명칭, 셔틀위치, 적용할교정값);
+                    Global.VM제어.글로벌변수제어.교정값적용하기(정보.검사항목, 셔틀위치, 적용할교정값);
             }
 
             Global.정보로그(로그영역, "초기화", $"[{this.b셔틀위치.EditValue}] 전체항목 캘리브레이션 완료.", true);
@@ -278,16 +282,20 @@ namespace HKCBusbarInspection.UI.Control
             검사정보 정보 = this.GridView1.GetFocusedRow() as 검사정보;
             if (정보 == null) return;
             if (정보.실측값 <= 0) { Utils.WarningMsg($"{번역.실측값없음}"); return; }
-            if (정보.측정값 <= 0) { Utils.WarningMsg($"{번역.측정값없음}"); return; }
+            if (!정보.검사항목.ToString().Contains("위치도"))
+            {
+                if (정보.측정값 <= 0) { Utils.WarningMsg($"{번역.측정값없음}"); return; }
+            }
+           
             if (정보.측정단위 != 단위구분.mm) { Utils.WarningMsg($"{정보.검사명칭} {번역.캘작업불가능}"); return; }
             if (!Utils.Confirm(this.FindForm(), $"{this.b셔틀위치.EditValue} {정보.검사명칭} {번역.캘작업실행}")) return;
 
             Int32 셔틀위치 = (Int32)this.b셔틀위치.EditValue - 1;
             Decimal 적용할교정값 = 정보.교정계산();
 
-            Debug.WriteLine($"셔틀위치 : {셔틀위치}, 검사명칭 : {정보.검사명칭} ,교정값 : {적용할교정값}");
+            Debug.WriteLine($"셔틀위치 : {셔틀위치}, 검사항목 : {정보.검사항목} ,교정값 : {적용할교정값}");
 
-            Global.VM제어.글로벌변수제어.교정값적용하기(정보.검사명칭, 셔틀위치, 적용할교정값);
+            Global.VM제어.글로벌변수제어.교정값적용하기(정보.검사항목, 셔틀위치, 적용할교정값);;
 
             this.GridView1.RefreshRow(this.GridView1.FocusedRowHandle);
         }

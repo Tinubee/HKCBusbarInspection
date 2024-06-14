@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using static HKCBusbarInspection.Schemas.유저정보;
+using static HKCBusbarInspection.Schemas.신호제어;
 
 namespace HKCBusbarInspection.Schemas
 {
@@ -29,6 +30,8 @@ namespace HKCBusbarInspection.Schemas
         public String 사진저장경로 { get; set; } = @"C:\IVM\HKC\Busbar\SaveImage";
         [Translation("Decimals", "검사 결과 자릿수"), JsonProperty("Decimals")]
         public Int32 결과자릿수 { get; set; } = 3;
+        [Translation("Surface Image Save", "표면검사 이미지 저장"), JsonProperty("SaveSurface")]
+        public Boolean 사진저장표면 { get; set; } = false;
         [Translation("OK Image Save", "OK 이미지 저장"), JsonProperty("SaveOK")]
         public Boolean 사진저장OK { get; set; } = false;
         [Translation("NG Image Save", "NG 이미지 저장"), JsonProperty("SaveNG")]
@@ -61,6 +64,8 @@ namespace HKCBusbarInspection.Schemas
         public String Format { get { return "#,0." + String.Empty.PadLeft(this.결과자릿수, '0'); } }
         [JsonIgnore]
         public String 결과표현 { get { return "{0:" + Format + "}"; } }
+        [JsonIgnore]
+        public 셔틀위치번호 수동검사셔틀위치 { get; set; } = 셔틀위치번호.Shuttle01;
         [JsonIgnore, Description("사용자명")]
         public String 사용자명 { get; set; } = String.Empty;
         [JsonIgnore, Description("권한구분")]

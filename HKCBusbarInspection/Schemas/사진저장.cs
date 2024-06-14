@@ -131,6 +131,7 @@ namespace HKCBusbarInspection.Schemas
                 }
                 if (!정보.사본저장) return;
                 file = CopyImageFile(시간, 번호, 카메라, 정보.사본유형, 표면검사중);
+                //이쪽부분에 표면검사중 확인하여 이미지 Resize설정.
                 Double scale = Math.Max(0.1, Math.Min((Double)정보.사진비율 / 100, 1.0));
                 //Debug.WriteLine($"Scale: {정보.사진비율} => {scale}", 카메라.ToString());
                 if (scale == 1) this.SaveImage(정보, image, file);

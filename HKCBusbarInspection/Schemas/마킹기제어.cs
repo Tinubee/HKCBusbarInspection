@@ -14,15 +14,13 @@ namespace HKCBusbarInspection.Schemas
 {
     public class 마킹기제어
     {
-        public event Global.BaseEvent 통신상태알림;
-
+        //public event Global.BaseEvent 통신상태알림;
         public String 로그영역 = "잉크젯마킹기";
         public 마킹기 마킹기;
         public Boolean Init()
         {
             try
             {
-                Debug.WriteLine("mes통신 시작");
                 this.마킹기 = new 마킹기();
                 this.마킹기.Init();
                 this.마킹기.자료수신 += 통신수신;
@@ -41,6 +39,9 @@ namespace HKCBusbarInspection.Schemas
             try
             {
                 Common.DebugWriteLine(로그영역, 로그구분.정보, $"수신내용 : {e}");
+
+                if (e.Contains("ERROR"))
+                    Global.오류로그(로그영역, "통신수신", $"{e}", false);
             }
             catch (Exception ex)
             {
@@ -52,12 +53,14 @@ namespace HKCBusbarInspection.Schemas
         public void Start() => this.마킹기?.Start();
         public void Stop() => this.마킹기?.Stop();
 
-        public Boolean 자료송신(String messge)
+        public Boolean 자료송신(String message)
         {
             if (!this.마킹기.연결여부) return false;
-            if (this.마킹기.Send(통신프로토콜.ConvertSpecialCharacters(messge))) return true;
 
-            Global.오류로그(로그영역, "자료송신", $"[{messge}] 자료전송에 실패하였습니다.", true);
+            String sendMsg = $"SETTEXT \"001\" \"{message}\"\r\n";
+            if (this.마킹기.Send(sendMsg)) return true;
+
+            Global.오류로그(로그영역, "자료송신", $"[{message}] 자료전송에 실패하였습니다.", true);
             return false;
         }
 
@@ -112,11 +115,16 @@ namespace HKCBusbarInspection.Schemas
             try
             {
                 if ((DateTime.Now - 통신연결시간).TotalSeconds < 통신연결간격) return false;
+
                 this.Disconnect();
                 this.Init();
                 this.통신연결시간 = DateTime.Now;
-                String address = Global.환경설정.동작구분 == 동작구분.LocalTest ? "localhost" : Global.환경설정.잉크젯마킹기주소;
-                this.통신소켓?.Connect(address, 6003);
+                //String address = Global.환경설정.동작구분 == 동작구분.LocalTest ? "localhost" : Global.환경설정.잉크젯마킹기주소;
+                String address = Global.환경설정.잉크젯마킹기주소;
+                this.통신소켓?.Connect(address, Global.환경설정.잉크젯마킹기포트);
+
+                Debug.WriteLine("잉크젯 마킹기 연결완료.");
+
                 return 연결여부;
             }
             catch (Exception ex)
@@ -224,6 +232,11 @@ namespace HKCBusbarInspection.Schemas
                         break;
                 }
             }
+
+            //result = $"[SETTEXT \"001\" <{result}}>";
+
+            Debug.WriteLine($"전송 Text : {result}");
+
             return result.ToString();
         }
 

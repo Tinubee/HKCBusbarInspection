@@ -246,7 +246,7 @@ namespace HKCBusbarInspection.Schemas
         public void Stop() => this.작업여부 = false;
         public Boolean Open()
         {
-            if (Global.환경설정.동작구분 != 동작구분.Live) return true;
+            if (Global.환경설정.동작구분 != 동작구분.Live) return false;
             this.정상여부 = PLC.Open() == 0; return this.정상여부;
         }
 

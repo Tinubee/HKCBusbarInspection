@@ -46,6 +46,7 @@ namespace HKCBusbarInspection.UI.Control
             this.e강제배출.EditValueChanged += 강제배출Changed;
             this.e배출구분.EditValueChanged += 배출구분Changed;
             this.e배출구분랜덤.EditValueChanged += 배출구분랜덤Changed;
+            this.e표면검사이미지저장.EditValueChanged += 표면검사이미지저장Changed;
 
             this.SetLocalization();
             this.BindLocalization.DataSource = this.번역;
@@ -60,6 +61,8 @@ namespace HKCBusbarInspection.UI.Control
             this.e기본설정.Init();
             this.e입출신호.Init();
         }
+
+        private void 표면검사이미지저장Changed(object sender, EventArgs e) => Global.환경설정.사진저장표면 = this.e표면검사이미지저장.IsOn;
 
         private void 배출구분랜덤Changed(object sender, EventArgs e) => Global.환경설정.랜덤배출 = this.e배출구분랜덤.IsOn;
         private void 강제배출Changed(object sender, EventArgs e) => Global.환경설정.강제배출 = this.e강제배출.IsOn;
@@ -96,6 +99,7 @@ namespace HKCBusbarInspection.UI.Control
             this.e강제배출.Properties.OffText = this.번역.강제배출오프;
             this.e배출구분.Properties.OnText = this.번역.양품설정;
             this.e배출구분.Properties.OffText = this.번역.불량설정;
+            this.t입출신호.Text = this.번역.주소목록;
         }
 
         private class LocalizationDeviceSetting
@@ -143,6 +147,12 @@ namespace HKCBusbarInspection.UI.Control
                 양품설정,
                 [Translation("NG", "불량")]
                 불량설정,
+                [Translation("Address", "주소목록")]
+                주소목록,
+                [Translation("Host", "주소")]
+                잉크젯주소,
+                [Translation("Port", "포트")]
+                잉크젯포트,
             }
             public String 강제배출온오프 => Localization.GetString(Items.강제배출온오프);
             public String 강제배출온 => Localization.GetString(Items.강제배출온);
@@ -163,6 +173,9 @@ namespace HKCBusbarInspection.UI.Control
             public String 저장확인 => Localization.GetString(Items.저장확인);
             public String 기타설정 => Localization.GetString(Items.기타설정);
             public String 기본설정 => Localization.GetString(Items.기본설정);
+            public String 주소목록 => Localization.GetString(Items.주소목록);
+            public String 잉크젯주소 => Localization.GetString(Items.잉크젯주소);
+            public String 잉크젯포트 => Localization.GetString(Items.잉크젯포트);
         }
     }
 }
