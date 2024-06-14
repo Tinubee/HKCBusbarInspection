@@ -568,6 +568,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\electronics_phoneiphone.svg" />
     <None Include="Resources\inserttableofcaptions1.svg" />
     <None Include="Resources\inserttableofcaptions.svg" />
     <None Include="Resources\bo_user.svg" />

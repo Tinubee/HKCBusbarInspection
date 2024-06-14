@@ -514,9 +514,9 @@
             this.b저장.Dock = System.Windows.Forms.DockStyle.Right;
             this.b저장.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("b저장.ImageOptions.SvgImage")));
             this.b저장.ImageOptions.SvgImageSize = new System.Drawing.Size(24, 24);
-            this.b저장.Location = new System.Drawing.Point(1456, 2);
+            this.b저장.Location = new System.Drawing.Point(1380, 2);
             this.b저장.Name = "b저장";
-            this.b저장.Size = new System.Drawing.Size(151, 32);
+            this.b저장.Size = new System.Drawing.Size(227, 32);
             this.b저장.TabIndex = 7;
             this.b저장.Text = "Save";
             // 

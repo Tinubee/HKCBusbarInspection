@@ -394,6 +394,7 @@ namespace HKCBusbarInspection.Schemas
                     String 선택결과 = 조건[랜덤.Next(조건.Length)];
                     Common.DebugWriteLine("랜덤결과", 로그구분.정보, $"랜덤결과 : {선택결과}");
 
+                    Global.검사자료.검사완료알림함수(검사);
                     if (선택결과 == "OK") return true;
                     else return false;
                 }

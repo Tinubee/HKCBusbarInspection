@@ -135,7 +135,7 @@ namespace HKCBusbarInspection.UI.Control
                 강제배출온,
                 [Translation("Off", "미사용")]
                 강제배출오프,
-                [Translation("NG/OK", "불량/양품")]
+                [Translation("Enforce Result", "적용결과")]
                 양품불량설정,
                 [Translation("Random Result", "랜덤 검사결과")]
                 랜덤결과온오프,

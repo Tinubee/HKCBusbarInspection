@@ -53,8 +53,10 @@ namespace HKCBusbarInspection.Schemas
         public Boolean 강제배출 { get; set; } = true;
         [JsonProperty("Forced Ejection OK/NG")]
         public Boolean 양품불량 { get; set; } = true;
-        [JsonProperty("Index test number")]
-        public Int32 인덱스테스트 { get; set; } = 0;
+        [Translation("Inkjet Printer Host", "잉크젯 마킹기 주소"), JsonProperty("InkjetHost")] 
+        public String 잉크젯마킹기주소 { get; set; } = "192.168.3.50";
+        [Translation("Inkjet Printer Port", "잉크젯 마킹기 포트"), JsonProperty("InkjetPort")]
+        public Int32 잉크젯마킹기포트 { get; set; } = 20000;
         [JsonIgnore]
         public String Format { get { return "#,0." + String.Empty.PadLeft(this.결과자릿수, '0'); } }
         [JsonIgnore]
