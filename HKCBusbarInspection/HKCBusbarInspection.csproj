@@ -151,6 +151,12 @@
     <Reference Include="MvFGCtrlC.Net">
       <HintPath>C:\Program Files (x86)\MVS\Development\MVFG\DotNet\AnyCpu\MvFGCtrlC.Net.dll</HintPath>
     </Reference>
+    <Reference Include="MVSol.Core">
+      <HintPath>C:\MvSol\MVSol.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MVSol.Enc852">
+      <HintPath>C:\MvSol\MVSol.Enc852.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="ShellModuleCs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a88b3f19f0240810, processorArchitecture=MSIL">
@@ -243,6 +249,7 @@
     <Compile Include="Schemas\유저정보.cs" />
     <Compile Include="Schemas\조명제어.기본설정.cs" />
     <Compile Include="Schemas\조명제어.프로세스.cs" />
+    <Compile Include="Schemas\트리거보드제어.cs" />
     <Compile Include="Schemas\환경설정.cs" />
     <Compile Include="UI\Control\Calibration.cs">
       <SubType>UserControl</SubType>
@@ -568,6 +575,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\weather_sunny1.svg" />
+    <None Include="Resources\weather_sunny.svg" />
     <None Include="Resources\electronics_phoneiphone.svg" />
     <None Include="Resources\inserttableofcaptions1.svg" />
     <None Include="Resources\inserttableofcaptions.svg" />

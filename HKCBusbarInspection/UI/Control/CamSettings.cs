@@ -31,6 +31,8 @@ namespace HKCBusbarInspection.UI.Control
             this.b켜기.Click += 모두켜기;
             this.b끄기.Click += 모두끄기;
             this.b저장.Click += 저장하기;
+            this.b치수검사조명.Click += 치수검사조명;
+            this.b표면검사조영.Click += 표면검사조영;
             this.b저장.Text = Localization.저장.GetString();
             this.GridView2.CellValueChanged += GridView2_CellValueChanged;
             this.e조명켜짐.Toggled += E켜짐_Toggled;
@@ -38,6 +40,11 @@ namespace HKCBusbarInspection.UI.Control
             this.g카메라들.Text = this.번역.카메라목록;
             this.g조명들.Text = this.번역.조명목록;
         }
+
+        private void 표면검사조영(object sender, EventArgs e) => Global.조명제어.TurnOn(사용구분.상부표면검사);
+
+        private void 치수검사조명(object sender, EventArgs e) => Global.조명제어.TurnOn(사용구분.상부치수검사);
+    
 
         public void UpdateLight() => GridView2.RefreshData();
 

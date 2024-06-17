@@ -42,6 +42,7 @@ namespace HKCBusbarInspection
             //Test용
             if (e.KeyCode == Keys.T)
             {
+                //Global.검사자료?.Close();
                 //Debug.WriteLine("T 눌림");
                 //Global.마킹기제어.자료송신("SETTEXT \"001\" \"SendText!!!!!\"\r\n");
             }

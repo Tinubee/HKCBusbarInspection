@@ -35,6 +35,7 @@ namespace HKCBusbarInspection
         public static 사진자료 사진자료;
         public static 유저자료 유저자료;
         public static 마킹기제어 마킹기제어;
+        public static 트리거보드제어 트리거보드제어;
 
         public static class 장치상태
         {
@@ -64,6 +65,7 @@ namespace HKCBusbarInspection
                 신호제어 = new 신호제어();
                 사진자료 = new 사진자료();
                 유저자료 = new 유저자료();
+                트리거보드제어 = new 트리거보드제어();
                 //마킹기제어 = new 마킹기제어();
 
                 로그자료.Init();
@@ -73,6 +75,7 @@ namespace HKCBusbarInspection
                 사진자료.Init();
                 VM제어.Init();
                 검사자료.Init();
+                트리거보드제어.Init();
                 //마킹기제어.Init();
 
                 if (Global.환경설정.동작구분 == 동작구분.Live)
@@ -116,6 +119,7 @@ namespace HKCBusbarInspection
                 모델자료?.Close();
                 검사자료?.Close();
                 로그자료?.Close();
+                트리거보드제어?.Close();
 
                 Properties.Settings.Default.Save();
                 return true;

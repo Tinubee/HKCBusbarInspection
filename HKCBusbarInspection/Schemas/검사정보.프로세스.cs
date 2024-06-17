@@ -52,8 +52,8 @@ namespace HKCBusbarInspection.Schemas
 
         public 검사결과 Reset(DateTime time)
         {
-            this.검사일시 = time;
-            Common.DebugWriteLine("검사결과 Reset", 로그구분.정보, $"{this.검사일시}");
+            //this.검사일시 = time;
+            Common.DebugWriteLine("검사결과 Reset", 로그구분.정보, $"{this.검사일시:yyyyMMdd-hhmmss.fff}");
             this.모델구분 = Global.환경설정.선택모델;
             this.측정결과 = 결과구분.WA;
             this.CTQ결과 = 결과구분.WA;

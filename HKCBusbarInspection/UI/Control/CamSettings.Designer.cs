@@ -63,6 +63,8 @@
             this.e조명켜짐 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
             this.repositoryItemToggleSwitch2 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.b표면검사조영 = new DevExpress.XtraEditors.SimpleButton();
+            this.b치수검사조명 = new DevExpress.XtraEditors.SimpleButton();
             this.b끄기 = new DevExpress.XtraEditors.SimpleButton();
             this.b켜기 = new DevExpress.XtraEditors.SimpleButton();
             this.b저장 = new DevExpress.XtraEditors.SimpleButton();
@@ -472,6 +474,8 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.b표면검사조영);
+            this.panelControl1.Controls.Add(this.b치수검사조명);
             this.panelControl1.Controls.Add(this.b끄기);
             this.panelControl1.Controls.Add(this.b켜기);
             this.panelControl1.Controls.Add(this.b저장);
@@ -480,6 +484,32 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1609, 36);
             this.panelControl1.TabIndex = 10;
+            // 
+            // b표면검사조영
+            // 
+            this.b표면검사조영.Appearance.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.b표면검사조영.Appearance.Options.UseFont = true;
+            this.b표면검사조영.Dock = System.Windows.Forms.DockStyle.Left;
+            this.b표면검사조영.ImageOptions.SvgImage = global::HKCBusbarInspection.Properties.Resources.weather_sunny1;
+            this.b표면검사조영.ImageOptions.SvgImageSize = new System.Drawing.Size(24, 24);
+            this.b표면검사조영.Location = new System.Drawing.Point(554, 2);
+            this.b표면검사조영.Name = "b표면검사조영";
+            this.b표면검사조영.Size = new System.Drawing.Size(250, 32);
+            this.b표면검사조영.TabIndex = 11;
+            this.b표면검사조영.Text = "상부표면검사 조명 On";
+            // 
+            // b치수검사조명
+            // 
+            this.b치수검사조명.Appearance.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.b치수검사조명.Appearance.Options.UseFont = true;
+            this.b치수검사조명.Dock = System.Windows.Forms.DockStyle.Left;
+            this.b치수검사조명.ImageOptions.SvgImage = global::HKCBusbarInspection.Properties.Resources.weather_sunny;
+            this.b치수검사조명.ImageOptions.SvgImageSize = new System.Drawing.Size(24, 24);
+            this.b치수검사조명.Location = new System.Drawing.Point(304, 2);
+            this.b치수검사조명.Name = "b치수검사조명";
+            this.b치수검사조명.Size = new System.Drawing.Size(250, 32);
+            this.b치수검사조명.TabIndex = 10;
+            this.b치수검사조명.Text = "상부치수검사 조명 On";
             // 
             // b끄기
             // 
@@ -590,5 +620,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn col설명1;
         private DevExpress.XtraGrid.Columns.GridColumn col켜짐;
         private DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch repositoryItemToggleSwitch2;
+        private DevExpress.XtraEditors.SimpleButton b표면검사조영;
+        private DevExpress.XtraEditors.SimpleButton b치수검사조명;
     }
 }

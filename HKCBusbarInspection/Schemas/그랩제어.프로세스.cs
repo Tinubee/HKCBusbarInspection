@@ -156,6 +156,7 @@ namespace HKCBusbarInspection.Schemas
             if (Global.장치상태.자동수동)
             {
                 Mat 검사이미지 = 장치.MatImage();
+              
 
                 if (장치.구분 == 카메라구분.Cam01 && 장치.표면검사중) 장치.SurFaceMatImageList.Add(검사이미지);
                 else 장치.MatImageList.Add(검사이미지);
@@ -166,7 +167,12 @@ namespace HKCBusbarInspection.Schemas
                 검사결과 검사 = Global.검사자료.검사항목찾기(검사번호, true);
                 if (검사 == null) { Global.오류로그("그랩완료", "검사번호없음", $"Index[{검사번호}] 해당 검사가 없습니다.", false); return; }
 
-                if (장치.표면검사중) Global.VM제어.GetItem(Flow구분.상부표면).Run(검사이미지, null, null, 검사);
+                if (장치.표면검사중)
+                {
+                    Double scale = Math.Max(0.1, Math.Min((Double)Global.환경설정.표면검사사진비율 / 100, 1.0));
+                    Mat 표면검사이미지 = Common.Resize(검사이미지, scale);
+                    Global.VM제어.GetItem(Flow구분.상부표면).Run(표면검사이미지, null, null, 검사);
+                }
                 else Global.VM제어.GetItem(장치.구분).Run(검사이미지, null, null, 검사);
 
                 Global.사진자료.SaveImage(장치, 검사);
@@ -177,8 +183,10 @@ namespace HKCBusbarInspection.Schemas
             else
             {
                 Global.VM제어.글로벌변수제어.SetValue(셔틀번호변수이름, Utils.GetDescription(Global.환경설정.수동검사셔틀위치));
-                Global.VM제어.GetItem(장치.구분).Run(장치.MatImage(), null, null, Global.검사자료.수동검사);
+                //Global.VM제어.GetItem(장치.구분).Run(장치.MatImage(), null, null, Global.검사자료.수동검사);
+                Global.VM제어.GetItem(Flow구분.상부표면).Run(장치.MatImage(), null, null, Global.검사자료.수동검사);
                 검사결과 검사 = Global.검사자료.검사결과계산(Global.검사자료.수동검사.검사코드, false);
+                Global.사진자료.SaveImage(장치, 검사);
                 //이미지초기화(장치);
                 Global.검사자료.수동검사결과(장치.구분, 검사);
             }

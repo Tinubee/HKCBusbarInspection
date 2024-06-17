@@ -199,5 +199,25 @@ namespace HKCBusbarInspection.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   DevExpress.Utils.Svg.SvgImage 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage weather_sunny {
+            get {
+                object obj = ResourceManager.GetObject("weather_sunny", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   DevExpress.Utils.Svg.SvgImage 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage weather_sunny1 {
+            get {
+                object obj = ResourceManager.GetObject("weather_sunny1", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
     }
 }

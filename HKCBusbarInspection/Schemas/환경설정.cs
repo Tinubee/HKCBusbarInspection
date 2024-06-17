@@ -32,6 +32,8 @@ namespace HKCBusbarInspection.Schemas
         public Int32 결과자릿수 { get; set; } = 3;
         [Translation("Surface Image Save", "표면검사 이미지 저장"), JsonProperty("SaveSurface")]
         public Boolean 사진저장표면 { get; set; } = false;
+        [Translation("Surface Image Scale", "표면검사 이미지 비율"), JsonProperty("SurfaceScale")]
+        public Double 표면검사사진비율 { get; set; } = 25;
         [Translation("OK Image Save", "OK 이미지 저장"), JsonProperty("SaveOK")]
         public Boolean 사진저장OK { get; set; } = false;
         [Translation("NG Image Save", "NG 이미지 저장"), JsonProperty("SaveNG")]

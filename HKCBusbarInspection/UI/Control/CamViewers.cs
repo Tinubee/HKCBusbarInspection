@@ -104,7 +104,7 @@ namespace HKCBusbarInspection.UI.Control
                 if (e.Button == ((DockPanel)sender).CustomHeaderButtons[0]) //조명켜기
                 {
                     Boolean 상태 = Global.조명제어.GetItem(this.구분).켜짐;
-                    if (this.구분 == 카메라구분.Cam01) Global.조명제어.TurnOn(사용구분.상부치수검사);
+                    if (this.구분 == 카메라구분.Cam01) Global.조명제어.TurnOn(사용구분.상부표면검사);
                     else
                         Global.조명제어.TurnOnOff(this.구분, !상태);
                 }

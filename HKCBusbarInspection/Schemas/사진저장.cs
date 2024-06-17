@@ -132,16 +132,37 @@ namespace HKCBusbarInspection.Schemas
                 if (!정보.사본저장) return;
                 file = CopyImageFile(시간, 번호, 카메라, 정보.사본유형, 표면검사중);
                 //이쪽부분에 표면검사중 확인하여 이미지 Resize설정.
-                Double scale = Math.Max(0.1, Math.Min((Double)정보.사진비율 / 100, 1.0));
-                //Debug.WriteLine($"Scale: {정보.사진비율} => {scale}", 카메라.ToString());
-                if (scale == 1) this.SaveImage(정보, image, file);
+                if (표면검사중)
+                {
+                    if(Global.환경설정.사진저장표면)
+                    {
+                        Double scale = Math.Max(0.1, Math.Min((Double)Global.환경설정.표면검사사진비율 / 100, 1.0));
+                        SaveScaledImage(정보, image, file, scale);
+                    }
+                }
                 else
                 {
-                    using (Mat mat = Common.Resize(image, scale))
-                        this.SaveImage(정보, mat, file);
+                    Double scale = Math.Max(0.1, Math.Min((Double)정보.사진비율 / 100, 1.0));
+                    SaveScaledImage(정보, image, file, scale);
                 }
             });
         }
+
+        public void SaveScaledImage(사진저장 정보, Mat image, string file, double scale)
+        {
+            if (scale == 1)
+            {
+                this.SaveImage(정보, image, file);
+            }
+            else
+            {
+                using (Mat mat = Common.Resize(image, scale))
+                {
+                    this.SaveImage(정보, mat, file);
+                }
+            }
+        }
+
         public void SaveImage(사진저장 정보, Mat mat, String file)
         {
             if (정보 == null || mat == null || String.IsNullOrEmpty(file)) return;

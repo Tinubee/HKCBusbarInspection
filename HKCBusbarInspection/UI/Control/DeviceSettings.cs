@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.Utils.Extensions;
+using DevExpress.XtraEditors;
 using HKCBusbarInspection.Schemas;
 using MvUtils;
 using System;
@@ -25,6 +26,7 @@ namespace HKCBusbarInspection.UI.Control
             Global.그랩제어.GetItem(카메라구분.Cam05).SurFaceMatImageList.Clear();
 
             Global.조명제어.TurnOff();
+            this.트리거보드리셋();
 
             Global.신호제어.원점복귀완료 = false;
             Common.DebugWriteLine("원점복귀", 로그구분.정보, "원점복귀완료");
@@ -47,6 +49,8 @@ namespace HKCBusbarInspection.UI.Control
             this.e배출구분.EditValueChanged += 배출구분Changed;
             this.e배출구분랜덤.EditValueChanged += 배출구분랜덤Changed;
             this.e표면검사이미지저장.EditValueChanged += 표면검사이미지저장Changed;
+            this.e양품저장.EditValueChanged += 양품저장;
+            this.e불량저장.EditValueChanged += 불량저장;
 
             this.SetLocalization();
             this.BindLocalization.DataSource = this.번역;
@@ -54,6 +58,8 @@ namespace HKCBusbarInspection.UI.Control
 
             this.b설정저장.Click += 환경설정저장;
             this.b인덱스리셋.Click += 인덱스리셋;
+            this.b캠트리거리셋.Click += 캠트리거리셋;
+            this.t비율설정.TextChanged += 저장비율설정;
 
             Global.신호제어.원점복귀알림 += 원점복귀알림;
 
@@ -61,6 +67,36 @@ namespace HKCBusbarInspection.UI.Control
             this.e기본설정.Init();
             this.e입출신호.Init();
         }
+
+        public void 캠트리거리셋(object sender, EventArgs e)
+        {
+            if (!Utils.Confirm(this.FindForm(), "트리거 보드의 위치를 초기화 하시겠습니까?")) return;
+
+            트리거보드리셋();
+        }
+
+        public void 트리거보드리셋()
+        {
+            if (Global.트리거보드제어.트리거보드 == null)
+                Global.트리거보드제어.Init();
+
+            if (Global.트리거보드제어.Open())
+            {
+                Global.트리거보드제어.ClearAll();
+                Global.트리거보드제어.Close();
+                Global.정보로그("트리거보드리셋", "트리거보드리셋", "트리거보드 리셋 완료.", true);
+            }
+            else
+            {
+                Global.오류로그("트리거보드리셋", "트리거보드 오류", "트리거보드 연결 오류", true);
+            }
+        }
+
+        private void 불량저장(object sender, EventArgs e) => Global.환경설정.사진저장NG = this.e불량저장.IsOn;
+
+        private void 양품저장(object sender, EventArgs e) => Global.환경설정.사진저장OK = this.e양품저장.IsOn;
+
+        private void 저장비율설정(object sender, EventArgs e) => Global.환경설정.표면검사사진비율 = Convert.ToDouble(this.t비율설정.Text);
 
         private void 표면검사이미지저장Changed(object sender, EventArgs e) => Global.환경설정.사진저장표면 = this.e표면검사이미지저장.IsOn;
 
@@ -97,9 +133,20 @@ namespace HKCBusbarInspection.UI.Control
             this.c양품불량랜덤.Text = this.번역.랜덤결과온오프;
             this.e강제배출.Properties.OnText = this.번역.강제배출온;
             this.e강제배출.Properties.OffText = this.번역.강제배출오프;
+            this.e배출구분랜덤.Properties.OnText = this.번역.강제배출온;
+            this.e배출구분랜덤.Properties.OffText = this.번역.강제배출오프;
+            this.e양품저장.Properties.OnText = this.번역.강제배출온;
+            this.e양품저장.Properties.OffText = this.번역.강제배출오프;
+            this.e불량저장.Properties.OnText = this.번역.강제배출온;
+            this.e불량저장.Properties.OffText = this.번역.강제배출오프;
             this.e배출구분.Properties.OnText = this.번역.양품설정;
             this.e배출구분.Properties.OffText = this.번역.불량설정;
             this.t입출신호.Text = this.번역.주소목록;
+            this.c표면검사이미지저장비율.Text = this.번역.표면검사이미지비율;
+            this.g표면검사이미지설정.Text = this.번역.표면검사이미지설정;
+            this.g이미지저장설정.Text = this.번역.이미지저장설정;
+            this.c양품이미지저장.Text = this.번역.양품저장;
+            this.c불량이미지저장.Text = this.번역.불량저장;
         }
 
         private class LocalizationDeviceSetting
@@ -118,6 +165,10 @@ namespace HKCBusbarInspection.UI.Control
                 초기화,
                 [Translation("Surface Image Save Used", "표면검사이미지 저장사용")]
                 표면검사이미지저장사용,
+                [Translation("Surface Image Scale", "표면검사이미지 저장비율")]
+                표면검사이미지비율,
+                [Translation("Surface Image Save Setting", "표면검사이미지 저장 설정")]
+                표면검사이미지설정,
 
                 [Translation("Other", "기타장치")]
                 기타설정,
@@ -153,7 +204,16 @@ namespace HKCBusbarInspection.UI.Control
                 잉크젯주소,
                 [Translation("Port", "포트")]
                 잉크젯포트,
+                [Translation("Image Save Setting", "이미지 저장 설정")]
+                이미지저장설정,
+                [Translation("OK Save", "양품 저장")]
+                양품저장,
+                [Translation("NG Save", "불량 저장")]
+                불량저장,
             }
+            public String 이미지저장설정 => Localization.GetString(Items.이미지저장설정);
+            public String 양품저장 => Localization.GetString(Items.양품저장);
+            public String 불량저장 => Localization.GetString(Items.불량저장);
             public String 강제배출온오프 => Localization.GetString(Items.강제배출온오프);
             public String 강제배출온 => Localization.GetString(Items.강제배출온);
             public String 강제배출오프 => Localization.GetString(Items.강제배출오프);
@@ -176,6 +236,9 @@ namespace HKCBusbarInspection.UI.Control
             public String 주소목록 => Localization.GetString(Items.주소목록);
             public String 잉크젯주소 => Localization.GetString(Items.잉크젯주소);
             public String 잉크젯포트 => Localization.GetString(Items.잉크젯포트);
+            public String 표면검사이미지비율 => Localization.GetString(Items.표면검사이미지비율);
+            public String 표면검사이미지설정 => Localization.GetString(Items.표면검사이미지설정);
+
         }
     }
 }
