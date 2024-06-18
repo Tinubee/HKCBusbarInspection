@@ -117,6 +117,7 @@ namespace HKCBusbarInspection.Schemas
             }
             try
             {
+                //if (Command == "10w1023") Command = "aw1023";
                 통신포트.Write($"{STX}{Command}{ETX}");
                 //Debug.WriteLine($"{STX}{Command}{ETX}".Trim(), 구분);
                 return true;
@@ -344,6 +345,7 @@ namespace HKCBusbarInspection.Schemas
             foreach (조명정보 정보 in this)
             {
                 if (정보.사용구분 != 사용구분) continue;
+              
                 정보.TurnOn();
             }
         }

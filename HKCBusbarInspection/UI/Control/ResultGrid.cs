@@ -21,7 +21,11 @@ namespace HKCBusbarInspection.UI.Control
             this.GridView1.ActiveFilter.Add(this.col결과분류, new ColumnFilterInfo($"[{nameof(검사정보.결과분류)}] = {(Int32)결과분류.Summary}", $"[{Localization.GetString(typeof(검사정보).GetProperty(nameof(검사정보.결과분류)))}] = {결과분류.Summary}"));
             Localization.SetColumnCaption(this.GridView1, typeof(검사정보));
         }
-        public void RefreshData() => this.GridView1?.RefreshData();
+        public void RefreshData() 
+        {
+            this.GridControl1.Update();
+            this.GridView1?.RefreshData();
+        } 
 
         public void SetResults(검사결과 결과)
         {

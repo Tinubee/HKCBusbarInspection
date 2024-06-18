@@ -83,10 +83,417 @@ namespace HKCBusbarInspection.Schemas
     }
 
 
+    //public enum 검사항목 : Int32
+    //{
+    //    [Result(), ListBindable(false)]
+    //    None,
+    //    //작은홀
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌상홀경")]
+    //    좌상홀경 = 101,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우상홀경")]
+    //    우상홀경 = 102,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌하홀경")]
+    //    좌하홀경 = 103,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우하홀경")]
+    //    우하홀경 = 104,
+
+    //    //사각홀 가로세로
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌상홀가로")]
+    //    좌상홀가로 = 201, 
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌상홀세로")]
+    //    좌상홀세로 = 202,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌상홀가로위치도")]
+    //    좌상홀가로위치도 = 203,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌상홀세로위치도")]
+    //    좌상홀세로위치도 = 204,
+    //    [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "좌상홀가로기준치수")]
+    //    좌상홀가로기준치수 = 205,
+    //    [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "좌상홀세로기준치수")]
+    //    좌상홀세로기준치수 = 206,
+
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우상홀가로")]
+    //    우상홀가로 = 301,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우상홀세로")]
+    //    우상홀세로 = 302,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우상홀가로위치도")]
+    //    우상홀가로위치도 = 303,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우상홀세로위치도")]
+    //    우상홀세로위치도 = 304,
+    //    [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "우상홀가로기준치수")]
+    //    우상홀가로기준치수 = 305,
+    //    [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "우상홀세로기준치수")]
+    //    우상홀세로기준치수 = 306,
+
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌중홀가로")]
+    //    좌중홀가로 = 401,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌중홀세로")]
+    //    좌중홀세로 = 402,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌중홀가로위치도")]
+    //    좌중홀가로위치도 = 403,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌중홀세로위치도")]
+    //    좌중홀세로위치도 = 404,
+    //    [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "좌중홀가로기준치수")]
+    //    좌중홀가로기준치수 = 405,
+    //    [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "좌중홀세로기준치수")]
+    //    좌중홀세로기준치수 = 406,
+
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우중홀가로")]
+    //    우중홀가로 = 501,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우중홀세로")]
+    //    우중홀세로 = 502,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우중홀가로위치도")]
+    //    우중홀가로위치도 = 503,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우중홀세로위치도")]
+    //    우중홀세로위치도 = 504,
+    //    [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "우중홀가로기준치수")]
+    //    우중홀가로기준치수 = 505,
+    //    [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "우중홀세로기준치수")]
+    //    우중홀세로기준치수 = 506,
+
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌하홀가로")]
+    //    좌하홀가로 = 601,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌하홀세로")]
+    //    좌하홀세로 = 602,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌하홀가로위치도")]
+    //    좌하홀가로위치도 = 603,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌하홀세로위치도")]
+    //    좌하홀세로위치도 = 604,
+    //    [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "좌하홀가로기준치수")]
+    //    좌하홀가로기준치수 = 605,
+    //    [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "좌하홀세로기준치수")]
+    //    좌하홀세로기준치수 = 606,
+
+
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우하홀가로")]
+    //    우하홀가로 = 701,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우하홀세로")]
+    //    우하홀세로 = 702,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우하홀가로위치도")]
+    //    우하홀가로위치도 = 703,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우하홀세로위치도")]
+    //    우하홀세로위치도 = 704,
+    //    [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "우하홀가로기준치수")]
+    //    우하홀가로기준치수 = 705,
+    //    [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "우하홀세로기준치수")]
+    //    우하홀세로기준치수 = 706,
+
+    //    //좌측슬롯[ -2.5 / 8.375 / 19.25 / 30.125 / 41 ]
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯1거리")]
+    //    좌슬롯1거리 = 801,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯2거리")]
+    //    좌슬롯2거리 = 802,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯3거리")]
+    //    좌슬롯3거리 = 803,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯4거리")]
+    //    좌슬롯4거리 = 804,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯5거리")]
+    //    좌슬롯5거리 = 805,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯1위치도")]
+    //    좌슬롯1위치도 = 821,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯2위치도")]
+    //    좌슬롯2위치도 = 822,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯3위치도")]
+    //    좌슬롯3위치도 = 823,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯4위치도")]
+    //    좌슬롯4위치도 = 824,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯5위치도")]
+    //    좌슬롯5위치도 = 825,
+    //    [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "좌슬롯1기준치수")]
+    //    좌슬롯1기준치수 = 831,
+    //    [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "좌슬롯2기준치수")]
+    //    좌슬롯2기준치수 = 832,
+    //    [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "좌슬롯3기준치수")]
+    //    좌슬롯3기준치수 = 833,
+    //    [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "좌슬롯4기준치수")]
+    //    좌슬롯4기준치수 = 834,
+    //    [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "좌슬롯5기준치수")]
+    //    좌슬롯5기준치수 = 835,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯Burr")]
+    //    좌슬롯Burr = 841,
+
+    //    //중앙슬롯[ -2.5 / 8.375 / 19.25 / 30.125 / 41 ]
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯1거리")]
+    //    중슬롯1거리 = 901,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯2거리")]
+    //    중슬롯2거리 = 902,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯3거리")]
+    //    중슬롯3거리 = 903,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯4거리")]
+    //    중슬롯4거리 = 904,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯5거리")]
+    //    중슬롯5거리 = 905,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯1위치도")]
+    //    중슬롯1위치도 = 921,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯2위치도")]
+    //    중슬롯2위치도 = 922,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯3위치도")]
+    //    중슬롯3위치도 = 923,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯4위치도")]
+    //    중슬롯4위치도 = 924,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯5위치도")]
+    //    중슬롯5위치도 = 925,
+    //    [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "중슬롯1기준치수")]
+    //    중슬롯1기준치수 = 931,
+    //    [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "중슬롯2기준치수")]
+    //    중슬롯2기준치수 = 932,
+    //    [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "중슬롯3기준치수")]
+    //    중슬롯3기준치수 = 933,
+    //    [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "중슬롯4기준치수")]
+    //    중슬롯4기준치수 = 934,
+    //    [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "중슬롯5기준치수")]
+    //    중슬롯5기준치수 = 935,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯Burr")]
+    //    중슬롯Burr = 941,
+
+    //    //우측슬롯[ -2.5 / 8.375 / 19.25 / 30.125 / 41 ]
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯1거리")]
+    //    우슬롯1거리 = 1001,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯2거리")]
+    //    우슬롯2거리 = 1002,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯3거리")]
+    //    우슬롯3거리 = 1003,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯4거리")]
+    //    우슬롯4거리 = 1004,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯5거리")]
+    //    우슬롯5거리 = 1005,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯1위치도")]
+    //    우슬롯1위치도 = 1021,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯2위치도")]
+    //    우슬롯2위치도 = 1022,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯3위치도")]
+    //    우슬롯3위치도 = 1023,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯4위치도")]
+    //    우슬롯4위치도 = 1024,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯5위치도")]
+    //    우슬롯5위치도 = 1025,
+    //    [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "우슬롯1기준치수")]
+    //    우슬롯1기준치수 = 1031,
+    //    [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "우슬롯2기준치수")]
+    //    우슬롯2기준치수 = 1032,
+    //    [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "우슬롯3기준치수")]
+    //    우슬롯3기준치수 = 1033,
+    //    [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "우슬롯4기준치수")]
+    //    우슬롯4기준치수 = 1034,
+    //    [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "우슬롯5기준치수")]
+    //    우슬롯5기준치수 = 1035,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯Burr")]
+    //    우슬롯Burr = 1041,
+
+    //    //측면카메라
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam02, None, "측면가로")]
+    //    측면가로 = 1101,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam02, None, "측면세로")]
+    //    측면세로 = 1102,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam02, None, "측면홀경")]
+    //    측면홀경 = 1103,
+    //    [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam02, None, "측면홀챔버")]
+    //    측면홀챔버 = 1104,
+
+    //    //버검사
+    //    [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam03, None, "L자부버")]
+    //    L자부버 = 1201,
+    //    [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "최상단홀누락")]
+    //    최상단홀누락 = 1202,
+    //    [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "기준치수25_46")]
+    //    기준치수25_46 = 1203,
+    //    [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "기준치수17_545상")]
+    //    기준치수17_545상 = 1204,
+    //    [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "기준치수17_545하")]
+    //    기준치수17_545하 = 1205,
+    //    [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "기준치수7_915상")] 
+    //    기준치수7_915상 = 1206,
+    //    [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "기준치수7_915하")] 
+    //    기준치수7_915하 = 1207,
+
+    //    //표면검사
+    //    [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "상부표면스크레치")]
+    //    상부표면스크레치 = 1301,
+    //    [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "상부표면지문")]
+    //    상부표면지문 = 1302,
+    //    [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "상부표면점")]
+    //    상부표면점 = 1303,
+    //    [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam04, None, "하부표면스크레치")]
+    //    하부표면스크레치 = 1321,
+    //    [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam04, None, "하부표면지문")]
+    //    하부표면지문 = 1322,
+    //    [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam04, None, "하부표면점")]
+    //    하부표면점 = 1323,
+    //    [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam02, None, "측면표면스크레치")]
+    //    측면표면스크레치 = 1341,
+    //    [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam02, None, "측면표면지문")]
+    //    측면표면지문 = 1342,
+    //    [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam02, None, "측면표면점")]
+    //    측면표면점 = 1343,
+    //}
+
     public enum 검사항목 : Int32
     {
         [Result(), ListBindable(false)]
         None,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌상홀가로")]
+        좌상홀가로 = 101,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "좌상홀가로기준치수")]
+        좌상홀가로기준치수 = 121,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우상홀가로")]
+        우상홀가로 = 201,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "우상홀가로기준치수")]
+        우상홀가로기준치수 = 221,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우하홀가로")]
+        우하홀가로 = 301,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "우하홀가로기준치수")]
+        우하홀가로기준치수 = 321,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌상홀세로")]
+        좌상홀세로 = 401,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "좌상홀세로기준치수")]
+        좌상홀세로기준치수 = 421,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우상홀세로")]
+        우상홀세로 = 501,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "우상홀세로기준치수")]
+        우상홀세로기준치수 = 521,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우하홀세로")]
+        우하홀세로 = 601,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "우하홀세로기준치수")]
+        우하홀세로기준치수 = 621,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌중홀가로")]
+        좌중홀가로 = 701,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "좌중홀가로기준치수")]
+        좌중홀가로기준치수 = 721,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우중홀가로")]
+        우중홀가로 = 801,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "우중홀가로기준치수")]
+        우중홀가로기준치수 = 821,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌중홀세로")]
+        좌중홀세로 = 901,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "좌중홀세로기준치수")]
+        좌중홀세로기준치수 = 921,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우중홀세로")]
+        우중홀세로 = 1001,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "우중홀세로기준치수")]
+        우중홀세로기준치수 = 1021,
+        //윤곽도 계산 기준치수
+        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "기준치수7_915하")]
+        기준치수7_915하 = 1101,
+        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "기준치수17_545하")]
+        기준치수17_545하 = 1102,
+        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "기준치수7_915상")]
+        기준치수7_915상 = 1201,
+        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "기준치수17_545상")]
+        기준치수17_545상 = 1202,
+        //NEG 모델 Datum B
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌하홀가로")]
+        좌하홀가로 = 1301,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌하홀세로")]
+        좌하홀세로 = 1302,
+        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "기준치수25_46")]
+        기준치수25_46 = 1401,
+        //측면 치수검사
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam02, None, "측면가로")]
+        측면가로 = 1501,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam02, None, "측면홀경")]
+        측면홀경 = 1502,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam02, None, "측면세로")]
+        측면세로 = 1503,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam02, None, "측면홀챔버")]
+        측면홀챔버 = 1504,
+        //좌측슬롯[ -2.5 / 8.375 / 19.25 / 30.125 / 41 ]
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯1거리")]
+        좌슬롯1거리 = 1601,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "좌슬롯1기준치수X")]
+        좌슬롯1기준치수X = 1602,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "좌슬롯1기준치수Y")]
+        좌슬롯1기준치수Y = 1603,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯2거리")]
+        좌슬롯2거리 = 1611,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "좌슬롯2기준치수X")]
+        좌슬롯2기준치수X = 1612,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "좌슬롯2기준치수Y")]
+        좌슬롯2기준치수Y = 1613,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯3거리")]
+        좌슬롯3거리 = 1621,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "좌슬롯3기준치수X")]
+        좌슬롯3기준치수X = 1622,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "좌슬롯3기준치수Y")]
+        좌슬롯3기준치수Y = 1623,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯4거리")]
+        좌슬롯4거리 = 1631,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "좌슬롯4기준치수X")]
+        좌슬롯4기준치수X = 1632,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "좌슬롯4기준치수Y")]
+        좌슬롯4기준치수Y = 1633,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯5거리")]
+        좌슬롯5거리 = 1641,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "좌슬롯5기준치수X")]
+        좌슬롯5기준치수X = 1642,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "좌슬롯5기준치수Y")]
+        좌슬롯5기준치수Y = 1643,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯Burr")]
+        좌슬롯Burr = 1651,
+        //중앙슬롯[ -2.5 / 8.375 / 19.25 / 30.125 / 41 ]
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯1거리")]
+        중슬롯1거리 = 1701,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "중슬롯1기준치수X")]
+        중슬롯1기준치수X = 1702,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "중슬롯1기준치수Y")]
+        중슬롯1기준치수Y = 1703,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯2거리")]
+        중슬롯2거리 = 1711,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "중슬롯2기준치수X")]
+        중슬롯2기준치수X = 1712,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "중슬롯2기준치수Y")]
+        중슬롯2기준치수Y = 1713,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯3거리")]
+        중슬롯3거리 = 1721,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "중슬롯3기준치수X")]
+        중슬롯3기준치수X = 1722,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "중슬롯3기준치수Y")]
+        중슬롯3기준치수Y = 1723,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯4거리")]
+        중슬롯4거리 = 1731,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "중슬롯4기준치수X")]
+        중슬롯4기준치수X = 1732,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "중슬롯4기준치수Y")]
+        중슬롯4기준치수Y = 1733,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯5거리")]
+        중슬롯5거리 = 1741,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "중슬롯5기준치수X")]
+        중슬롯5기준치수X = 1742,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "중슬롯5기준치수Y")]
+        중슬롯5기준치수Y = 1743,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯Burr")]
+        중슬롯Burr = 1751,
+        //우측슬롯[ -2.5 / 8.375 / 19.25 / 30.125 / 41 ]
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯1거리")]
+        우슬롯1거리 = 1801,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "우슬롯1기준치수X")]
+        우슬롯1기준치수X = 1802,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "우슬롯1기준치수Y")]
+        우슬롯1기준치수Y = 1803,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯2거리")]
+        우슬롯2거리 = 1811,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "우슬롯2기준치수X")]
+        우슬롯2기준치수X = 1812,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "우슬롯2기준치수Y")]
+        우슬롯2기준치수Y = 1813,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯3거리")]
+        우슬롯3거리 = 1821,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "우슬롯3기준치수X")]
+        우슬롯3기준치수X = 1822,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "우슬롯3기준치수Y")]
+        우슬롯3기준치수Y = 1823,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯4거리")]
+        우슬롯4거리 = 1831,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "우슬롯4기준치수X")]
+        우슬롯4기준치수X = 1832,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "우슬롯4기준치수Y")]
+        우슬롯4기준치수Y = 1833,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯5거리")]
+        우슬롯5거리 = 1841,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "우슬롯5기준치수X")]
+        우슬롯5기준치수X = 1842,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "우슬롯5기준치수Y")]
+        우슬롯5기준치수Y = 1843,
+        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯Burr")]
+        우슬롯Burr = 1851,
         //작은홀
         [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌상홀경")]
         좌상홀경 = 101,
@@ -96,167 +503,31 @@ namespace HKCBusbarInspection.Schemas
         좌하홀경 = 103,
         [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우하홀경")]
         우하홀경 = 104,
-
-        //사각홀 가로세로
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌상홀가로")]
-        좌상홀가로 = 201, 
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌상홀세로")]
-        좌상홀세로 = 202,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌상홀가로위치도")]
-        좌상홀가로위치도 = 203,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌상홀세로위치도")]
-        좌상홀세로위치도 = 204,
-
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우상홀가로")]
-        우상홀가로 = 301,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우상홀세로")]
-        우상홀세로 = 302,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우상홀가로위치도")]
-        우상홀가로위치도 = 303,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우상홀세로위치도")]
-        우상홀세로위치도 = 304,
-
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌중홀가로")]
-        좌중홀가로 = 401,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌중홀세로")]
-        좌중홀세로 = 402,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌중홀가로위치도")]
-        좌중홀가로위치도 = 403,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌중홀세로위치도")]
-        좌중홀세로위치도 = 404,
-
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우중홀가로")]
-        우중홀가로 = 501,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우중홀세로")]
-        우중홀세로 = 502,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우중홀가로위치도")]
-        우중홀가로위치도 = 503,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우중홀세로위치도")]
-        우중홀세로위치도 = 504,
-
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌하홀가로")]
-        좌하홀가로 = 601,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌하홀세로")]
-        좌하홀세로 = 602,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌하홀가로위치도")]
-        좌하홀가로위치도 = 603,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌하홀세로위치도")]
-        좌하홀세로위치도 = 604,
-
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우하홀가로")]
-        우하홀가로 = 701,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우하홀세로")]
-        우하홀세로 = 702,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우하홀가로위치도")]
-        우하홀가로위치도 = 703,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우하홀세로위치도")]
-        우하홀세로위치도 = 704,
-
-        //좌측슬롯[ -2.5 / 8.375 / 19.25 / 30.125 / 41 ]
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯1거리")]
-        좌슬롯1거리 = 801,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯2거리")]
-        좌슬롯2거리 = 802,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯3거리")]
-        좌슬롯3거리 = 803,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯4거리")]
-        좌슬롯4거리 = 804,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯5거리")]
-        좌슬롯5거리 = 805,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯1위치도")]
-        좌슬롯1위치도 = 821,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯2위치도")]
-        좌슬롯2위치도 = 822,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯3위치도")]
-        좌슬롯3위치도 = 823,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯4위치도")]
-        좌슬롯4위치도 = 824,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯5위치도")]
-        좌슬롯5위치도 = 825,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌슬롯Burr")]
-        좌슬롯Burr = 841,
-
-        //중앙슬롯[ -2.5 / 8.375 / 19.25 / 30.125 / 41 ]
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯1거리")]
-        중슬롯1거리 = 901,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯2거리")]
-        중슬롯2거리 = 902,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯3거리")]
-        중슬롯3거리 = 903,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯4거리")]
-        중슬롯4거리 = 904,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯5거리")]
-        중슬롯5거리 = 905,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯1위치도")]
-        중슬롯1위치도 = 921,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯2위치도")]
-        중슬롯2위치도 = 922,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯3위치도")]
-        중슬롯3위치도 = 923,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯4위치도")]
-        중슬롯4위치도 = 924,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯5위치도")]
-        중슬롯5위치도 = 925,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "중슬롯Burr")]
-        중슬롯Burr = 941,
-
-        //우측슬롯[ -2.5 / 8.375 / 19.25 / 30.125 / 41 ]
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯1거리")]
-        우슬롯1거리 = 1001,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯2거리")]
-        우슬롯2거리 = 1002,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯3거리")]
-        우슬롯3거리 = 1003,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯4거리")]
-        우슬롯4거리 = 1004,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯5거리")]
-        우슬롯5거리 = 1005,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯1위치도")]
-        우슬롯1위치도 = 1021,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯2위치도")]
-        우슬롯2위치도 = 1022,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯3위치도")]
-        우슬롯3위치도 = 1023,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯4위치도")]
-        우슬롯4위치도 = 1024,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯5위치도")]
-        우슬롯5위치도 = 1025,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우슬롯Burr")]
-        우슬롯Burr = 1041,
-
-        //측면카메라
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam02, None, "측면가로")]
-        측면가로 = 1101,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam02, None, "측면세로")]
-        측면세로 = 1102,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam02, None, "측면홀경")]
-        측면홀경 = 1103,
-        [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam02, None, "측면홀챔버")]
-        측면홀챔버 = 1104,
-
-        //버검사
-        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam03, None, "L자부버")]
-        L자부버 = 1201,
+        //최상단홀누락
         [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "최상단홀누락")]
         최상단홀누락 = 1202,
-        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "기준치수43_32")]
-        기준치수43_32 = 1203,
-        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "기준치수25_46")]
-        기준치수25_46 = 1204,
-        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "기준치수17_545")]
-        기준치수17_545 = 1205,
-        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "기준치수19_05")]
-        기준치수19_05 = 1206,
-        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "기준치수7_915")]
-        기준치수7_915 = 1207,
-
+        //L자부 버검사
+        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam03, None, "L자부버")]
+        L자부버 = 1201,
         //표면검사
-        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "상부표면")]
-        상부표면 = 1301,
-        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam04, None, "하부표면")]
-        하부표면 = 1302,
-        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam02, None, "측면표면")]
-        측면표면 = 1303,
+        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "상부표면스크레치")]
+        상부표면스크레치 = 1301,
+        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "상부표면지문")]
+        상부표면지문 = 1302,
+        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "상부표면점")]
+        상부표면점 = 1303,
+        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam04, None, "하부표면스크레치")]
+        하부표면스크레치 = 1321,
+        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam04, None, "하부표면지문")]
+        하부표면지문 = 1322,
+        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam04, None, "하부표면점")]
+        하부표면점 = 1323,
+        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam02, None, "측면표면스크레치")]
+        측면표면스크레치 = 1341,
+        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam02, None, "측면표면지문")]
+        측면표면지문 = 1342,
+        [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam02, None, "측면표면점")]
+        측면표면점 = 1343,
     }
 
     public enum 단위구분

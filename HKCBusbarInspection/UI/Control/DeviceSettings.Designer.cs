@@ -46,12 +46,14 @@
             this.t잉크젯주소 = new DevExpress.XtraEditors.TextEdit();
             this.t잉크젯포트 = new DevExpress.XtraEditors.TextEdit();
             this.t비율설정 = new DevExpress.XtraEditors.TextEdit();
+            this.e양품저장 = new DevExpress.XtraEditors.ToggleSwitch();
+            this.e불량저장 = new DevExpress.XtraEditors.ToggleSwitch();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.g강제배출 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.c강제배출사용유무 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.c양품불량 = new DevExpress.XtraLayout.LayoutControlItem();
             this.c양품불량랜덤 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.c양품불량 = new DevExpress.XtraLayout.LayoutControlItem();
             this.g트리거보드 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -65,17 +67,15 @@
             this.b표면검사이미지저장 = new DevExpress.XtraLayout.LayoutControlItem();
             this.c표면검사이미지저장비율 = new DevExpress.XtraLayout.LayoutControlItem();
             this.g이미지저장설정 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.c양품이미지저장 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.c불량이미지저장 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.t환경설정 = new DevExpress.XtraTab.XtraTabPage();
             this.e기본설정 = new HKCBusbarInspection.UI.Control.Config();
             this.t입출신호 = new DevExpress.XtraTab.XtraTabPage();
             this.e입출신호 = new HKCBusbarInspection.UI.Control.IOControl();
             this.환경설정Bind = new System.Windows.Forms.BindingSource(this.components);
             this.BindLocalization = new System.Windows.Forms.BindingSource(this.components);
-            this.e양품저장 = new DevExpress.XtraEditors.ToggleSwitch();
-            this.c양품이미지저장 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.e불량저장 = new DevExpress.XtraEditors.ToggleSwitch();
-            this.c불량이미지저장 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).BeginInit();
             this.splitContainerControl1.Panel1.SuspendLayout();
@@ -96,12 +96,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.t잉크젯주소.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.t잉크젯포트.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.t비율설정.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.e양품저장.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.e불량저장.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.g강제배출)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.c강제배출사용유무)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.c양품불량)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.c양품불량랜덤)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.c양품불량)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.g트리거보드)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
@@ -115,15 +117,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.b표면검사이미지저장)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.c표면검사이미지저장비율)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.g이미지저장설정)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.c양품이미지저장)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.c불량이미지저장)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             this.t환경설정.SuspendLayout();
             this.t입출신호.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.환경설정Bind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindLocalization)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.e양품저장.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.c양품이미지저장)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.e불량저장.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.c불량이미지저장)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainerControl1
@@ -325,7 +325,7 @@
             // t비율설정
             // 
             this.t비율설정.EditValue = "100";
-            this.t비율설정.Location = new System.Drawing.Point(229, 336);
+            this.t비율설정.Location = new System.Drawing.Point(189, 336);
             this.t비율설정.Name = "t비율설정";
             this.t비율설정.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.t비율설정.Properties.Appearance.Options.UseFont = true;
@@ -333,9 +333,35 @@
             this.t비율설정.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.t비율설정.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.t비율설정.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.t비율설정.Size = new System.Drawing.Size(98, 26);
+            this.t비율설정.Size = new System.Drawing.Size(138, 26);
             this.t비율설정.StyleController = this.layoutControl1;
             this.t비율설정.TabIndex = 24;
+            // 
+            // e양품저장
+            // 
+            this.e양품저장.EnterMoveNextControl = true;
+            this.e양품저장.Location = new System.Drawing.Point(553, 302);
+            this.e양품저장.Name = "e양품저장";
+            this.e양품저장.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.e양품저장.Properties.Appearance.Options.UseFont = true;
+            this.e양품저장.Properties.OffText = "Off";
+            this.e양품저장.Properties.OnText = "On";
+            this.e양품저장.Size = new System.Drawing.Size(97, 24);
+            this.e양품저장.StyleController = this.layoutControl1;
+            this.e양품저장.TabIndex = 5;
+            // 
+            // e불량저장
+            // 
+            this.e불량저장.EnterMoveNextControl = true;
+            this.e불량저장.Location = new System.Drawing.Point(553, 347);
+            this.e불량저장.Name = "e불량저장";
+            this.e불량저장.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.e불량저장.Properties.Appearance.Options.UseFont = true;
+            this.e불량저장.Properties.OffText = "Off";
+            this.e불량저장.Properties.OnText = "On";
+            this.e불량저장.Size = new System.Drawing.Size(97, 24);
+            this.e불량저장.StyleController = this.layoutControl1;
+            this.e불량저장.TabIndex = 5;
             // 
             // Root
             // 
@@ -383,19 +409,6 @@
             this.c강제배출사용유무.Text = "Forced Ejection";
             this.c강제배출사용유무.TextSize = new System.Drawing.Size(178, 25);
             // 
-            // c양품불량
-            // 
-            this.c양품불량.AppearanceItemCaption.Options.UseTextOptions = true;
-            this.c양품불량.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.c양품불량.Control = this.e배출구분;
-            this.c양품불량.Location = new System.Drawing.Point(319, 0);
-            this.c양품불량.Name = "c양품불량";
-            this.c양품불량.OptionsTableLayoutItem.ColumnIndex = 1;
-            this.c양품불량.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.c양품불량.Size = new System.Drawing.Size(319, 45);
-            this.c양품불량.Text = "Enforce Result";
-            this.c양품불량.TextSize = new System.Drawing.Size(178, 25);
-            // 
             // c양품불량랜덤
             // 
             this.c양품불량랜덤.AppearanceItemCaption.Options.UseTextOptions = true;
@@ -418,6 +431,19 @@
             this.emptySpaceItem4.Name = "emptySpaceItem4";
             this.emptySpaceItem4.Size = new System.Drawing.Size(319, 45);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // c양품불량
+            // 
+            this.c양품불량.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.c양품불량.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.c양품불량.Control = this.e배출구분;
+            this.c양품불량.Location = new System.Drawing.Point(319, 0);
+            this.c양품불량.Name = "c양품불량";
+            this.c양품불량.OptionsTableLayoutItem.ColumnIndex = 1;
+            this.c양품불량.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
+            this.c양품불량.Size = new System.Drawing.Size(319, 45);
+            this.c양품불량.Text = "Enforce Result";
+            this.c양품불량.TextSize = new System.Drawing.Size(178, 25);
             // 
             // g트리거보드
             // 
@@ -574,7 +600,7 @@
             this.c표면검사이미지저장비율.Size = new System.Drawing.Size(307, 48);
             this.c표면검사이미지저장비율.Text = "Surface Image Scale";
             this.c표면검사이미지저장비율.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize;
-            this.c표면검사이미지저장비율.TextSize = new System.Drawing.Size(200, 20);
+            this.c표면검사이미지저장비율.TextSize = new System.Drawing.Size(160, 20);
             this.c표면검사이미지저장비율.TextToControlDistance = 5;
             // 
             // g이미지저장설정
@@ -590,6 +616,44 @@
             this.g이미지저장설정.OptionsItemText.TextToControlDistance = 3;
             this.g이미지저장설정.Size = new System.Drawing.Size(331, 139);
             this.g이미지저장설정.Text = "Image Save Setting";
+            // 
+            // c양품이미지저장
+            // 
+            this.c양품이미지저장.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.c양품이미지저장.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.c양품이미지저장.Control = this.e양품저장;
+            this.c양품이미지저장.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.c양품이미지저장.CustomizationFormText = "Enforce Result";
+            this.c양품이미지저장.Location = new System.Drawing.Point(0, 0);
+            this.c양품이미지저장.Name = "c양품이미지저장";
+            this.c양품이미지저장.OptionsTableLayoutItem.ColumnIndex = 1;
+            this.c양품이미지저장.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
+            this.c양품이미지저장.Size = new System.Drawing.Size(307, 45);
+            this.c양품이미지저장.Text = "OK Save";
+            this.c양품이미지저장.TextSize = new System.Drawing.Size(178, 25);
+            // 
+            // c불량이미지저장
+            // 
+            this.c불량이미지저장.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.c불량이미지저장.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.c불량이미지저장.Control = this.e불량저장;
+            this.c불량이미지저장.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.c불량이미지저장.CustomizationFormText = "Enforce Result";
+            this.c불량이미지저장.Location = new System.Drawing.Point(0, 45);
+            this.c불량이미지저장.Name = "c불량이미지저장";
+            this.c불량이미지저장.OptionsTableLayoutItem.ColumnIndex = 1;
+            this.c불량이미지저장.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
+            this.c불량이미지저장.Size = new System.Drawing.Size(307, 45);
+            this.c불량이미지저장.Text = "NG Save";
+            this.c불량이미지저장.TextSize = new System.Drawing.Size(178, 25);
+            // 
+            // emptySpaceItem2
+            // 
+            this.emptySpaceItem2.AllowHotTrack = false;
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 865);
+            this.emptySpaceItem2.Name = "emptySpaceItem2";
+            this.emptySpaceItem2.Size = new System.Drawing.Size(331, 34);
+            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // t환경설정
             // 
@@ -629,70 +693,6 @@
             // 
             this.BindLocalization.DataSource = typeof(HKCBusbarInspection.UI.Control.DeviceSettings.LocalizationDeviceSetting);
             // 
-            // e양품저장
-            // 
-            this.e양품저장.EnterMoveNextControl = true;
-            this.e양품저장.Location = new System.Drawing.Point(553, 302);
-            this.e양품저장.Name = "e양품저장";
-            this.e양품저장.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.e양품저장.Properties.Appearance.Options.UseFont = true;
-            this.e양품저장.Properties.OffText = "Off";
-            this.e양품저장.Properties.OnText = "On";
-            this.e양품저장.Size = new System.Drawing.Size(97, 24);
-            this.e양품저장.StyleController = this.layoutControl1;
-            this.e양품저장.TabIndex = 5;
-            // 
-            // c양품이미지저장
-            // 
-            this.c양품이미지저장.AppearanceItemCaption.Options.UseTextOptions = true;
-            this.c양품이미지저장.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.c양품이미지저장.Control = this.e양품저장;
-            this.c양품이미지저장.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
-            this.c양품이미지저장.CustomizationFormText = "Enforce Result";
-            this.c양품이미지저장.Location = new System.Drawing.Point(0, 0);
-            this.c양품이미지저장.Name = "c양품이미지저장";
-            this.c양품이미지저장.OptionsTableLayoutItem.ColumnIndex = 1;
-            this.c양품이미지저장.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.c양품이미지저장.Size = new System.Drawing.Size(307, 45);
-            this.c양품이미지저장.Text = "OK Save";
-            this.c양품이미지저장.TextSize = new System.Drawing.Size(178, 25);
-            // 
-            // e불량저장
-            // 
-            this.e불량저장.EnterMoveNextControl = true;
-            this.e불량저장.Location = new System.Drawing.Point(553, 347);
-            this.e불량저장.Name = "e불량저장";
-            this.e불량저장.Properties.Appearance.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.e불량저장.Properties.Appearance.Options.UseFont = true;
-            this.e불량저장.Properties.OffText = "Off";
-            this.e불량저장.Properties.OnText = "On";
-            this.e불량저장.Size = new System.Drawing.Size(97, 24);
-            this.e불량저장.StyleController = this.layoutControl1;
-            this.e불량저장.TabIndex = 5;
-            // 
-            // c불량이미지저장
-            // 
-            this.c불량이미지저장.AppearanceItemCaption.Options.UseTextOptions = true;
-            this.c불량이미지저장.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.c불량이미지저장.Control = this.e불량저장;
-            this.c불량이미지저장.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
-            this.c불량이미지저장.CustomizationFormText = "Enforce Result";
-            this.c불량이미지저장.Location = new System.Drawing.Point(0, 45);
-            this.c불량이미지저장.Name = "c불량이미지저장";
-            this.c불량이미지저장.OptionsTableLayoutItem.ColumnIndex = 1;
-            this.c불량이미지저장.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 10);
-            this.c불량이미지저장.Size = new System.Drawing.Size(307, 45);
-            this.c불량이미지저장.Text = "NG Save";
-            this.c불량이미지저장.TextSize = new System.Drawing.Size(178, 25);
-            // 
-            // emptySpaceItem2
-            // 
-            this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 865);
-            this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(331, 34);
-            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
-            // 
             // DeviceSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -720,12 +720,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.t잉크젯주소.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.t잉크젯포트.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.t비율설정.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.e양품저장.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.e불량저장.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.g강제배출)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.c강제배출사용유무)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.c양품불량)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.c양품불량랜덤)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.c양품불량)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.g트리거보드)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
@@ -739,15 +741,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.b표면검사이미지저장)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.c표면검사이미지저장비율)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.g이미지저장설정)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.c양품이미지저장)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.c불량이미지저장)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             this.t환경설정.ResumeLayout(false);
             this.t입출신호.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.환경설정Bind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindLocalization)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.e양품저장.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.c양품이미지저장)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.e불량저장.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.c불량이미지저장)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             this.ResumeLayout(false);
 
         }

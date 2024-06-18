@@ -191,7 +191,10 @@ namespace HKCBusbarInspection.Schemas
 
             검사결과 검사 = null;
             if (검사코드 > 0 && this.검사스플.ContainsKey(검사코드))
+            {
                 검사 = this.검사스플[검사코드];
+                //if (신규여부) 검사.검사일시 = DateTime.Now;
+            }
             if (검사 == null && !신규여부)//Home잡고 다시 검사 진행했을대, 검사결과를 이미전송한 인덱스이면은 검사자료에서 찾아서 검사데이터 전송.
             {
                 검사 = Global.검사자료.Where(x => x.검사코드 == 검사코드).FirstOrDefault();
@@ -200,6 +203,7 @@ namespace HKCBusbarInspection.Schemas
                     Global.오류로그(로그영역.GetString(), "검사항목찾기", $"[{검사코드}] 검사항목이 없습니다.", true);
                     return null;
                 }
+                //검사.검사일시 = DateTime.Now; //시간 Update
             }
 
             return 검사;

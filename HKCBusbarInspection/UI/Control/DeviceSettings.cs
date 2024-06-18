@@ -44,6 +44,8 @@ namespace HKCBusbarInspection.UI.Control
             this.e강제배출.IsOn = Global.환경설정.강제배출;
             this.e배출구분.IsOn = Global.환경설정.양품불량;
             this.e배출구분랜덤.IsOn = Global.환경설정.랜덤배출;
+            this.e표면검사이미지저장.IsOn = Global.환경설정.사진저장표면;
+            this.t비율설정.EditValue = Global.환경설정.표면검사사진비율;
 
             this.e강제배출.EditValueChanged += 강제배출Changed;
             this.e배출구분.EditValueChanged += 배출구분Changed;

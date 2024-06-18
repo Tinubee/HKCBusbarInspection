@@ -352,6 +352,7 @@ namespace HKCBusbarInspection.Schemas
         private void ImageCallBack(IntPtr surfaceAddr, ref MV_FRAME_OUT_INFO_EX frameInfo, IntPtr user)
         {
             Common.DebugWriteLine("ImageCallBack", 로그구분.정보, $"{this.구분} ImageCallBack 완료.");
+            
             this.AcquisitionFinished(surfaceAddr, frameInfo.nWidth, frameInfo.nHeight);
             //this.Stop();
         }

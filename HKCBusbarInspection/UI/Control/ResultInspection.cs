@@ -40,7 +40,7 @@ namespace HKCBusbarInspection.UI.Control
         public void 검사완료알림(검사결과 결과)
         {
             if (this.InvokeRequired) { this.BeginInvoke(new Action(() => { 검사완료알림(결과); })); return; }
-            if (Global.장치상태.자동수동) Global.검사자료.Save();
+      
             if (결과 == null)
             {
                 Common.DebugWriteLine("검사완료알림", 로그구분.오류, $"검사결과가 없습니다.");

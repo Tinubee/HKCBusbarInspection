@@ -196,6 +196,7 @@ namespace HKCBusbarInspection.Schemas
             검사.결과값 = 결과값;
             if (검사.측정단위 == 단위구분.ON)
             {
+                //Debug.WriteLine($"{검사.검사항목} - {검사.측정값}");
                 //값이 0이면 OK / 1이상이면 NG
                 검사.측정결과 = 측정값 == 0 ? 결과구분.OK : 결과구분.NG;
                 검사.결과값 = 측정값 == 0 ? 1 : 0;

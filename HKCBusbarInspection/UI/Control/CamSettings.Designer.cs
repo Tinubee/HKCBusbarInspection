@@ -54,13 +54,14 @@
             this.조명설정Bind = new System.Windows.Forms.BindingSource(this.components);
             this.GridView2 = new MvUtils.CustomView();
             this.col카메라 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col사용구분 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col포트 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col채널 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col밝기 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.e조명밝기 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.col설명1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col켜짐 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.e조명켜짐 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
+            this.e조명밝기 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.repositoryItemToggleSwitch2 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.b표면검사조영 = new DevExpress.XtraEditors.SimpleButton();
@@ -82,8 +83,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.조명설정Bind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.e조명밝기)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.e조명켜짐)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.e조명밝기)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -356,6 +357,7 @@
             this.GridView2.Caption = "";
             this.GridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.col카메라,
+            this.col사용구분,
             this.col포트,
             this.col채널,
             this.col밝기,
@@ -392,6 +394,15 @@
             this.col카메라.Visible = true;
             this.col카메라.VisibleIndex = 0;
             // 
+            // col사용구분
+            // 
+            this.col사용구분.AppearanceHeader.Options.UseTextOptions = true;
+            this.col사용구분.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col사용구분.FieldName = "사용구분";
+            this.col사용구분.Name = "col사용구분";
+            this.col사용구분.Visible = true;
+            this.col사용구분.VisibleIndex = 1;
+            // 
             // col포트
             // 
             this.col포트.AppearanceHeader.Options.UseTextOptions = true;
@@ -399,7 +410,7 @@
             this.col포트.FieldName = "포트";
             this.col포트.Name = "col포트";
             this.col포트.Visible = true;
-            this.col포트.VisibleIndex = 1;
+            this.col포트.VisibleIndex = 2;
             // 
             // col채널
             // 
@@ -408,17 +419,42 @@
             this.col채널.FieldName = "채널";
             this.col채널.Name = "col채널";
             this.col채널.Visible = true;
-            this.col채널.VisibleIndex = 2;
+            this.col채널.VisibleIndex = 3;
             // 
             // col밝기
             // 
             this.col밝기.AppearanceHeader.Options.UseTextOptions = true;
             this.col밝기.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.col밝기.ColumnEdit = this.e조명밝기;
             this.col밝기.FieldName = "밝기";
             this.col밝기.Name = "col밝기";
             this.col밝기.Visible = true;
-            this.col밝기.VisibleIndex = 3;
+            this.col밝기.VisibleIndex = 4;
+            // 
+            // col설명1
+            // 
+            this.col설명1.AppearanceHeader.Options.UseTextOptions = true;
+            this.col설명1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col설명1.FieldName = "설명";
+            this.col설명1.Name = "col설명1";
+            this.col설명1.Visible = true;
+            this.col설명1.VisibleIndex = 5;
+            // 
+            // col켜짐
+            // 
+            this.col켜짐.AppearanceHeader.Options.UseTextOptions = true;
+            this.col켜짐.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.col켜짐.ColumnEdit = this.e조명켜짐;
+            this.col켜짐.FieldName = "켜짐";
+            this.col켜짐.Name = "col켜짐";
+            this.col켜짐.Visible = true;
+            this.col켜짐.VisibleIndex = 6;
+            // 
+            // e조명켜짐
+            // 
+            this.e조명켜짐.AutoHeight = false;
+            this.e조명켜짐.Name = "e조명켜짐";
+            this.e조명켜짐.OffText = "Off";
+            this.e조명켜짐.OnText = "On";
             // 
             // e조명밝기
             // 
@@ -438,32 +474,6 @@
             0,
             0});
             this.e조명밝기.Name = "e조명밝기";
-            // 
-            // col설명1
-            // 
-            this.col설명1.AppearanceHeader.Options.UseTextOptions = true;
-            this.col설명1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.col설명1.FieldName = "설명";
-            this.col설명1.Name = "col설명1";
-            this.col설명1.Visible = true;
-            this.col설명1.VisibleIndex = 4;
-            // 
-            // col켜짐
-            // 
-            this.col켜짐.AppearanceHeader.Options.UseTextOptions = true;
-            this.col켜짐.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.col켜짐.ColumnEdit = this.e조명켜짐;
-            this.col켜짐.FieldName = "켜짐";
-            this.col켜짐.Name = "col켜짐";
-            this.col켜짐.Visible = true;
-            this.col켜짐.VisibleIndex = 5;
-            // 
-            // e조명켜짐
-            // 
-            this.e조명켜짐.AutoHeight = false;
-            this.e조명켜짐.Name = "e조명켜짐";
-            this.e조명켜짐.OffText = "Off";
-            this.e조명켜짐.OnText = "On";
             // 
             // repositoryItemToggleSwitch2
             // 
@@ -573,8 +583,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.조명설정Bind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.e조명밝기)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.e조명켜짐)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.e조명밝기)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
@@ -613,14 +623,15 @@
         private DevExpress.XtraGrid.Columns.GridColumn col상태;
         private DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch repositoryItemToggleSwitch1;
         private System.Windows.Forms.BindingSource 조명설정Bind;
+        private DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch repositoryItemToggleSwitch2;
+        private DevExpress.XtraEditors.SimpleButton b표면검사조영;
+        private DevExpress.XtraEditors.SimpleButton b치수검사조명;
         private DevExpress.XtraGrid.Columns.GridColumn col카메라;
+        private DevExpress.XtraGrid.Columns.GridColumn col사용구분;
         private DevExpress.XtraGrid.Columns.GridColumn col포트;
         private DevExpress.XtraGrid.Columns.GridColumn col채널;
         private DevExpress.XtraGrid.Columns.GridColumn col밝기;
         private DevExpress.XtraGrid.Columns.GridColumn col설명1;
         private DevExpress.XtraGrid.Columns.GridColumn col켜짐;
-        private DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch repositoryItemToggleSwitch2;
-        private DevExpress.XtraEditors.SimpleButton b표면검사조영;
-        private DevExpress.XtraEditors.SimpleButton b치수검사조명;
     }
 }

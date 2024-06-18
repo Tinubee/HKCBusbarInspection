@@ -127,7 +127,9 @@ namespace HKCBusbarInspection.UI.Control
                 if (this.InvokeRequired) { this.BeginInvoke((Action)(() => 검사완료알림(결과))); return; }
                 // DB 저장
                 //Global.검사자료
-                Global.검사자료.Save(결과);
+                if (Global.신호제어.자동수동여부)
+                    Global.검사자료.Save(결과);
+
                 this.검사상태표현(결과.측정결과);
                 this.e저장용량.EditValue = Global.환경설정.저장비율;
                 GC.Collect();
