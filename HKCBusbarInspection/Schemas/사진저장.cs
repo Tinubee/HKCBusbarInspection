@@ -112,8 +112,8 @@ namespace HKCBusbarInspection.Schemas
         }
 
         #region 사진저장
-        public void SaveImage(그랩장치 장치, 검사결과 결과) => SaveImage(장치.구분, 장치.MatImage(), 결과.검사일시, 결과.검사코드, 장치.표면검사중);
-        public void SaveImage(카메라구분 카메라, Mat image,  DateTime 시간, Int32 번호, Boolean 표면검사중)
+        public void SaveImage(그랩장치 장치, 검사결과 결과) => SaveImage(장치.구분, 장치.MatImage(), 장치.SurFaceImage(), 결과.검사일시, 결과.검사코드, 장치.표면검사중);
+        public void SaveImage(카메라구분 카메라, Mat image, Mat surfaceImage, DateTime 시간, Int32 번호, Boolean 표면검사중)
         {
             if (!this.ContainsKey(카메라)) return;
             사진저장 정보 = this[카메라];
@@ -132,19 +132,28 @@ namespace HKCBusbarInspection.Schemas
                 if (!정보.사본저장) return;
                 file = CopyImageFile(시간, 번호, 카메라, 정보.사본유형, 표면검사중);
                 //이쪽부분에 표면검사중 확인하여 이미지 Resize설정.
-                if (표면검사중 || 카메라 == 카메라구분.Cam04) //Image Resize 동작 중복. 수정필요
+                Double scale = Math.Max(0.1, Math.Min((Double)정보.사진비율 / 100, 1.0));
+                if (표면검사중 || 카메라 == 카메라구분.Cam04)
                 {
                     if (Global.환경설정.사진저장표면)
-                    {
-                        Double scale = Math.Max(0.1, Math.Min((Double)Global.환경설정.표면검사사진비율 / 100, 1.0));
-                        SaveScaledImage(정보, image, file, scale);
-                    }
+                        SaveScaledImage(정보, surfaceImage, file, 1);
                 }
-                else
-                {
-                    Double scale = Math.Max(0.1, Math.Min((Double)정보.사진비율 / 100, 1.0));
+                else 
                     SaveScaledImage(정보, image, file, scale);
-                }
+
+                //if (표면검사중 || 카메라 == 카메라구분.Cam04) //Image Resize 동작 중복. 수정필요
+                //{
+                //    if (Global.환경설정.사진저장표면)
+                //    {
+                //        Double scale = Math.Max(0.1, Math.Min((Double)정보.사진비율 / 100, 1.0));
+                //        SaveScaledImage(정보, image, file, scale);
+                //    }
+                //}
+                //else
+                //{
+                //    Double scale = Math.Max(0.1, Math.Min((Double)정보.사진비율 / 100, 1.0));
+                //    SaveScaledImage(정보, image, file, scale);
+                //}
             });
         }
 

@@ -462,21 +462,13 @@ namespace HKCBusbarInspection.Schemas
             if (this.시작일시.Day != DateTime.Today.Day)
             {
                 this.시작일시 = DateTime.Now;
-                //this.검사번호리셋 = true;
                 Global.모델자료.선택모델.날짜변경();
             }
 
             this.통신확인핑퐁 = !this.통신확인핑퐁;
-            //Debug.WriteLine($"통신확인핑퐁 : {this.통신확인핑퐁}");
+           
             this.통신상태알림?.Invoke();
             this.입출변경알림?.Invoke();
-            //Boolean 연결신호확인 = 신호읽기(정보주소.통신확인전송);
-            //정보쓰기(정보주소.통신확인전송, !연결신호확인);
-            //if (this.입출자료.Changed(정보주소.통신확인수신))
-            //{
-            //    this.통신확인핑퐁 = !this.통신확인핑퐁;
-            //    this.통신상태알림?.Invoke();
-            //}
         }
         private Boolean 테스트수행()
         {

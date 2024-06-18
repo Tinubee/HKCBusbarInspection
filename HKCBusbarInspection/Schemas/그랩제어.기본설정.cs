@@ -225,6 +225,12 @@ namespace HKCBusbarInspection.Schemas
 
             return new Mat(ImageHeight, ImageWidth, ImageType, BufferAddress);
         }
+
+        public Mat SurFaceImage()
+        {
+            Double scale = Math.Max(0.1, Math.Min((Double)Global.환경설정.표면검사사진비율 / 100, 1.0));
+            return Common.Resize(this.MatImage(), scale);
+        }
         #endregion
     }
     public class HikeGigE : 그랩장치

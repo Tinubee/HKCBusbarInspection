@@ -179,7 +179,7 @@ namespace HKCBusbarInspection.Schemas
         public void 검사수행알림(검사결과 검사) => this.검사완료알림?.Invoke(검사);
         public void 수동검사결과(카메라구분 카메라, 검사결과 검사)
         {
-            this.검사완료알림?.Invoke(검사);
+            //this.검사완료알림?.Invoke(검사);
             this.수동검사알림?.Invoke(카메라, 검사);
         }
 

@@ -384,6 +384,10 @@ namespace HKCBusbarInspection.Schemas
         좌하홀가로 = 1301,
         [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌하홀세로")]
         좌하홀세로 = 1302,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "좌하홀가로")]
+        좌하홀가로기준치수 = 1321,
+        [Result(검사그룹.CTQ, 결과분류.Detail, 장치구분.Cam01, None, "좌하홀세로")]
+        좌하홀세로기준치수 = 1322,
         [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "기준치수25_46")]
         기준치수25_46 = 1401,
         //측면 치수검사
@@ -496,38 +500,38 @@ namespace HKCBusbarInspection.Schemas
         우슬롯Burr = 1851,
         //작은홀
         [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌상홀경")]
-        좌상홀경 = 101,
+        좌상홀경 = 1901,
         [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우상홀경")]
-        우상홀경 = 102,
+        우상홀경 = 1902,
         [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "좌하홀경")]
-        좌하홀경 = 103,
+        좌하홀경 = 1903,
         [Result(검사그룹.CTQ, 결과분류.Summary, 장치구분.Cam01, None, "우하홀경")]
-        우하홀경 = 104,
+        우하홀경 = 1904,
         //최상단홀누락
         [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "최상단홀누락")]
-        최상단홀누락 = 1202,
+        최상단홀누락 = 2001,
         //L자부 버검사
         [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam03, None, "L자부버")]
-        L자부버 = 1201,
+        L자부버 = 2101,
         //표면검사
         [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "상부표면스크레치")]
-        상부표면스크레치 = 1301,
+        상부표면스크레치 = 3001,
         [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "상부표면지문")]
-        상부표면지문 = 1302,
+        상부표면지문 = 3002,
         [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam01, None, "상부표면점")]
-        상부표면점 = 1303,
+        상부표면점 = 3003,
         [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam04, None, "하부표면스크레치")]
-        하부표면스크레치 = 1321,
+        하부표면스크레치 = 3101,
         [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam04, None, "하부표면지문")]
-        하부표면지문 = 1322,
+        하부표면지문 = 3102,
         [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam04, None, "하부표면점")]
-        하부표면점 = 1323,
+        하부표면점 = 3103,
         [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam02, None, "측면표면스크레치")]
-        측면표면스크레치 = 1341,
+        측면표면스크레치 = 3201,
         [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam02, None, "측면표면지문")]
-        측면표면지문 = 1342,
+        측면표면지문 = 3202,
         [Result(검사그룹.Surface, 결과분류.Summary, 장치구분.Cam02, None, "측면표면점")]
-        측면표면점 = 1343,
+        측면표면점 = 3203,
     }
 
     public enum 단위구분
