@@ -97,7 +97,7 @@ namespace HKCBusbarInspection
         {
             this.SetLocalization();
             this.e결과뷰어.Init(ResultInspection.ViewTypes.Auto);
-            this.e카메라뷰어.Init();
+            this.e카메라뷰어.Init(ResultInspection.ViewTypes.Auto);
             this.e검사설정.Init();
             this.e장치설정.Init();
             this.e상태뷰어.Init();

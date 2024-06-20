@@ -325,9 +325,9 @@ namespace HKCBusbarInspection.Schemas
                     this.하부01검사트리거 = false;
                     Common.DebugWriteLine("하부01트리거", 로그구분.정보, $"하부01트리거 들어옴");
                     Global.조명제어.TurnOn(사용구분.하부표면검사);//Global.조명제어.TurnOn(카메라구분.Cam04);
-                    Global.그랩제어.GetItem(카메라구분.Cam04).MatImageList.Clear();
-                    Global.모델자료.선택모델.검사시작(하부01검사번호);
-                    Global.검사자료.검사시작(하부01검사번호, true);
+                    //Global.그랩제어.GetItem(카메라구분.Cam04).MatImageList.Clear();
+                    //Global.모델자료.선택모델.검사시작(하부01검사번호);
+                    //Global.검사자료.검사시작(하부01검사번호, true);
                 })
                 { Priority = ThreadPriority.Highest }.Start();
             }
@@ -337,8 +337,8 @@ namespace HKCBusbarInspection.Schemas
                 {
                     this.하부02검사트리거 = false;
                     Common.DebugWriteLine("하부02트리거", 로그구분.정보, $"하부02트리거 들어옴");
-                    Global.모델자료.선택모델.검사시작(하부02검사번호);
-                    Global.검사자료.검사시작(하부02검사번호, true);
+                    //Global.모델자료.선택모델.검사시작(하부02검사번호);
+                    //Global.검사자료.검사시작(하부02검사번호, true);
                 })
                 { Priority = ThreadPriority.Highest }.Start();
             }
@@ -348,8 +348,8 @@ namespace HKCBusbarInspection.Schemas
                 {
                     this.하부03검사트리거 = false;
                     Common.DebugWriteLine("하부03트리거", 로그구분.정보, $"하부03트리거 들어옴");
-                    Global.모델자료.선택모델.검사시작(하부03검사번호);
-                    Global.검사자료.검사시작(하부03검사번호, true);
+                    //Global.모델자료.선택모델.검사시작(하부03검사번호);
+                    //Global.검사자료.검사시작(하부03검사번호, true);
                 }).Start();
             }
         }

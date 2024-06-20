@@ -282,7 +282,7 @@ namespace HKCBusbarInspection.UI.Control
             검사정보 정보 = this.GridView1.GetFocusedRow() as 검사정보;
             if (정보 == null) return;
             if (정보.실측값 <= 0) { Utils.WarningMsg($"{번역.실측값없음}"); return; }
-            if (!정보.검사항목.ToString().Contains("위치도"))
+            if (!정보.검사항목.ToString().Contains("기준치수"))
             {
                 if (정보.측정값 <= 0) { Utils.WarningMsg($"{번역.측정값없음}"); return; }
             }

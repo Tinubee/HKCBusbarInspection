@@ -32,9 +32,11 @@
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.t최종결과 = new DevExpress.XtraTab.XtraTabPage();
             this.t카메라결과 = new DevExpress.XtraTab.XtraTabPage();
+            this.e카메라뷰어 = new HKCBusbarInspection.UI.Control.CamViewers();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.t최종결과.SuspendLayout();
+            this.t카메라결과.SuspendLayout();
             this.SuspendLayout();
             // 
             // e결과뷰어
@@ -66,9 +68,18 @@
             // 
             // t카메라결과
             // 
+            this.t카메라결과.Controls.Add(this.e카메라뷰어);
             this.t카메라결과.Name = "t카메라결과";
             this.t카메라결과.Size = new System.Drawing.Size(1918, 979);
             this.t카메라결과.Text = "VM";
+            // 
+            // e카메라뷰어
+            // 
+            this.e카메라뷰어.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.e카메라뷰어.Location = new System.Drawing.Point(0, 0);
+            this.e카메라뷰어.Name = "e카메라뷰어";
+            this.e카메라뷰어.Size = new System.Drawing.Size(1918, 979);
+            this.e카메라뷰어.TabIndex = 0;
             // 
             // ResultViewer
             // 
@@ -82,6 +93,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
             this.t최종결과.ResumeLayout(false);
+            this.t카메라결과.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -92,5 +104,6 @@
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
         private DevExpress.XtraTab.XtraTabPage t최종결과;
         private DevExpress.XtraTab.XtraTabPage t카메라결과;
+        private Control.CamViewers e카메라뷰어;
     }
 }

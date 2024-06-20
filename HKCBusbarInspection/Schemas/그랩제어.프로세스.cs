@@ -8,12 +8,13 @@ using System.IO;
 using System.Linq;
 using OpenCvSharp;
 using MvFGCtrlC.NET;
+using static HKCBusbarInspection.Schemas.신호제어;
 
 namespace HKCBusbarInspection.Schemas
 {
     public class 그랩제어 : Dictionary<카메라구분, 그랩장치>
     {
-        private String 셔틀번호변수이름 = "셔틀번호";
+        //private String 셔틀번호변수이름 = "셔틀번호";
         public static List<카메라구분> 대상카메라 = new List<카메라구분>() { 카메라구분.Cam01, 카메라구분.Cam02, 카메라구분.Cam03, 카메라구분.Cam04, 카메라구분.Cam05 };
         public static List<셔틀위치> 대상셔틀 = new List<셔틀위치>() { 셔틀위치.Shuttle01, 셔틀위치.Shuttle02, 셔틀위치.Shuttle03 };
 
@@ -150,11 +151,40 @@ namespace HKCBusbarInspection.Schemas
         }
         private 그랩장치 GetItem(String serial) => this.Values.Where(e => e.코드 == serial).FirstOrDefault();
 
+        private Boolean 검사자료생성(Int32 이미지개수)
+        {
+            try
+            {
+                Int32 하부검사번호 = 0;
+                if (이미지개수 == 1)
+                    하부검사번호 = Global.신호제어.하부01인덱스;
+                if (이미지개수 == 2)
+                    하부검사번호 = Global.신호제어.하부02인덱스;
+                if (이미지개수 == 3)
+                    하부검사번호 = Global.신호제어.하부03인덱스;
+
+                Debug.WriteLine($"검사자료생성시 인덱스번호 : [ {하부검사번호} ]");
+
+                if (하부검사번호 == 0) return false;
+
+                //Global.신호제어.인덱스버퍼[(정보주소)이미지개수];
+                Global.모델자료.선택모델.검사시작(하부검사번호);
+                Global.검사자료.검사시작(하부검사번호, true);
+                return true;
+            }
+            catch(Exception ex)
+            {
+                Global.오류로그("검사자료생성", "검사자료생성오류", $"{ex.Message}", true);
+                return false;   
+            }
+        }
+
         public void 그랩완료(그랩장치 장치)
         {
             if (Global.장치상태.자동수동)
             {
                 Mat 검사이미지 = 장치.MatImage();
+                Mat 표면이미지 = 장치.SurFaceImage();
 
                 if (장치.구분 == 카메라구분.Cam01 && 장치.표면검사중)
                     장치.SurFaceMatImageList.Add(검사이미지);
@@ -163,33 +193,42 @@ namespace HKCBusbarInspection.Schemas
 
                 Int32 이미지개수 = 장치.표면검사중 ? 장치.SurFaceMatImageList.Count : 장치.MatImageList.Count;
 
+                if (장치.구분 == 카메라구분.Cam04)
+                    if(!검사자료생성(이미지개수)) { Global.오류로그("그랩완료", "검사번호없음", $"[{장치.구분} - {이미지개수}] 해당 검사가 없습니다.", true); return; }
+
                 Int32 검사번호 = Global.신호제어.촬영위치번호(장치.구분, 이미지개수, 장치.표면검사중);
                 검사결과 검사 = Global.검사자료.검사항목찾기(검사번호, true);
                 if (검사 == null) { Global.오류로그("그랩완료", "검사번호없음", $"Index[{검사번호}] 해당 검사가 없습니다.", true); return; }
 
                 //검사시작전에 완료신호 전송해주기.
+                장치.검사중 = false;
                 완료신호전송(장치, 이미지개수);
 
                 if (장치.표면검사중 || 장치.구분 == 카메라구분.Cam04)
                 {
-                    //Double scale = Math.Max(0.1, Math.Min((Double)Global.환경설정.표면검사사진비율 / 100, 1.0));
-                    //Mat 표면검사이미지 = Common.Resize(검사이미지, scale);
                     if (장치.구분 == 카메라구분.Cam04) //하부표면
-                        Global.VM제어.GetItem(장치.구분).Run(장치.SurFaceImage(), null, null, 검사);
+                    {
+                        Global.VM제어.GetItem(장치.구분).Run(표면이미지, null, null, 검사);
+                        Global.사진자료.SaveImage(장치, 검사, 표면이미지, true);
+                    }
                     else //상부표면
-                        Global.VM제어.GetItem(Flow구분.상부표면).Run(장치.SurFaceImage(), null, null, 검사);
+                    {
+                        Global.VM제어.GetItem(Flow구분.상부표면).Run(표면이미지, null, null, 검사);
+                        Global.사진자료.SaveImage(장치, 검사, 표면이미지, true);
+                    }
                 }
-                else Global.VM제어.GetItem(장치.구분).Run(검사이미지, null, null, 검사);
+                else
+                {
+                    Global.VM제어.GetItem(장치.구분).Run(검사이미지, null, null, 검사);
+                    Global.사진자료.SaveImage(장치, 검사, 검사이미지, false);
+                }
 
-                Global.사진자료.SaveImage(장치, 검사);
-                장치.검사중 = false;
-                //치수검사 진행 시, Image만 획득하고 Complete신호를 보내주고, 표면검사 진행할 수 있도록 수정 필요.(택타임 최소화)
-                //완료신호전송(장치, 이미지개수);
+                //Global.사진자료.SaveImage(장치, 검사);
                 이미지초기화(장치);
             }
             else
             {
-                Global.VM제어.글로벌변수제어.SetValue(셔틀번호변수이름, Utils.GetDescription(Global.환경설정.수동검사셔틀위치));
+                //Global.VM제어.글로벌변수제어.SetValue(셔틀번호변수이름, Utils.GetDescription(Global.환경설정.수동검사셔틀위치));
                 Global.VM제어.GetItem(장치.구분).Run(장치.MatImage(), null, null, Global.검사자료.수동검사);
                 //Global.VM제어.GetItem(Flow구분.상부표면).Run(장치.MatImage(), null, null, Global.검사자료.수동검사);
                 검사결과 검사 = Global.검사자료.검사결과계산(Global.검사자료.수동검사.검사코드, false);

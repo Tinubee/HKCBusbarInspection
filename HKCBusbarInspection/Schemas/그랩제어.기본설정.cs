@@ -359,6 +359,11 @@ namespace HKCBusbarInspection.Schemas
         {
             Common.DebugWriteLine("ImageCallBack", 로그구분.정보, $"{this.구분} ImageCallBack 완료.");
             
+            if(this.구분 == 카메라구분.Cam04)
+            {
+
+            }
+
             this.AcquisitionFinished(surfaceAddr, frameInfo.nWidth, frameInfo.nHeight);
             //this.Stop();
         }

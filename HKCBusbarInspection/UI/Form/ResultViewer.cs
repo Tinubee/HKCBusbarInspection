@@ -16,6 +16,7 @@ namespace HKCBusbarInspection.UI.Form
             this.WindowState = FormWindowState.Maximized;
             this.결과 = 결과;
             this.e결과뷰어.Init(Control.ResultInspection.ViewTypes.Manual);
+            this.e카메라뷰어.Init(Control.ResultInspection.ViewTypes.Manual);
             this.Shown += FormShown;
         }
 

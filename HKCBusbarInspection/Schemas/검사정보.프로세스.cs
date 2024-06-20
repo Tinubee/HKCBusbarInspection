@@ -191,7 +191,7 @@ namespace HKCBusbarInspection.Schemas
                 return 검사;
             }
             Boolean ok = SetResultValue(검사, value, out Decimal 결과값, out Decimal 측정값);
-            
+
             검사.측정값 = 측정값;
             검사.결과값 = 결과값;
             if (검사.측정단위 == 단위구분.ON)
@@ -298,7 +298,7 @@ namespace HKCBusbarInspection.Schemas
                 this.CTQ결과 = 최종결과(품질결과);
                 this.외관결과 = 최종결과(외관결과);
 
-                List<검사정보> 불량내역 = this.검사내역.Where(e => e.결과분류 == 결과분류.Summary && (e.측정결과 == 결과구분.NG || e.측정결과 == 결과구분.ER)).ToList();
+                List<검사정보> 불량내역 = this.검사내역.Where(e => (e.측정결과 == 결과구분.NG || e.측정결과 == 결과구분.ER)).ToList();
                 if (불량내역.Count > 0)
                 {
                     foreach (검사정보 정보 in 불량내역)

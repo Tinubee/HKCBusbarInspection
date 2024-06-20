@@ -3,6 +3,7 @@ using DevExpress.LookAndFeel;
 using DevExpress.Utils.Svg;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Docking;
+using DevExpress.XtraBars.Docking2010.Views;
 using DevExpress.XtraEditors;
 using HKCBusbarInspection.Schemas;
 using HKCBusbarInspection.UI.Form;
@@ -14,8 +15,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using static DevExpress.Skins.SolidColorHelper;
-using static DevExpress.XtraEditors.RoundedSkinPanel;
+using static HKCBusbarInspection.Schemas.검사자료;
+using static HKCBusbarInspection.UI.Control.ResultInspection;
 
 namespace HKCBusbarInspection.UI.Control
 {
@@ -24,12 +25,15 @@ namespace HKCBusbarInspection.UI.Control
         private LocalizationCamViewer 번역 = new LocalizationCamViewer();
         private PopupMenu popupMenu;
         private 카메라구분 구분 { get; set; }
+        private ViewTypes RunType = ViewTypes.Manual;
         public CamViewers() => InitializeComponent();
 
-        public void Init()
+        public void Init(ViewTypes runType = ViewTypes.Manual)
         {
             try
             {
+                RunType = runType;
+
                 this.SetLocalization();
                 if (Global.VM제어?.Count == 0) return;
 
@@ -39,25 +43,27 @@ namespace HKCBusbarInspection.UI.Control
                 this.eLPoint캠.ModuleSource = Global.VM제어.GetItem(Flow구분.LPoint카메라).graphicsSetModuleTool;
                 this.e하부캠.ModuleSource = Global.VM제어.GetItem(Flow구분.하부카메라).graphicsSetModuleTool;
 
-                d상부캠.CustomButtonClick += 상단메뉴클릭;
-                d측면캠.CustomButtonClick += 상단메뉴클릭;
-                dLPoint캠.CustomButtonClick += 상단메뉴클릭;
-                d하부캠.CustomButtonClick += 상단메뉴클릭;
+                if (this.RunType == ViewTypes.Auto)
+                {
+                    d상부캠.CustomButtonClick += 상단메뉴클릭;
+                    d측면캠.CustomButtonClick += 상단메뉴클릭;
+                    dLPoint캠.CustomButtonClick += 상단메뉴클릭;
+                    d하부캠.CustomButtonClick += 상단메뉴클릭;
 
-                popupMenu = new PopupMenu(this.barManager1);
+                    popupMenu = new PopupMenu(this.barManager1);
 
-                BarButtonItem Grab = new BarButtonItem(this.barManager1, "Grab Image");
-                BarButtonItem Master = new BarButtonItem(this.barManager1, "Master Image");
+                    BarButtonItem Grab = new BarButtonItem(this.barManager1, "Grab Image");
+                    BarButtonItem Master = new BarButtonItem(this.barManager1, "Master Image");
 
-                Grab.ImageOptions.SvgImage = MvUtils.Resources.검색;
-                Master.ImageOptions.SvgImage = MvUtils.Resources.보기;
+                    Grab.ImageOptions.SvgImage = MvUtils.Resources.검색;
+                    Master.ImageOptions.SvgImage = MvUtils.Resources.보기;
 
-                popupMenu.AddItem(Grab);
-                popupMenu.AddItem(Master);
+                    popupMenu.AddItem(Grab);
+                    popupMenu.AddItem(Master);
 
-                Grab.ItemClick += 이미지그랩후검사;
-                Master.ItemClick += 마스터이미지검사;
-
+                    Grab.ItemClick += 이미지그랩후검사;
+                    Master.ItemClick += 마스터이미지검사;
+                }
                 //Global.신호제어.동작상태알림 += 동작상태알림;
             }
             catch (Exception ex)
@@ -88,6 +94,8 @@ namespace HKCBusbarInspection.UI.Control
 
             if (Global.장치상태.자동수동) { Utils.WarningMsg($"{this.번역.자동모드사용불가}"); return; }
             if(this.구분 == 카메라구분.Cam04) { Utils.WarningMsg($"{this.번역.소프트웨어트리거사용불가}"); return; }
+
+            if(this.구분 == 카메라구분.Cam01) Global.그랩제어.GetItem(카메라구분.Cam01).대비적용(15);
             //if (!Global.그랩제어.GetItem(this.구분).Active()) { Utils.WarningMsg($"{this.구분} {this.번역.카메라활성화실패}"); return; }
 
             Global.그랩제어.GetItem(this.구분).SoftwareTrigger();

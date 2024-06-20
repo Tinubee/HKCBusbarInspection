@@ -212,7 +212,7 @@ namespace HKCBusbarInspection.Schemas
         public Boolean 통신확인핑퐁 { get => 신호읽기(정보주소.통신확인전송); set => 정보쓰기(정보주소.통신확인전송, value); }
         #endregion
 
-        private Dictionary<정보주소, Int32> 인덱스버퍼 = new Dictionary<정보주소, Int32>();
+        public Dictionary<정보주소, Int32> 인덱스버퍼 = new Dictionary<정보주소, Int32>();
         #endregion
 
         #region 기본함수
