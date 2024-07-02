@@ -62,6 +62,12 @@ namespace HKCBusbarInspection.Schemas
         public String 잉크젯마킹기주소 { get; set; } = "192.168.3.50";
         [Translation("Inkjet Printer Port", "잉크젯 마킹기 포트"), JsonProperty("InkjetPort")]
         public Int32 잉크젯마킹기포트 { get; set; } = 20000;
+        [Translation("Inkjet Printer Index", "잉크젯 마킹기 인덱스"), JsonProperty("InkjetIndex")]
+        public Int32 잉크젯인덱스 { get; set; } = 0;
+        //[Translation("Start Position", "시작위치"), JsonProperty("stPos")]
+        //public Int32 시작위치 { get; set; } = 0;
+        //[Translation("End Position", "종료위치"), JsonProperty("endPos")]
+        //public Int32 종료위치 { get; set; } = 0;
         [JsonIgnore]
         public String Format { get { return "#,0." + String.Empty.PadLeft(this.결과자릿수, '0'); } }
         [JsonIgnore]
@@ -212,12 +218,26 @@ namespace HKCBusbarInspection.Schemas
         {
             if (this.선택모델 != 모델구분)
             {
+                Global.MainForm.ShowWaitForm();
+
                 this.선택모델 = 모델구분;
                 Global.환경설정.모델변경중 = true;
-                Global.정보로그(로그영역.GetString(), "모델변경", $"{this.선택모델} 모델로 변경되었습니다.", true);
+
                 this.모델변경알림?.Invoke(this.선택모델);
+
+                //VM Solution 및 Global 변수 Init
+                Global.VM제어.Init();
+                
+                //모델 변경 사항 적용
+                Global.검사자료.검사완료알림함수(Global.검사자료.현재검사찾기());
+                Global.MainForm.모델변경적용();
+
+                Global.정보로그(로그영역.GetString(), "모델변경", $"{this.선택모델} 모델로 변경되었습니다.", true);
+
+                Global.환경설정.모델변경중 = false;
+
+                Global.MainForm.HideWaitForm();
             }
-            //Global.MainForm.ShowWaitForm();
         }
 
         public static Color 결과표현색상(결과구분 구분)

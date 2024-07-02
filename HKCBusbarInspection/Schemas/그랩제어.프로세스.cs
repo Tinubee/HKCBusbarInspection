@@ -9,6 +9,7 @@ using System.Linq;
 using OpenCvSharp;
 using MvFGCtrlC.NET;
 using static HKCBusbarInspection.Schemas.신호제어;
+using DevExpress.Utils.CodedUISupport;
 
 namespace HKCBusbarInspection.Schemas
 {
@@ -86,6 +87,8 @@ namespace HKCBusbarInspection.Schemas
             int nRet = m_cSystem.UpdateInterfaceList(CParamDefine.MV_FG_CXP_INTERFACE, ref bChanged);
 
             nRet = m_cSystem.OpenInterface(Convert.ToUInt32(0), out CInterface m_cInterface);
+
+            if (nRet != 0) return false;
 
             nRet = m_cInterface.UpdateDeviceList(ref bChanged);
 
@@ -186,44 +189,115 @@ namespace HKCBusbarInspection.Schemas
                 Mat 검사이미지 = 장치.MatImage();
                 Mat 표면이미지 = 장치.SurFaceImage();
 
-                if (장치.구분 == 카메라구분.Cam01 && 장치.표면검사중)
-                    장치.SurFaceMatImageList.Add(검사이미지);
-                else
-                    장치.MatImageList.Add(검사이미지);
+                if (장치.구분 == 카메라구분.Cam05 && 장치.트레이검사중 == true)
+                {//트레이검사
+                    장치.TrayMatImage = 검사이미지;
+                    장치.트레이검사중 = false;
 
-                Int32 이미지개수 = 장치.표면검사중 ? 장치.SurFaceMatImageList.Count : 장치.MatImageList.Count;
+                    Global.VM제어.GetItem(장치.구분).Run(장치.TrayMatImage, null, null, null);
+                    Global.사진자료.SaveImage(장치, DateTime.Now, 장치.TrayMatImage, false);
 
-                if (장치.구분 == 카메라구분.Cam04)
-                    if(!검사자료생성(이미지개수)) { Global.오류로그("그랩완료", "검사번호없음", $"[{장치.구분} - {이미지개수}] 해당 검사가 없습니다.", true); return; }
+                    Dictionary<String, String> 트레이검사결과 = Global.VM제어.GetItem(장치.구분).트레이검사결과;
 
-                Int32 검사번호 = Global.신호제어.촬영위치번호(장치.구분, 이미지개수, 장치.표면검사중);
-                검사결과 검사 = Global.검사자료.검사항목찾기(검사번호, true);
-                if (검사 == null) { Global.오류로그("그랩완료", "검사번호없음", $"Index[{검사번호}] 해당 검사가 없습니다.", true); return; }
+                    //PLC 결과 전달
+                    int nResult = 0;
 
-                //검사시작전에 완료신호 전송해주기.
-                장치.검사중 = false;
-                완료신호전송(장치, 이미지개수);
+                    //유무결과전달
+                    String 유무결과;
+                    트레이검사결과.TryGetValue("유무결과", out 유무결과);
+                    nResult = int.Parse(유무결과);
+                    Common.DebugWriteLine("트레이검사완료", 로그구분.정보, $"유무 : {nResult}");
+                    //임시 로직 개선 후 실측값 적용예정
+                    Global.신호제어.트레이유무결과 = 1;
 
-                if (장치.표면검사중 || 장치.구분 == 카메라구분.Cam04)
-                {
-                    if (장치.구분 == 카메라구분.Cam04) //하부표면
-                    {
-                        Global.VM제어.GetItem(장치.구분).Run(표면이미지, null, null, 검사);
-                        Global.사진자료.SaveImage(장치, 검사, 표면이미지, true);
-                    }
-                    else //상부표면
-                    {
-                        Global.VM제어.GetItem(Flow구분.상부표면).Run(표면이미지, null, null, 검사);
-                        Global.사진자료.SaveImage(장치, 검사, 표면이미지, true);
-                    }
+
+                    //방향결과전달
+                    String 방향결과;
+                    트레이검사결과.TryGetValue("방향결과", out 방향결과);
+                    if (방향결과 == "Forward")
+                        nResult = 1;
+                    else if (방향결과 == "Reverse")
+                        nResult = 2;
+                    else
+                        nResult = -1;
+                    Global.신호제어.트레이방향결과= nResult;
+                    Common.DebugWriteLine("트레이검사완료", 로그구분.정보, $"방향 : {nResult}");
+
+                    //모델결과전달
+                    String 모델결과;
+                    Int32 n모델결과;
+
+                    Int32 모델번호 = Global.신호제어.모델번호;
+
+                    트레이검사결과.TryGetValue("모델결과", out 모델결과);
+                    if (모델결과 == Utils.GetDescription(모델구분.POS_3P))
+                        n모델결과 = Convert.ToInt32(모델구분.POS_3P);    
+                    else if (모델결과 == Utils.GetDescription(모델구분.NEG_3P))
+                        n모델결과 = Convert.ToInt32(모델구분.NEG_3P);
+                    else
+                        n모델결과 = -1;
+
+                    if (n모델결과 == 모델번호)
+                        nResult = 1;
+                    else
+                        nResult = 2;
+                    Global.신호제어.트레이모델결과 = nResult;
+                    Common.DebugWriteLine("트레이검사완료", 로그구분.정보, $"모델 : {nResult}");
+
+
+                    Common.DebugWriteLine("트레이검사완료", 로그구분.정보, $"검사 결과 전송 / 유무 : {유무결과}, 방향 : {방향결과}, 모델 : {모델결과}");
+
+                    트레이검사결과.Clear();
+
                 }
                 else
-                {
-                    Global.VM제어.GetItem(장치.구분).Run(검사이미지, null, null, 검사);
-                    Global.사진자료.SaveImage(장치, 검사, 검사이미지, false);
+                {//셔틀 검사
+                    if (장치.구분 == 카메라구분.Cam01 && 장치.표면검사중)
+                    {
+                        장치.SurFaceMatImageList.Add(검사이미지);
+
+                        장치.대비적용(Global.신호제어.치수검사Gain);
+                    }
+                    else
+                    {
+                        장치.MatImageList.Add(검사이미지);
+                        if(장치.구분 == 카메라구분.Cam01)
+                            장치.대비적용(Global.신호제어.표면검사Gain);
+                    }
+
+                    Int32 이미지개수 = 장치.표면검사중 ? 장치.SurFaceMatImageList.Count : 장치.MatImageList.Count;
+
+                    if (장치.구분 == 카메라구분.Cam04)
+                        if (!검사자료생성(이미지개수)) { Global.오류로그("그랩완료", "검사번호없음", $"[{장치.구분} - {이미지개수}] 해당 검사가 없습니다.", true); return; }
+
+                    Int32 검사번호 = Global.신호제어.촬영위치번호(장치.구분, 이미지개수, 장치.표면검사중);
+                    검사결과 검사 = Global.검사자료.검사항목찾기(검사번호, true);
+                    if (검사 == null) { Global.오류로그("그랩완료", "검사번호없음", $"Index[{검사번호}] 해당 검사가 없습니다.", true); return; }
+
+                    //검사시작전에 완료신호 전송해주기.
+                    장치.검사중 = false;
+                    완료신호전송(장치, 이미지개수);
+
+                    if (장치.표면검사중 || 장치.구분 == 카메라구분.Cam04)
+                    {
+                        if (장치.구분 == 카메라구분.Cam04) //하부표면
+                        {
+                            Global.VM제어.GetItem(장치.구분).Run(표면이미지, null, null, 검사);
+                            Global.사진자료.SaveImage(장치, 검사, 표면이미지, true);
+                        }
+                        else //상부표면
+                        {
+                            Global.VM제어.GetItem(Flow구분.상부표면).Run(표면이미지, null, null, 검사);
+                            Global.사진자료.SaveImage(장치, 검사, 표면이미지, true);
+                        }
+                    }
+                    else
+                    {
+                        Global.VM제어.GetItem(장치.구분).Run(검사이미지, null, null, 검사);
+                        Global.사진자료.SaveImage(장치, 검사, 검사이미지, false);
+                    }
                 }
 
-                //Global.사진자료.SaveImage(장치, 검사);
                 이미지초기화(장치);
             }
             else
@@ -254,6 +328,10 @@ namespace HKCBusbarInspection.Schemas
                 Global.조명제어.TurnOff(사용구분.상부치수검사);
                 Global.조명제어.TurnOff(사용구분.상부표면검사);
                 장치.SurFaceMatImageList.Clear();
+            }
+            if(장치.TrayMatImage != null)
+            {
+                장치.TrayMatImage.Dispose();
             }
         }
 

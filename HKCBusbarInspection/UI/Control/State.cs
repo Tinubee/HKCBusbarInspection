@@ -95,6 +95,9 @@ namespace HKCBusbarInspection.UI.Control
             this.e모델선택.EditValue = 모델코드;
             this.모델자료Bind.DataSource = Global.모델자료.선택모델;
             this.모델자료Bind.ResetBindings(false);
+
+            Global.트리거보드제어.SetStartPosition(트리거보드제어.트리거번호.Trigger0,Global.모델자료.GetItem(모델코드).시작위치);
+            Global.트리거보드제어.SetEndPosition(트리거보드제어.트리거번호.Trigger0, Global.모델자료.GetItem(모델코드).종료위치);
         }
 
         private void 모델변경(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)

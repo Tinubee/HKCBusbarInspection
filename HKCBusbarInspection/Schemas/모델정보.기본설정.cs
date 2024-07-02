@@ -55,8 +55,11 @@ namespace HKCBusbarInspection.Schemas
         [JsonProperty("StartIndex")]
         public Int32 시작번호 { get; set; } = 0;
         [JsonProperty("EndIndex")]
-        public Int32 종료번호 { get; set; } = 0; 
-
+        public Int32 종료번호 { get; set; } = 0;
+        [Translation("Start Position", "시작위치"), JsonProperty("stPos")]
+        public Int32 시작위치 { get; set; } = 0;
+        [Translation("End Position", "종료위치"), JsonProperty("endPos")]
+        public Int32 종료위치 { get; set; } = 0;
         [JsonIgnore]
         public 검사설정 검사설정 = null;
 

@@ -135,23 +135,76 @@ namespace HKCBusbarInspection.Schemas
             Common.DebugWriteLine("Rectangle3D", 로그구분.정보, $"{r.SizeY}, {r.SizeX}, {r.SizeZ}");
             Double hx = r.SizeX / 2;
             Double hy = r.SizeY / 2;
-            Double tz = 100;
-            //Double fz = 90;
-            Double sz = 80;
-            Double standardX = -52.5;
-            Double standardY = -150;
-            Double Scale = 3.5;
+            Double tz = 120;
+            Double fz = 113;
+            Double sz = 70;
+            Double standardX = 51.2;
+            Double standardY = -152.5;
+            Double Scale = 3.6;
 
-            AddText3D(new Point3D(-hx - 100, standardY, tz), "L", 48, MajorColors.FrameColor);
-            AddText3D(new Point3D(+hx + 100, standardY, tz), "R", 48, MajorColors.FrameColor);
-            AddArrowLine(new Point3D(-hx - 50, standardY, tz), new Point3D(hx + 50, standardY, tz), MajorColors.FrameColor); // Left ~ Right Center
-            AddArrowLine(new Point3D(standardX, -hy, tz), new Point3D(standardX, hy, tz), MajorColors.FrameColor); // Width Center
+            AddText3D(new Point3D(-hx - 50, standardY, tz), "L", 48, MajorColors.FrameColor);
+            AddText3D(new Point3D(+hx + 150, standardY, tz), "R", 48, MajorColors.FrameColor);
+            AddArrowLine(new Point3D(-hx, standardY, tz), new Point3D(hx + 100, standardY, tz), MajorColors.FrameColor); // Left ~ Right Center
+            AddArrowLine(new Point3D(standardX + 35, -hy, tz), new Point3D(standardX + 35, hy - 5, tz), MajorColors.FrameColor); // Width Center
 
-            AddArrowLine(new Point3D(standardX + 7.7 * Scale, standardY + 93 * Scale, sz), new Point3D(-standardX + 19 * Scale, standardY + 93 * Scale, sz), MajorColors.FrameColor); // 측면너비
-            AddArrowLine(new Point3D(standardX + 30 * Scale, standardY + 93.5 * Scale, sz - 53.4), new Point3D(standardX + 30 * Scale, standardY + 92.7 * Scale, sz + 65), MajorColors.FrameColor); // 측면높이
-            InspItems.Add(new Label3D(검사항목.측면가로) { Point = new Point3D(standardX + 13 * Scale, standardY + 67.5 * Scale, sz - 260), Origin = new Point3D(standardX + 13 * Scale, standardY + 67.5 * Scale, sz - 260), Name = "측면가로", LabelStyle = NamePrintType.Side, FontHeight = 10 });
-            InspItems.Add(new Label3D(검사항목.측면세로) { Point = new Point3D(standardX + 25 * Scale, standardY + 78 * Scale, sz - 260), Origin = new Point3D(standardX + 25 * Scale, standardY + 78 * Scale, sz - 260), Name = "측면세로", LabelStyle = NamePrintType.Side, FontHeight = 10 });
-            InspItems.Add(new Circle3D(검사항목.측면홀경) { Point = new Point3D(standardX + 37 * Scale, standardY + 72.5 * Scale, sz - 260), Name = "측면홀경", LabelStyle = NamePrintType.Side, FontHeight = 10 });
+            InspItems.Add(new Rectangle3D(검사항목.좌슬롯1거리) { Point = new Point3D(standardX - 4.825 * 2 * Scale, standardY - 1.95 * Scale, tz), Width = 30, Height = 30, Name = "좌슬롯1거리", FontHeight = 10, Value = Decimal.MinValue, LabelStyle = NamePrintType.Up });
+            InspItems.Add(new Rectangle3D(검사항목.좌슬롯2거리) { Point = new Point3D(standardX - 4.825 * 2 * Scale, standardY + 8.375 * Scale, tz), Width = 30, Height = 30, Name = "좌슬롯2거리", FontHeight = 10, Value = Decimal.MinValue, LabelStyle = NamePrintType.Up });
+            InspItems.Add(new Rectangle3D(검사항목.좌슬롯3거리) { Point = new Point3D(standardX - 4.825 * 2 * Scale, standardY + 19.25 * Scale, tz), Width = 30, Height = 30, Name = "좌슬롯3거리", FontHeight = 10, Value = Decimal.MinValue, LabelStyle = NamePrintType.Up });
+            InspItems.Add(new Rectangle3D(검사항목.좌슬롯4거리) { Point = new Point3D(standardX - 4.825 * 2 * Scale, standardY + 30.125 * Scale, tz), Width = 30, Height = 30, Name = "좌슬롯4거리", FontHeight = 10, Value = Decimal.MinValue, LabelStyle = NamePrintType.Up });
+            InspItems.Add(new Rectangle3D(검사항목.좌슬롯5거리) { Point = new Point3D(standardX - 4.825 * 2 * Scale, standardY + 41 * Scale, tz), Width = 30, Height = 30, Name = "좌슬롯5거리", FontHeight = 10, Value = Decimal.MinValue, LabelStyle = NamePrintType.Up });
+            
+            InspItems.Add(new Rectangle3D(검사항목.중슬롯1거리) { Point = new Point3D(standardX + 4.525 * Scale, standardY - 1.95 * Scale, tz), Width = 30, Height = 30, Name = "중슬롯1거리", FontHeight = 10, Value = Decimal.MinValue, LabelStyle = NamePrintType.Up });
+            InspItems.Add(new Rectangle3D(검사항목.중슬롯2거리) { Point = new Point3D(standardX + 4.525 * Scale, standardY + 8.375 * Scale, tz), Width = 30, Height = 30, Name = "중슬롯2거리", FontHeight = 10, Value = Decimal.MinValue, LabelStyle = NamePrintType.Up });
+            InspItems.Add(new Rectangle3D(검사항목.중슬롯3거리) { Point = new Point3D(standardX + 4.525 * Scale, standardY + 19.25 * Scale, tz), Width = 30, Height = 30, Name = "중슬롯3거리", FontHeight = 10, Value = Decimal.MinValue, LabelStyle = NamePrintType.Up });
+            InspItems.Add(new Rectangle3D(검사항목.중슬롯4거리) { Point = new Point3D(standardX + 4.525 * Scale, standardY + 30.125 * Scale, tz), Width = 30, Height = 30, Name = "중슬롯4거리", FontHeight = 10, Value = Decimal.MinValue, LabelStyle = NamePrintType.Up });
+            InspItems.Add(new Rectangle3D(검사항목.중슬롯5거리) { Point = new Point3D(standardX + 4.525 * Scale, standardY + 41 * Scale, tz), Width = 30, Height = 30, Name = "중슬롯5거리", FontHeight = 10, Value = Decimal.MinValue, LabelStyle = NamePrintType.Up });
+            
+            InspItems.Add(new Rectangle3D(검사항목.우슬롯1거리) { Point = new Point3D(standardX + 4.825 * 4 * Scale, standardY - 1.95 * Scale, tz), Width = 30, Height = 30, Name = "우슬롯1거리", FontHeight = 10, Value = Decimal.MinValue, LabelStyle = NamePrintType.Up });
+            InspItems.Add(new Rectangle3D(검사항목.우슬롯2거리) { Point = new Point3D(standardX + 4.825 * 4 * Scale, standardY + 8.375 * Scale, tz), Width = 30, Height = 30, Name = "우슬롯2거리", FontHeight = 10, Value = Decimal.MinValue, LabelStyle = NamePrintType.Up });
+            InspItems.Add(new Rectangle3D(검사항목.우슬롯3거리) { Point = new Point3D(standardX + 4.825 * 4 * Scale, standardY + 19.25 * Scale, tz), Width = 30, Height = 30, Name = "우슬롯3거리", FontHeight = 10, Value = Decimal.MinValue, LabelStyle = NamePrintType.Up });
+            InspItems.Add(new Rectangle3D(검사항목.우슬롯4거리) { Point = new Point3D(standardX + 4.825 * 4 * Scale, standardY + 30.125 * Scale, tz), Width = 30, Height = 30, Name = "우슬롯4거리", FontHeight = 10, Value = Decimal.MinValue, LabelStyle = NamePrintType.Up });
+            InspItems.Add(new Rectangle3D(검사항목.우슬롯5거리) { Point = new Point3D(standardX + 4.825 * 4 * Scale, standardY + 41 * Scale, tz), Width = 30, Height = 30, Name = "우슬롯5거리", FontHeight = 10, Value = Decimal.MinValue, LabelStyle = NamePrintType.Up });
+            
+            
+            InspItems.Add(new Label3D(검사항목.좌상홀경) { Point = new Point3D(standardX, standardY + 27.1 * Scale, fz), Origin = new Point3D(standardX - 80, standardY + 25 * Scale, fz), Name = "좌상홀경", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            InspItems.Add(new Label3D(검사항목.우상홀경) { Point = new Point3D(standardX + 9.63 * Scale, standardY + 27.1 * Scale, fz), Origin = new Point3D(standardX + +80, standardY + 25 * Scale, fz), Name = "우상홀경", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            InspItems.Add(new Label3D(검사항목.좌하홀경) { Point = new Point3D(standardX, standardY + 12 * Scale, fz), Origin = new Point3D(standardX - 80, standardY + 10 * Scale, fz), Name = "좌하홀경", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            InspItems.Add(new Label3D(검사항목.우하홀경) { Point = new Point3D(standardX + 9.63 * Scale, standardY + 12 * Scale, fz), Origin = new Point3D(standardX + 80, standardY + 13 * Scale, fz), Name = "우하홀경", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            
+            InspItems.Add(new Label3D(검사항목.좌상홀가로) { Point = new Point3D(standardX, standardY + 45.5 * Scale, fz), Origin = new Point3D(standardX - 125, standardY + 51 * Scale, tz), Name = "좌상홀가로", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            InspItems.Add(new Label3D(검사항목.좌중홀가로) { Point = new Point3D(standardX, standardY + 20 * Scale, fz), Origin = new Point3D(standardX - 125, standardY + 25.5 * Scale, tz), Name = "좌중홀가로", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            InspItems.Add(new Label3D(검사항목.좌하홀가로) { Point = new Point3D(standardX, standardY, fz), Origin = new Point3D(standardX - 125, standardY + 5 * Scale, tz), Name = "좌하홀가로", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            InspItems.Add(new Label3D(검사항목.좌상홀세로) { Point = new Point3D(standardX, standardY + 45.5 * Scale, fz), Origin = new Point3D(standardX - 125, standardY + 47 * Scale, tz), Name = "좌상홀세로", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            InspItems.Add(new Label3D(검사항목.좌중홀세로) { Point = new Point3D(standardX, standardY + 20 * Scale, fz), Origin = new Point3D(standardX - 125, standardY + 21.5 * Scale, tz), Name = "좌중홀세로", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            InspItems.Add(new Label3D(검사항목.좌하홀세로) { Point = new Point3D(standardX, standardY, fz), Origin = new Point3D(standardX - 125, standardY + 1 * Scale, tz), Name = "좌하홀세로", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            
+            InspItems.Add(new Label3D(검사항목.우상홀가로) { Point = new Point3D(standardX + 9.63 * Scale, standardY + 45.5 * Scale, fz), Origin = new Point3D(standardX + 125, standardY + 51 * Scale, tz), Name = "우상홀가로", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            InspItems.Add(new Label3D(검사항목.우중홀가로) { Point = new Point3D(standardX + 9.63 * Scale, standardY + 20 * Scale, fz), Origin = new Point3D(standardX + 125, standardY + 25.5 * Scale, tz), Name = "우중홀가로", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            InspItems.Add(new Label3D(검사항목.우하홀가로) { Point = new Point3D(standardX + 9.63 * Scale, standardY, fz), Origin = new Point3D(standardX + 125, standardY + 5 * Scale, tz), Name = "우하홀가로", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            InspItems.Add(new Label3D(검사항목.우상홀세로) { Point = new Point3D(standardX + 9.63 * Scale, standardY + 45.5 * Scale, fz), Origin = new Point3D(standardX + 125, standardY + 47 * Scale, tz), Name = "우상홀세로", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            InspItems.Add(new Label3D(검사항목.우중홀세로) { Point = new Point3D(standardX + 9.63 * Scale, standardY + 20 * Scale, fz), Origin = new Point3D(standardX + 125, standardY + 21.5 * Scale, tz), Name = "우중홀세로", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            InspItems.Add(new Label3D(검사항목.우하홀세로) { Point = new Point3D(standardX + 9.63 * Scale, standardY, fz), Origin = new Point3D(standardX + 125, standardY + 1 * Scale, tz), Name = "우하홀세로", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            
+            InspItems.Add(new Label3D(검사항목.좌상홀가로기준치수) { Point = new Point3D(standardX, standardY + 45.5 * Scale, fz), Origin = new Point3D(standardX - 125, standardY + 43 * Scale, tz), Name = "좌상홀가로위치도", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            InspItems.Add(new Label3D(검사항목.좌중홀가로기준치수) { Point = new Point3D(standardX, standardY + 20 * Scale, fz), Origin = new Point3D(standardX - 125, standardY + 17.5 * Scale, tz), Name = "좌중홀가로위치도", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            //InspItems.Add(new Label3D(검사항목.좌하홀가로기준치수) { Point = new Point3D(standardX, standardY, fz), Origin = new Point3D(standardX - 125, standardY - 3 * Scale, tz), Name = "좌하홀가로위치도", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            InspItems.Add(new Label3D(검사항목.좌상홀세로기준치수) { Point = new Point3D(standardX, standardY + 45.5 * Scale, fz), Origin = new Point3D(standardX - 125, standardY + 39 * Scale, tz), Name = "좌상홀세로위치도", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            InspItems.Add(new Label3D(검사항목.좌중홀세로기준치수) { Point = new Point3D(standardX, standardY + 20 * Scale, fz), Origin = new Point3D(standardX - 125, standardY + 13.5 * Scale, tz), Name = "좌중홀세로위치도", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            //InspItems.Add(new Label3D(검사항목.좌하홀세로기준치수) { Point = new Point3D(standardX, standardY, fz), Origin = new Point3D(standardX - 125, standardY - 7 * Scale, tz), Name = "좌하홀세로위치도", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            
+            InspItems.Add(new Label3D(검사항목.우상홀가로기준치수) { Point = new Point3D(standardX + 9.63 * Scale, standardY + 45.5 * Scale, fz), Origin = new Point3D(standardX + 125, standardY + 43 * Scale, tz), Name = "우상홀가로위치도", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            InspItems.Add(new Label3D(검사항목.우중홀가로기준치수) { Point = new Point3D(standardX + 9.63 * Scale, standardY + 20 * Scale, fz), Origin = new Point3D(standardX + 125, standardY + 17.5 * Scale, tz), Name = "우중홀가로위치도", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            InspItems.Add(new Label3D(검사항목.우하홀가로기준치수) { Point = new Point3D(standardX + 9.63 * Scale, standardY, fz), Origin = new Point3D(standardX + 125, standardY - 3 * Scale, tz), Name = "우하홀가로위치도", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            InspItems.Add(new Label3D(검사항목.우상홀세로기준치수) { Point = new Point3D(standardX + 9.63 * Scale, standardY + 45.5 * Scale, fz), Origin = new Point3D(standardX + 125, standardY + 39 * Scale, tz), Name = "우상홀세로위치도", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            InspItems.Add(new Label3D(검사항목.우중홀세로기준치수) { Point = new Point3D(standardX + 9.63 * Scale, standardY + 20 * Scale, fz), Origin = new Point3D(standardX + 125, standardY + 13.5 * Scale, tz), Name = "우중홀세로위치도", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            InspItems.Add(new Label3D(검사항목.우하홀세로기준치수) { Point = new Point3D(standardX + 9.63 * Scale, standardY, fz), Origin = new Point3D(standardX + 125, standardY - 7 * Scale, tz), Name = "우하홀세로위치도", LabelStyle = NamePrintType.Up, FontHeight = 10 });
+            
+            AddArrowLine(new Point3D(- standardX + 30.5 * Scale, standardY + 90.5 * Scale, sz), new Point3D(-standardX -9.5 * Scale, standardY + 90.5 * Scale, sz), MajorColors.FrameColor); // 측면너비
+            AddArrowLine(new Point3D(-standardX + 1.5 * Scale, standardY + 90.5 * Scale, sz - 24), new Point3D(-standardX + 1.5 * Scale, standardY + 90.5 * Scale, sz + 90), MajorColors.FrameColor); // 측면높이
+            InspItems.Add(new Label3D(검사항목.측면가로) { Point = new Point3D(-standardX - 3.5 * Scale, standardY + 64 * Scale, sz - 247.5), Origin = new Point3D(-standardX - 3.5 * Scale, standardY + 64 * Scale, sz - 247.5), Name = "측면가로", LabelStyle = NamePrintType.Side, FontHeight = 10 });
+            InspItems.Add(new Label3D(검사항목.측면세로) { Point = new Point3D(-standardX + 7 * Scale, standardY + 80 * Scale, sz - 247.5), Origin = new Point3D(-standardX + 7 * Scale, standardY + 80 * Scale, sz - 247.5), Name = "측면세로", LabelStyle = NamePrintType.Side, FontHeight = 10 });
+            InspItems.Add(new Circle3D(검사항목.측면홀경) { Point = new Point3D(-standardX + 19 * Scale, standardY + 72.5 * Scale, sz - 247.5), Name = "측면홀경", LabelStyle = NamePrintType.Side, FontHeight = 10 });
+            InspItems.Add(new Circle3D(검사항목.측면홀챔버) { Point = new Point3D(-standardX + 19 * Scale, standardY + 62.5 * Scale, sz - 247.5), Name = "측면홀챔버", LabelStyle = NamePrintType.Side, FontHeight = 10 });
             InspItems.ForEach(e => e.Create(Children));
         }
 

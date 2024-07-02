@@ -84,6 +84,8 @@ namespace HKCBusbarInspection.Schemas
         [JsonIgnore]
         public List<Mat> SurFaceMatImageList = new List<Mat>();
         [JsonIgnore]
+        public Mat TrayMatImage = new Mat();
+        [JsonIgnore]
         public Int32 AllImageCount = 0;
         [JsonIgnore]
         public Boolean 라이브 { get; set; } = false;
@@ -91,6 +93,8 @@ namespace HKCBusbarInspection.Schemas
         public Boolean 검사중 { get; set; } = false;
         [JsonIgnore]
         public Boolean 표면검사중 { get; set; } = false;
+        [JsonIgnore]
+        public Boolean 트레이검사중 { get; set; } = false;
         [JsonIgnore]
         public const String 로그영역 = "Camera";
 
@@ -133,6 +137,7 @@ namespace HKCBusbarInspection.Schemas
 
         public virtual void ClearImageBuffer() => this.ClearImageBuffer();
         public virtual void 대비적용(Single value) => this.대비적용(value);
+        public virtual void 노출적용(Single value) => this.노출적용(value);
 
         #region 이미지그랩
         internal void InitBuffers(Int32 width, Int32 height)
@@ -469,7 +474,20 @@ namespace HKCBusbarInspection.Schemas
 
         public override void 대비적용(Single value) // Gain
         {
-            this.DeviceParam.SetFloatValue("Gain", value);
+            MV_FG_FLOATVALUE 기존값 = new MV_FG_FLOATVALUE();
+            this.DeviceParam.GetFloatValue("Gain", ref 기존값);
+
+            if (Math.Floor(기존값.fCurValue * 100) / 100 != Math.Floor(value * 100) / 100)
+            {
+                Int32 nRet = this.DeviceParam.SetFloatValue("Gain", value);
+            }
+
+            return;
+        }
+        
+        public override void 노출적용(Single value) // Exposure Time
+        {
+            Int32 nRet = this.DeviceParam.SetFloatValue("ExposureTime", value);
         }
 
         public override void ClearImageBuffer()

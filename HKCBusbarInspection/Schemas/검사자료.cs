@@ -61,6 +61,8 @@ namespace HKCBusbarInspection.Schemas
         public void Save() => this.테이블.Save();
         public void Save(검사결과 결과)
         {
+            Common.DebugWriteLine("검사결과", 로그구분.정보, $"검사결과 DB 저장 검사일시 : {결과.검사일시}, 검사번호 : {결과.검사코드}");
+
             this.테이블.Add(결과);
             this.Save();
         }
@@ -94,7 +96,7 @@ namespace HKCBusbarInspection.Schemas
             this.Insert(0, 결과);
             //if (Global.장치상태.자동수동)
             //    this.테이블.Add(결과);
-            // 저장은 State 에서
+             //저장은 State 에서
         }
 
         public void 검사항목제거(List<검사정보> 자료) => this.테이블.Remove(자료);
@@ -132,6 +134,8 @@ namespace HKCBusbarInspection.Schemas
                     if (LastTime >= 검사.검사일시)
                         검사.검사일시 = 검사.검사일시.AddMilliseconds(1);
                     LastTime = 검사.검사일시;
+                    Common.DebugWriteLine("자료추가", 로그구분.정보, $"검사 자료 추가 검사일시 : {검사.검사일시}, 검사번호 : {검사.검사코드}");
+
                     검사.Reset(검사.검사일시);
                     this.자료추가(검사);
                     this.검사스플.Add(검사.검사코드, 검사);

@@ -127,7 +127,7 @@ namespace HKCBusbarInspection.UI.Control
         public void 교정값전체계산()
         {
             if (!Utils.Confirm(this.FindForm(), $"{this.b셔틀위치.EditValue} {번역.전체캘작업실행}")) return;
-            //전체 보정값계산로직 추가
+            //전체 보정값계산로직 추가 
             Int32 셔틀위치 = (Int32)this.b셔틀위치.EditValue - 1;
             for (int lop = 0; lop < this.검사설정.Count; lop++)
             {
@@ -189,6 +189,12 @@ namespace HKCBusbarInspection.UI.Control
         }
 
         public void Close() { }
+
+        public void 모델변경적용()
+        {
+            if (this.InvokeRequired) { this.BeginInvoke(new Action(모델변경적용)); return; }
+            this.e모델선택.EditValue = Global.환경설정.선택모델;
+        }
 
         private 모델구분 선택모델 { get { return (모델구분)this.e모델선택.EditValue; } }
         public 검사설정 검사설정 { get { return Global.모델자료.GetItem(this.선택모델)?.검사설정; } }

@@ -66,7 +66,7 @@ namespace HKCBusbarInspection
                 사진자료 = new 사진자료();
                 유저자료 = new 유저자료();
                 트리거보드제어 = new 트리거보드제어();
-                //마킹기제어 = new 마킹기제어();
+                마킹기제어 = new 마킹기제어();
 
                 로그자료.Init();
                 환경설정.Init();
@@ -76,7 +76,8 @@ namespace HKCBusbarInspection
                 VM제어.Init();
                 검사자료.Init();
                 트리거보드제어.Init();
-                //마킹기제어.Init();
+                마킹기제어.Init();
+                마킹기제어.Start();
 
                 if (Global.환경설정.동작구분 == 동작구분.Live)
                 {
@@ -133,7 +134,7 @@ namespace HKCBusbarInspection
         public static void Start()
         {
             신호제어?.Start();
-            마킹기제어?.Start();
+            //마킹기제어?.Start();
             if (Global.환경설정.동작구분 != 동작구분.Live) return;
         }
 

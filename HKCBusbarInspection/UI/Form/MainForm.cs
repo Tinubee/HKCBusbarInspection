@@ -52,12 +52,19 @@ namespace HKCBusbarInspection
             }
         }
 
-        private void ShowWaitForm()
+        public void ShowWaitForm()
         {
+            if (this.InvokeRequired) { this.BeginInvoke(new Action(ShowWaitForm)); return; }
+
             WaitForm = new UI.Form.WaitForm() { ShowOnTopMode = ShowFormOnTopMode.AboveAll };
             WaitForm.Show(this);
         }
-        private void HideWaitForm() => WaitForm.Close();
+        public void HideWaitForm()
+        {
+            if (this.InvokeRequired) { this.BeginInvoke(new Action(HideWaitForm)); return; }
+
+            WaitForm.Close();
+        }
 
         private void MainFormShown(object sender, EventArgs e)
         {
@@ -180,6 +187,13 @@ namespace HKCBusbarInspection
             public String 카메라 { get => GetString(Items.카메라); }
             public String 로그내역 { get => GetString(Items.로그내역); }
             public String 종료확인 { get => GetString(Items.종료확인); }
+        }
+
+        public void 모델변경적용()
+        {
+            this.e검사설정.모델변경적용();
+            this.e결과뷰어.모델변경적용();
+            this.e카메라뷰어.모델변경적용();
         }
     }
 }
