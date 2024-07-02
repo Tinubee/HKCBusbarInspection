@@ -1,10 +1,13 @@
-﻿using MvUtils;
+﻿using DevExpress.XtraLayout.Converter;
+using MvUtils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms.VisualStyles;
 using static HKCBusbarInspection.Schemas.검사자료;
 
 namespace HKCBusbarInspection.Schemas
@@ -15,8 +18,8 @@ namespace HKCBusbarInspection.Schemas
         private Int32 오류알림간격 = 30; // 초
         private String 셔틀번호변수이름 = "셔틀번호";
 
-        private Single 치수검사Gain = 15;
-        private Single 표면검사Gain = (Single)29.5;
+        public Single 치수검사Gain = 15;
+        public Single 표면검사Gain = (Single)29.5;
 
         public enum 셔틀위치번호
         {
@@ -63,6 +66,7 @@ namespace HKCBusbarInspection.Schemas
             if (Global.환경설정.동작구분 == 동작구분.LocalTest) return 테스트수행();
             if (!입출자료갱신()) return false;
             입출변경확인();
+            모델변경확인();
             검사위치확인();
             제품검사수행();
             장치상태확인();
@@ -70,6 +74,50 @@ namespace HKCBusbarInspection.Schemas
             통신핑퐁수행();
             return true;
         }
+
+        private void 모델변경확인()
+        {
+            Int32 모델번호 = this.모델번호;
+
+            //if (모델번호 != Convert.ToInt32(Global.환경설정.선택모델) && Global.환경설정.모델변경중 == false)
+            //{
+            //    if (!Global.장치상태.자동수동)
+            //    {
+            //        //모델 변경 시 검사 초기화   
+            //        if (검사초기화() == true)
+            //        {
+            //            Global.환경설정.모델변경요청(모델번호);
+            //        }
+            //        else
+            //        {
+            //            Global.오류로그("모델변경", "모델변경오류", "검사 초기화 실패", true);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        Global.오류로그("모델변경", "모델변경오류", "자동 모드 모델 변경 불가", true);
+            //    }
+            //}
+
+            return;
+        }
+
+        private bool 검사초기화()
+        {
+            if(!셔틀검사중확인())
+            {
+                for(int i = (int)카메라구분.Cam01; i < (int)카메라구분.Cam05; ++i)
+                {
+                    Global.그랩제어.GetItem(카메라구분.Cam01).검사중 = false;
+                    Global.그랩제어.GetItem(카메라구분.Cam01).MatImageList.Clear();
+                    Global.그랩제어.GetItem(카메라구분.Cam01).SurFaceMatImageList.Clear();
+                    Global.그랩제어.GetItem(카메라구분.Cam01).TrayMatImage.Dispose();
+                }
+            }
+            
+            return true;
+        }
+
         private void 원점복귀확인()
         {
             if (this.입출자료.Changed(정보주소.원점복귀완료) && this.원점복귀완료)
@@ -199,6 +247,17 @@ namespace HKCBusbarInspection.Schemas
             Global.그랩제어.GetItem(카메라구분.Cam03).검사중 = true;
         }
 
+        private bool 셔틀검사중확인()
+        {
+            if (Global.그랩제어.GetItem(카메라구분.Cam01).검사중 == false &&
+               Global.그랩제어.GetItem(카메라구분.Cam02).검사중 == false &&
+               Global.그랩제어.GetItem(카메라구분.Cam03).검사중 == false &&
+               Global.그랩제어.GetItem(카메라구분.Cam05).검사중 == false)
+                return false;
+            else
+                return true;
+        }
+
         private void 셔틀카메라활성화()
         {
             Global.그랩제어.GetItem(카메라구분.Cam01).Active();
@@ -226,10 +285,16 @@ namespace HKCBusbarInspection.Schemas
                 {
                     Common.DebugWriteLine("상부01치수트리거", 로그구분.정보, $"상부01치수트리거 들어옴");
                     Global.그랩제어.GetItem(카메라구분.Cam01).표면검사중 = false;
-                    카메라이미지초기화();
+                    
+                    //Gain 적용 후 딜레이추가
                     Global.그랩제어.GetItem(카메라구분.Cam01).대비적용(this.치수검사Gain);
+                    
+                    카메라이미지초기화();
                     Global.조명제어.TurnOff(사용구분.상부표면검사);
                     Global.조명제어.TurnOn(사용구분.상부치수검사);
+
+                    Task.Delay(100);
+
                     셔틀검사중설정();
                     셔틀전체카메라촬영();
                 })
@@ -242,9 +307,15 @@ namespace HKCBusbarInspection.Schemas
                 {
                     Common.DebugWriteLine("상부02치수트리거", 로그구분.정보, $"상부02치수트리거 들어옴");
                     Global.그랩제어.GetItem(카메라구분.Cam01).표면검사중 = false;
+
+                    //Gain 적용 후 딜레이추가
                     Global.그랩제어.GetItem(카메라구분.Cam01).대비적용(this.치수검사Gain);
+
                     Global.조명제어.TurnOff(사용구분.상부표면검사);
                     Global.조명제어.TurnOn(사용구분.상부치수검사);
+
+                    Task.Delay(100);
+
                     셔틀검사중설정();
                     셔틀전체카메라촬영();
                 })
@@ -257,9 +328,14 @@ namespace HKCBusbarInspection.Schemas
                 {
                     Common.DebugWriteLine("상부03치수트리거", 로그구분.정보, $"상부03치수트리거 들어옴");
                     Global.그랩제어.GetItem(카메라구분.Cam01).표면검사중 = false;
+
+                    //Gain 적용 후 딜레이추가
                     Global.그랩제어.GetItem(카메라구분.Cam01).대비적용(this.치수검사Gain);
                     Global.조명제어.TurnOff(사용구분.상부표면검사);
                     Global.조명제어.TurnOn(사용구분.상부치수검사);
+
+                    Task.Delay(100); 
+
                     셔틀검사중설정();
                     셔틀전체카메라촬영();
                 })
@@ -276,9 +352,15 @@ namespace HKCBusbarInspection.Schemas
             {
                 Common.DebugWriteLine("상부01표면트리거", 로그구분.정보, $"상부01표면트리거 들어옴");
                 Global.그랩제어.GetItem(카메라구분.Cam01).표면검사중 = true;
+
+                //Gain 적용 후 딜레이추가
                 Global.그랩제어.GetItem(카메라구분.Cam01).대비적용(this.표면검사Gain);
+
                 Global.조명제어.TurnOff(사용구분.상부치수검사);
                 Global.조명제어.TurnOn(사용구분.상부표면검사);
+
+                Task.Delay(100);
+
                 new Thread(() =>
                 {
                     Global.그랩제어.GetItem(카메라구분.Cam01).SoftwareTrigger();
@@ -289,9 +371,15 @@ namespace HKCBusbarInspection.Schemas
             {
                 Common.DebugWriteLine("상부02표면트리거", 로그구분.정보, $"상부02표면트리거 들어옴");
                 Global.그랩제어.GetItem(카메라구분.Cam01).표면검사중 = true;
+
+                //Gain 적용 후 딜레이추가
                 Global.그랩제어.GetItem(카메라구분.Cam01).대비적용(this.표면검사Gain);
+
                 Global.조명제어.TurnOff(사용구분.상부치수검사);
                 Global.조명제어.TurnOn(사용구분.상부표면검사);
+
+                Task.Delay(100);
+
                 new Thread(() =>
                 {
                     Global.그랩제어.GetItem(카메라구분.Cam01).SoftwareTrigger();
@@ -301,13 +389,40 @@ namespace HKCBusbarInspection.Schemas
             if (셔틀03검사번호 > 0)
             {
                 Common.DebugWriteLine("상부03표면트리거", 로그구분.정보, $"상부03표면트리거 들어옴");
+                Global.그랩제어.GetItem(카메라구분.Cam01).표면검사중 = true;
+
+                //Gain 적용 후 딜레이추가
                 Global.그랩제어.GetItem(카메라구분.Cam01).대비적용(this.표면검사Gain);
+
                 Global.조명제어.TurnOff(사용구분.상부치수검사);
                 Global.조명제어.TurnOn(사용구분.상부표면검사);
-                Global.그랩제어.GetItem(카메라구분.Cam01).표면검사중 = true;
+
+                Task.Delay(100);
+
                 new Thread(() =>
                 {
                     Global.그랩제어.GetItem(카메라구분.Cam01).SoftwareTrigger();
+                })
+                { Priority = ThreadPriority.Highest }.Start();
+            }
+        }
+        private void 트레이검사수행()
+        {
+            bool 트레이검사신호 = this.트레이검사트리거;
+
+            if (트레이검사신호 == true)
+            {
+                new Thread(() =>
+                {
+                    //트레이 검사의 경우 그랩완료 및 검사결과요청신호 없음
+                    //검사트리거는 검사결과 전송후에 초기화 시켜준다
+                    this.트레이검사트리거 = false;
+                    Common.DebugWriteLine("트레이검사트리거", 로그구분.정보, $"트레이검사트리거 들어옴");
+
+                    Global.그랩제어.GetItem(카메라구분.Cam05).트레이검사중 = true;
+
+                    //트레이검사 조명 없음
+                    Global.그랩제어.GetItem(카메라구분.Cam05).SoftwareTrigger();
                 })
                 { Priority = ThreadPriority.Highest }.Start();
             }
@@ -358,18 +473,38 @@ namespace HKCBusbarInspection.Schemas
         {
             if (this.입출자료.Changed(정보주소.잉크젯마킹신호트리거) && this.잉크젯마킹신호트리거)
             {
-                
+                new Thread(() =>
+                {
+                    if (Global.마킹기제어.마킹기준비())
+                        Common.DebugWriteLine("자료송신", 로그구분.정보, $"마킹기 준비 완료");
+
+                    this.잉크젯마킹신호트리거 = false;
+                })
+                { Priority = ThreadPriority.Highest }.Start();
+            }
+
+            if (this.입출자료.Changed(정보주소.잉크젯마킹완료트리거) && this.잉크젯마킹완료트리거)
+            {
+                new Thread(() =>
+                {
+                    if (Global.마킹기제어.마킹기완료())
+                        Common.DebugWriteLine("자료송신", 로그구분.정보, $"마킹기 마킹 완료");
+
+                    this.잉크젯마킹완료트리거 = false;
+                })
+                { Priority = ThreadPriority.Highest }.Start();
             }
         }
         
         private void 영상촬영수행()
         {
+            트레이검사수행();
             하부표면검사수행();
             상부치수검사수행();
             상부표면검사수행();
         }
 
-        public Boolean 검사결과(Int32 검사번호)
+        public Boolean 셔틀검사결과(Int32 검사번호)
         {
             if (검사번호 <= 0) return false;
 
@@ -405,6 +540,8 @@ namespace HKCBusbarInspection.Schemas
                 return false;
             }
             // 배출 수행
+            Common.DebugWriteLine("검사결과", 로그구분.정보, $"검사결과 DB 저장 검사일시 : {검사.검사일시}, 검사번호 : {검사.검사코드}");
+
             Global.검사자료.검사완료알림함수(검사);
             Common.DebugWriteLine("검사결과", 로그구분.정보, $"Index [{검사번호}] => {검사.측정결과 == 결과구분.OK}");
             return 검사.측정결과 == 결과구분.OK;
@@ -427,7 +564,7 @@ namespace HKCBusbarInspection.Schemas
                 this.셔틀01표면검사트리거 = false;
                 this.셔틀01결과값요청신호 = false;
 
-                this.셔틀01결과신호 = 검사결과(셔틀01검사번호);
+                this.셔틀01결과신호 = 셔틀검사결과(셔틀01검사번호);
             }
             if (셔틀02검사번호 > 0)
             {
@@ -439,7 +576,7 @@ namespace HKCBusbarInspection.Schemas
                 this.셔틀02표면검사트리거 = false;
                 this.셔틀02결과값요청신호 = false;
 
-                this.셔틀02결과신호 = 검사결과(셔틀02검사번호);
+                this.셔틀02결과신호 = 셔틀검사결과(셔틀02검사번호);
             }
             if (셔틀03검사번호 > 0)
             {
@@ -451,7 +588,7 @@ namespace HKCBusbarInspection.Schemas
                 this.셔틀03표면검사트리거 = false;
                 this.셔틀03결과값요청신호 = false;
 
-                this.셔틀03결과신호 = 검사결과(셔틀03검사번호);
+                this.셔틀03결과신호 = 셔틀검사결과(셔틀03검사번호);
             }
         }
 

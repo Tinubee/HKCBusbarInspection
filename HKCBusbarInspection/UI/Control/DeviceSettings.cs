@@ -11,6 +11,12 @@ namespace HKCBusbarInspection.UI.Control
         private LocalizationDeviceSetting 번역 = new LocalizationDeviceSetting();
         public DeviceSettings() => InitializeComponent();
 
+        private Int32 stPosition = 0;
+        private Int32 edPosition = 0;
+
+        //위치 변경 및 레시피화 예정
+        private string 마킹기텍스트임시 = "";
+
         private void 원점복귀알림()
         {
             Global.그랩제어.GetItem(카메라구분.Cam01).MatImageList.Clear();
@@ -65,9 +71,63 @@ namespace HKCBusbarInspection.UI.Control
 
             Global.신호제어.원점복귀알림 += 원점복귀알림;
 
+            this.b텍스트전송.Click += 마킹기텍스트전송;
+            this.t잉크젯텍스트.TextChanged += 마킹기텍스트Changed;
+
+            this.tb시작위치.Text = Global.모델자료.GetItem(Global.환경설정.선택모델).시작위치.ToString();
+            this.tb종료위치.Text = Global.모델자료.GetItem(Global.환경설정.선택모델).종료위치.ToString();
+
+            this.tb시작위치.TextChanged += 시작위치설정;
+            this.tb종료위치.TextChanged += 종료위치설정;
+
+            this.b트리거보드위치적용.Click += 트리거보드위치적용;
+
             this.e카메라.Init();
             this.e기본설정.Init();
             this.e입출신호.Init();
+        }
+
+        private void 트리거보드위치적용(object sender, EventArgs e)
+        {
+            if (Global.트리거보드제어.트리거보드 == null)
+                Global.트리거보드제어.Init();
+
+            Global.트리거보드제어.SetStartPosition(트리거보드제어.트리거번호.Trigger0, stPosition);
+            Global.트리거보드제어.SetEndPosition(트리거보드제어.트리거번호.Trigger0, edPosition);
+
+            Global.모델자료.Save();
+        }
+
+        private void 시작위치설정(object sender, EventArgs e)
+        {
+            if (Global.트리거보드제어.트리거보드 == null)
+                Global.트리거보드제어.Init();
+
+            stPosition = Convert.ToInt32(tb시작위치.Text);
+
+            Global.모델자료.GetItem(Global.환경설정.선택모델).시작위치 = stPosition;
+        }
+
+
+        private void 종료위치설정(object sender, EventArgs e)
+        {
+            if (Global.트리거보드제어.트리거보드 == null)
+                Global.트리거보드제어.Init();
+
+            edPosition = Convert.ToInt32(tb종료위치.Text);
+
+            Global.모델자료.GetItem(Global.환경설정.선택모델).종료위치 = edPosition;
+        }
+
+
+        private void 마킹기텍스트Changed(object sender, EventArgs e)
+        {
+            마킹기텍스트임시 = t잉크젯텍스트.Text;
+        }
+
+        private void 마킹기텍스트전송(object sender, EventArgs e)
+        {
+            Global.마킹기제어.자료송신(마킹기텍스트임시);
         }
 
         public void 캠트리거리셋(object sender, EventArgs e)
@@ -82,7 +142,7 @@ namespace HKCBusbarInspection.UI.Control
             if (Global.트리거보드제어.트리거보드 == null)
                 Global.트리거보드제어.Init();
 
-            if (Global.트리거보드제어.Open())
+            if (Global.트리거보드제어.트리거보드.IsOpen)
             {
                 Global.트리거보드제어.ClearAll();
                 Global.트리거보드제어.Close();

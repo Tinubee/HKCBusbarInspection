@@ -188,7 +188,7 @@ namespace HKCBusbarInspection.Schemas
             this.켜짐 = false;
             return this.컨트롤러.TurnOff(this);
         }
-        public Boolean OnOff()
+        public Boolean OnOff()  
         {
             if (this.켜짐) return this.TurnOff();
             else return this.TurnOn();

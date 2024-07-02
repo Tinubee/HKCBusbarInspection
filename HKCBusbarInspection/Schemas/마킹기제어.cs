@@ -57,13 +57,48 @@ namespace HKCBusbarInspection.Schemas
         {
             if (!this.마킹기.연결여부) return false;
 
-            String sendMsg = $"SETTEXT \"001\" \"{message}\"\r\n";
+            //String sendMsg = $"GETPROJECTS \r\n";
+
+
+            //String sendMsg = $"LOADPROJECT \"001.lbl\" \r\n";
+            String sendMsg = $"SETTEXT \"Text 1\" \"{message}\"\r\n";
+            //
+            //if (this.마킹기.Send(sendMsg)) return true;
+
+            //String sendMsg = $"MARK \"START\" \r\n";
+            //String sendMsg = $"SETTEXT \"Text 1\" \"{message}\"\r\n";
+
             if (this.마킹기.Send(sendMsg)) return true;
 
             Global.오류로그(로그영역, "자료송신", $"[{message}] 자료전송에 실패하였습니다.", true);
             return false;
         }
 
+        public Boolean 마킹기준비()
+        {
+            if (!this.마킹기.연결여부) return false;
+
+            String sendMsg = $"MARK \"START\" \r\n";
+
+            if (this.마킹기.Send(sendMsg)) return true;
+
+            Global.오류로그(로그영역, "자료송신", $"트리거 송신 실패", true);
+
+            return false ;
+        }
+
+        public Boolean 마킹기완료()
+        {
+            if (!this.마킹기.연결여부) return false;
+
+            String sendMsg = $"MARK \"STOP\" \r\n";
+
+            if (this.마킹기.Send(sendMsg)) return true;
+
+            Global.오류로그(로그영역, "자료송신", $"트리거 송신 실패", true);
+
+            return false;
+        }
     }
     public class 마킹기
     {
@@ -142,7 +177,7 @@ namespace HKCBusbarInspection.Schemas
                 Thread.Sleep(대기시간);
                 if (!this.동작여부) break;
 
-                if (!this.연결여부)
+                if (!this.Connected())
                 {
                     if (this.Connect()) { }
                     continue;

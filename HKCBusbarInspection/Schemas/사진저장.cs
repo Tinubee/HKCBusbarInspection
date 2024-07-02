@@ -116,6 +116,8 @@ namespace HKCBusbarInspection.Schemas
 
         public void SaveImage(그랩장치 장치, 검사결과 결과, Mat 이미지, Boolean 표면검사) => SaveImage(장치.구분, 이미지, 결과.검사일시, 결과.검사코드, 표면검사);
 
+        public void SaveImage(그랩장치 장치, DateTime 시간, Mat 이미지, Boolean 표면검사) => SaveImage(장치.구분, 이미지, 시간, 0, 표면검사);
+
         public void SaveImage(카메라구분 카메라, Mat image, DateTime 시간, Int32 번호, Boolean 표면검사)
         {
             if (!this.ContainsKey(카메라)) return;

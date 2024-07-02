@@ -152,10 +152,10 @@
       <HintPath>C:\Program Files (x86)\MVS\Development\MVFG\DotNet\AnyCpu\MvFGCtrlC.Net.dll</HintPath>
     </Reference>
     <Reference Include="MVSol.Core">
-      <HintPath>C:\MvSol\MVSol.Core.dll</HintPath>
+      <HintPath>..\..\MVSol.Core.dll</HintPath>
     </Reference>
     <Reference Include="MVSol.Enc852">
-      <HintPath>C:\MvSol\MVSol.Enc852.dll</HintPath>
+      <HintPath>..\..\MVSol.Enc852.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -519,6 +519,7 @@
     <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.그랩장치.datasource" />
     <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.로그자료.datasource" />
     <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.모델자료.datasource" />
+    <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.모델정보.datasource" />
     <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.사진저장.datasource" />
     <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.조명제어.datasource" />
     <None Include="Properties\DataSources\HKCBusbarInspection.Schemas.환경설정.datasource" />

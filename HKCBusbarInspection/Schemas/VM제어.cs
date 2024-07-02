@@ -103,6 +103,7 @@ namespace HKCBusbarInspection.Schemas
         public GraphicsSetModuleTool graphicsSetModuleTool;
         public ShellModuleTool shellModuleTool;
         public GlobalVariableModuleTool GlobalVariableModuleTool;
+        public Dictionary<String, String> 트레이검사결과;
 
         public 비전마스터플로우(Flow구분 구분)
         {
@@ -216,6 +217,36 @@ namespace HKCBusbarInspection.Schemas
             return results;
         }
 
+        public Dictionary<String, String> GetResults_Tray()
+        {
+            Dictionary<String, String> results = new Dictionary<String, String>();
+            //ShellModuleTool shell = Global.VM제어.GetItem(구분).shellModuleTool;
+            foreach (VmIO vmIO in this.shellModuleTool.Outputs)
+            {
+                List<VmIO> t = vmIO.GetAllIO();
+                if (t[0].Value != null && t[0].UniqueName != "ModuStatus" && t[0].UniqueName != "ResultShow")
+                {
+                    String name = t[0].UniqueName.Split('%')[1];
+                    if (t[0].Value != null)
+                    {
+                        String str = ((ImvsSdkDefine.IMVS_MODULE_STRING_VALUE_EX[])t[0].Value)[0].strValue;
+                        if (str == null) continue;
+                        try
+                        {
+                            results.Add(name, str);
+                        }
+                        catch (Exception e)
+                        {
+                            Debug.WriteLine(e.Message, name);
+                        }
+                    }
+                }
+                //if (terminal.ValueType != typeof(Double)) continue;
+                //results.Add(terminal.Name, terminal.Value == null ? Double.NaN : (Double)terminal.Value);
+            }
+
+            return results;
+        }
 
         private void SetResult(Flow구분 구분)
         {
@@ -282,7 +313,17 @@ namespace HKCBusbarInspection.Schemas
                         this.imageSourceModuleTool.SetImageData(imageBaseData);
                 }
                 this.Procedure.Run();
-                검사?.SetResults(this.카메라, this.GetResults());
+
+                if (this.구분 != Flow구분.트레이검사카메라)
+                {
+                    검사?.SetResults(this.카메라, this.GetResults());
+                }
+                else
+                {//
+                    트레이검사결과 = this.GetResults_Tray();
+                }
+
+
                 return true;
             }
             catch (Exception ex)
@@ -294,7 +335,11 @@ namespace HKCBusbarInspection.Schemas
 
         private ImageBaseData MatToImageBaseData(Mat mat)
         {
-            if (mat.Channels() != 1) return null;
+            if (mat.Channels() != 1)
+            {
+                Cv2.CvtColor(mat, mat, ColorConversionCodes.BGR2GRAY);
+            }
+
             ImageBaseData imageBaseData;
             uint dataLen = (uint)(mat.Width * mat.Height * mat.Channels());
             byte[] buffer = new byte[dataLen];

@@ -56,6 +56,8 @@ namespace HKCBusbarInspection.Schemas
             셔틀03표면검사트리거,
             [Address("W00B0")]
             잉크젯마킹신호트리거,
+            [Address("W00B1")]
+            잉크젯마킹완료트리거,
             [Address("W0090")]
             셔틀01결과값요청,
             [Address("W0091")]
@@ -106,7 +108,11 @@ namespace HKCBusbarInspection.Schemas
             인덱스전체초기화,
 
             [Address("W0021")]
-            트레이결과,
+            트레이유무결과,
+            [Address("W0022")]
+            트레이방향결과,
+            [Address("W0023")]
+            트레이모델결과,
             [Address("W0101")]
             하부01결과,
             [Address("W0103")]
@@ -151,6 +157,13 @@ namespace HKCBusbarInspection.Schemas
 
 
         #region 입출신호
+        //트레이검사신호 추가
+        public Boolean 트레이검사트리거 { get => 신호읽기(정보주소.트레이검사트리거); set => 정보쓰기(정보주소.트레이검사트리거, value); }
+        public Int32 트레이유무결과 { get => 정보읽기(정보주소.트레이유무결과); set => 정보쓰기(정보주소.트레이유무결과, value); }
+        public Int32 트레이방향결과 { get => 정보읽기(정보주소.트레이방향결과); set => 정보쓰기(정보주소.트레이방향결과, value); }
+        public Int32 트레이모델결과 { get => 정보읽기(정보주소.트레이모델결과); set => 정보쓰기(정보주소.트레이모델결과, value); }
+
+
         public Boolean 하부01검사트리거 { get => 신호읽기(정보주소.하부01검사트리거); set => 정보쓰기(정보주소.하부01검사트리거, value); }
         public Boolean 하부02검사트리거 { get => 신호읽기(정보주소.하부02검사트리거); set => 정보쓰기(정보주소.하부02검사트리거, value); }
         public Boolean 하부03검사트리거 { get => 신호읽기(정보주소.하부03검사트리거); set => 정보쓰기(정보주소.하부03검사트리거, value); }
@@ -161,6 +174,7 @@ namespace HKCBusbarInspection.Schemas
         public Boolean 셔틀02표면검사트리거 { get => 신호읽기(정보주소.셔틀02표면검사트리거); set => 정보쓰기(정보주소.셔틀02표면검사트리거, value); }
         public Boolean 셔틀03표면검사트리거 { get => 신호읽기(정보주소.셔틀03표면검사트리거); set => 정보쓰기(정보주소.셔틀03표면검사트리거, value); }
         public Boolean 잉크젯마킹신호트리거 { get => 신호읽기(정보주소.잉크젯마킹신호트리거); set => 정보쓰기(정보주소.잉크젯마킹신호트리거, value); }
+        public Boolean 잉크젯마킹완료트리거 { get => 신호읽기(정보주소.잉크젯마킹완료트리거); set => 정보쓰기(정보주소.잉크젯마킹완료트리거, value); }
 
         public Boolean 하부01결과신호초기화 { get => 신호읽기(정보주소.하부01결과); set => 정보쓰기(정보주소.하부01결과, value); }
         public Boolean 하부02결과신호초기화 { get => 신호읽기(정보주소.하부02결과); set => 정보쓰기(정보주소.하부02결과, value); }
@@ -285,6 +299,7 @@ namespace HKCBusbarInspection.Schemas
 
         public void 출력자료리셋()
         {
+            this.트레이검사트리거 = false;
             this.하부01검사트리거 = false;
             this.하부02검사트리거 = false;
             this.하부03검사트리거 = false;

@@ -26,6 +26,7 @@ namespace HKCBusbarInspection.UI.Control
 
             this.d검사결과.Text = this.번역.검사결과;
             this.e결과뷰어.Init(Busbar);
+
             this.e결과목록.Init();
 
             if (this.RunType == ViewTypes.Auto)
@@ -35,6 +36,22 @@ namespace HKCBusbarInspection.UI.Control
 
                 검사완료알림(Global.검사자료.현재검사찾기());
             }
+        }
+
+        public void 모델변경적용()
+        {
+            if (this.InvokeRequired) { this.BeginInvoke(new Action(모델변경적용)); return; }
+
+            Busbar = new BUSBAR3D();
+            {
+                Busbar.CameraPosition = new Point3D(0.6, -2.6, 967);
+                Busbar.CameraLookDirection = new Vector3D(0, 0, -967);
+                Busbar.CameraUpDirection = new Vector3D(0, 1, 0);
+            }
+
+            this.e결과뷰어.Init(Busbar);
+            this.e결과뷰어.RefreshViewport();
+
         }
 
         public void Close() { }
